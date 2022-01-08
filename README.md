@@ -14,7 +14,7 @@
 ![SASS](https://img.shields.io/badge/SASS-000000?style=for-the-badge&logo=SASS&logoColor=1572B6) 
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-000000?style=for-the-badge&logo=Bootstrap&logoColor=E34F26) 
 ![React.js](https://img.shields.io/badge/React-000000?style=for-the-badge&logo=React&logoColor=61DAFB) 
-![Vue.js](https://img.shields.io/badge/Vue.js-000000?style=for-the-badge&logo=Vue.js&logoColor=fff) 
+![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=Vue.js&logoColor=fff) 
 
  <img src="https://camo.githubusercontent.com/7f4931495ba3a8b88b75935ec00486ccb40d30b8d613829df0bdf86eaf2d8abb/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4e6f64656a732d3433383533643f7374796c653d666f722d7468652d6261646765266c6f676f3d4e6f64652e6a73266c6f676f436f6c6f723d7768697465"/>
  <img src="https://camo.githubusercontent.com/cb3c8adf7b1a07a0236bf33802aa7919a64df5dd3a12e4b7f5bff214fba480dd/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d52454143545f484f4f4b532d3332353061383f7374796c653d666f722d7468652d6261646765266c6f676f3d5245414354266c6f676f436f6c6f723d"/>
@@ -26,10 +26,16 @@
 <img src="https://camo.githubusercontent.com/709e211a1661cd63e675035bcba203faaa272d057887aee138e1c2d4f634c48b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4669676d612d726762283234322c2037382c203330293f7374796c653d666f722d7468652d6261646765266c6f676f3d6669676d61266c6f676f436f6c6f723d7768697465"/>
 
 ### Follow me 
-[![Instagramhttps://studio.youtube.com/channel/UCYBZ_ZTfPiGqtBRhKUeFlgw#:~:text=Muzaffarxon%20Abdusalomov](https://img.shields.io/badge/Instagram-090909?style=for-the-badge&logo=Instagram&logoColor=#1DA1F2)](https://www.instagram.com/muzaffarxon_xoshimxonovich)
-[![Telegram](https://img.shields.io/badge/Telegram-090909?style=for-the-badge&logo=Telegram&logoColor=#1DA1F2)](https://t.me/fullstack_5)
-[![Linkedin](https://img.shields.io/badge/Linkedin-090909?style=for-the-badge&logo=Linkedin&logoColor=#1DA1F2)](https://www.linkedin.com/in/muzaffarxon-abdusalomov-8430b021a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BGLNEgPTMSlu%2BNEirN0MvQQ%3D%3D)
-[![Facebook](https://img.shields.io/badge/Facebook-090909?style=for-the-badge&logo=Facebook&logoColor=#1DA1F2)](https://www.facebook.com/MuzaffarxonAbdusalomov)
-[![Youtube](https://img.shields.io/badge/Youtube-090909?style=for-the-badge&logo=Youtube&logoColor=FF0000)](https://studio.youtube.com/channel/UCYBZ_ZTfPiGqtBRhKUeFlgw#:~:text=Muzaffarxon%20Abdusalomov)
-[![Netlify](https://img.shields.io/badge/Netlify-090909?style=for-the-badge&logo=Netlify&logoColor=4287f5)](https://app.netlify.com/teams/muzaffarxon04) 
+[![Linkedin](https://img.shields.io/badge/Linkedin-090909?style=for-the-badge&logo=Linkedin&logoColor=#1DA1F2)]
+(https://www.linkedin.com/in/ravshancha)
+[![Telegram](https://img.shields.io/badge/Telegram-090909?style=for-the-badge&logo=Telegram&logoColor=#1DA1F2)]
+(https://t.me/ravshancha)
+[![Facebook](https://img.shields.io/badge/Facebook-090909?style=for-the-badge&logo=Facebook&logoColor=#1DA1F2)]
+(https://www.facebook.com/ravshancha)
+[![Instagram](https://img.shields.io/badge/Instagram-090909?style=for-the-badge&logo=Instagram&logoColor=#1DA1F2)]
+(https://www.instagram.com/ravshancha.uz)
+[![Youtube](https://img.shields.io/badge/Youtube-090909?style=for-the-badge&logo=Youtube&logoColor=FF0000)]
+(https://www.youtube.com/channel/UC8JnQbQNwAJEu2fObpYSHMA)
+[![Netlify](https://img.shields.io/badge/Netlify-090909?style=for-the-badge&logo=Netlify&logoColor=4287f5)]
+(https://app.netlify.com/teams/ravshancha) 
 
