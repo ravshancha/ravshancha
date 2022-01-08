@@ -10,14 +10,17 @@
 [![StackOverflow](https://img.shields.io/badge/Stack_Overflow-000000?style=for-the-badge&logo=stack-overflow)](https://www.bitbucket.com/ravshancha)
 
 ### **Contacts**
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-000000?style=for-the-badge&logo=LinkedIn)](https://www.linkedin.com/in/ravshancha)
 [![Telegram](https://img.shields.io/badge/Telegram-000000?style=for-the-badge&logo=Telegram)](https://t.me/ravshancha)
+[![Whatsapp](https://img.shields.io/badge/WhatsApp-000000?style=for-the-badge&logo=Whatsapp)](https://www.wa.me/+998994370770)
+
+### **Social Media**
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-000000?style=for-the-badge&logo=LinkedIn)](https://www.linkedin.com/in/ravshancha)
 [![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=Twitter)](https://www.wa.me/+998994370770)
 [![Facebook](https://img.shields.io/badge/Facebook-000000?style=for-the-badge&logo=Facebook)](https://www.facebook.com/ravshancha)
 [![Instagram](https://img.shields.io/badge/Instagram-000000?style=for-the-badge&logo=Instagram)](https://www.instagram.com/ravshancha.uz)  
-[![Whatsapp](https://img.shields.io/badge/WhatsApp-000000?style=for-the-badge&logo=Whatsapp)](https://www.wa.me/+998994370770)
 [![Youtube](https://img.shields.io/badge/Youtube-000000?style=for-the-badge&logo=Youtube)](https://www.youtube.com/channel/UC8JnQbQNwAJEu2fObpYSHMA)
 [![TikTok](https://img.shields.io/badge/TikTok-000000?style=for-the-badge&logo=TikTok)](https://www.wa.me/+998994370770)
+
 
 ### **Git Repositories & Projects**
 [![Github](https://img.shields.io/badge/Github-000000?style=for-the-badge&logo=Github)](https://www.github.com/ravshancha)
