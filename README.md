@@ -6,16 +6,16 @@
 [![Ismoilov Ravshanjon's GitHub stats ](https://github-readme-stats.vercel.app/api/top-langs/?username=ravshancha&theme=blue-green)](https://gitlab.com/ravshancha)
 
 ### **Language & Technologies**
-![JAVA](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=Java&logoColor=ff0000) 
-![Oracle](https://img.shields.io/badge/Oracle-000000?style=for-the-badge&logo=Oracle&logoColor=4169E1) 
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-000000?style=for-the-badge&logo=PostgreSQL&logoColor=4169E1) 
-![HTML](https://img.shields.io/badge/HTML5-000000?style=for-the-badge&logo=HTML5&logoColor=E34F26) 
-![CSS](https://img.shields.io/badge/CSS3-000000?style=for-the-badge&logo=CSS3&logoColor=1572B6) 
-![JavaScript](https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=JavaScript&logoColor=F7DF1E) 
-![SASS](https://img.shields.io/badge/SASS-000000?style=for-the-badge&logo=SASS&logoColor=1572B6) 
-![Bootstrap](https://img.shields.io/badge/Bootstrap-000000?style=for-the-badge&logo=Bootstrap&logoColor=E34F26) 
-![React.js](https://img.shields.io/badge/React-000000?style=for-the-badge&logo=React&logoColor=61DAFB) 
-![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=Vue.js&logoColor=fff) 
+![JAVA](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=Java) 
+![Oracle](https://img.shields.io/badge/Oracle-000000?style=for-the-badge&logo=Oracle) 
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-000000?style=for-the-badge&logo=PostgreSQL) 
+![HTML](https://img.shields.io/badge/HTML5-000000?style=for-the-badge&logo=HTML5) 
+![CSS](https://img.shields.io/badge/CSS3-000000?style=for-the-badge&logo=CSS3) 
+![JavaScript](https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=JavaScript) 
+![SASS](https://img.shields.io/badge/SASS-000000?style=for-the-badge&logo=SASS) 
+![Bootstrap](https://img.shields.io/badge/Bootstrap-000000?style=for-the-badge&logo=Bootstrap) 
+![React.js](https://img.shields.io/badge/React-000000?style=for-the-badge&logo=React) 
+![Vue.js](https://img.shields.io/badge/Vue.js-000000?style=for-the-badge&logo=Vue.js) 
 ![Figma](https://img.shields.io/badge/Figma-000000?style=for-the-badge&logo=Figma) 
 
 <img src="https://camo.githubusercontent.com/7f4931495ba3a8b88b75935ec00486ccb40d30b8d613829df0bdf86eaf2d8abb/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4e6f64656a732d3433383533643f7374796c653d666f722d7468652d6261646765266c6f676f3d4e6f64652e6a73266c6f676f436f6c6f723d7768697465"/>
