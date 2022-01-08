@@ -1,8 +1,8 @@
 
 # Ismoilov Ravshanjon Ramazonovich
-## Software Developer | Software Engineer | Tashkent, Uzbekistan
-### `💻 Coding ...` `Java` `Vue` [Download CV](https://disk.yandex.uz/i/pTX19N3SK4bFQA) 
+### Software Developer | Software Engineer | Tashkent, Uzbekistan
 
+## `💻 Coding ...` [Download CV](https://disk.yandex.uz/i/pTX19N3SK4bFQA) 
 [Website](https://ravshancha.uz/) | [Github](https://gist.github.com/ravshancha) | [Email](mailto:ismoilov.ravshanjon@gmail.com) |  [LinkedIn](https://www.linkedin.com/in/ravshancha) | [Facebook](https://www.facebook.com/ravshancha) | [LeetCode](https://leetcode.com/ravshancha/)
 
  Web developer with a high regard to interactive fast websites, clean code and advanced algorithms
