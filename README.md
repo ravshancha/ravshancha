@@ -3,13 +3,7 @@
 
 [![Ismoilov Ravshanjon's GitHub stats ](https://github-readme-stats.vercel.app/api?username=ravshancha&show_icons=true&theme=dark)](https://gitlab.com/ravshancha)
 
-
-[![Ismoilov Ravshanjon's GitHub stats ](https://github-readme-stats.vercel.app/api?username=ravshancha&theme=blue-green)](https://gitlab.com/ravshancha)
-
 [![Ismoilov Ravshanjon's GitHub stats ](https://github-readme-stats.vercel.app/api/top-langs/?username=ravshancha&theme=blue-green)](https://gitlab.com/ravshancha)
-
-[![Ismoilov Ravshanjon's GitHub stats ](https://starchart.cc/ravshancha/ravshancha.svg)](https://gitlab.com/ravshancha)
-
 
 ### **Languages and Tools**
 ![JAVA](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=Java&logoColor=ff0000) 
