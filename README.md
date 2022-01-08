@@ -4,11 +4,12 @@
 [![Ismoilov Ravshanjon's GitHub stats ](https://github-readme-stats.vercel.app/api?username=ravshancha&show_icons=true&theme=dark)](https://gitlab.com/ravshancha)
 
 
-### Contacts 
+### **Email** 
 [![Gmail](https://img.shields.io/badge/Gmail-000000?style=for-the-badge&logo=gmail)](https://www.wa.me/+998994370770)
-[![Netlify](https://img.shields.io/badge/Netlify-000000?style=for-the-badge&logo=Netlify)](https://app.netlify.com/teams/ravshancha) 
+[![Slack](https://img.shields.io/badge/Slack-000000?style=for-the-badge&logo=Slack)](https://www.wa.me/+998994370770)
+[![StackOverflow](https://img.shields.io/badge/Stack_Overflow-000000?style=for-the-badge&logo=stack-overflow)](https://www.bitbucket.com/ravshancha)
 
-### Social Media
+### **Contacts**
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-000000?style=for-the-badge&logo=LinkedIn)](https://www.linkedin.com/in/ravshancha)
 [![Telegram](https://img.shields.io/badge/Telegram-000000?style=for-the-badge&logo=Telegram)](https://t.me/ravshancha)
 [![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=Twitter)](https://www.wa.me/+998994370770)
@@ -17,13 +18,12 @@
 [![Whatsapp](https://img.shields.io/badge/WhatsApp-000000?style=for-the-badge&logo=Whatsapp)](https://www.wa.me/+998994370770)
 [![Youtube](https://img.shields.io/badge/Youtube-000000?style=for-the-badge&logo=Youtube)](https://www.youtube.com/channel/UC8JnQbQNwAJEu2fObpYSHMA)
 [![TikTok](https://img.shields.io/badge/TikTok-000000?style=for-the-badge&logo=TikTok)](https://www.wa.me/+998994370770)
-[![Slack](https://img.shields.io/badge/Slack-000000?style=for-the-badge&logo=Slack)](https://www.wa.me/+998994370770)
-[![StackOverflow](https://img.shields.io/badge/Stack_Overflow-000000?style=for-the-badge&logo=stack-overflow)](https://www.bitbucket.com/ravshancha)
 
-### Git Repositories 
+### **Git Repositories & Projects**
 [![Github](https://img.shields.io/badge/Github-000000?style=for-the-badge&logo=Github)](https://www.github.com/ravshancha)
 [![Gitlab](https://img.shields.io/badge/Gitlab-000000?style=for-the-badge&logo=Gitlab)](https://www.gitlab.com/ravshancha)
 [![BitBucket](https://img.shields.io/badge/BitBucket-000000?style=for-the-badge&logo=BitBucket)](https://www.bitbucket.com/ravshancha)
+[![Netlify](https://img.shields.io/badge/Netlify-000000?style=for-the-badge&logo=Netlify)](https://app.netlify.com/teams/ravshancha) 
 
 ### **Languages and Tools**
 ![JAVA](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=Java&logoColor=ff0000) 
