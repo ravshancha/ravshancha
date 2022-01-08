@@ -1,5 +1,14 @@
-# I'm a Sofware Developer 
-`💻 Coding ...` `Java` `Vue`
+
+# Ismoilov Ravshanjon Ramazonovich
+## Software Developer | Software Engineer | Tashkent, Uzbekistan
+### `💻 Coding ...` `Java` `Vue` [Download CV](https://disk.yandex.uz/i/pTX19N3SK4bFQA) 
+
+[Website](https://ravshancha.uz/) | [Github](https://gist.github.com/ravshancha) | [Email](mailto:ismoilov.ravshanjon@gmail.com) |  [LinkedIn](https://www.linkedin.com/in/ravshancha) | [Facebook](https://www.facebook.com/ravshancha) | [LeetCode](https://leetcode.com/ravshancha/)
+
+ Web developer with a high regard to interactive fast websites, clean code and advanced algorithms
+
+> Get my act together towards catching up with the speed of development of new technologies.
+
 
 [![Ismoilov Ravshanjon's GitHub stats ](https://github-readme-stats.vercel.app/api?username=ravshancha&show_icons=true&theme=dark)](https://gitlab.com/ravshancha)
 
@@ -54,18 +63,6 @@
 
 ### **Presentation**
 [![Youtube](https://img.shields.io/badge/Youtube-000000?style=for-the-badge&logo=Youtube)](https://www.youtube.com/channel/UC8JnQbQNwAJEu2fObpYSHMA)
-
-# Ismoilov Ravshanjon Ramazonovich</h1>
-### I have no inhibitions about making my opinions known
-[Download CV](https://disk.yandex.uz/i/pTX19N3SK4bFQA) 
-
-## Software Developer | Software Engineer | Tashkent, Uzbekistan
-
-[Website](https://ravshancha.uz/) | [Github](https://gist.github.com/ravshancha) | [Email](mailto:ismoilov.ravshanjon@gmail.com) |  [LinkedIn](https://www.linkedin.com/in/ravshancha) | [Facebook](https://www.facebook.com/ravshancha) | [LeetCode](https://leetcode.com/ravshancha/)
-
- Web developer with a high regard to interactive fast websites, clean code and advanced algorithms
-
-> Get my act together towards catching up with the speed of development of new technologies.
 
 # Skills
 - **Languages:** `Java`, `C++`, `JavaScript`
