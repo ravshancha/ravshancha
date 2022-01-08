@@ -4,10 +4,8 @@
 [![Ismoilov Ravshanjon's GitHub stats ](https://github-readme-stats.vercel.app/api?username=ravshancha&show_icons=true&theme=dark)](https://gitlab.com/ravshancha)
 
 
-### **Email & Forums** 
+### **Email** 
 [![Gmail](https://img.shields.io/badge/Gmail-000000?style=for-the-badge&logo=gmail)](https://www.wa.me/+998994370770)
-[![Slack](https://img.shields.io/badge/Slack-000000?style=for-the-badge&logo=Slack)](https://www.wa.me/+998994370770)
-[![StackOverflow](https://img.shields.io/badge/Stack_Overflow-000000?style=for-the-badge&logo=stack-overflow)](https://www.bitbucket.com/ravshancha)
 
 ### **Contacts**
 [![Telegram](https://img.shields.io/badge/Telegram-000000?style=for-the-badge&logo=Telegram)](https://t.me/ravshancha)
@@ -18,13 +16,21 @@
 [![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=Twitter)](https://www.wa.me/+998994370770)
 [![Facebook](https://img.shields.io/badge/Facebook-000000?style=for-the-badge&logo=Facebook)](https://www.facebook.com/ravshancha)
 [![Instagram](https://img.shields.io/badge/Instagram-000000?style=for-the-badge&logo=Instagram)](https://www.instagram.com/ravshancha.uz)  
-[![Youtube](https://img.shields.io/badge/Youtube-000000?style=for-the-badge&logo=Youtube)](https://www.youtube.com/channel/UC8JnQbQNwAJEu2fObpYSHMA)
 
-### **Git Repositories & Projects**
+### **Forums**
+[![Slack](https://img.shields.io/badge/Slack-000000?style=for-the-badge&logo=Slack)](https://www.wa.me/+998994370770)
+[![StackOverflow](https://img.shields.io/badge/Stack_Overflow-000000?style=for-the-badge&logo=stack-overflow)](https://www.bitbucket.com/ravshancha)
+
+### **Git Repositories**
 [![Github](https://img.shields.io/badge/Github-000000?style=for-the-badge&logo=Github)](https://www.github.com/ravshancha)
 [![Gitlab](https://img.shields.io/badge/Gitlab-000000?style=for-the-badge&logo=Gitlab)](https://www.gitlab.com/ravshancha)
 [![BitBucket](https://img.shields.io/badge/BitBucket-000000?style=for-the-badge&logo=BitBucket)](https://www.bitbucket.com/ravshancha)
+
+### **Projects**
 [![Netlify](https://img.shields.io/badge/Netlify-000000?style=for-the-badge&logo=Netlify)](https://app.netlify.com/teams/ravshancha) 
+
+### **Presentation**
+[![Youtube](https://img.shields.io/badge/Youtube-000000?style=for-the-badge&logo=Youtube)](https://www.youtube.com/channel/UC8JnQbQNwAJEu2fObpYSHMA)
 
 ### **Languages and Tools**
 ![JAVA](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=Java&logoColor=ff0000) 
