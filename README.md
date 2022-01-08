@@ -14,7 +14,7 @@
 ![SASS](https://img.shields.io/badge/SASS-000000?style=for-the-badge&logo=SASS&logoColor=1572B6) 
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-000000?style=for-the-badge&logo=Bootstrap&logoColor=E34F26) 
 ![React.js](https://img.shields.io/badge/React-000000?style=for-the-badge&logo=React&logoColor=61DAFB) 
-![Vue.js](https://img.shields.io/badge/Vue-000000?style=for-the-badge&logo=Vue&logoColor=fff) 
+![Vue.js](https://img.shields.io/badge/Vue.js-000000?style=for-the-badge&logo=Vue.js&logoColor=fff) 
 
  <img src="https://camo.githubusercontent.com/7f4931495ba3a8b88b75935ec00486ccb40d30b8d613829df0bdf86eaf2d8abb/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4e6f64656a732d3433383533643f7374796c653d666f722d7468652d6261646765266c6f676f3d4e6f64652e6a73266c6f676f436f6c6f723d7768697465"/>
  <img src="https://camo.githubusercontent.com/cb3c8adf7b1a07a0236bf33802aa7919a64df5dd3a12e4b7f5bff214fba480dd/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d52454143545f484f4f4b532d3332353061383f7374796c653d666f722d7468652d6261646765266c6f676f3d5245414354266c6f676f436f6c6f723d"/>
