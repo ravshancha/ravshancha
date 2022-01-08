@@ -1,7 +1,7 @@
 # I'm a Sofware Developer 
 `💻 Coding ...` `Java` `Vue`
 
-[![Muzaffarxon04's GitHub stats ](https://github-readme-stats.vercel.app/api?username=ravshancha&show_icons=true&theme=dark)](https://github.com/Muzaffarxon04)
+[![Ismoilov Ravshanjon's GitHub stats ](https://github-readme-stats.vercel.app/api?username=ravshancha&show_icons=true&theme=dark)](https://github.com/ravshancha)
 
 
 ### **Languages and Tools**
