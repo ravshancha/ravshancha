@@ -5,16 +5,18 @@
 
 
 ### Follow me 
-[![Linkedin](https://img.shields.io/badge/Linkedin-000000?style=for-the-badge&logo=Linkedin)](https://www.linkedin.com/in/ravshancha)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-000000?style=for-the-badge&logo=LinkedIn)](https://www.linkedin.com/in/ravshancha)
 [![Gmail](https://img.shields.io/badge/Gmail-000000?style=for-the-badge&logo=gmail)](https://www.wa.me/+998994370770)
 [![Netlify](https://img.shields.io/badge/Netlify-000000?style=for-the-badge&logo=Netlify)](https://app.netlify.com/teams/ravshancha) 
 [![Youtube](https://img.shields.io/badge/Youtube-000000?style=for-the-badge&logo=Youtube)](https://www.youtube.com/channel/UC8JnQbQNwAJEu2fObpYSHMA)
 [![Telegram](https://img.shields.io/badge/Telegram-000000?style=for-the-badge&logo=Telegram)](https://t.me/ravshancha)
 [![Facebook](https://img.shields.io/badge/Facebook-000000?style=for-the-badge&logo=Facebook)](https://www.facebook.com/ravshancha)
 [![Instagram](https://img.shields.io/badge/Instagram-000000?style=for-the-badge&logo=Instagram)](https://www.instagram.com/ravshancha.uz)  
-[![Whatsapp](https://img.shields.io/badge/WhatsApp-000000?style=for-the-badge&logo=whatsapp)](https://www.wa.me/+998994370770)
-[![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=twitter)](https://www.wa.me/+998994370770)
-[![Slack](https://img.shields.io/badge/Slack-000000?style=for-the-badge&logo=slack)](https://www.wa.me/+998994370770)
+[![Whatsapp](https://img.shields.io/badge/WhatsApp-000000?style=for-the-badge&logo=Whatsapp)](https://www.wa.me/+998994370770)
+[![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=Twitter)](https://www.wa.me/+998994370770)
+[![Slack](https://img.shields.io/badge/Slack-000000?style=for-the-badge&logo=Slack)](https://www.wa.me/+998994370770)
+[![Github](https://img.shields.io/badge/Github-000000?style=for-the-badge&logo=Github)](https://www.github.com/ravshancha)
+[![Gitlab](https://img.shields.io/badge/Gitlab-000000?style=for-the-badge&logo=Gitlab)](https://www.gitlab.com/ravshancha)
 
 ### **Languages and Tools**
 ![JAVA](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=Java&logoColor=ff0000) 
