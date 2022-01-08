@@ -1,93 +1,36 @@
-# ravshancha
 
 
+<!--
+**ravshancha/ravshancha** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
-## Getting started
+Here are some ideas to get you started:
+### Hi there 👋
+- 🔭 I’m currently working on ...
+- 🌱 I’m currently learning ...
+- 👯 I’m looking to collaborate on ...
+- 🤔 I’m looking for help with ...
+- 💬 Ask me about ...
+- 📫 How to reach me: ...
+- 😄 Pronouns: ...
+- ⚡ Fun fact: ...
+-->
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+# I'm a Frontend Web Developer
+[![Muzaffarxon04's GitHub stats ](https://github-readme-stats.vercel.app/api?username=Muzaffarxon04&show_icons=true&theme=dark)](https://github.com/Muzaffarxon04)
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
-## Add your files
+### Languages and Tools
 
-- [ ] [Create](https://gitlab.com/-/experiment/new_project_readme_content:180944f26e146205b5f4d9c639a309cc?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://gitlab.com/-/experiment/new_project_readme_content:180944f26e146205b5f4d9c639a309cc?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://gitlab.com/-/experiment/new_project_readme_content:180944f26e146205b5f4d9c639a309cc?https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/ravshancha/ravshancha.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.com/-/experiment/new_project_readme_content:180944f26e146205b5f4d9c639a309cc?https://gitlab.com/ravshancha/ravshancha/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://gitlab.com/-/experiment/new_project_readme_content:180944f26e146205b5f4d9c639a309cc?https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://gitlab.com/-/experiment/new_project_readme_content:180944f26e146205b5f4d9c639a309cc?https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://gitlab.com/-/experiment/new_project_readme_content:180944f26e146205b5f4d9c639a309cc?https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://gitlab.com/-/experiment/new_project_readme_content:180944f26e146205b5f4d9c639a309cc?https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://gitlab.com/-/experiment/new_project_readme_content:180944f26e146205b5f4d9c639a309cc?https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://gitlab.com/-/experiment/new_project_readme_content:180944f26e146205b5f4d9c639a309cc?https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://gitlab.com/-/experiment/new_project_readme_content:180944f26e146205b5f4d9c639a309cc?https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://gitlab.com/-/experiment/new_project_readme_content:180944f26e146205b5f4d9c639a309cc?https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://gitlab.com/-/experiment/new_project_readme_content:180944f26e146205b5f4d9c639a309cc?https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://gitlab.com/-/experiment/new_project_readme_content:180944f26e146205b5f4d9c639a309cc?https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+![HTML](https://img.shields.io/badge/HTML5-090909?style=for-the-badge&logo=HTML5&logoColor=E34F26) ![CSS](https://img.shields.io/badge/CSS3-090909?style=for-the-badge&logo=CSS3&logoColor=1572B6) ![SASS](https://img.shields.io/badge/SASS-090909?style=for-the-badge&logo=SASS&logoColor=1572B6) ![Bootstrap](https://img.shields.io/badge/Bootstrap-090909?style=for-the-badge&logo=Bootstrap&logoColor=E34F26) ![JavaScript](https://img.shields.io/badge/JavaScript-090909?style=for-the-badge&logo=JavaScript&logoColor=F7DF1E) ![React.js](https://img.shields.io/badge/React-090909?style=for-the-badge&logo=React&logoColor=61DAFB) ![Express](https://img.shields.io/badge/Express-090909?style=for-the-badge&logo=Express&logoColor=fff) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-090909?style=for-the-badge&logo=PostgreSQL&logoColor=4169E1) 
+ <img src="https://camo.githubusercontent.com/7f4931495ba3a8b88b75935ec00486ccb40d30b8d613829df0bdf86eaf2d8abb/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4e6f64656a732d3433383533643f7374796c653d666f722d7468652d6261646765266c6f676f3d4e6f64652e6a73266c6f676f436f6c6f723d7768697465"/>
+ <img src="https://camo.githubusercontent.com/cb3c8adf7b1a07a0236bf33802aa7919a64df5dd3a12e4b7f5bff214fba480dd/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d52454143545f484f4f4b532d3332353061383f7374796c653d666f722d7468652d6261646765266c6f676f3d5245414354266c6f676f436f6c6f723d"/>
+ <img src="https://camo.githubusercontent.com/a4ca6b71d62aa6f56199242308ccb9619737bc6d78aeb0599ba5978866e72789/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d52656163745f526f757465722d626c61636b3f7374796c653d666f722d7468652d6261646765266c6f676f3d72656163742d726f75746572266c6f676f436f6c6f723d6f72616e6765"/>
+<img src="https://camo.githubusercontent.com/324ecb8e3920e6c4826b60f2afd553c8a1b6ea87782030de0eaa65bb8c8b2919/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4769742d4630353033323f7374796c653d666f722d7468652d6261646765266c6f676f3d676974266c6f676f436f6c6f723d7768697465"/> <img src="https://camo.githubusercontent.com/9bceb931d755afc93679b5b7fbdffd68403e3c6bb78fe29d1de662cac4be014a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4769746875622d626c61636b3f7374796c653d666f722d7468652d6261646765266c6f676f3d676974687562266c6f676f436f6c6f723d7768697465"/>
+<img src="https://camo.githubusercontent.com/34d9487f29365780fa14138d197a71172a0e1fb8765fcb28734dcd0770f7eba7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4865726f6b752d3736344142433f7374796c653d666f722d7468652d6261646765266c6f676f3d6865726f6b75266c6f676f436f6c6f723d7768697465"/>
+<img src="https://camo.githubusercontent.com/cce340a49ea69f07b55fd3481df80def1dc60ee829557922bb09a31ff5a66944/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d504f53544d414e2d3332356461383f7374796c653d666f722d7468652d6261646765266c6f676f3d504f53544d414e266c6f676f436f6c6f723d"/>
+<img src="https://camo.githubusercontent.com/1a8bcf79d7cc8766a99698d5a89567b16ae67774fe83a4ba88370f10cef1719f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4e6f64656d6f6e2d626c61636b3f7374796c653d666f722d7468652d6261646765266c6f676f3d6e6f64656d6f6e266c6f676f436f6c6f723d343338353364"/> <img src="https://camo.githubusercontent.com/970d31581631576cd3f49c6fb4f75faf129373cdc208526e8f64bae88c73c152/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d426f6f7473747261702d3433303039383f7374796c653d666f722d7468652d6261646765266c6f676f3d426f6f747374726170266c6f676f436f6c6f723d7768697465"/>
+<img src="https://camo.githubusercontent.com/709e211a1661cd63e675035bcba203faaa272d057887aee138e1c2d4f634c48b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4669676d612d726762283234322c2037382c203330293f7374796c653d666f722d7468652d6261646765266c6f676f3d6669676d61266c6f676f436f6c6f723d7768697465"/>
+### Follow me
+ 
+ [![Instagramhttps://studio.youtube.com/channel/UCYBZ_ZTfPiGqtBRhKUeFlgw#:~:text=Muzaffarxon%20Abdusalomov](https://img.shields.io/badge/Instagram-090909?style=for-the-badge&logo=Instagram&logoColor=#1DA1F2)](https://www.instagram.com/muzaffarxon_xoshimxonovich)  [![Telegram](https://img.shields.io/badge/Telegram-090909?style=for-the-badge&logo=Telegram&logoColor=#1DA1F2)](https://t.me/fullstack_5) [![Linkedin](https://img.shields.io/badge/Linkedin-090909?style=for-the-badge&logo=Linkedin&logoColor=#1DA1F2)](https://www.linkedin.com/in/muzaffarxon-abdusalomov-8430b021a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BGLNEgPTMSlu%2BNEirN0MvQQ%3D%3D) [![Facebook](https://img.shields.io/badge/Facebook-090909?style=for-the-badge&logo=Facebook&logoColor=#1DA1F2)](https://www.facebook.com/MuzaffarxonAbdusalomov) [![Youtube](https://img.shields.io/badge/Youtube-090909?style=for-the-badge&logo=Youtube&logoColor=FF0000)](https://studio.youtube.com/channel/UCYBZ_ZTfPiGqtBRhKUeFlgw#:~:text=Muzaffarxon%20Abdusalomov) [![Netlify](https://img.shields.io/badge/Netlify-090909?style=for-the-badge&logo=Netlify&logoColor=4287f5)](https://app.netlify.com/teams/muzaffarxon04) 
 
