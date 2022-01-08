@@ -5,10 +5,12 @@
 
 [![Ismoilov Ravshanjon's GitHub stats ](https://github-readme-stats.vercel.app/api/top-langs/?username=ravshancha&theme=blue-green)](https://gitlab.com/ravshancha)
 
-### **Languages and Tools**
+### **Back End**
 ![JAVA](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=Java&logoColor=ff0000) 
 ![Oracle](https://img.shields.io/badge/Oracle-000000?style=for-the-badge&logo=Oracle&logoColor=4169E1) 
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-000000?style=for-the-badge&logo=PostgreSQL&logoColor=4169E1) 
+
+### **Front End**
 ![HTML](https://img.shields.io/badge/HTML5-000000?style=for-the-badge&logo=HTML5&logoColor=E34F26) 
 ![CSS](https://img.shields.io/badge/CSS3-000000?style=for-the-badge&logo=CSS3&logoColor=1572B6) 
 ![JavaScript](https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=JavaScript&logoColor=F7DF1E) 
