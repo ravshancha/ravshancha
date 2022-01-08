@@ -5,14 +5,15 @@
 
 
 ### Follow me 
-[![Linkedin](https://img.shields.io/badge/Linkedin-000000?style=for-the-badge&logo=Linkedin&logoColor=#1DA1F2)](https://www.linkedin.com/in/ravshancha)
-[![Gmail](https://img.shields.io/badge/Gmail-000000?style=for-the-badge&logo=gmail&logoColor=#1DA1F2)](https://www.wa.me/+998994370770)
-[![Netlify](https://img.shields.io/badge/Netlify-000000?style=for-the-badge&logo=Netlify&logoColor=4287f5)](https://app.netlify.com/teams/ravshancha) 
-[![Youtube](https://img.shields.io/badge/Youtube-000000?style=for-the-badge&logo=Youtube&logoColor=FF0000)](https://www.youtube.com/channel/UC8JnQbQNwAJEu2fObpYSHMA)
-[![Telegram](https://img.shields.io/badge/Telegram-000000?style=for-the-badge&logo=Telegram&logoColor=#1DA1F2)](https://t.me/ravshancha)
-[![Facebook](https://img.shields.io/badge/Facebook-000000?style=for-the-badge&logo=Facebook&logoColor=#1DA1F2)](https://www.facebook.com/ravshancha)
+[![Linkedin](https://img.shields.io/badge/Linkedin-000000?style=for-the-badge&logo=Linkedin)](https://www.linkedin.com/in/ravshancha)
+[![Gmail](https://img.shields.io/badge/Gmail-000000?style=for-the-badge&logo=gmail)](https://www.wa.me/+998994370770)
+[![Netlify](https://img.shields.io/badge/Netlify-000000?style=for-the-badge&logo=Netlify)](https://app.netlify.com/teams/ravshancha) 
+[![Youtube](https://img.shields.io/badge/Youtube-000000?style=for-the-badge&logo=Youtube)](https://www.youtube.com/channel/UC8JnQbQNwAJEu2fObpYSHMA)
+[![Telegram](https://img.shields.io/badge/Telegram-000000?style=for-the-badge&logo=Telegram)](https://t.me/ravshancha)
+[![Facebook](https://img.shields.io/badge/Facebook-000000?style=for-the-badge&logo=Facebook)](https://www.facebook.com/ravshancha)
 [![Instagram](https://img.shields.io/badge/Instagram-000000?style=for-the-badge&logo=Instagram)](https://www.instagram.com/ravshancha.uz)  
 [![Whatsapp](https://img.shields.io/badge/WhatsApp-000000?style=for-the-badge&logo=whatsapp)](https://www.wa.me/+998994370770)
+[![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=twitter)](https://www.wa.me/+998994370770)
 [![Slack](https://img.shields.io/badge/Slack-000000?style=for-the-badge&logo=slack)](https://www.wa.me/+998994370770)
 
 ### **Languages and Tools**
