@@ -26,11 +26,11 @@
 <img src="https://camo.githubusercontent.com/709e211a1661cd63e675035bcba203faaa272d057887aee138e1c2d4f634c48b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4669676d612d726762283234322c2037382c203330293f7374796c653d666f722d7468652d6261646765266c6f676f3d6669676d61266c6f676f436f6c6f723d7768697465"/>
 
 ### Follow me 
-[![Linkedin](https://img.shields.io/badge/Linkedin-090909?style=for-the-badge&logo=Linkedin&logoColor=#1DA1F2)](https://www.linkedin.com/in/ravshancha)
-[![Netlify](https://img.shields.io/badge/Netlify-090909?style=for-the-badge&logo=Netlify&logoColor=4287f5)](https://app.netlify.com/teams/ravshancha) 
-[![Youtube](https://img.shields.io/badge/Youtube-090909?style=for-the-badge&logo=Youtube&logoColor=FF0000)](https://www.youtube.com/channel/UC8JnQbQNwAJEu2fObpYSHMA)
-[![Telegram](https://img.shields.io/badge/Telegram-090909?style=for-the-badge&logo=Telegram&logoColor=#1DA1F2)](https://t.me/ravshancha)
-[![Facebook](https://img.shields.io/badge/Facebook-090909?style=for-the-badge&logo=Facebook&logoColor=#1DA1F2)](https://www.facebook.com/ravshancha)
-[![Instagram](https://img.shields.io/badge/Instagram-090909?style=for-the-badge&logo=Instagram&logoColor=#1DA1F2)](https://www.instagram.com/ravshancha.uz)  
-[![Whatsapp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whastapp&logoColor=#1DA1F2)](https://www.wa.me/+998994370770)
-[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=#1DA1F2)](https://www.wa.me/+998994370770)
+[![Linkedin](https://img.shields.io/badge/Linkedin-000000?style=for-the-badge&logo=Linkedin&logoColor=#1DA1F2)](https://www.linkedin.com/in/ravshancha)
+[![Netlify](https://img.shields.io/badge/Netlify-000000?style=for-the-badge&logo=Netlify&logoColor=4287f5)](https://app.netlify.com/teams/ravshancha) 
+[![Youtube](https://img.shields.io/badge/Youtube-000000?style=for-the-badge&logo=Youtube&logoColor=FF0000)](https://www.youtube.com/channel/UC8JnQbQNwAJEu2fObpYSHMA)
+[![Telegram](https://img.shields.io/badge/Telegram-000000?style=for-the-badge&logo=Telegram&logoColor=#1DA1F2)](https://t.me/ravshancha)
+[![Facebook](https://img.shields.io/badge/Facebook-000000?style=for-the-badge&logo=Facebook&logoColor=#1DA1F2)](https://www.facebook.com/ravshancha)
+[![Instagram](https://img.shields.io/badge/Instagram-000000?style=for-the-badge&logo=Instagram&logoColor=#1DA1F2)](https://www.instagram.com/ravshancha.uz)  
+[![Whatsapp](https://img.shields.io/badge/WhatsApp-000000?style=for-the-badge&logo=whastapp&logoColor=#1DA1F2)](https://www.wa.me/+998994370770)
+[![Gmail](https://img.shields.io/badge/Gmail-000000?style=for-the-badge&logo=gmail&logoColor=#1DA1F2)](https://www.wa.me/+998994370770)
