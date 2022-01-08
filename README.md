@@ -4,6 +4,17 @@
 [![Ismoilov Ravshanjon's GitHub stats ](https://github-readme-stats.vercel.app/api?username=ravshancha&show_icons=true&theme=dark)](https://gitlab.com/ravshancha)
 
 
+### Follow me 
+[![Linkedin](https://img.shields.io/badge/Linkedin-000000?style=for-the-badge&logo=Linkedin&logoColor=#1DA1F2)](https://www.linkedin.com/in/ravshancha)
+[![Gmail](https://img.shields.io/badge/Gmail-000000?style=for-the-badge&logo=gmail&logoColor=#1DA1F2)](https://www.wa.me/+998994370770)
+[![Netlify](https://img.shields.io/badge/Netlify-000000?style=for-the-badge&logo=Netlify&logoColor=4287f5)](https://app.netlify.com/teams/ravshancha) 
+[![Youtube](https://img.shields.io/badge/Youtube-000000?style=for-the-badge&logo=Youtube&logoColor=FF0000)](https://www.youtube.com/channel/UC8JnQbQNwAJEu2fObpYSHMA)
+[![Telegram](https://img.shields.io/badge/Telegram-000000?style=for-the-badge&logo=Telegram&logoColor=#1DA1F2)](https://t.me/ravshancha)
+[![Facebook](https://img.shields.io/badge/Facebook-000000?style=for-the-badge&logo=Facebook&logoColor=#1DA1F2)](https://www.facebook.com/ravshancha)
+[![Instagram](https://img.shields.io/badge/Instagram-000000?style=for-the-badge&logo=Instagram)](https://www.instagram.com/ravshancha.uz)  
+[![Whatsapp](https://img.shields.io/badge/WhatsApp-000000?style=for-the-badge&logo=whatsapp)](https://www.wa.me/+998994370770)
+[![Slack](https://img.shields.io/badge/Slack-000000?style=for-the-badge&logo=slack)](https://www.wa.me/+998994370770)
+
 ### **Languages and Tools**
 ![JAVA](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=Java&logoColor=ff0000) 
 ![Oracle](https://img.shields.io/badge/Oracle-000000?style=for-the-badge&logo=Oracle&logoColor=4169E1) 
@@ -24,13 +35,3 @@
 <img src="https://camo.githubusercontent.com/cce340a49ea69f07b55fd3481df80def1dc60ee829557922bb09a31ff5a66944/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d504f53544d414e2d3332356461383f7374796c653d666f722d7468652d6261646765266c6f676f3d504f53544d414e266c6f676f436f6c6f723d"/>
 <img src="https://camo.githubusercontent.com/1a8bcf79d7cc8766a99698d5a89567b16ae67774fe83a4ba88370f10cef1719f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4e6f64656d6f6e2d626c61636b3f7374796c653d666f722d7468652d6261646765266c6f676f3d6e6f64656d6f6e266c6f676f436f6c6f723d343338353364"/> <img src="https://camo.githubusercontent.com/970d31581631576cd3f49c6fb4f75faf129373cdc208526e8f64bae88c73c152/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d426f6f7473747261702d3433303039383f7374796c653d666f722d7468652d6261646765266c6f676f3d426f6f747374726170266c6f676f436f6c6f723d7768697465"/>
 <img src="https://camo.githubusercontent.com/709e211a1661cd63e675035bcba203faaa272d057887aee138e1c2d4f634c48b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4669676d612d726762283234322c2037382c203330293f7374796c653d666f722d7468652d6261646765266c6f676f3d6669676d61266c6f676f436f6c6f723d7768697465"/>
-
-### Follow me 
-[![Linkedin](https://img.shields.io/badge/Linkedin-000000?style=for-the-badge&logo=Linkedin&logoColor=#1DA1F2)](https://www.linkedin.com/in/ravshancha)
-[![Netlify](https://img.shields.io/badge/Netlify-000000?style=for-the-badge&logo=Netlify&logoColor=4287f5)](https://app.netlify.com/teams/ravshancha) 
-[![Youtube](https://img.shields.io/badge/Youtube-000000?style=for-the-badge&logo=Youtube&logoColor=FF0000)](https://www.youtube.com/channel/UC8JnQbQNwAJEu2fObpYSHMA)
-[![Telegram](https://img.shields.io/badge/Telegram-000000?style=for-the-badge&logo=Telegram&logoColor=#1DA1F2)](https://t.me/ravshancha)
-[![Facebook](https://img.shields.io/badge/Facebook-000000?style=for-the-badge&logo=Facebook&logoColor=#1DA1F2)](https://www.facebook.com/ravshancha)
-[![Instagram](https://img.shields.io/badge/Instagram-000000?style=for-the-badge&logo=Instagram&logoColor=#1DA1F2)](https://www.instagram.com/ravshancha.uz)  
-[![Whatsapp](https://img.shields.io/badge/WhatsApp-000000?style=for-the-badge&logo=whatsapp&logoColor=#1DA1F2)](https://www.wa.me/+998994370770)
-[![Gmail](https://img.shields.io/badge/Gmail-000000?style=for-the-badge&logo=gmail&logoColor=#1DA1F2)](https://www.wa.me/+998994370770)
