@@ -27,9 +27,10 @@
 
 ### Follow me 
 [![Linkedin](https://img.shields.io/badge/Linkedin-090909?style=for-the-badge&logo=Linkedin&logoColor=#1DA1F2)](https://www.linkedin.com/in/ravshancha)
+[![Netlify](https://img.shields.io/badge/Netlify-090909?style=for-the-badge&logo=Netlify&logoColor=4287f5)](https://app.netlify.com/teams/ravshancha) 
 [![Youtube](https://img.shields.io/badge/Youtube-090909?style=for-the-badge&logo=Youtube&logoColor=FF0000)](https://www.youtube.com/channel/UC8JnQbQNwAJEu2fObpYSHMA)
 [![Telegram](https://img.shields.io/badge/Telegram-090909?style=for-the-badge&logo=Telegram&logoColor=#1DA1F2)](https://t.me/ravshancha)
 [![Facebook](https://img.shields.io/badge/Facebook-090909?style=for-the-badge&logo=Facebook&logoColor=#1DA1F2)](https://www.facebook.com/ravshancha)
 [![Instagram](https://img.shields.io/badge/Instagram-090909?style=for-the-badge&logo=Instagram&logoColor=#1DA1F2)](https://www.instagram.com/ravshancha.uz)  
-[![Netlify](https://img.shields.io/badge/Netlify-090909?style=for-the-badge&logo=Netlify&logoColor=4287f5)](https://app.netlify.com/teams/ravshancha) 
-
+[![Whatsapp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whastapp&logoColor=#1DA1F2)](https://www.wa.me/+998994370770)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=#1DA1F2)](https://www.wa.me/+998994370770)
