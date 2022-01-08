@@ -6,7 +6,8 @@ Here are some ideas to get you started:
 - 🔭 I’m currently working on ...
 
 
-# I'm a Frontend Web Developer \n Status: 💻 Coding ...
+# I'm a Frontend Web Developer
+**Status** 💻 Coding ...
 
 [![Muzaffarxon04's GitHub stats ](https://github-readme-stats.vercel.app/api?username=Muzaffarxon04&show_icons=true&theme=dark)](https://github.com/Muzaffarxon04)
 
