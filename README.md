@@ -1,5 +1,5 @@
-# I'm a Sofware Developer `Java` `Vue`
-`💻 Coding ...` 
+# I'm a Sofware Developer 
+`💻 Coding ...` `Java` `Vue`
 
 [![Muzaffarxon04's GitHub stats ](https://github-readme-stats.vercel.app/api?username=Muzaffarxon04&show_icons=true&theme=dark)](https://github.com/Muzaffarxon04)
 
