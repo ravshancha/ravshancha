@@ -32,5 +32,5 @@
 [![Telegram](https://img.shields.io/badge/Telegram-000000?style=for-the-badge&logo=Telegram&logoColor=#1DA1F2)](https://t.me/ravshancha)
 [![Facebook](https://img.shields.io/badge/Facebook-000000?style=for-the-badge&logo=Facebook&logoColor=#1DA1F2)](https://www.facebook.com/ravshancha)
 [![Instagram](https://img.shields.io/badge/Instagram-000000?style=for-the-badge&logo=Instagram&logoColor=#1DA1F2)](https://www.instagram.com/ravshancha.uz)  
-[![Whatsapp](https://img.shields.io/badge/WhatsApp-000000?style=for-the-badge&logo=whastapp&logoColor=#1DA1F2)](https://www.wa.me/+998994370770)
+[![Whatsapp](https://img.shields.io/badge/WhatsApp-000000?style=for-the-badge&logo=whatsapp&logoColor=#1DA1F2)](https://www.wa.me/+998994370770)
 [![Gmail](https://img.shields.io/badge/Gmail-000000?style=for-the-badge&logo=gmail&logoColor=#1DA1F2)](https://www.wa.me/+998994370770)
