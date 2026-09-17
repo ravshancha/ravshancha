@@ -91,11 +91,6 @@ Kapital bank - Apelsin platform
 - Integration Mobile App with Wordpress Website
 
 
-### **IELTS MENTOR**
-**Zippy Students**, October, 2018 - February 2019
-- Improved students' skills from Pre-Ielts to Ielts 
-- Results: IETLS band 5+
-
 # Education
 
 **Inha University, 2017 - present** <br>
@@ -122,21 +117,9 @@ Kapital bank - Apelsin platform
 * Worked with a team during two days 
 * From Idea to Implementation
 
-### IELTS Certificate 8.0 band score, 2020-2022
-
-* Reading 8.5
-* Listening 8.0
-* Speaking 7.5
-* Writing 7.5
-
 ### Other [achievements](https://drive.google.com/file/d/1XheymE_r1Fp5WSNa37EurkkBvezRtazI/view) till 2017
 * Mathematical olimpiads
 * Sport competitions
-
-# Conferences
-### Perspektywy Women in Tech Summit in Poland, 2019
-- The Winner of scholarship for attending [Perspektywy Women in Tech Summit](https://womenintechsummit.pl/),
-the world's biggest conference for women in IT & TECH in Europe
 
 # Projects
 [apelsin.uz ](https://apelsin.uz) - Payment Application SPA <br>
