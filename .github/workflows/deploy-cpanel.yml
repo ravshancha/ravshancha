@@ -2,7 +2,7 @@ name: Deploy website to cPanel
 
 on:
   push:
-    branches: [main]
+    branches: [development]
     paths:
       - "site/**"
       - ".github/workflows/deploy-cpanel.yml"
