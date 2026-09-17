@@ -10,9 +10,9 @@
 > Get my act together towards catching up with the speed of development of new technologies.
 
 
-[![Ismoilov Ravshanjon's GitHub stats ](https://github-readme-stats.vercel.app/api?username=ravshancha&show_icons=true&theme=dark)](https://gitlab.com/ravshancha)
+[![Ravshanjon's GitHub stats](https://github-profile-summary-cards.vercel.app/api/cards/stats?username=ravshancha&theme=github_dark)](https://github.com/ravshancha)
 
-[![Ismoilov Ravshanjon's GitHub stats ](https://github-readme-stats.vercel.app/api/top-langs/?username=ravshancha&theme=blue-green)](https://gitlab.com/ravshancha)
+[![Ravshanjon's most used languages](https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=ravshancha&theme=github_dark)](https://github.com/ravshancha)
 
 ### **Language & Technologies**
 ![JAVA](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=Java&logoColor=ff0000) 
@@ -27,13 +27,14 @@
 ![Vue.js](https://img.shields.io/badge/Vue.js-000000?style=for-the-badge&logo=Vue.js) 
 ![Figma](https://img.shields.io/badge/Figma-000000?style=for-the-badge&logo=Figma) 
 
-<img src="https://camo.githubusercontent.com/7f4931495ba3a8b88b75935ec00486ccb40d30b8d613829df0bdf86eaf2d8abb/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4e6f64656a732d3433383533643f7374796c653d666f722d7468652d6261646765266c6f676f3d4e6f64652e6a73266c6f676f436f6c6f723d7768697465"/>
-<img src="https://camo.githubusercontent.com/cb3c8adf7b1a07a0236bf33802aa7919a64df5dd3a12e4b7f5bff214fba480dd/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d52454143545f484f4f4b532d3332353061383f7374796c653d666f722d7468652d6261646765266c6f676f3d5245414354266c6f676f436f6c6f723d"/>
-<img src="https://camo.githubusercontent.com/a4ca6b71d62aa6f56199242308ccb9619737bc6d78aeb0599ba5978866e72789/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d52656163745f526f757465722d626c61636b3f7374796c653d666f722d7468652d6261646765266c6f676f3d72656163742d726f75746572266c6f676f436f6c6f723d6f72616e6765"/>
-<img src="https://camo.githubusercontent.com/324ecb8e3920e6c4826b60f2afd553c8a1b6ea87782030de0eaa65bb8c8b2919/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4769742d4630353033323f7374796c653d666f722d7468652d6261646765266c6f676f3d676974266c6f676f436f6c6f723d7768697465"/> <img src="https://camo.githubusercontent.com/9bceb931d755afc93679b5b7fbdffd68403e3c6bb78fe29d1de662cac4be014a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4769746875622d626c61636b3f7374796c653d666f722d7468652d6261646765266c6f676f3d676974687562266c6f676f436f6c6f723d7768697465"/>
-<img src="https://camo.githubusercontent.com/34d9487f29365780fa14138d197a71172a0e1fb8765fcb28734dcd0770f7eba7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4865726f6b752d3736344142433f7374796c653d666f722d7468652d6261646765266c6f676f3d6865726f6b75266c6f676f436f6c6f723d7768697465"/>
-<img src="https://camo.githubusercontent.com/cce340a49ea69f07b55fd3481df80def1dc60ee829557922bb09a31ff5a66944/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d504f53544d414e2d3332356461383f7374796c653d666f722d7468652d6261646765266c6f676f3d504f53544d414e266c6f676f436f6c6f723d"/>
-<img src="https://camo.githubusercontent.com/1a8bcf79d7cc8766a99698d5a89567b16ae67774fe83a4ba88370f10cef1719f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4e6f64656d6f6e2d626c61636b3f7374796c653d666f722d7468652d6261646765266c6f676f3d6e6f64656d6f6e266c6f676f436f6c6f723d343338353364"/>
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![React Hooks](https://img.shields.io/badge/React_Hooks-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![Nodemon](https://img.shields.io/badge/Nodemon-76D04B?style=for-the-badge&logo=nodemon&logoColor=white)
 
 
 ### **Email** 
