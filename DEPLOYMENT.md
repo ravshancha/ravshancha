@@ -1,6 +1,6 @@
 # cPanel deployment
 
-The website is stored in `site/`. GitHub Actions can deploy that directory to cPanel automatically after every push to `main`.
+The website is stored in `site/` on the `development` branch. GitHub Actions can deploy that directory to cPanel automatically after every website push to `development`.
 
 ## GitHub secrets
 
@@ -23,8 +23,8 @@ The deploy job remains safely skipped until `CPANEL_DEPLOY_ENABLED` is set to `t
 
 ## Flow
 
-1. Push a website change to `main`.
+1. Push a website change to `development`.
 2. GitHub Actions checks out the repository.
 3. Only the contents of `site/` are synchronized to the configured cPanel directory.
 
-The workflow can also be started manually from **Actions → Deploy website to cPanel → Run workflow**.
+The `main` branch contains only the repository README and does not trigger deployment.
