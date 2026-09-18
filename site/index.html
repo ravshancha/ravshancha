@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Ravshanjon Ismoilov — Toshkentlik dasturiy ta’minot muhandisi, server tizimlari va veb-ilovalar mutaxassisi.">
-  <meta name="theme-color" content="#0a0d12">
-  <meta name="deployment" content="GitHub Actions to DirectAdmin">
+  <meta name="theme-color" content="#05070d">
   <link rel="icon" href="assets/cha-favicon-dark-clean.png" type="image/png" sizes="512x512" data-theme-favicon>
   <link rel="apple-touch-icon" href="assets/cha-favicon-dark-clean.png" sizes="512x512" data-theme-touch-icon>
   <title>Ravshanjon Ismoilov — Dasturiy ta’minot muhandisi</title>
@@ -197,7 +196,6 @@
         radial-gradient(circle at 75% 25%, var(--hero-glow), transparent 29%),
         radial-gradient(circle at 18% 80%, var(--hero-glow-secondary), transparent 25%);
     }
-    .hero-grid { display: grid; grid-template-columns: 1.25fr 0.75fr; align-items: center; gap: 88px; }
     .eyebrow, .section-kicker { margin: 0 0 22px; color: var(--accent); font-size: 12px; font-weight: 850; letter-spacing: 0.17em; text-transform: uppercase; }
     .status-dot { display: inline-block; width: 7px; height: 7px; margin-right: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 10%, transparent); }
     h1, h2, h3, p { margin-top: 0; }
@@ -216,10 +214,6 @@
     .portrait-wrap { position: relative; width: min(100%, 420px); aspect-ratio: 1; justify-self: end; }
     .portrait-ring { position: absolute; inset: -22px; border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); border-radius: 50%; }
     .portrait { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; background: var(--surface); }
-    .floating-note { position: absolute; display: flex; align-items: center; gap: 10px; padding: 12px 15px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(12px); color: var(--muted); font-size: 12px; font-weight: 700; box-shadow: 0 16px 35px var(--shadow); }
-    .floating-note span { color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-    .note-code { top: 8%; left: -12%; }
-    .note-stack { right: -10%; bottom: 15%; }
 
     .section { padding: 130px 0; border-top: 1px solid var(--line); }
     .section-muted { background: var(--surface); }
@@ -403,7 +397,6 @@
         drop-shadow(16px 0 28px color-mix(in srgb, var(--accent-2) 28%, transparent));
       transform: scaleX(-1) rotateY(0deg) translateY(-7px) translateZ(54px);
     }
-    .floating-note { display: none; }
 
     .hero-services { position: relative; z-index: 3; display: grid; gap: 14px; }
     .service-card {
@@ -802,7 +795,6 @@
         <a href="https://t.me/ravshancha" target="_blank" rel="noreferrer">Telegram</a>
         <a href="https://wa.me/998999420770" target="_blank" rel="noreferrer">WhatsApp</a>
         <a href="https://www.facebook.com/ravshancha" target="_blank" rel="noreferrer">Facebook</a>
-        <a href="https://x.com/ravshancha" target="_blank" rel="noreferrer">X / Twitter</a>
         <a href="https://www.youtube.com/@ravshancha" target="_blank" rel="noreferrer">YouTube</a>
         <a href="https://medium.com/@ravshancha" target="_blank" rel="noreferrer">Medium</a>
         <a href="#top" data-i18n="backToTop">Yuqoriga ↑</a>
@@ -849,14 +841,8 @@
         navExpertise: "Yo‘nalishlar",
         navExperience: "Tajriba",
         navWork: "Loyiha",
-        navContact: "Aloqa",
-        location: "Toshkent, O‘zbekiston",
         heroTitle: "Foydali <span class=\"accent-word\">raqamli mahsulotlar</span> yarataman.",
         heroLead: "Men ishonchli tizimlar va zamonaviy veb-ilovalar yaratuvchi dasturiy ta’minot muhandisiman.",
-        exploreWork: "Loyihani ko‘rish",
-        letsTalk: "Bog‘lanish",
-        cleanCode: "toza kod",
-        productThinking: "mahsulot tafakkuri",
         aboutKicker: "Men haqimda",
         aboutTitle: "Aniq fikr, qiziquvchanlik va maqsadga tayangan muhandislik.",
         aboutP1: "Tezkor interaktiv mahsulotlar, puxta arxitektura va jamoa uchun qulay kod yaratishga e’tibor beraman.",
@@ -936,14 +922,8 @@
         navExpertise: "Навыки",
         navExperience: "Опыт",
         navWork: "Проект",
-        navContact: "Контакты",
-        location: "Ташкент, Узбекистан",
         heroTitle: "Создаю <span class=\"accent-word\">полезные цифровые продукты</span>.",
         heroLead: "Я инженер-программист, разрабатываю надёжные серверные системы и современные веб-приложения.",
-        exploreWork: "Посмотреть проект",
-        letsTalk: "Связаться",
-        cleanCode: "чистый код",
-        productThinking: "продуктовое мышление",
         aboutKicker: "Обо мне",
         aboutTitle: "Инженерия, основанная на ясности, любознательности и цели.",
         aboutP1: "Создаю быстрые интерактивные продукты, продумываю архитектуру и пишу код, с которым удобно работать команде.",
@@ -1023,14 +1003,8 @@
         navExpertise: "Expertise",
         navExperience: "Experience",
         navWork: "Work",
-        navContact: "Contact",
-        location: "Tashkent, Uzbekistan",
         heroTitle: "I build <span class=\"accent-word\">digital experiences</span> that matter.",
         heroLead: "I’m a software engineer building backend systems and modern web applications.",
-        exploreWork: "Explore my work",
-        letsTalk: "Let’s talk",
-        cleanCode: "clean code",
-        productThinking: "product thinking",
         aboutKicker: "About",
         aboutTitle: "Engineering with clarity, curiosity, and purpose.",
         aboutP1: "I care about fast, interactive products, thoughtful architecture, and code that remains easy to work with as a team grows.",
