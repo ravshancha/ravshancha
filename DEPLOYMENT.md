@@ -1,15 +1,6 @@
 # cPanel deployment
 
-The website is stored in `site/` on the `development` branch. GitHub Actions checks every website change and then deploys `site/` to cPanel.
-
-## Workflow
-
-`.github/workflows/deploy-cpanel.yml` runs on every push to `development` that touches `site/**`, `lighthouserc.json` or the workflow itself (and on pull requests targeting `development`):
-
-1. **check** — validates `site/index.html` with the latest official W3C Nu validator (`vnu.jar`), checks external links with `lychee` (social networks that block bots are excluded) and runs Lighthouse on the static files using `lighthouserc.json`. Lighthouse thresholds are warnings for now; tighten them to `error` once the scores are stable. The Lighthouse report is attached to the run as an artifact.
-2. **deploy** — runs only after `check` succeeds, only for pushes (not pull requests) and only when the repository variable `CPANEL_DEPLOY_ENABLED` is `true`. It synchronizes the contents of `site/` to the configured cPanel directory over FTPS. Files removed from `site/` are removed on the server too.
-
-Actions are pinned to commit SHAs; the version is noted in a comment next to each `uses:` line.
+The website is stored in `site/` on the `development` branch. GitHub Actions deploys that directory to cPanel automatically after every website push to `development`.
 
 ## GitHub secrets
 
@@ -29,6 +20,14 @@ Add these under **Settings → Secrets and variables → Actions → Variables**
 - `CPANEL_FTP_PORT` — `21` by default
 
 The deploy job remains safely skipped until `CPANEL_DEPLOY_ENABLED` is set to `true`.
+
+## Flow
+
+1. Push a website change to `development` (anything under `site/`, or the workflow file itself).
+2. GitHub Actions checks out the repository.
+3. The contents of `site/` are synchronized to the configured cPanel directory over FTPS. Files removed from `site/` are removed on the server too. A running deploy is never cancelled by a newer push; the newer push waits for it.
+
+Actions are pinned to commit SHAs; the version is noted in a comment next to each `uses:` line.
 
 ## Server rules
 

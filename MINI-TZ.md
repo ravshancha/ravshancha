@@ -19,7 +19,7 @@ Bu hujjat portfolio saytini reference dizayn asosida bosqichma-bosqich to‘ldir
 - [x] Kartochkalar, soyalar, hover va ochilish animatsiyalari
 - [x] GitHub orqali `development` branch’dan CI/CD deploy
 - [ ] Barcha bo‘limlarda yakuniy matn va faktlarni tekshirish
-- [~] Lighthouse: tezlik, accessibility va SEO tekshiruvi — har deploy oldidan GitHub Actions’da avtomatik ishlaydi (hisobot run artefaktida)
+- [ ] Lighthouse: tezlik, accessibility va SEO tekshiruvi (PageSpeed Insights orqali qo‘lda)
 
 ## 2. Header
 
@@ -252,7 +252,7 @@ Faqat tekshiriladigan raqamlar ishlatiladi.
 - [~] O‘zbek tarjimasini tekshirish — barcha kalitlar qo‘llanishi tekshirildi, matn sifati sizdan
 - [~] Rus tarjimasini to‘liq rus tilida tekshirish — barcha kalitlar qo‘llanishi tekshirildi, matn sifati sizdan
 - [~] Ingliz tarjimasini tekshirish — barcha kalitlar qo‘llanishi tekshirildi, matn sifati sizdan
-- [x] Barcha tashqi havolalarni tekshirish (X olib tashlandi; CI’da lychee avtomatik tekshiradi)
+- [x] Barcha tashqi havolalarni tekshirish (X olib tashlandi)
 - [x] Telefon, email va messenjerlarni tekshirish
 - [x] Desktop ko‘rinish
 - [x] Planshet ko‘rinish
@@ -260,7 +260,7 @@ Faqat tekshiriladigan raqamlar ishlatiladi.
 - [x] Klaviatura bilan boshqarish (Tab, Escape, strelkalar, skip-link)
 - [x] SEO title va description (+ canonical, JSON-LD, robots.txt, sitemap.xml)
 - [x] Open Graph ijtimoiy preview rasmi
-- [~] Lighthouse audit — CI’da avtomatik, birinchi hisobotni ko‘rib chegaralarni `error` qilish kerak
+- [ ] Lighthouse audit (PageSpeed Insights orqali qo‘lda)
 - [ ] Final deploy tekshiruvi
 
 ## Tavsiya etilgan keyingi bosqich

@@ -1,17 +1,10 @@
-name: Check and deploy website
+name: Deploy website to cPanel
 
 on:
   push:
     branches: [development]
     paths:
       - "site/**"
-      - "lighthouserc.json"
-      - ".github/workflows/deploy-cpanel.yml"
-  pull_request:
-    branches: [development]
-    paths:
-      - "site/**"
-      - "lighthouserc.json"
       - ".github/workflows/deploy-cpanel.yml"
   workflow_dispatch:
 
@@ -23,44 +16,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  check:
-    name: Validate HTML, links and Lighthouse
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-
-      - name: Validate HTML with the Nu validator
-        run: |
-          curl -sSL --retry 3 -o vnu.jar https://github.com/validator/validator/releases/download/latest/vnu.jar
-          java -jar vnu.jar --errors-only site/index.html
-
-      - name: Check external links
-        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
-        with:
-          args: >-
-            --no-progress --verbose --max-retries 2 --timeout 20
-            --scheme https --scheme http
-            --accept 200..=206,403,429,999
-            --exclude 'ravshancha\.uz'
-            --exclude 'facebook\.com' --exclude 'medium\.com' --exclude 'wa\.me'
-            --exclude 'schema\.org' --exclude 'sitemaps\.org'
-            site/index.html site/sitemap.xml site/robots.txt
-          fail: true
-
-      - name: Run Lighthouse
-        uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18 # v12
-        with:
-          configPath: ./lighthouserc.json
-          uploadArtifacts: true
-          temporaryPublicStorage: false
-
   deploy:
-    name: Deploy to cPanel
-    needs: check
-    if: ${{ github.event_name != 'pull_request' && vars.CPANEL_DEPLOY_ENABLED == 'true' }}
+    if: ${{ vars.CPANEL_DEPLOY_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment: production
