@@ -1,10 +1,17 @@
-name: Deploy website to cPanel
+name: Check and deploy website
 
 on:
   push:
     branches: [development]
     paths:
       - "site/**"
+      - "lighthouserc.json"
+      - ".github/workflows/deploy-cpanel.yml"
+  pull_request:
+    branches: [development]
+    paths:
+      - "site/**"
+      - "lighthouserc.json"
       - ".github/workflows/deploy-cpanel.yml"
   workflow_dispatch:
 
@@ -13,21 +20,62 @@ permissions:
 
 concurrency:
   group: cpanel-production
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
+  check:
+    name: Validate HTML, links and Lighthouse
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate HTML with the Nu validator
+        run: |
+          python -m pip install --quiet html5validator
+          html5validator --root site --log INFO
+
+      - name: Check external links
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
+        with:
+          args: >-
+            --no-progress --verbose --max-retries 2 --timeout 20
+            --scheme https --scheme http
+            --accept 200..=206,403,429,999
+            --exclude 'ravshancha\.uz'
+            --exclude 'facebook\.com' --exclude 'medium\.com' --exclude 'wa\.me'
+            --exclude 'schema\.org' --exclude 'sitemaps\.org'
+            site/index.html site/sitemap.xml site/robots.txt
+          fail: true
+
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18 # v12
+        with:
+          configPath: ./lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: false
+
   deploy:
-    if: ${{ vars.CPANEL_DEPLOY_ENABLED == 'true' }}
+    name: Deploy to cPanel
+    needs: check
+    if: ${{ github.event_name != 'pull_request' && vars.CPANEL_DEPLOY_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment: production
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Deploy static site over FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        uses: SamKirkland/FTP-Deploy-Action@110f9186c050f71550953127052e77650219c287 # v4.4.0
         with:
           server: ${{ secrets.CPANEL_FTP_SERVER }}
           username: ${{ secrets.CPANEL_FTP_USERNAME }}
