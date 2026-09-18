@@ -30,14 +30,14 @@ Bu hujjat portfolio saytini reference dizayn asosida bosqichma-bosqich to‘ldir
 - [x] Mobil menyu
 - [x] Mobil menyu matnlari markazda
 - [ ] CV yuklab olish tugmasi
-- [ ] Headerdagi `Aloqa` o‘rniga telefon raqami qo‘yilsin
+- [x] Headerdagi `Aloqa` o‘rniga telefon raqami qo‘yildi
 
 ### Sizdan kerak
 
 - CV fayli: `____________________________`
-- Headerda ko‘rinadigan telefon: `____________________________`
-- [ ] `Aloqa` yozuvi qolsin
-- [ ] Telefon raqami ko‘rsatilsin
+- Headerda ko‘rinadigan telefon: `+998 99 942 07 70`
+- [–] `Aloqa` yozuvi qolsin
+- [x] Telefon raqami ko‘rsatilsin
 - [ ] Telefon ikonka + raqam ko‘rsatilsin
 
 ## 3. Hero — birinchi ekran
@@ -272,4 +272,3 @@ Faqat tekshiriladigan raqamlar ishlatiladi.
 - [ ] 5. Kontakt forma kerakligini belgilash
 - [ ] 6. CV faylini tayyorlash
 - [ ] 7. Haqiqiy testimoniallarni yig‘ish
-
