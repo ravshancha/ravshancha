@@ -29,12 +29,12 @@ Bu hujjat portfolio saytini reference dizayn asosida bosqichma-bosqich to‘ldir
 - [x] Til tanlash menyusi
 - [x] Mobil menyu
 - [x] Mobil menyu matnlari markazda
-- [ ] CV yuklab olish tugmasi
+- [x] CV yuklab olish tugmasi — uch tilda PDF, tanlangan tilga qarab almashadi
 - [x] Headerdagi `Aloqa` o‘rniga telefon raqami qo‘yildi
 
 ### Sizdan kerak
 
-- CV fayli: `____________________________`
+- CV fayli: `site/cv/Ravshanjon-Ismoilov-CV-{uz,ru,en}.pdf` (manba va generator: `tools/cv/`)
 - Headerda ko‘rinadigan telefon: `+998 99 942 07 70`
 - [–] `Aloqa` yozuvi qolsin
 - [x] Telefon raqami ko‘rsatilsin

@@ -138,6 +138,8 @@
     .site-nav { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: 14px; font-weight: 650; }
     .site-nav > a { transition: color 150ms ease; }
     .site-nav > a:hover, .site-nav > a:focus-visible { color: var(--header-hover); }
+    .nav-cv { padding: 8px 13px; border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line)); border-radius: 8px; color: var(--text); font-weight: 700; }
+    .site-nav > .nav-cv:hover, .site-nav > .nav-cv:focus-visible { color: var(--header-hover); border-color: var(--header-hover); }
     .nav-cta {
       padding: 9px 17px;
       border: 1px solid transparent;
@@ -276,6 +278,21 @@
     .footer-links { flex-wrap: wrap; justify-content: flex-end; }
     .footer-inner p { margin: 0; }
     .footer-inner a:hover { color: var(--text); }
+    .footer-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 17px;
+      border-radius: 8px;
+      color: var(--accent-text);
+      background: var(--accent);
+      font-weight: 700;
+      box-shadow: 0 10px 28px color-mix(in srgb, var(--accent) 25%, transparent);
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+    .footer-links .footer-top:hover, .footer-links .footer-top:focus-visible { color: var(--accent-text); transform: translateY(-2px); box-shadow: 0 14px 34px color-mix(in srgb, var(--accent) 34%, transparent); }
+    .footer-top-arrow { display: inline-block; animation: footer-top-nudge 1.7s ease-in-out infinite; }
+    @keyframes footer-top-nudge { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
 
     html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 600ms ease, transform 600ms ease; }
     html.js .reveal.visible { opacity: 1; transform: none; }
@@ -434,6 +451,7 @@
       }
       .site-nav.open { opacity: 1; pointer-events: auto; transform: none; }
       .site-nav > a, .site-nav .nav-cta { display: block; padding: 11px 14px; text-align: center; }
+      .nav-cv { border: 0; }
       .nav-cta { margin: 0; }
       .nav-controls { display: grid; width: 100%; grid-template-columns: 1fr; gap: 4px; padding-top: 10px; border-top: 1px solid var(--line); }
       .theme-toggle {
@@ -543,6 +561,7 @@
         <a href="#expertise" data-i18n="navExpertise">Yo‘nalishlar</a>
         <a href="#experience" data-i18n="navExperience">Tajriba</a>
         <a href="#work" data-i18n="navWork">Loyiha</a>
+        <a class="nav-cv" href="cv/Ravshanjon-Ismoilov-CV-uz.pdf" download aria-label="CV yuklab olish (PDF)" data-i18n-label="navCvLabel" data-cv-link><span data-i18n="navCv">CV</span> <span aria-hidden="true">↓</span></a>
         <a class="nav-cta" href="tel:+998999420770" aria-label="+998 99 942 07 70 raqamiga qo‘ng‘iroq qilish" data-i18n-label="phoneLabel">+998 99 942 07 70</a>
         <div class="nav-controls">
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="Rejimni almashtirish" title="Rejimni almashtirish">
@@ -750,7 +769,7 @@
         <a href="https://www.facebook.com/ravshancha" target="_blank" rel="noreferrer">Facebook</a>
         <a href="https://www.youtube.com/@ravshancha" target="_blank" rel="noreferrer">YouTube</a>
         <a href="https://medium.com/@ravshancha" target="_blank" rel="noreferrer">Medium</a>
-        <a href="#top" data-i18n="backToTop">Yuqoriga ↑</a>
+        <a class="footer-top" href="#top"><span data-i18n="backToTop">Yuqoriga</span> <span class="footer-top-arrow" aria-hidden="true">↑</span></a>
       </nav>
     </div>
   </footer>
@@ -772,6 +791,8 @@
         footerLinksLabel: "Ijtimoiy tarmoqlar va aloqa havolalari",
         phoneLabel: "+998 99 942 07 70 raqamiga qo‘ng‘iroq qilish",
         portraitAlt: "Ravshanjon Ismoilovning 3D portreti",
+        navCv: "CV",
+        navCvLabel: "CV yuklab olish (PDF, o‘zbekcha)",
         heroGreeting: "Salom! Men Ravshanjonman 👋",
         startProject: "Loyihani boshlash",
         viewGithub: "GitHub profil",
@@ -836,7 +857,7 @@
         award3: "“Clean City” loyihasi bilan 1-o‘rin.",
         contactKicker: "Aloqa",
         contactTitle: "Loyihangiz bormi?<br>Birga amalga oshiraylik.",
-        backToTop: "Yuqoriga ↑"
+        backToTop: "Yuqoriga"
       },
       ru: {
         pageTitle: "Равшанжон Исмоилов — Инженер-программист",
@@ -853,6 +874,8 @@
         footerLinksLabel: "Социальные сети и контакты",
         phoneLabel: "Позвонить по номеру +998 99 942 07 70",
         portraitAlt: "3D-портрет Равшанжона Исмоилова",
+        navCv: "CV",
+        navCvLabel: "Скачать CV (PDF, на русском)",
         heroGreeting: "Привет! Я Равшанжон 👋",
         startProject: "Начать проект",
         viewGithub: "Профиль GitHub",
@@ -917,7 +940,7 @@
         award3: "1-е место с проектом «Clean City».",
         contactKicker: "Контакты",
         contactTitle: "Есть проект?<br>Давайте создадим его вместе.",
-        backToTop: "Наверх ↑"
+        backToTop: "Наверх"
       },
       en: {
         pageTitle: "Ravshanjon Ismoilov — Software Engineer",
@@ -934,6 +957,8 @@
         footerLinksLabel: "Social profiles and contact links",
         phoneLabel: "Call +998 99 942 07 70",
         portraitAlt: "3D portrait of Ravshanjon Ismoilov",
+        navCv: "CV",
+        navCvLabel: "Download CV (PDF, English)",
         heroGreeting: "Hi! I’m Ravshanjon 👋",
         startProject: "Start a project",
         viewGithub: "GitHub profile",
@@ -998,7 +1023,7 @@
         award3: "First place with the Clean City project.",
         contactKicker: "Contact",
         contactTitle: "Have a project in mind?<br>Let’s make it real.",
-        backToTop: "Back to top ↑"
+        backToTop: "Back to top"
       }
     };
 
@@ -1017,6 +1042,7 @@
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
     const themeFavicon = document.querySelector("[data-theme-favicon]");
     const themeTouchIcon = document.querySelector("[data-theme-touch-icon]");
+    const cvLink = document.querySelector("[data-cv-link]");
     let currentLanguage = "uz";
     const languageDetails = {
       uz: { code: "UZ", flag: "🇺🇿", name: "O‘zbek" },
@@ -1085,6 +1111,7 @@
       languageFlag.textContent = selectedDetails.flag;
       languageCode.textContent = selectedDetails.code;
       languageTrigger.setAttribute("aria-label", `${dictionary.languageLabel}: ${selectedDetails.name}`);
+      cvLink.href = `cv/Ravshanjon-Ismoilov-CV-${selectedLanguage}.pdf`;
       themeButton.setAttribute("aria-label", dictionary.themeLabel);
       themeButton.setAttribute("title", dictionary.themeLabel);
       savePreference("portfolio-language", selectedLanguage);
