@@ -138,8 +138,6 @@
     .site-nav { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: 14px; font-weight: 650; }
     .site-nav > a { transition: color 150ms ease; }
     .site-nav > a:hover, .site-nav > a:focus-visible { color: var(--header-hover); }
-    .nav-cv { padding: 8px 13px; border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line)); border-radius: 8px; color: var(--text); font-weight: 700; }
-    .site-nav > .nav-cv:hover, .site-nav > .nav-cv:focus-visible { color: var(--header-hover); border-color: var(--header-hover); }
     .nav-cta {
       padding: 9px 17px;
       border: 1px solid transparent;
@@ -428,20 +426,27 @@
     .stat-icon { display: block; margin-bottom: 5px; color: var(--accent); font-size: 16px; }
     .stat-card strong { display: block; font-size: 1.12rem; }
     .stat-card span:last-child { color: var(--muted); font-size: 11px; }
+    .stat-card-link { transition: transform 160ms ease, border-color 160ms ease, background 160ms ease; }
+    .stat-card-link .stat-icon { transition: transform 160ms ease; }
+    .stat-card-link:hover, .stat-card-link:focus-visible { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 50%, transparent); background: color-mix(in srgb, var(--accent) 9%, transparent); }
+    .stat-card-link:hover .stat-icon, .stat-card-link:focus-visible .stat-icon { transform: translateY(3px); }
 
     @media (max-width: 1040px) {
       .menu-toggle { display: block; }
+      .site-header.menu-open, .site-nav {
+        background: color-mix(in srgb, var(--bg) 97%, transparent);
+        backdrop-filter: blur(18px);
+      }
+      .site-header.menu-open { border-color: transparent; }
       .site-nav {
         position: fixed;
-        inset: 78px 14px auto;
+        inset: 74px 0 auto;
         display: grid;
-        gap: 4px;
-        padding: 14px;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        background: var(--surface);
-        box-shadow: 0 24px 60px var(--shadow);
-        max-height: calc(100dvh - 94px);
+        gap: 2px;
+        padding: 6px 20px 14px;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        max-height: calc(100dvh - 74px);
         overflow-y: auto;
         overscroll-behavior: contain;
         opacity: 0;
@@ -451,7 +456,6 @@
       }
       .site-nav.open { opacity: 1; pointer-events: auto; transform: none; }
       .site-nav > a, .site-nav .nav-cta { display: block; padding: 11px 14px; text-align: center; }
-      .nav-cv { border: 0; }
       .nav-cta { margin: 0; }
       .nav-controls { display: grid; width: 100%; grid-template-columns: 1fr; gap: 4px; padding-top: 10px; border-top: 1px solid var(--line); }
       .theme-toggle {
@@ -519,6 +523,7 @@
 
     @media (max-width: 720px) {
       .container { width: min(calc(100% - 28px), var(--max-width)); }
+      .site-nav { padding-inline: 14px; }
       .hero { padding-top: 104px; }
       h1 { font-size: clamp(2.45rem, 12vw, 4rem); }
       .portrait-wrap { top: -20px; width: min(82vw, 330px); min-height: 405px; margin-top: 0; }
@@ -561,7 +566,6 @@
         <a href="#expertise" data-i18n="navExpertise">Yo‘nalishlar</a>
         <a href="#experience" data-i18n="navExperience">Tajriba</a>
         <a href="#work" data-i18n="navWork">Loyiha</a>
-        <a class="nav-cv" href="cv/Ravshanjon-Ismoilov-CV-uz.pdf" download aria-label="CV yuklab olish (PDF)" data-i18n-label="navCvLabel" data-cv-link><span data-i18n="navCv">CV</span> <span aria-hidden="true">↓</span></a>
         <a class="nav-cta" href="tel:+998999420770" aria-label="+998 99 942 07 70 raqamiga qo‘ng‘iroq qilish" data-i18n-label="phoneLabel">+998 99 942 07 70</a>
         <div class="nav-controls">
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="Rejimni almashtirish" title="Rejimni almashtirish">
@@ -592,7 +596,7 @@
           <div class="hero-copy reveal">
             <p class="eyebrow"><span class="status-dot"></span><span data-i18n="heroGreeting">Salom! Men Ravshanjonman 👋</span></p>
             <h1 data-i18n-html="heroTitle">Foydali <span class="accent-word">raqamli mahsulotlar</span> yarataman.</h1>
-            <p class="hero-lead" data-i18n="heroLead">Men ishonchli tizimlar va zamonaviy veb-ilovalar yaratuvchi dasturiy ta’minot muhandisiman.</p>
+            <p class="hero-lead" data-i18n="heroLead">Men ishonchli tizimlar va zamonaviy ilovalar yaratuvchi dasturiy ta’minot muhandisiman.</p>
             <div class="hero-actions">
               <a class="button button-primary" href="#work"><span data-i18n="startProject">Loyihani boshlash</span> <span aria-hidden="true">→</span></a>
               <a class="button button-secondary" href="https://github.com/ravshancha" target="_blank" rel="noreferrer"><span data-i18n="viewGithub">GitHub profil</span> <span aria-hidden="true">↗</span></a>
@@ -630,7 +634,7 @@
             <div class="stat-card"><span class="stat-icon">▣</span><strong data-i18n="statExperienceValue">7+ yil</strong><span data-i18n="statExperience">Tajriba</span></div>
             <div class="stat-card"><span class="stat-icon">▤</span><strong>20+</strong><span data-i18n="statProjects">Loyihalar</span></div>
             <div class="stat-card"><span class="stat-icon">◆</span><strong>3</strong><span data-i18n="statAwards">Mukofotlar</span></div>
-            <div class="stat-card"><span class="stat-icon">⌖</span><strong data-i18n="statCity">Toshkent</strong><span data-i18n="statBased">Joylashuv</span></div>
+            <a class="stat-card stat-card-link" href="cv/Ravshanjon-Ismoilov-CV-uz.pdf" download aria-label="Tarjimai holni PDF holida yuklab olish (o‘zbekcha)" data-i18n-label="cvLabel" data-cv-link><span class="stat-icon" aria-hidden="true">↓</span><strong data-i18n="cvTitle">Tarjimai hol</strong><span data-i18n="cvAction">PDF yuklab olish</span></a>
           </div>
         </div>
       </div>
@@ -791,8 +795,9 @@
         footerLinksLabel: "Ijtimoiy tarmoqlar va aloqa havolalari",
         phoneLabel: "+998 99 942 07 70 raqamiga qo‘ng‘iroq qilish",
         portraitAlt: "Ravshanjon Ismoilovning 3D portreti",
-        navCv: "CV",
-        navCvLabel: "CV yuklab olish (PDF, o‘zbekcha)",
+        cvTitle: "Tarjimai hol",
+        cvAction: "PDF yuklab olish",
+        cvLabel: "Tarjimai holni PDF holida yuklab olish (o‘zbekcha)",
         heroGreeting: "Salom! Men Ravshanjonman 👋",
         startProject: "Loyihani boshlash",
         viewGithub: "GitHub profil",
@@ -809,14 +814,12 @@
         statExperience: "Tajriba",
         statProjects: "Loyihalar",
         statAwards: "Mukofotlar",
-        statCity: "Toshkent",
-        statBased: "Joylashuv",
         navAbout: "Men haqimda",
         navExpertise: "Yo‘nalishlar",
         navExperience: "Tajriba",
         navWork: "Loyiha",
         heroTitle: "Foydali <span class=\"accent-word\">raqamli mahsulotlar</span> yarataman.",
-        heroLead: "Men ishonchli tizimlar va zamonaviy veb-ilovalar yaratuvchi dasturiy ta’minot muhandisiman.",
+        heroLead: "Men ishonchli tizimlar va zamonaviy ilovalar yaratuvchi dasturiy ta’minot muhandisiman.",
         aboutKicker: "Men haqimda",
         aboutTitle: "Aniq fikr, qiziquvchanlik va maqsadga tayangan muhandislik.",
         aboutP1: "Tezkor interaktiv mahsulotlar, puxta arxitektura va jamoa uchun qulay kod yaratishga e’tibor beraman.",
@@ -874,8 +877,9 @@
         footerLinksLabel: "Социальные сети и контакты",
         phoneLabel: "Позвонить по номеру +998 99 942 07 70",
         portraitAlt: "3D-портрет Равшанжона Исмоилова",
-        navCv: "CV",
-        navCvLabel: "Скачать CV (PDF, на русском)",
+        cvTitle: "Резюме",
+        cvAction: "Скачать PDF",
+        cvLabel: "Скачать резюме в PDF (на русском)",
         heroGreeting: "Привет! Я Равшанжон 👋",
         startProject: "Начать проект",
         viewGithub: "Профиль GitHub",
@@ -892,14 +896,12 @@
         statExperience: "Опыт",
         statProjects: "Проекты",
         statAwards: "Награды",
-        statCity: "Ташкент",
-        statBased: "Город",
         navAbout: "Обо мне",
         navExpertise: "Навыки",
         navExperience: "Опыт",
         navWork: "Проект",
         heroTitle: "Создаю <span class=\"accent-word\">полезные цифровые продукты</span>.",
-        heroLead: "Я инженер-программист, разрабатываю надёжные серверные системы и современные веб-приложения.",
+        heroLead: "Я инженер-программист, разрабатываю надёжные серверные системы и современные приложения.",
         aboutKicker: "Обо мне",
         aboutTitle: "Инженерия, основанная на ясности, любознательности и цели.",
         aboutP1: "Создаю быстрые интерактивные продукты, продумываю архитектуру и пишу код, с которым удобно работать команде.",
@@ -957,8 +959,9 @@
         footerLinksLabel: "Social profiles and contact links",
         phoneLabel: "Call +998 99 942 07 70",
         portraitAlt: "3D portrait of Ravshanjon Ismoilov",
-        navCv: "CV",
-        navCvLabel: "Download CV (PDF, English)",
+        cvTitle: "Resume",
+        cvAction: "Download PDF",
+        cvLabel: "Download the resume as PDF (English)",
         heroGreeting: "Hi! I’m Ravshanjon 👋",
         startProject: "Start a project",
         viewGithub: "GitHub profile",
@@ -975,14 +978,12 @@
         statExperience: "Experience",
         statProjects: "Projects",
         statAwards: "Awards",
-        statCity: "Tashkent",
-        statBased: "Based in",
         navAbout: "About",
         navExpertise: "Expertise",
         navExperience: "Experience",
         navWork: "Work",
         heroTitle: "I build <span class=\"accent-word\">digital experiences</span> that matter.",
-        heroLead: "I’m a software engineer building backend systems and modern web applications.",
+        heroLead: "I’m a software engineer building backend systems and modern applications.",
         aboutKicker: "About",
         aboutTitle: "Engineering with clarity, curiosity, and purpose.",
         aboutP1: "I care about fast, interactive products, thoughtful architecture, and code that remains easy to work with as a team grows.",
@@ -1069,6 +1070,7 @@
     const closeMenu = () => {
       closeLanguageSelect();
       menu.classList.remove("open");
+      header.classList.remove("menu-open");
       menuButton.setAttribute("aria-expanded", "false");
     };
 
@@ -1134,6 +1136,7 @@
       const shouldOpen = !menu.classList.contains("open");
       if (shouldOpen) {
         menu.classList.add("open");
+        header.classList.add("menu-open");
         menuButton.setAttribute("aria-expanded", "true");
       } else {
         closeMenu();
