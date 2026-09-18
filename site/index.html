@@ -230,7 +230,8 @@
     .contact-section h2 { max-width: 920px; }
     .contact-email { display: inline-flex; gap: 16px; align-items: center; padding-bottom: 5px; border-bottom: 2px solid currentColor; font-size: clamp(1rem, 2.4vw, 1.45rem); font-weight: 800; }
     .site-footer { padding: 30px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
-    .footer-inner, .footer-inner div { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .footer-inner, .footer-links { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .footer-links { flex-wrap: wrap; justify-content: flex-end; }
     .footer-inner p { margin: 0; }
     .footer-inner a:hover { color: var(--text); }
 
@@ -532,7 +533,7 @@
       .project-card { grid-template-columns: 1fr auto; padding: 28px; }
       .project-index { grid-column: 1 / -1; }
       .footer-inner { align-items: flex-start; flex-direction: column; }
-      .footer-inner div { flex-wrap: wrap; }
+      .footer-links { justify-content: flex-start; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -757,9 +758,15 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>© <span data-year></span> Ravshanjon Ismoilov</p>
-      <div>
-        <a href="https://github.com/ravshancha">GitHub</a>
-        <a href="https://www.linkedin.com/in/ravshancha">LinkedIn</a>
+      <div class="footer-links" aria-label="Social profiles and contact links">
+        <a href="https://github.com/ravshancha" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/ravshancha" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://t.me/ravshancha" target="_blank" rel="noreferrer">Telegram</a>
+        <a href="https://wa.me/998999420770" target="_blank" rel="noreferrer">WhatsApp</a>
+        <a href="https://www.facebook.com/ravshancha" target="_blank" rel="noreferrer">Facebook</a>
+        <a href="https://x.com/ravshancha" target="_blank" rel="noreferrer">X / Twitter</a>
+        <a href="https://www.youtube.com/@ravshancha" target="_blank" rel="noreferrer">YouTube</a>
+        <a href="https://medium.com/@ravshancha" target="_blank" rel="noreferrer">Medium</a>
         <a href="#top" data-i18n="backToTop">Yuqoriga ↑</a>
       </div>
     </div>
