@@ -10,6 +10,7 @@
   <link rel="apple-touch-icon" href="assets/cha-favicon-dark-clean.png" sizes="512x512" data-theme-touch-icon>
   <title>Ravshanjon Ismoilov — Dasturiy ta’minot muhandisi</title>
   <script>
+    document.documentElement.classList.add("js");
     try {
       const savedTheme = localStorage.getItem("portfolio-theme");
       const preferredTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
@@ -235,8 +236,8 @@
     .footer-inner p { margin: 0; }
     .footer-inner a:hover { color: var(--text); }
 
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 600ms ease, transform 600ms ease; }
-    .reveal.visible { opacity: 1; transform: none; }
+    html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 600ms ease, transform 600ms ease; }
+    html.js .reveal.visible { opacity: 1; transform: none; }
 
     /* Blue editorial hero inspired by the supplied reference. */
     .site-header { background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 94%, transparent), transparent); }
@@ -558,16 +559,16 @@
         <span class="sr-only" data-i18n="menuLabel">Menyuni ochish</span>
       </button>
 
-      <nav class="site-nav" id="site-nav" aria-label="Primary navigation" data-menu>
+      <nav class="site-nav" id="site-nav" aria-label="Asosiy navigatsiya" data-i18n-label="navLabel" data-menu>
         <a href="#about" data-i18n="navAbout">Men haqimda</a>
         <a href="#expertise" data-i18n="navExpertise">Yo‘nalishlar</a>
         <a href="#experience" data-i18n="navExperience">Tajriba</a>
         <a href="#work" data-i18n="navWork">Loyiha</a>
-        <a class="nav-cta" href="tel:+998999420770" aria-label="+998 99 942 07 70 raqamiga qo‘ng‘iroq qilish">+998 99 942 07 70</a>
+        <a class="nav-cta" href="tel:+998999420770" aria-label="+998 99 942 07 70 raqamiga qo‘ng‘iroq qilish" data-i18n-label="phoneLabel">+998 99 942 07 70</a>
         <div class="nav-controls">
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="Rejimni almashtirish" title="Rejimni almashtirish">
             <span data-theme-icon aria-hidden="true">☀</span>
-            <span class="theme-toggle-label" data-theme-label>Dark</span>
+            <span class="theme-toggle-label" data-theme-label>Qorong‘i</span>
           </button>
           <div class="language-select" data-language-select>
             <button class="language-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="language-options" data-language-trigger>
@@ -575,7 +576,7 @@
               <span data-language-code>UZ</span>
               <span class="language-chevron" aria-hidden="true">⌄</span>
             </button>
-            <div class="language-options" id="language-options" role="listbox" aria-label="Language" data-language-options hidden>
+            <div class="language-options" id="language-options" role="listbox" aria-label="Til" data-i18n-label="languageLabel" data-language-options hidden>
               <button class="language-option" type="button" role="option" data-language="uz"><span class="language-flag" aria-hidden="true">🇺🇿</span><span>O‘zbek</span></button>
               <button class="language-option" type="button" role="option" data-language="ru"><span class="language-flag" aria-hidden="true">🇷🇺</span><span>Русский</span></button>
               <button class="language-option" type="button" role="option" data-language="en"><span class="language-flag" aria-hidden="true">🇬🇧</span><span>English</span></button>
@@ -598,19 +599,19 @@
               <a class="button button-primary" href="#work"><span data-i18n="startProject">Loyihani boshlash</span> <span aria-hidden="true">→</span></a>
               <a class="button button-secondary" href="https://github.com/ravshancha" target="_blank" rel="noreferrer"><span data-i18n="viewGithub">GitHub profil</span> <span aria-hidden="true">↗</span></a>
             </div>
-            <div class="hero-links" aria-label="Social profiles">
+            <nav class="hero-links" aria-label="Ijtimoiy tarmoqlar" data-i18n-label="socialLabel">
               <a href="https://github.com/ravshancha" target="_blank" rel="noreferrer">GitHub</a>
               <a href="https://www.linkedin.com/in/ravshancha" target="_blank" rel="noreferrer">LinkedIn</a>
               <a href="https://t.me/ravshancha" target="_blank" rel="noreferrer">Telegram</a>
-            </div>
+            </nav>
           </div>
 
-          <div class="portrait-wrap reveal" aria-label="Ravshanjon Ismoilov">
+          <div class="portrait-wrap reveal">
             <div class="portrait-ring"></div>
-            <img class="portrait" src="assets/ravshanjon-3d.png" alt="Ravshanjon Ismoilovning 3D portreti" width="1077" height="1461">
+            <img class="portrait" src="assets/ravshanjon-3d.png" alt="Ravshanjon Ismoilovning 3D portreti" data-i18n-alt="portraitAlt" width="1077" height="1461">
           </div>
 
-          <aside class="hero-services reveal" aria-label="Professional specializations">
+          <aside class="hero-services reveal" aria-label="Mutaxassislik yo‘nalishlari" data-i18n-label="specialtiesLabel">
             <div class="service-card"><span class="service-icon">&lt;/&gt;</span><div><strong data-i18n="specialtySoftware">Dasturiy muhandis</strong><small data-i18n="specialtySoftwareMeta">Java · Vue · React</small></div></div>
             <div class="service-card"><span class="service-icon">◇</span><div><strong data-i18n="specialtyArchitecture">Arxitektura</strong><small data-i18n="specialtyArchitectureMeta">Tizimlar · Integratsiyalar</small></div></div>
             <div class="service-card"><span class="service-icon">↗</span><div><strong data-i18n="specialtyStartups">Startaplar</strong><small data-i18n="specialtyStartupsMeta">Prototip · Ishga tushirish</small></div></div>
@@ -698,7 +699,7 @@
             </div>
           </article>
           <article class="timeline-item reveal">
-            <div class="timeline-meta"><span>2019</span><span data-i18n="stylemixArea">Veb-ishlab chiqish</span></div>
+            <div class="timeline-meta"><span>2019</span><span data-i18n="stylemixArea">Veb-dasturlash</span></div>
             <div>
               <h3 data-i18n="stylemixRole">Veb-dasturchi</h3>
               <p class="company">Stylemix</p>
@@ -758,7 +759,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>© <span data-year></span> Ravshanjon Ismoilov</p>
-      <div class="footer-links" aria-label="Social profiles and contact links">
+      <nav class="footer-links" aria-label="Ijtimoiy tarmoqlar va aloqa havolalari" data-i18n-label="footerLinksLabel">
         <a href="https://github.com/ravshancha" target="_blank" rel="noreferrer">GitHub</a>
         <a href="https://www.linkedin.com/in/ravshancha" target="_blank" rel="noreferrer">LinkedIn</a>
         <a href="https://t.me/ravshancha" target="_blank" rel="noreferrer">Telegram</a>
@@ -768,7 +769,7 @@
         <a href="https://www.youtube.com/@ravshancha" target="_blank" rel="noreferrer">YouTube</a>
         <a href="https://medium.com/@ravshancha" target="_blank" rel="noreferrer">Medium</a>
         <a href="#top" data-i18n="backToTop">Yuqoriga ↑</a>
-      </div>
+      </nav>
     </div>
   </footer>
 
@@ -780,6 +781,15 @@
         skipLink: "Kontentga o‘tish",
         menuLabel: "Menyuni ochish",
         themeLabel: "Rang rejimini almashtirish",
+        themeDark: "Qorong‘i",
+        themeLight: "Yorug‘",
+        navLabel: "Asosiy navigatsiya",
+        languageLabel: "Til",
+        socialLabel: "Ijtimoiy tarmoqlar",
+        specialtiesLabel: "Mutaxassislik yo‘nalishlari",
+        footerLinksLabel: "Ijtimoiy tarmoqlar va aloqa havolalari",
+        phoneLabel: "+998 99 942 07 70 raqamiga qo‘ng‘iroq qilish",
+        portraitAlt: "Ravshanjon Ismoilovning 3D portreti",
         heroGreeting: "Salom! Men Ravshanjonman 👋",
         startProject: "Loyihani boshlash",
         viewGithub: "GitHub profil",
@@ -858,6 +868,15 @@
         skipLink: "Перейти к содержимому",
         menuLabel: "Открыть меню",
         themeLabel: "Переключить цветовую тему",
+        themeDark: "Тёмная",
+        themeLight: "Светлая",
+        navLabel: "Основная навигация",
+        languageLabel: "Язык",
+        socialLabel: "Социальные сети",
+        specialtiesLabel: "Профессиональные направления",
+        footerLinksLabel: "Социальные сети и контакты",
+        phoneLabel: "Позвонить по номеру +998 99 942 07 70",
+        portraitAlt: "3D-портрет Равшанжона Исмоилова",
         heroGreeting: "Привет! Я Равшанжон 👋",
         startProject: "Начать проект",
         viewGithub: "Профиль GitHub",
@@ -936,6 +955,15 @@
         skipLink: "Skip to content",
         menuLabel: "Open menu",
         themeLabel: "Toggle color theme",
+        themeDark: "Dark",
+        themeLight: "Light",
+        navLabel: "Primary navigation",
+        languageLabel: "Language",
+        socialLabel: "Social profiles",
+        specialtiesLabel: "Professional specializations",
+        footerLinksLabel: "Social profiles and contact links",
+        phoneLabel: "Call +998 99 942 07 70",
+        portraitAlt: "3D portrait of Ravshanjon Ismoilov",
         heroGreeting: "Hi! I’m Ravshanjon 👋",
         startProject: "Start a project",
         viewGithub: "GitHub profile",
@@ -1025,6 +1053,7 @@
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
     const themeFavicon = document.querySelector("[data-theme-favicon]");
     const themeTouchIcon = document.querySelector("[data-theme-touch-icon]");
+    let currentLanguage = "uz";
     const languageDetails = {
       uz: { code: "UZ", flag: "🇺🇿", name: "O‘zbek" },
       ru: { code: "RU", flag: "🇷🇺", name: "Русский" },
@@ -1056,6 +1085,7 @@
     const setLanguage = (language) => {
       const selectedLanguage = translations[language] ? language : "uz";
       const dictionary = translations[selectedLanguage];
+      currentLanguage = selectedLanguage;
 
       document.documentElement.lang = selectedLanguage;
       document.title = dictionary.pageTitle;
@@ -1071,6 +1101,16 @@
         if (value) node.innerHTML = value;
       });
 
+      document.querySelectorAll("[data-i18n-label]").forEach((node) => {
+        const value = dictionary[node.dataset.i18nLabel];
+        if (value) node.setAttribute("aria-label", value);
+      });
+
+      document.querySelectorAll("[data-i18n-alt]").forEach((node) => {
+        const value = dictionary[node.dataset.i18nAlt];
+        if (value) node.setAttribute("alt", value);
+      });
+
       document.querySelectorAll("[data-language]").forEach((button) => {
         const isActive = button.dataset.language === selectedLanguage;
         button.classList.toggle("active", isActive);
@@ -1080,17 +1120,19 @@
       const selectedDetails = languageDetails[selectedLanguage];
       languageFlag.textContent = selectedDetails.flag;
       languageCode.textContent = selectedDetails.code;
-      languageTrigger.setAttribute("aria-label", `Language: ${selectedDetails.name}`);
+      languageTrigger.setAttribute("aria-label", `${dictionary.languageLabel}: ${selectedDetails.name}`);
       themeButton.setAttribute("aria-label", dictionary.themeLabel);
       themeButton.setAttribute("title", dictionary.themeLabel);
       savePreference("portfolio-language", selectedLanguage);
+      updateThemeIcon();
       closeMenu();
     };
 
     const updateThemeIcon = () => {
       const isLight = document.documentElement.dataset.theme === "light";
+      const dictionary = translations[currentLanguage];
       themeIcon.textContent = isLight ? "☀" : "☾";
-      themeLabel.textContent = isLight ? "Light" : "Dark";
+      themeLabel.textContent = isLight ? dictionary.themeLight : dictionary.themeDark;
       const faviconAsset = isLight ? "assets/cha-favicon-light-transparent.png" : "assets/cha-favicon-dark-clean.png";
       themeFavicon.href = faviconAsset;
       themeTouchIcon.href = faviconAsset;
@@ -1117,11 +1159,28 @@
     });
     document.addEventListener("click", (event) => {
       if (!languageSelect.contains(event.target)) closeLanguageSelect();
+      if (menu.classList.contains("open") && !menu.contains(event.target) && !menuButton.contains(event.target)) closeMenu();
+    });
+    languageSelect.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+      event.preventDefault();
+      const options = [...languageOptions.querySelectorAll("[data-language]")];
+      const currentIndex = options.indexOf(document.activeElement);
+      const step = event.key === "ArrowDown" ? 1 : -1;
+      if (languageOptions.hidden) setLanguageSelectOpen(true);
+      const nextIndex = currentIndex === -1 ? (step === 1 ? 0 : options.length - 1) : (currentIndex + step + options.length) % options.length;
+      options[nextIndex].focus();
     });
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
+      if (event.key !== "Escape") return;
+      if (!languageOptions.hidden) {
         closeLanguageSelect();
         languageTrigger.focus();
+        return;
+      }
+      if (menu.classList.contains("open")) {
+        closeMenu();
+        menuButton.focus();
       }
     });
 
