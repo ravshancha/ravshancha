@@ -14,9 +14,10 @@
       const savedTheme = localStorage.getItem("portfolio-theme");
       const preferredTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
       const activeTheme = savedTheme || preferredTheme;
+      const faviconAsset = activeTheme === "light" ? "assets/cha-favicon-light-transparent.png" : "assets/cha-favicon-dark-clean.png";
       document.documentElement.dataset.theme = activeTheme;
-      document.querySelector("[data-theme-favicon]").href = `assets/cha-favicon-${activeTheme}-clean.png`;
-      document.querySelector("[data-theme-touch-icon]").href = `assets/cha-favicon-${activeTheme}-clean.png`;
+      document.querySelector("[data-theme-favicon]").href = faviconAsset;
+      document.querySelector("[data-theme-touch-icon]").href = faviconAsset;
     } catch (error) {
       document.documentElement.dataset.theme = "dark";
     }
@@ -1076,9 +1077,9 @@
       const isLight = document.documentElement.dataset.theme === "light";
       themeIcon.textContent = isLight ? "☀" : "☾";
       themeLabel.textContent = isLight ? "Light" : "Dark";
-      const themeName = isLight ? "light" : "dark";
-      themeFavicon.href = `assets/cha-favicon-${themeName}-clean.png`;
-      themeTouchIcon.href = `assets/cha-favicon-${themeName}-clean.png`;
+      const faviconAsset = isLight ? "assets/cha-favicon-light-transparent.png" : "assets/cha-favicon-dark-clean.png";
+      themeFavicon.href = faviconAsset;
+      themeTouchIcon.href = faviconAsset;
       themeColorMeta.content = isLight ? "#eef4fb" : "#05070d";
     };
 
