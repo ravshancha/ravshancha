@@ -19,7 +19,7 @@ Bu hujjat portfolio saytini reference dizayn asosida bosqichma-bosqich to‘ldir
 - [x] Kartochkalar, soyalar, hover va ochilish animatsiyalari
 - [x] GitHub orqali `development` branch’dan CI/CD deploy
 - [ ] Barcha bo‘limlarda yakuniy matn va faktlarni tekshirish
-- [ ] Lighthouse: tezlik, accessibility va SEO tekshiruvi
+- [~] Lighthouse: tezlik, accessibility va SEO tekshiruvi — har deploy oldidan GitHub Actions’da avtomatik ishlaydi (hisobot run artefaktida)
 
 ## 2. Header
 
@@ -212,7 +212,7 @@ Faqat tekshiriladigan raqamlar ishlatiladi.
 - [x] Aloqa CTA va email
 - [x] WhatsApp raqami footerda
 - [x] Telegram havolasi
-- [~] Telefon raqami WhatsApp orqali mavjud, oddiy `tel:` havola hali yo‘q
+- [x] Telefon raqami headerda `tel:` havola sifatida va footerda WhatsApp orqali mavjud
 - [ ] Ism, email, mavzu va xabar maydonli forma
 - [ ] Forma yuborilganda muvaffaqiyat/xato holati
 - [ ] Spam himoyasi
@@ -232,12 +232,12 @@ Faqat tekshiriladigan raqamlar ishlatiladi.
 - [x] Telegram
 - [x] WhatsApp
 - [x] Facebook
-- [x] X / Twitter
+- [–] X / Twitter — akkaunt bloklangan (suspended), havola olib tashlandi
 - [x] YouTube
 - [x] Medium
 - [x] Yuqoriga qaytish
 - [ ] Instagram — aniq havola kerak
-- [~] Facebook, X, YouTube va Medium username’larini tasdiqlash kerak
+- [x] Facebook, YouTube va Medium username’lari tasdiqlandi (Medium profili hozircha bo‘sh)
 
 ### Sizdan kerak
 
@@ -249,18 +249,18 @@ Faqat tekshiriladigan raqamlar ishlatiladi.
 
 ## 14. Yakuniy tekshiruv
 
-- [ ] O‘zbek tarjimasini tekshirish
-- [ ] Rus tarjimasini to‘liq rus tilida tekshirish
-- [ ] Ingliz tarjimasini tekshirish
-- [ ] Barcha tashqi havolalarni tekshirish
-- [ ] Telefon, email va messenjerlarni tekshirish
-- [ ] Desktop ko‘rinish
-- [ ] Planshet ko‘rinish
-- [ ] Mobil ko‘rinish
-- [ ] Klaviatura bilan boshqarish
-- [ ] SEO title va description
-- [ ] Open Graph ijtimoiy preview rasmi
-- [ ] Lighthouse audit
+- [~] O‘zbek tarjimasini tekshirish — barcha kalitlar qo‘llanishi tekshirildi, matn sifati sizdan
+- [~] Rus tarjimasini to‘liq rus tilida tekshirish — barcha kalitlar qo‘llanishi tekshirildi, matn sifati sizdan
+- [~] Ingliz tarjimasini tekshirish — barcha kalitlar qo‘llanishi tekshirildi, matn sifati sizdan
+- [x] Barcha tashqi havolalarni tekshirish (X olib tashlandi; CI’da lychee avtomatik tekshiradi)
+- [x] Telefon, email va messenjerlarni tekshirish
+- [x] Desktop ko‘rinish
+- [x] Planshet ko‘rinish
+- [x] Mobil ko‘rinish
+- [x] Klaviatura bilan boshqarish (Tab, Escape, strelkalar, skip-link)
+- [x] SEO title va description (+ canonical, JSON-LD, robots.txt, sitemap.xml)
+- [x] Open Graph ijtimoiy preview rasmi
+- [~] Lighthouse audit — CI’da avtomatik, birinchi hisobotni ko‘rib chegaralarni `error` qilish kerak
 - [ ] Final deploy tekshiruvi
 
 ## Tavsiya etilgan keyingi bosqich
