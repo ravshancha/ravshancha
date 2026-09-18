@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Ravshanjon Ismoilov — Toshkentlik software engineer va backend developer.">
+  <meta name="description" content="Ravshanjon Ismoilov — Toshkentlik dasturiy ta’minot muhandisi, server tizimlari va veb-ilovalar mutaxassisi.">
   <meta name="theme-color" content="#0a0d12">
   <meta name="deployment" content="GitHub Actions to DirectAdmin">
   <link rel="icon" href="assets/cha-logo.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/cha-logo.png">
-  <title>Ravshanjon Ismoilov — Software Engineer</title>
+  <title>Ravshanjon Ismoilov — Dasturiy ta’minot muhandisi</title>
   <script>
     try {
       const savedTheme = localStorage.getItem("portfolio-theme");
@@ -268,6 +268,7 @@
 
     .portrait-wrap {
       position: relative;
+      top: -26px;
       z-index: 2;
       width: 100%;
       min-height: 530px;
@@ -455,7 +456,7 @@
       .hero { min-height: auto; }
       .hero-stage, .split-grid, .recognition-grid { grid-template-columns: 1fr; gap: 26px; }
       .hero-copy { padding-bottom: 10px; }
-      .portrait-wrap { width: min(78vw, 380px); min-height: 480px; justify-self: center; }
+      .portrait-wrap { top: -14px; width: min(78vw, 380px); min-height: 460px; justify-self: center; }
       .portrait { width: min(76vw, 390px); max-height: 500px; }
       .portrait-wrap::before { width: min(82vw, 390px); }
       .portrait-ring { width: min(88vw, 420px); }
@@ -498,7 +499,7 @@
       .menu-toggle[aria-expanded="true"] > span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
       .hero { padding-top: 104px; }
       .hero h1 { font-size: clamp(2.8rem, 14vw, 4.6rem); }
-      .portrait-wrap { width: min(82vw, 330px); min-height: 430px; margin-top: 6px; }
+      .portrait-wrap { top: -8px; width: min(82vw, 330px); min-height: 405px; margin-top: 0; }
       .portrait { width: min(88vw, 350px); height: auto; max-height: 440px; }
       .hero-services { grid-template-columns: 1fr; margin-bottom: 72px; }
       .hero-summary { margin-top: -44px; padding: 24px 18px; }
@@ -566,8 +567,8 @@
         <div class="hero-stage">
           <div class="hero-copy reveal">
             <p class="eyebrow"><span class="status-dot"></span><span data-i18n="heroGreeting">Salom! Men Ravshanjonman 👋</span></p>
-            <h1 data-i18n-html="heroTitle">Men muhim bo‘lgan <span class="accent-word">raqamli tajribalar</span> yarataman.</h1>
-            <p class="hero-lead" data-i18n="heroLead">Backend tizimlari va zamonaviy veb-ilovalarni yaratadigan software engineerman.</p>
+            <h1 data-i18n-html="heroTitle">Foydali <span class="accent-word">raqamli mahsulotlar</span> yarataman.</h1>
+            <p class="hero-lead" data-i18n="heroLead">Men ishonchli tizimlar va zamonaviy veb-ilovalar yaratuvchi dasturiy ta’minot muhandisiman.</p>
             <div class="hero-actions">
               <a class="button button-primary" href="#work"><span data-i18n="startProject">Loyihani boshlash</span> <span aria-hidden="true">→</span></a>
               <a class="button button-secondary" href="https://github.com/ravshancha" target="_blank" rel="noreferrer"><span data-i18n="viewGithub">GitHub profil</span> <span aria-hidden="true">↗</span></a>
@@ -585,16 +586,16 @@
           </div>
 
           <aside class="hero-services reveal" aria-label="Professional specializations">
-            <div class="service-card"><span class="service-icon">&lt;/&gt;</span><div><strong data-i18n="specialtyBackend">Backend developer</strong><small>Java · PostgreSQL</small></div></div>
-            <div class="service-card"><span class="service-icon">UI</span><div><strong data-i18n="specialtyWeb">Web engineer</strong><small>Vue · React</small></div></div>
-            <div class="service-card"><span class="service-icon">◇</span><div><strong data-i18n="specialtyProblem">Muammo yechuvchi</strong><small>Architecture · API</small></div></div>
+            <div class="service-card"><span class="service-icon">&lt;/&gt;</span><div><strong data-i18n="specialtySoftware">Dasturiy muhandis</strong><small data-i18n="specialtySoftwareMeta">Java · Vue · React</small></div></div>
+            <div class="service-card"><span class="service-icon">◇</span><div><strong data-i18n="specialtyArchitecture">Arxitektura</strong><small data-i18n="specialtyArchitectureMeta">Tizimlar · Integratsiyalar</small></div></div>
+            <div class="service-card"><span class="service-icon">↗</span><div><strong data-i18n="specialtyStartups">Startaplar</strong><small data-i18n="specialtyStartupsMeta">Prototip · Ishga tushirish</small></div></div>
           </aside>
         </div>
 
         <div class="hero-summary reveal">
           <div class="summary-about">
             <p class="summary-kicker" data-i18n="summaryKicker">● Men haqimda</p>
-            <h2 class="summary-title" data-i18n-html="summaryTitle">G‘oyalarni kuchli <span class="accent-word">raqamli mahsulotlarga</span> aylantiraman.</h2>
+            <h2 class="summary-title" data-i18n-html="summaryTitle">G‘oyalarni <span class="accent-word">ishonchli raqamli mahsulotlarga</span> aylantiraman.</h2>
             <p data-i18n="summaryText">Murakkab muammolarni ishonchli kod va tushunarli foydalanuvchi tajribasi bilan yechaman.</p>
           </div>
           <div class="stats-grid">
@@ -611,14 +612,14 @@
       <div class="container split-grid">
         <div>
           <p class="section-kicker" data-i18n="aboutKicker">Men haqimda</p>
-          <h2 data-i18n="aboutTitle">Aniqlik, qiziquvchanlik va maqsad bilan muhandislik.</h2>
+          <h2 data-i18n="aboutTitle">Aniq fikr, qiziquvchanlik va maqsadga tayangan muhandislik.</h2>
         </div>
         <div class="about-copy reveal">
-          <p data-i18n="aboutP1">Tezkor interaktiv mahsulotlar, puxta arxitektura va jamoa bilan ishlashga qulay kod yaratishga e’tibor beraman.</p>
-          <p data-i18n="aboutP2">Tajribam fintech, backend, single-page ilovalar va veb-platformalarni qamrab oladi. Murakkab talablarni sodda foydalanuvchi tajribasiga aylantirishni yoqtiraman.</p>
+          <p data-i18n="aboutP1">Tezkor interaktiv mahsulotlar, puxta arxitektura va jamoa uchun qulay kod yaratishga e’tibor beraman.</p>
+          <p data-i18n="aboutP2">Tajribam moliyaviy texnologiyalar, server tizimlari, bir sahifali ilovalar va veb-platformalarni qamrab oladi. Murakkab talablarni sodda va tushunarli yechimlarga aylantirishni yoqtiraman.</p>
           <dl class="quick-facts">
-            <div><dt data-i18n="focusLabel">Yo‘nalish</dt><dd data-i18n="focusValue">Backend va web engineering</dd></div>
-            <div><dt data-i18n="educationLabel">Ta’lim</dt><dd data-i18n="educationValue">Computer Science & Engineering</dd></div>
+            <div><dt data-i18n="focusLabel">Yo‘nalish</dt><dd data-i18n="focusValue">Server tizimlari va veb-ilovalar</dd></div>
+            <div><dt data-i18n="educationLabel">Ta’lim</dt><dd data-i18n="educationValue">Kompyuter fanlari va muhandislik</dd></div>
             <div><dt data-i18n="baseLabel">Joylashuv</dt><dd data-i18n="baseValue">Toshkent, O‘zbekiston</dd></div>
           </dl>
         </div>
@@ -630,28 +631,28 @@
         <div class="section-heading">
           <div>
             <p class="section-kicker" data-i18n="expertiseKicker">Mutaxassislik</p>
-            <h2 data-i18n="expertiseTitle">G‘oyalarni oldinga siljitadigan vositalar.</h2>
+            <h2 data-i18n="expertiseTitle">G‘oyani mahsulotga aylantiradigan texnologiyalar.</h2>
           </div>
-          <p data-i18n="expertiseLead">Ma’lumotlar va API’lardan tortib, puxta interfeyslargacha — mahsulotning barcha muhim qatlamlarida ishlayman.</p>
+          <p data-i18n="expertiseLead">Ma’lumotlar va API’lardan puxta interfeyslargacha — mahsulotning barcha asosiy qatlamlarida ishlayman.</p>
         </div>
 
         <div class="expertise-grid">
           <article class="expertise-card reveal">
             <span class="card-number">01</span>
-            <h3 data-i18n="backendTitle">Backend tizimlari</h3>
-            <p data-i18n="backendText">Uzoq muddat xizmat qiladigan ishonchli servislar, REST API, ma’lumotlar modeli va integratsiyalar.</p>
+            <h3 data-i18n="backendTitle">Server tizimlari</h3>
+            <p data-i18n="backendText">Uzoq muddat barqaror ishlaydigan servislar, REST API’lar, ma’lumotlar modellari va integratsiyalar.</p>
             <div class="tag-list"><span>Java</span><span>REST API</span><span>PostgreSQL</span><span>Oracle</span></div>
           </article>
           <article class="expertise-card reveal">
             <span class="card-number">02</span>
             <h3 data-i18n="webTitle">Veb-ilovalar</h3>
-            <p data-i18n="webText">Tezlik, accessibility va mahsulot maqsadlarini uyg‘unlashtirgan responsive interfeyslar.</p>
+            <p data-i18n="webText">Tezkorlik, foydalanish qulayligi va mahsulot maqsadlarini uyg‘unlashtirgan moslashuvchan interfeyslar.</p>
             <div class="tag-list"><span>JavaScript</span><span>React</span><span>Vue</span><span>HTML & CSS</span></div>
           </article>
           <article class="expertise-card reveal">
             <span class="card-number">03</span>
-            <h3 data-i18n="deliveryTitle">Mahsulot yetkazish</h3>
-            <p data-i18n="deliveryText">Talablardan prototip va implementatsiyagacha bo‘lgan amaliy hamkorlik.</p>
+            <h3 data-i18n="deliveryTitle">Mahsulotni ishga tushirish</h3>
+            <p data-i18n="deliveryText">Talablarni aniqlashdan prototip va tayyor yechimgacha bo‘lgan amaliy hamkorlik.</p>
             <div class="tag-list"><span>Git</span><span>CI/CD</span><span>Agile</span><span>Figma</span></div>
           </article>
         </div>
@@ -661,12 +662,12 @@
     <section class="section" id="experience">
       <div class="container">
         <p class="section-kicker" data-i18n="experienceKicker">Tajriba</p>
-        <h2 data-i18n="experienceTitle">Tanlangan professional tajriba.</h2>
+        <h2 data-i18n="experienceTitle">Asosiy ish tajribam.</h2>
         <div class="timeline">
           <article class="timeline-item reveal">
             <div class="timeline-meta"><span data-i18n="tuneDate">2020 — hozirgacha</span><span data-i18n="tunePlace">Toshkent</span></div>
             <div>
-              <h3>Backend Developer</h3>
+              <h3 data-i18n="tuneRole">Server tizimlari dasturchisi</h3>
               <p class="company">Tune Consulting · Kapitalbank / Apelsin</p>
               <p data-i18n="tuneText">Texnik talablar asosida mahsulot funksiyalari va veb-tizimlarni ishonchli va tushunarli tarzda ishlab chiqish.</p>
             </div>
@@ -674,9 +675,9 @@
           <article class="timeline-item reveal">
             <div class="timeline-meta"><span>2019</span><span data-i18n="stylemixArea">Veb-ishlab chiqish</span></div>
             <div>
-              <h3>Web Developer</h3>
+              <h3 data-i18n="stylemixRole">Veb-dasturchi</h3>
               <p class="company">Stylemix</p>
-              <p data-i18n="stylemixText">Xalqaro veb-loyihalar, performance optimizatsiyasi, to‘lov integratsiyalari va responsive interfeyslar ustida ishlash.</p>
+              <p data-i18n="stylemixText">Xalqaro veb-loyihalar, tezlikni optimallashtirish, to‘lov tizimlari integratsiyasi va moslashuvchan interfeyslar ustida ishlash.</p>
             </div>
           </article>
         </div>
@@ -688,17 +689,17 @@
         <div class="section-heading">
           <div>
             <p class="section-kicker" data-i18n="workKicker">Tanlangan loyiha</p>
-            <h2 data-i18n="workTitle">Amaliy foyda beradigan mahsulotlar.</h2>
+            <h2 data-i18n="workTitle">Amaliy qiymat beradigan mahsulotlar.</h2>
           </div>
-          <p data-i18n="workLead">Yaratishga hissa qo‘shgan tizimlar va raqamli mahsulotlar to‘plami.</p>
+          <p data-i18n="workLead">Men yaratishda ishtirok etgan tizimlar va raqamli mahsulotlar.</p>
         </div>
 
         <article class="project-card reveal">
           <div class="project-index">01</div>
           <div class="project-body">
-            <p class="project-type" data-i18n="projectType">Fintech · Single-page application</p>
+            <p class="project-type" data-i18n="projectType">Moliyaviy texnologiyalar · Bir sahifali ilova</p>
             <h3>Apelsin</h3>
-            <p data-i18n="projectText">Responsive ishlash, qayta ishlatiladigan komponentlar, optimizatsiya va ko‘p tilli jarayonlarga yo‘naltirilgan raqamli to‘lov mahsuloti.</p>
+            <p data-i18n="projectText">Moslashuvchan interfeys, qayta ishlatiladigan komponentlar, tezkorlik va ko‘p tilli jarayonlarga yo‘naltirilgan raqamli to‘lov mahsuloti.</p>
             <div class="tag-list"><span>Vue</span><span>Vuex</span><span>Vuetify</span><span>i18n</span></div>
           </div>
           <a class="project-link" href="https://apelsin.uz" target="_blank" rel="noreferrer" aria-label="Apelsin">↗</a>
@@ -710,7 +711,7 @@
       <div class="container recognition-grid">
         <div>
           <p class="section-kicker" data-i18n="recognitionKicker">Yutuqlar</p>
-          <h2 id="recognition-title" data-i18n="recognitionTitle">Yaratish orqali o‘rganish.</h2>
+          <h2 id="recognition-title" data-i18n="recognitionTitle">Yaratib, o‘rganaman.</h2>
         </div>
         <div class="recognition-list">
           <article class="reveal"><span>2019</span><div><h3>Open Data Challenge</h3><p data-i18n="award1">“Humane” loyihasi bilan 2-o‘rin.</p></div></article>
@@ -723,7 +724,7 @@
     <section class="contact-section" id="contact">
       <div class="container contact-inner reveal">
         <p class="section-kicker" data-i18n="contactKicker">Aloqa</p>
-        <h2 data-i18n-html="contactTitle">Loyihangiz bormi?<br>Uni birga amalga oshiramiz.</h2>
+        <h2 data-i18n-html="contactTitle">Loyihangiz bormi?<br>Birga amalga oshiraylik.</h2>
         <a class="contact-email" href="mailto:ismoilov.ravshanjon@gmail.com">ismoilov.ravshanjon@gmail.com <span aria-hidden="true">↗</span></a>
       </div>
     </section>
@@ -743,19 +744,22 @@
   <script>
     const translations = {
       uz: {
-        pageTitle: "Ravshanjon Ismoilov — Software Engineer",
-        description: "Ravshanjon Ismoilov — Toshkentlik software engineer va backend developer.",
+        pageTitle: "Ravshanjon Ismoilov — Dasturiy ta’minot muhandisi",
+        description: "Ravshanjon Ismoilov — Toshkentlik dasturiy ta’minot muhandisi, server tizimlari va veb-ilovalar mutaxassisi.",
         skipLink: "Kontentga o‘tish",
         menuLabel: "Menyuni ochish",
         themeLabel: "Rang rejimini almashtirish",
         heroGreeting: "Salom! Men Ravshanjonman 👋",
         startProject: "Loyihani boshlash",
         viewGithub: "GitHub profil",
-        specialtyBackend: "Backend developer",
-        specialtyWeb: "Web engineer",
-        specialtyProblem: "Muammo yechuvchi",
+        specialtySoftware: "Dasturiy muhandis",
+        specialtySoftwareMeta: "Java · Vue · React",
+        specialtyArchitecture: "Arxitektura",
+        specialtyArchitectureMeta: "Tizimlar · Integratsiyalar",
+        specialtyStartups: "Startaplar",
+        specialtyStartupsMeta: "Prototip · Ishga tushirish",
         summaryKicker: "● Men haqimda",
-        summaryTitle: "G‘oyalarni kuchli <span class=\"accent-word\">raqamli mahsulotlarga</span> aylantiraman.",
+        summaryTitle: "G‘oyalarni <span class=\"accent-word\">ishonchli raqamli mahsulotlarga</span> aylantiraman.",
         summaryText: "Murakkab muammolarni ishonchli kod va tushunarli foydalanuvchi tajribasi bilan yechaman.",
         statExperienceValue: "7+ yil",
         statExperience: "Tajriba",
@@ -769,123 +773,130 @@
         navWork: "Loyiha",
         navContact: "Aloqa",
         location: "Toshkent, O‘zbekiston",
-        heroTitle: "Men muhim bo‘lgan <span class=\"accent-word\">raqamli tajribalar</span> yarataman.",
-        heroLead: "Backend tizimlari va zamonaviy veb-ilovalarni yaratadigan software engineerman.",
+        heroTitle: "Foydali <span class=\"accent-word\">raqamli mahsulotlar</span> yarataman.",
+        heroLead: "Men ishonchli tizimlar va zamonaviy veb-ilovalar yaratuvchi dasturiy ta’minot muhandisiman.",
         exploreWork: "Loyihani ko‘rish",
         letsTalk: "Bog‘lanish",
         cleanCode: "toza kod",
         productThinking: "mahsulot tafakkuri",
         aboutKicker: "Men haqimda",
-        aboutTitle: "Aniqlik, qiziquvchanlik va maqsad bilan muhandislik.",
-        aboutP1: "Tezkor interaktiv mahsulotlar, puxta arxitektura va jamoa bilan ishlashga qulay kod yaratishga e’tibor beraman.",
-        aboutP2: "Tajribam fintech, backend, single-page ilovalar va veb-platformalarni qamrab oladi. Murakkab talablarni sodda foydalanuvchi tajribasiga aylantirishni yoqtiraman.",
+        aboutTitle: "Aniq fikr, qiziquvchanlik va maqsadga tayangan muhandislik.",
+        aboutP1: "Tezkor interaktiv mahsulotlar, puxta arxitektura va jamoa uchun qulay kod yaratishga e’tibor beraman.",
+        aboutP2: "Tajribam moliyaviy texnologiyalar, server tizimlari, bir sahifali ilovalar va veb-platformalarni qamrab oladi. Murakkab talablarni sodda va tushunarli yechimlarga aylantirishni yoqtiraman.",
         focusLabel: "Yo‘nalish",
-        focusValue: "Backend va web engineering",
+        focusValue: "Server tizimlari va veb-ilovalar",
         educationLabel: "Ta’lim",
-        educationValue: "Computer Science & Engineering",
+        educationValue: "Kompyuter fanlari va muhandislik",
         baseLabel: "Joylashuv",
         baseValue: "Toshkent, O‘zbekiston",
         expertiseKicker: "Mutaxassislik",
-        expertiseTitle: "G‘oyalarni oldinga siljitadigan vositalar.",
-        expertiseLead: "Ma’lumotlar va API’lardan tortib, puxta interfeyslargacha — mahsulotning barcha muhim qatlamlarida ishlayman.",
-        backendTitle: "Backend tizimlari",
-        backendText: "Uzoq muddat xizmat qiladigan ishonchli servislar, REST API, ma’lumotlar modeli va integratsiyalar.",
+        expertiseTitle: "G‘oyani mahsulotga aylantiradigan texnologiyalar.",
+        expertiseLead: "Ma’lumotlar va API’lardan puxta interfeyslargacha — mahsulotning barcha asosiy qatlamlarida ishlayman.",
+        backendTitle: "Server tizimlari",
+        backendText: "Uzoq muddat barqaror ishlaydigan servislar, REST API’lar, ma’lumotlar modellari va integratsiyalar.",
         webTitle: "Veb-ilovalar",
-        webText: "Tezlik, accessibility va mahsulot maqsadlarini uyg‘unlashtirgan responsive interfeyslar.",
-        deliveryTitle: "Mahsulot yetkazish",
-        deliveryText: "Talablardan prototip va implementatsiyagacha bo‘lgan amaliy hamkorlik.",
+        webText: "Tezkorlik, foydalanish qulayligi va mahsulot maqsadlarini uyg‘unlashtirgan moslashuvchan interfeyslar.",
+        deliveryTitle: "Mahsulotni ishga tushirish",
+        deliveryText: "Talablarni aniqlashdan prototip va tayyor yechimgacha bo‘lgan amaliy hamkorlik.",
         experienceKicker: "Tajriba",
-        experienceTitle: "Tanlangan professional tajriba.",
+        experienceTitle: "Asosiy ish tajribam.",
+        tuneRole: "Server tizimlari dasturchisi",
         tuneDate: "2020 — hozirgacha",
         tunePlace: "Toshkent",
         tuneText: "Texnik talablar asosida mahsulot funksiyalari va veb-tizimlarni ishonchli va tushunarli tarzda ishlab chiqish.",
-        stylemixArea: "Veb-ishlab chiqish",
-        stylemixText: "Xalqaro veb-loyihalar, performance optimizatsiyasi, to‘lov integratsiyalari va responsive interfeyslar ustida ishlash.",
+        stylemixRole: "Veb-dasturchi",
+        stylemixArea: "Veb-dasturlash",
+        stylemixText: "Xalqaro veb-loyihalar, tezlikni optimallashtirish, to‘lov tizimlari integratsiyasi va moslashuvchan interfeyslar ustida ishlash.",
         workKicker: "Tanlangan loyiha",
-        workTitle: "Amaliy foyda beradigan mahsulotlar.",
-        workLead: "Yaratishga hissa qo‘shgan tizimlar va raqamli mahsulotlar to‘plami.",
-        projectType: "Fintech · Single-page application",
-        projectText: "Responsive ishlash, qayta ishlatiladigan komponentlar, optimizatsiya va ko‘p tilli jarayonlarga yo‘naltirilgan raqamli to‘lov mahsuloti.",
+        workTitle: "Amaliy qiymat beradigan mahsulotlar.",
+        workLead: "Men yaratishda ishtirok etgan tizimlar va raqamli mahsulotlar.",
+        projectType: "Moliyaviy texnologiyalar · Bir sahifali ilova",
+        projectText: "Moslashuvchan interfeys, qayta ishlatiladigan komponentlar, tezkorlik va ko‘p tilli jarayonlarga yo‘naltirilgan raqamli to‘lov mahsuloti.",
         recognitionKicker: "Yutuqlar",
-        recognitionTitle: "Yaratish orqali o‘rganish.",
+        recognitionTitle: "Yaratib, o‘rganaman.",
         award1: "“Humane” loyihasi bilan 2-o‘rin.",
         award2: "Respublika II bosqichi g‘olibi.",
         award3: "“Clean City” loyihasi bilan 1-o‘rin.",
         contactKicker: "Aloqa",
-        contactTitle: "Loyihangiz bormi?<br>Uni birga amalga oshiramiz.",
+        contactTitle: "Loyihangiz bormi?<br>Birga amalga oshiraylik.",
         backToTop: "Yuqoriga ↑"
       },
       ru: {
-        pageTitle: "Равшанжон Исмоилов — Software Engineer",
-        description: "Равшанжон Исмоилов — software engineer и backend developer из Ташкента.",
+        pageTitle: "Равшанжон Исмоилов — Инженер-программист",
+        description: "Равшанжон Исмоилов — инженер-программист из Ташкента, специалист по серверным системам и веб-приложениям.",
         skipLink: "Перейти к содержимому",
         menuLabel: "Открыть меню",
         themeLabel: "Переключить цветовую тему",
         heroGreeting: "Привет! Я Равшанжон 👋",
         startProject: "Начать проект",
         viewGithub: "Профиль GitHub",
-        specialtyBackend: "Backend-разработчик",
-        specialtyWeb: "Web-инженер",
-        specialtyProblem: "Решаю задачи",
+        specialtySoftware: "Инженер-программист",
+        specialtySoftwareMeta: "Java · Vue · React",
+        specialtyArchitecture: "Архитектура",
+        specialtyArchitectureMeta: "Системы · Интеграции",
+        specialtyStartups: "Стартапы",
+        specialtyStartupsMeta: "Прототип · Запуск",
         summaryKicker: "● Обо мне",
-        summaryTitle: "Превращаю идеи в сильные <span class=\"accent-word\">цифровые продукты</span>.",
-        summaryText: "Решаю сложные задачи с помощью надёжного кода и понятного пользовательского опыта.",
+        summaryTitle: "Превращаю идеи в <span class=\"accent-word\">надёжные цифровые продукты</span>.",
+        summaryText: "Решаю сложные задачи с помощью надёжного кода и понятных интерфейсов.",
         statExperienceValue: "7+ лет",
         statExperience: "Опыт",
         statProjects: "Проекты",
         statAwards: "Награды",
         statCity: "Ташкент",
-        statBased: "Локация",
+        statBased: "Город",
         navAbout: "Обо мне",
-        navExpertise: "Экспертиза",
+        navExpertise: "Навыки",
         navExperience: "Опыт",
         navWork: "Проект",
         navContact: "Контакты",
         location: "Ташкент, Узбекистан",
-        heroTitle: "Создаю важные <span class=\"accent-word\">цифровые решения</span> и продукты.",
-        heroLead: "Я software engineer, создающий backend-системы и современные веб-приложения.",
+        heroTitle: "Создаю <span class=\"accent-word\">полезные цифровые продукты</span>.",
+        heroLead: "Я инженер-программист, разрабатываю надёжные серверные системы и современные веб-приложения.",
         exploreWork: "Посмотреть проект",
         letsTalk: "Связаться",
         cleanCode: "чистый код",
         productThinking: "продуктовое мышление",
         aboutKicker: "Обо мне",
-        aboutTitle: "Инженерия с ясностью, любопытством и целью.",
-        aboutP1: "Я создаю быстрые интерактивные продукты, продуманную архитектуру и код, с которым команде удобно работать.",
-        aboutP2: "Мой опыт охватывает fintech, backend-разработку, single-page приложения и веб-платформы. Мне нравится превращать сложные требования в понятный пользовательский опыт.",
+        aboutTitle: "Инженерия, основанная на ясности, любознательности и цели.",
+        aboutP1: "Создаю быстрые интерактивные продукты, продумываю архитектуру и пишу код, с которым удобно работать команде.",
+        aboutP2: "Мой опыт охватывает финансовые технологии, серверную разработку, одностраничные приложения и веб-платформы. Мне нравится превращать сложные требования в простые и понятные решения.",
         focusLabel: "Направление",
-        focusValue: "Backend и web engineering",
+        focusValue: "Серверные системы и веб-приложения",
         educationLabel: "Образование",
-        educationValue: "Computer Science & Engineering",
-        baseLabel: "Локация",
+        educationValue: "Компьютерные науки и инженерия",
+        baseLabel: "Город",
         baseValue: "Ташкент, Узбекистан",
         expertiseKicker: "Экспертиза",
-        expertiseTitle: "Инструменты, которые двигают идеи вперёд.",
-        expertiseLead: "От данных и API до продуманных интерфейсов — работаю со всеми ключевыми уровнями продукта.",
-        backendTitle: "Backend-системы",
-        backendText: "Надёжные сервисы, REST API, модели данных и интеграции, рассчитанные на долгую работу.",
+        expertiseTitle: "Технологии, которые превращают идеи в продукты.",
+        expertiseLead: "Работаю со всеми ключевыми уровнями продукта — от данных и программных интерфейсов до продуманных пользовательских экранов.",
+        backendTitle: "Серверные системы",
+        backendText: "Надёжные сервисы, программные интерфейсы, модели данных и интеграции, рассчитанные на длительную работу.",
         webTitle: "Веб-приложения",
         webText: "Адаптивные интерфейсы, объединяющие скорость, доступность и цели продукта.",
-        deliveryTitle: "Доставка продукта",
-        deliveryText: "Практическая совместная работа от требований и прототипа до реализации.",
+        deliveryTitle: "Запуск продукта",
+        deliveryText: "Практическая работа от требований и прототипа до готового решения.",
         experienceKicker: "Опыт",
-        experienceTitle: "Избранный профессиональный опыт.",
+        experienceTitle: "Ключевой профессиональный опыт.",
+        tuneRole: "Разработчик серверных систем",
         tuneDate: "2020 — настоящее время",
         tunePlace: "Ташкент",
         tuneText: "Разработка продуктовых функций и веб-систем по техническим требованиям с упором на надёжность и понятную реализацию.",
+        stylemixRole: "Веб-разработчик",
         stylemixArea: "Веб-разработка",
         stylemixText: "Международные веб-проекты, оптимизация производительности, платёжные интеграции и адаптивные интерфейсы.",
         workKicker: "Избранный проект",
-        workTitle: "Продукты с практической пользой.",
-        workLead: "Коллекция систем и цифровых продуктов, в создании которых я участвовал.",
-        projectType: "Fintech · Single-page application",
-        projectText: "Цифровой платёжный продукт с адаптивным интерфейсом, переиспользуемыми компонентами, оптимизацией и многоязычными сценариями.",
+        workTitle: "Продукты с практической ценностью.",
+        workLead: "Системы и цифровые продукты, в создании которых я участвовал.",
+        projectType: "Финансовые технологии · Одностраничное приложение",
+        projectText: "Цифровой платёжный продукт с адаптивным интерфейсом, повторно используемыми компонентами, высокой скоростью и поддержкой нескольких языков.",
         recognitionKicker: "Достижения",
-        recognitionTitle: "Учусь, создавая.",
+        recognitionTitle: "Учусь через создание.",
         award1: "2-е место с проектом «Humane».",
         award2: "Победитель II республиканского этапа.",
         award3: "1-е место с проектом «Clean City».",
         contactKicker: "Контакты",
-        contactTitle: "Есть проект?<br>Давайте воплотим его вместе.",
+        contactTitle: "Есть проект?<br>Давайте создадим его вместе.",
         backToTop: "Наверх ↑"
       },
       en: {
@@ -897,9 +908,12 @@
         heroGreeting: "Hi! I’m Ravshanjon 👋",
         startProject: "Start a project",
         viewGithub: "GitHub profile",
-        specialtyBackend: "Backend developer",
-        specialtyWeb: "Web engineer",
-        specialtyProblem: "Problem solver",
+        specialtySoftware: "Software engineer",
+        specialtySoftwareMeta: "Java · Vue · React",
+        specialtyArchitecture: "Architecture",
+        specialtyArchitectureMeta: "Systems · Integrations",
+        specialtyStartups: "Startups",
+        specialtyStartupsMeta: "Prototype · Launch",
         summaryKicker: "● About me",
         summaryTitle: "I turn ideas into powerful <span class=\"accent-word\">digital products</span>.",
         summaryText: "I solve complex problems with reliable code and clear user experiences.",
@@ -942,9 +956,11 @@
         deliveryText: "Practical collaboration from requirements and prototyping through implementation.",
         experienceKicker: "Experience",
         experienceTitle: "Selected professional experience.",
+        tuneRole: "Backend Developer",
         tuneDate: "2020 — Present",
         tunePlace: "Tashkent",
         tuneText: "Developing product features and web systems from technical requirements, with an emphasis on reliability and clear implementation.",
+        stylemixRole: "Web Developer",
         stylemixArea: "Web development",
         stylemixText: "International web projects, performance optimization, payment integrations, and responsive user interfaces.",
         workKicker: "Selected work",
