@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /.ftp-deploy-sync-state.json
+
+Sitemap: https://ravshancha.uz/sitemap.xml
