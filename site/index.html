@@ -6,8 +6,8 @@
   <meta name="description" content="Ravshanjon Ismoilov — Toshkentlik dasturiy ta’minot muhandisi, server tizimlari va veb-ilovalar mutaxassisi.">
   <meta name="theme-color" content="#0a0d12">
   <meta name="deployment" content="GitHub Actions to DirectAdmin">
-  <link rel="icon" href="assets/cha-favicon-dark.png" type="image/png" sizes="512x512" data-theme-favicon>
-  <link rel="apple-touch-icon" href="assets/cha-favicon-dark.png" sizes="512x512" data-theme-touch-icon>
+  <link rel="icon" href="assets/cha-favicon-dark-clean.png" type="image/png" sizes="512x512" data-theme-favicon>
+  <link rel="apple-touch-icon" href="assets/cha-favicon-dark-clean.png" sizes="512x512" data-theme-touch-icon>
   <title>Ravshanjon Ismoilov — Dasturiy ta’minot muhandisi</title>
   <script>
     try {
@@ -15,8 +15,8 @@
       const preferredTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
       const activeTheme = savedTheme || preferredTheme;
       document.documentElement.dataset.theme = activeTheme;
-      document.querySelector("[data-theme-favicon]").href = `assets/cha-favicon-${activeTheme}.png`;
-      document.querySelector("[data-theme-touch-icon]").href = `assets/cha-favicon-${activeTheme}.png`;
+      document.querySelector("[data-theme-favicon]").href = `assets/cha-favicon-${activeTheme}-clean.png`;
+      document.querySelector("[data-theme-touch-icon]").href = `assets/cha-favicon-${activeTheme}-clean.png`;
     } catch (error) {
       document.documentElement.dataset.theme = "dark";
     }
@@ -1077,8 +1077,8 @@
       themeIcon.textContent = isLight ? "☀" : "☾";
       themeLabel.textContent = isLight ? "Light" : "Dark";
       const themeName = isLight ? "light" : "dark";
-      themeFavicon.href = `assets/cha-favicon-${themeName}.png`;
-      themeTouchIcon.href = `assets/cha-favicon-${themeName}.png`;
+      themeFavicon.href = `assets/cha-favicon-${themeName}-clean.png`;
+      themeTouchIcon.href = `assets/cha-favicon-${themeName}-clean.png`;
       themeColorMeta.content = isLight ? "#eef4fb" : "#05070d";
     };
 
