@@ -6,14 +6,17 @@
   <meta name="description" content="Ravshanjon Ismoilov — Toshkentlik dasturiy ta’minot muhandisi, server tizimlari va veb-ilovalar mutaxassisi.">
   <meta name="theme-color" content="#0a0d12">
   <meta name="deployment" content="GitHub Actions to DirectAdmin">
-  <link rel="icon" href="assets/cha-favicon.png" type="image/png" sizes="512x512">
-  <link rel="apple-touch-icon" href="assets/cha-favicon.png" sizes="512x512">
+  <link rel="icon" href="assets/cha-favicon-dark.png" type="image/png" sizes="512x512" data-theme-favicon>
+  <link rel="apple-touch-icon" href="assets/cha-favicon-dark.png" sizes="512x512" data-theme-touch-icon>
   <title>Ravshanjon Ismoilov — Dasturiy ta’minot muhandisi</title>
   <script>
     try {
       const savedTheme = localStorage.getItem("portfolio-theme");
       const preferredTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-      document.documentElement.dataset.theme = savedTheme || preferredTheme;
+      const activeTheme = savedTheme || preferredTheme;
+      document.documentElement.dataset.theme = activeTheme;
+      document.querySelector("[data-theme-favicon]").href = `assets/cha-favicon-${activeTheme}.png`;
+      document.querySelector("[data-theme-touch-icon]").href = `assets/cha-favicon-${activeTheme}.png`;
     } catch (error) {
       document.documentElement.dataset.theme = "dark";
     }
@@ -86,8 +89,11 @@
     .site-header.scrolled { background: var(--header); border-color: var(--line); backdrop-filter: blur(18px); }
     .nav-wrap { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 11px; font-weight: 750; letter-spacing: -0.02em; }
-    .brand-logo { width: 76px; height: 42px; object-fit: contain; filter: drop-shadow(0 0 11px color-mix(in srgb, var(--accent-2) 30%, transparent)); transition: transform 180ms ease, filter 180ms ease; }
-    .brand:hover .brand-logo { filter: drop-shadow(0 0 15px color-mix(in srgb, var(--accent-2) 48%, transparent)); transform: translateY(-1px); }
+    .brand-logo { width: 76px; height: 42px; object-fit: contain; transition: transform 180ms ease; }
+    .brand-logo-light { display: none; }
+    html[data-theme="light"] .brand-logo-dark { display: none; }
+    html[data-theme="light"] .brand-logo-light { display: block; }
+    .brand:hover .brand-logo { transform: translateY(-1px); }
     .site-nav { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: 14px; font-weight: 650; }
     .site-nav > a { transition: color 150ms ease; }
     .site-nav > a:hover, .site-nav > a:focus-visible { color: var(--text); }
@@ -229,7 +235,15 @@
     /* Blue editorial hero inspired by the supplied reference. */
     .site-header { background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 94%, transparent), transparent); }
     .nav-wrap { min-height: 74px; }
-    .nav-cta { color: var(--accent-text); border-color: transparent; background: var(--accent); box-shadow: 0 10px 28px color-mix(in srgb, var(--accent) 25%, transparent); }
+    .nav-cta {
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      color: var(--accent);
+      background: transparent;
+      box-shadow: none;
+    }
+    .site-nav > .nav-cta:hover, .site-nav > .nav-cta:focus-visible { color: var(--accent); }
 
     .hero {
       min-height: 100vh;
@@ -248,13 +262,13 @@
       min-height: 570px;
       gap: 34px;
     }
-    .hero-copy { position: relative; z-index: 3; padding: 50px 0 86px; }
+    .hero-copy { position: relative; z-index: 3; padding: 38px 0 58px; }
     .hero .eyebrow { margin-bottom: 18px; letter-spacing: 0; text-transform: none; }
     .hero h1 {
       max-width: 690px;
       margin-bottom: 22px;
-      font-size: clamp(3.3rem, 5.9vw, 6.2rem);
-      line-height: 0.94;
+      font-size: clamp(3rem, 4.8vw, 5rem);
+      line-height: 0.96;
       letter-spacing: -0.065em;
       text-transform: uppercase;
     }
@@ -268,7 +282,7 @@
 
     .portrait-wrap {
       position: relative;
-      top: -26px;
+      top: -58px;
       z-index: 2;
       width: 100%;
       min-height: 530px;
@@ -410,7 +424,7 @@
       }
       .site-nav.open { opacity: 1; pointer-events: auto; transform: none; }
       .site-nav > a, .site-nav .nav-cta { display: block; padding: 11px 14px; }
-      .nav-cta { margin: 4px 0 8px; text-align: center; }
+      .nav-cta { margin: 0; text-align: left; }
       .nav-controls { display: grid; width: 100%; grid-template-columns: 1fr; gap: 4px; padding-top: 10px; border-top: 1px solid var(--line); }
       .theme-toggle {
         display: flex;
@@ -456,7 +470,7 @@
       .hero { min-height: auto; }
       .hero-stage, .split-grid, .recognition-grid { grid-template-columns: 1fr; gap: 26px; }
       .hero-copy { padding-bottom: 10px; }
-      .portrait-wrap { top: -14px; width: min(78vw, 380px); min-height: 460px; justify-self: center; }
+      .portrait-wrap { top: -30px; width: min(78vw, 380px); min-height: 460px; justify-self: center; }
       .portrait { width: min(76vw, 390px); max-height: 500px; }
       .portrait-wrap::before { width: min(82vw, 390px); }
       .portrait-ring { width: min(88vw, 420px); }
@@ -492,14 +506,14 @@
       }
       .site-nav.open { opacity: 1; pointer-events: auto; transform: none; }
       .site-nav > a, .site-nav .nav-cta { display: block !important; padding: 11px 14px; }
-      .nav-cta { margin: 4px 0 8px; text-align: center; }
+      .nav-cta { margin: 0; text-align: left; }
       .nav-controls { justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--line); }
       .menu-toggle[aria-expanded="true"] > span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
       .menu-toggle[aria-expanded="true"] > span:nth-child(2) { opacity: 0; }
       .menu-toggle[aria-expanded="true"] > span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
       .hero { padding-top: 104px; }
-      .hero h1 { font-size: clamp(2.8rem, 14vw, 4.6rem); }
-      .portrait-wrap { top: -8px; width: min(82vw, 330px); min-height: 405px; margin-top: 0; }
+      .hero h1 { font-size: clamp(2.45rem, 12vw, 4rem); }
+      .portrait-wrap { top: -20px; width: min(82vw, 330px); min-height: 405px; margin-top: 0; }
       .portrait { width: min(88vw, 350px); height: auto; max-height: 440px; }
       .hero-services { grid-template-columns: 1fr; margin-bottom: 72px; }
       .hero-summary { margin-top: -44px; padding: 24px 18px; }
@@ -525,7 +539,8 @@
   <header class="site-header" data-header>
     <div class="container nav-wrap">
       <a class="brand" href="#top" aria-label="Ravshanjon Ismoilov">
-        <img class="brand-logo" src="assets/cha-logo.png" alt="" width="1774" height="887">
+        <img class="brand-logo brand-logo-dark" src="assets/cha-logo-dark.png" alt="" width="1024" height="512">
+        <img class="brand-logo brand-logo-light" src="assets/cha-logo-light.png" alt="" width="1024" height="512">
       </a>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-button>
@@ -991,6 +1006,9 @@
     const languageFlag = document.querySelector("[data-language-flag]");
     const languageCode = document.querySelector("[data-language-code]");
     const descriptionMeta = document.querySelector('meta[name="description"]');
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    const themeFavicon = document.querySelector("[data-theme-favicon]");
+    const themeTouchIcon = document.querySelector("[data-theme-touch-icon]");
     const languageDetails = {
       uz: { code: "UZ", flag: "🇺🇿", name: "O‘zbek" },
       ru: { code: "RU", flag: "🇷🇺", name: "Русский" },
@@ -1057,6 +1075,10 @@
       const isLight = document.documentElement.dataset.theme === "light";
       themeIcon.textContent = isLight ? "☀" : "☾";
       themeLabel.textContent = isLight ? "Light" : "Dark";
+      const themeName = isLight ? "light" : "dark";
+      themeFavicon.href = `assets/cha-favicon-${themeName}.png`;
+      themeTouchIcon.href = `assets/cha-favicon-${themeName}.png`;
+      themeColorMeta.content = isLight ? "#eef4fb" : "#05070d";
     };
 
     menuButton.addEventListener("click", () => {
