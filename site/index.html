@@ -236,14 +236,15 @@
     .site-header { background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 94%, transparent), transparent); }
     .nav-wrap { min-height: 74px; }
     .nav-cta {
-      padding: 0;
-      border: 0;
-      border-radius: 0;
-      color: var(--accent);
-      background: transparent;
-      box-shadow: none;
+      color: var(--accent-text);
+      border-color: transparent;
+      background: var(--accent);
+      box-shadow: 0 10px 28px color-mix(in srgb, var(--accent) 25%, transparent);
     }
-    .site-nav > .nav-cta:hover, .site-nav > .nav-cta:focus-visible { color: var(--accent); }
+    .site-nav > .nav-cta:hover, .site-nav > .nav-cta:focus-visible {
+      color: var(--accent-text);
+      background: color-mix(in srgb, var(--accent) 88%, black);
+    }
 
     .hero {
       min-height: 100vh;
