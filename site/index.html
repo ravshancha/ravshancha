@@ -100,8 +100,8 @@
     .site-nav > a:hover, .site-nav > a:focus-visible { color: var(--text); }
     .nav-cta { padding: 9px 17px; border: 1px solid var(--line); border-radius: 8px; }
     .nav-controls { position: relative; display: flex; align-items: center; gap: 9px; }
-    .theme-toggle { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); cursor: pointer; font-size: 16px; }
-    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--muted); cursor: pointer; font-size: 16px; transition: color 150ms ease, border-color 150ms ease; }
+    .theme-toggle:hover, .theme-toggle:focus-visible { color: var(--text); border-color: var(--accent); }
     .theme-toggle-label { display: none; font-size: 12px; font-weight: 800; letter-spacing: 0.02em; }
     .language-select { position: relative; min-width: 96px; }
     .language-trigger {
@@ -114,14 +114,16 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--surface);
+      color: var(--muted);
       cursor: pointer;
       font-size: 11px;
       font-weight: 850;
       letter-spacing: 0.05em;
+      transition: color 150ms ease, border-color 150ms ease;
     }
-    .language-trigger:hover, .language-trigger[aria-expanded="true"] { border-color: color-mix(in srgb, var(--accent) 60%, var(--line)); }
+    .language-trigger:hover, .language-trigger:focus-visible, .language-trigger[aria-expanded="true"] { color: var(--text); border-color: color-mix(in srgb, var(--accent) 60%, var(--line)); }
     .language-flag { font-size: 15px; line-height: 1; }
-    .language-chevron { margin-left: auto; color: var(--muted); font-size: 12px; transition: transform 160ms ease; }
+    .language-chevron { margin-left: auto; color: currentColor; font-size: 12px; transition: transform 160ms ease; }
     .language-trigger[aria-expanded="true"] .language-chevron { transform: rotate(180deg); }
     .language-options {
       position: absolute;
@@ -243,7 +245,7 @@
       box-shadow: 0 10px 28px color-mix(in srgb, var(--accent) 25%, transparent);
     }
     .site-nav > .nav-cta:hover, .site-nav > .nav-cta:focus-visible {
-      color: var(--accent-text);
+      color: var(--text);
       background: color-mix(in srgb, var(--accent) 88%, black);
     }
 
