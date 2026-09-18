@@ -410,13 +410,39 @@
       .site-nav.open { opacity: 1; pointer-events: auto; transform: none; }
       .site-nav > a, .site-nav .nav-cta { display: block; padding: 11px 14px; }
       .nav-cta { margin: 4px 0 8px; text-align: center; }
-      .nav-controls { display: grid; width: 100%; grid-template-columns: 1fr; gap: 10px; padding-top: 12px; border-top: 1px solid var(--line); }
-      .theme-toggle { display: flex; width: 100%; height: 46px; justify-content: flex-start; gap: 10px; padding: 0 14px; border-radius: 12px; }
-      .theme-toggle-label { display: inline; }
+      .nav-controls { display: grid; width: 100%; grid-template-columns: 1fr; gap: 4px; padding-top: 10px; border-top: 1px solid var(--line); }
+      .theme-toggle {
+        display: flex;
+        width: 100%;
+        height: auto;
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 11px 14px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 650;
+      }
+      .theme-toggle:hover, .theme-toggle:focus-visible { border-color: transparent; color: var(--text); background: color-mix(in srgb, var(--accent) 8%, transparent); }
+      .theme-toggle-label { display: inline; font-size: 14px; font-weight: 650; letter-spacing: 0; }
       .language-select { width: 100%; }
-      .language-trigger { min-height: 46px; padding-inline: 14px; border-radius: 12px; }
-      .language-options { position: static; width: 100%; margin-top: 8px; border-radius: 12px; box-shadow: none; }
-      .language-option { min-height: 44px; padding-inline: 13px; }
+      .language-trigger {
+        min-height: 0;
+        padding: 11px 14px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 650;
+        letter-spacing: 0;
+      }
+      .language-trigger:hover, .language-trigger:focus-visible, .language-trigger[aria-expanded="true"] { border-color: transparent; color: var(--text); background: color-mix(in srgb, var(--accent) 8%, transparent); }
+      .language-options { position: static; width: 100%; margin-top: 2px; padding: 4px 0; border: 0; border-radius: 8px; background: transparent; box-shadow: none; backdrop-filter: none; }
+      .language-option { min-height: 0; padding: 10px 14px 10px 42px; border-radius: 8px; font-size: 14px; font-weight: 650; }
+      .language-option.active { color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
       .menu-toggle[aria-expanded="true"] > span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
       .menu-toggle[aria-expanded="true"] > span:nth-child(2) { opacity: 0; }
       .menu-toggle[aria-expanded="true"] > span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
@@ -515,7 +541,7 @@
         <div class="nav-controls">
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="Rejimni almashtirish" title="Rejimni almashtirish">
             <span data-theme-icon aria-hidden="true">☀</span>
-            <span class="theme-toggle-label">Dark / Light</span>
+            <span class="theme-toggle-label" data-theme-label>Dark</span>
           </button>
           <div class="language-select" data-language-select>
             <button class="language-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="language-options" data-language-trigger>
@@ -942,6 +968,7 @@
     const menuButton = document.querySelector("[data-menu-button]");
     const themeButton = document.querySelector("[data-theme-toggle]");
     const themeIcon = document.querySelector("[data-theme-icon]");
+    const themeLabel = document.querySelector("[data-theme-label]");
     const languageSelect = document.querySelector("[data-language-select]");
     const languageTrigger = document.querySelector("[data-language-trigger]");
     const languageOptions = document.querySelector("[data-language-options]");
@@ -1012,7 +1039,8 @@
 
     const updateThemeIcon = () => {
       const isLight = document.documentElement.dataset.theme === "light";
-      themeIcon.textContent = isLight ? "☾" : "☀";
+      themeIcon.textContent = isLight ? "☀" : "☾";
+      themeLabel.textContent = isLight ? "Light" : "Dark";
     };
 
     menuButton.addEventListener("click", () => {
