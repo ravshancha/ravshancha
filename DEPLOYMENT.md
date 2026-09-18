@@ -6,7 +6,7 @@ The website is stored in `site/` on the `development` branch. GitHub Actions che
 
 `.github/workflows/deploy-cpanel.yml` runs on every push to `development` that touches `site/**`, `lighthouserc.json` or the workflow itself (and on pull requests targeting `development`):
 
-1. **check** — validates `site/*.html` with the W3C Nu validator (`html5validator`), checks external links with `lychee` (social networks that block bots are excluded) and runs Lighthouse on the static files using `lighthouserc.json`. Lighthouse thresholds are warnings for now; tighten them to `error` once the scores are stable. The Lighthouse report is attached to the run as an artifact.
+1. **check** — validates `site/index.html` with the latest official W3C Nu validator (`vnu.jar`), checks external links with `lychee` (social networks that block bots are excluded) and runs Lighthouse on the static files using `lighthouserc.json`. Lighthouse thresholds are warnings for now; tighten them to `error` once the scores are stable. The Lighthouse report is attached to the run as an artifact.
 2. **deploy** — runs only after `check` succeeds, only for pushes (not pull requests) and only when the repository variable `CPANEL_DEPLOY_ENABLED` is `true`. It synchronizes the contents of `site/` to the configured cPanel directory over FTPS. Files removed from `site/` are removed on the server too.
 
 Actions are pinned to commit SHAs; the version is noted in a comment next to each `uses:` line.
