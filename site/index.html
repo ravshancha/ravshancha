@@ -6,6 +6,8 @@
   <meta name="description" content="Ravshanjon Ismoilov — Toshkentlik software engineer va backend developer.">
   <meta name="theme-color" content="#0a0d12">
   <meta name="deployment" content="GitHub Actions to DirectAdmin">
+  <link rel="icon" href="assets/cha-logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/cha-logo.png">
   <title>Ravshanjon Ismoilov — Software Engineer</title>
   <script>
     try {
@@ -84,17 +86,55 @@
     .site-header.scrolled { background: var(--header); border-color: var(--line); backdrop-filter: blur(18px); }
     .nav-wrap { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 11px; font-weight: 750; letter-spacing: -0.02em; }
-    .brand-mark { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); color: var(--accent); border-radius: 50%; font-size: 12px; letter-spacing: 0.04em; }
+    .brand-logo { width: 76px; height: 42px; object-fit: contain; filter: drop-shadow(0 0 11px color-mix(in srgb, var(--accent-2) 30%, transparent)); transition: transform 180ms ease, filter 180ms ease; }
+    .brand:hover .brand-logo { filter: drop-shadow(0 0 15px color-mix(in srgb, var(--accent-2) 48%, transparent)); transform: translateY(-1px); }
     .site-nav { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: 14px; font-weight: 650; }
     .site-nav > a { transition: color 150ms ease; }
     .site-nav > a:hover, .site-nav > a:focus-visible { color: var(--text); }
     .nav-cta { padding: 9px 17px; border: 1px solid var(--line); border-radius: 999px; }
-    .nav-controls { display: flex; align-items: center; gap: 9px; }
-    .language-switch { display: flex; padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
-    .language-switch button { min-width: 38px; padding: 6px 9px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; font-size: 11px; font-weight: 800; letter-spacing: 0.05em; }
-    .language-switch button.active { color: var(--accent-text); background: var(--accent); }
+    .nav-controls { position: relative; display: flex; align-items: center; gap: 9px; }
     .theme-toggle { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); cursor: pointer; font-size: 16px; }
     .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle-label { display: none; font-size: 12px; font-weight: 800; letter-spacing: 0.02em; }
+    .language-select { position: relative; min-width: 96px; }
+    .language-trigger {
+      display: flex;
+      width: 100%;
+      min-height: 38px;
+      align-items: center;
+      gap: 8px;
+      padding: 0 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.05em;
+    }
+    .language-trigger:hover, .language-trigger[aria-expanded="true"] { border-color: color-mix(in srgb, var(--accent) 60%, var(--line)); }
+    .language-flag { font-size: 15px; line-height: 1; }
+    .language-chevron { margin-left: auto; color: var(--muted); font-size: 12px; transition: transform 160ms ease; }
+    .language-trigger[aria-expanded="true"] .language-chevron { transform: rotate(180deg); }
+    .language-options {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      z-index: 130;
+      display: grid;
+      width: 178px;
+      gap: 4px;
+      padding: 6px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--surface) 96%, transparent);
+      box-shadow: 0 20px 48px var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+    .language-options[hidden] { display: none; }
+    .language-option { display: flex; width: 100%; align-items: center; gap: 10px; padding: 10px 11px; border: 0; border-radius: 9px; background: transparent; color: var(--muted); cursor: pointer; text-align: left; font-size: 13px; font-weight: 750; }
+    .language-option:hover, .language-option:focus-visible { color: var(--text); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+    .language-option.active { color: var(--accent-text); background: var(--accent); }
     .menu-toggle { display: none; border: 0; background: transparent; padding: 8px; cursor: pointer; }
     .menu-toggle > span:not(.sr-only) { display: block; width: 22px; height: 2px; margin: 4px 0; background: currentColor; transition: transform 180ms ease, opacity 180ms ease; }
 
@@ -189,7 +229,6 @@
     /* Blue editorial hero inspired by the supplied reference. */
     .site-header { background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 94%, transparent), transparent); }
     .nav-wrap { min-height: 74px; }
-    .brand-mark { border-radius: 10px; background: color-mix(in srgb, var(--accent) 14%, transparent); box-shadow: 0 0 28px color-mix(in srgb, var(--accent) 18%, transparent); }
     .nav-cta { color: var(--accent-text); border-color: transparent; background: var(--accent); box-shadow: 0 10px 28px color-mix(in srgb, var(--accent) 25%, transparent); }
 
     .hero {
@@ -238,29 +277,71 @@
       display: flex;
       align-items: end;
       justify-content: center;
+      perspective: 1200px;
+      isolation: isolate;
     }
     .portrait-wrap::before {
       content: "";
       position: absolute;
-      width: min(34vw, 410px);
+      z-index: -2;
+      width: min(35vw, 430px);
       aspect-ratio: 1;
-      bottom: 52px;
+      bottom: 46px;
       border-radius: 50%;
-      background: radial-gradient(circle at 38% 34%, color-mix(in srgb, var(--accent-2) 64%, white), var(--accent) 50%, color-mix(in srgb, var(--accent) 20%, transparent) 72%);
-      box-shadow: 0 0 90px color-mix(in srgb, var(--accent) 28%, transparent);
+      background:
+        radial-gradient(circle at 36% 28%, color-mix(in srgb, var(--accent-2) 82%, white), var(--accent) 43%, color-mix(in srgb, var(--accent) 16%, transparent) 72%);
+      box-shadow:
+        0 0 110px color-mix(in srgb, var(--accent) 34%, transparent),
+        inset -35px -24px 70px rgba(0, 9, 30, 0.42);
+      transform: translateZ(-60px);
     }
-    .portrait-ring { inset: auto 50% 34px auto; width: min(37vw, 445px); aspect-ratio: 1; transform: translateX(50%); border-color: color-mix(in srgb, var(--accent) 48%, transparent); }
+    .portrait-wrap::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 50%;
+      bottom: 20px;
+      width: min(34vw, 410px);
+      height: 54px;
+      border: 1px solid color-mix(in srgb, var(--accent-2) 36%, transparent);
+      border-radius: 50%;
+      background: radial-gradient(ellipse, color-mix(in srgb, var(--accent) 24%, transparent), transparent 68%);
+      filter: blur(2px);
+      transform: translateX(-50%) rotateX(72deg);
+      box-shadow: 0 0 52px color-mix(in srgb, var(--accent) 25%, transparent);
+    }
+    .portrait-ring {
+      inset: auto 50% 30px auto;
+      z-index: -1;
+      width: min(38vw, 455px);
+      aspect-ratio: 1;
+      transform: translateX(50%) rotateX(68deg) rotateZ(-7deg);
+      border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+      box-shadow: 0 0 34px color-mix(in srgb, var(--accent) 18%, transparent);
+    }
     .portrait {
       position: relative;
       z-index: 1;
-      width: min(29vw, 350px);
-      height: 460px;
-      object-fit: cover;
-      object-position: center top;
-      border: 1px solid color-mix(in srgb, var(--accent) 34%, transparent);
-      border-radius: 190px 190px 24px 24px;
-      background: var(--surface-2);
-      box-shadow: 0 28px 70px var(--shadow);
+      width: min(35vw, 430px);
+      height: auto;
+      max-height: 548px;
+      object-fit: contain;
+      object-position: center bottom;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      filter:
+        drop-shadow(0 30px 34px rgba(0, 0, 0, 0.48))
+        drop-shadow(12px 0 22px color-mix(in srgb, var(--accent-2) 21%, transparent));
+      transform: scaleX(-1) rotateY(5deg) translateZ(38px);
+      transform-origin: center bottom;
+      transition: transform 420ms cubic-bezier(.2,.8,.2,1), filter 420ms ease;
+    }
+    .portrait-wrap:hover .portrait {
+      filter:
+        drop-shadow(0 34px 38px rgba(0, 0, 0, 0.5))
+        drop-shadow(16px 0 28px color-mix(in srgb, var(--accent-2) 28%, transparent));
+      transform: scaleX(-1) rotateY(0deg) translateY(-7px) translateZ(54px);
     }
     .floating-note { display: none; }
 
@@ -318,6 +399,9 @@
         border-radius: 18px;
         background: var(--surface);
         box-shadow: 0 24px 60px var(--shadow);
+        max-height: calc(100dvh - 94px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
         opacity: 0;
         pointer-events: none;
         transform: translateY(-10px);
@@ -326,7 +410,13 @@
       .site-nav.open { opacity: 1; pointer-events: auto; transform: none; }
       .site-nav > a, .site-nav .nav-cta { display: block; padding: 11px 14px; }
       .nav-cta { margin: 4px 0 8px; text-align: center; }
-      .nav-controls { justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--line); }
+      .nav-controls { display: grid; width: 100%; grid-template-columns: 1fr; gap: 10px; padding-top: 12px; border-top: 1px solid var(--line); }
+      .theme-toggle { display: flex; width: 100%; height: 46px; justify-content: flex-start; gap: 10px; padding: 0 14px; border-radius: 12px; }
+      .theme-toggle-label { display: inline; }
+      .language-select { width: 100%; }
+      .language-trigger { min-height: 46px; padding-inline: 14px; border-radius: 12px; }
+      .language-options { position: static; width: 100%; margin-top: 8px; border-radius: 12px; box-shadow: none; }
+      .language-option { min-height: 44px; padding-inline: 13px; }
       .menu-toggle[aria-expanded="true"] > span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
       .menu-toggle[aria-expanded="true"] > span:nth-child(2) { opacity: 0; }
       .menu-toggle[aria-expanded="true"] > span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
@@ -340,7 +430,7 @@
       .hero-stage, .split-grid, .recognition-grid { grid-template-columns: 1fr; gap: 26px; }
       .hero-copy { padding-bottom: 10px; }
       .portrait-wrap { width: min(78vw, 380px); min-height: 480px; justify-self: center; }
-      .portrait { width: min(72vw, 330px); }
+      .portrait { width: min(76vw, 390px); max-height: 500px; }
       .portrait-wrap::before { width: min(82vw, 390px); }
       .portrait-ring { width: min(88vw, 420px); }
       .hero-services { grid-column: auto; grid-template-columns: repeat(3, 1fr); margin: 0 0 86px; }
@@ -383,7 +473,7 @@
       .hero { padding-top: 104px; }
       .hero h1 { font-size: clamp(2.8rem, 14vw, 4.6rem); }
       .portrait-wrap { width: min(82vw, 330px); min-height: 430px; margin-top: 6px; }
-      .portrait { height: 410px; }
+      .portrait { width: min(88vw, 350px); height: auto; max-height: 440px; }
       .hero-services { grid-template-columns: 1fr; margin-bottom: 72px; }
       .hero-summary { margin-top: -44px; padding: 24px 18px; }
       .section { padding: 90px 0; }
@@ -408,8 +498,7 @@
   <header class="site-header" data-header>
     <div class="container nav-wrap">
       <a class="brand" href="#top" aria-label="Ravshanjon Ismoilov">
-        <span class="brand-mark">RI</span>
-        <span>Ravshanjon</span>
+        <img class="brand-logo" src="assets/cha-logo.png" alt="" width="1774" height="887">
       </a>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-button>
@@ -424,14 +513,22 @@
         <a href="#work" data-i18n="navWork">Loyiha</a>
         <a class="nav-cta" href="#contact" data-i18n="navContact">Aloqa</a>
         <div class="nav-controls">
-          <div class="language-switch" aria-label="Language">
-            <button type="button" data-language="uz">UZ</button>
-            <button type="button" data-language="ru">RU</button>
-            <button type="button" data-language="en">EN</button>
-          </div>
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="Rejimni almashtirish" title="Rejimni almashtirish">
             <span data-theme-icon aria-hidden="true">☀</span>
+            <span class="theme-toggle-label">Dark / Light</span>
           </button>
+          <div class="language-select" data-language-select>
+            <button class="language-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="language-options" data-language-trigger>
+              <span class="language-flag" data-language-flag aria-hidden="true">🇺🇿</span>
+              <span data-language-code>UZ</span>
+              <span class="language-chevron" aria-hidden="true">⌄</span>
+            </button>
+            <div class="language-options" id="language-options" role="listbox" aria-label="Language" data-language-options hidden>
+              <button class="language-option" type="button" role="option" data-language="uz"><span class="language-flag" aria-hidden="true">🇺🇿</span><span>O‘zbek</span></button>
+              <button class="language-option" type="button" role="option" data-language="ru"><span class="language-flag" aria-hidden="true">🇷🇺</span><span>Русский</span></button>
+              <button class="language-option" type="button" role="option" data-language="en"><span class="language-flag" aria-hidden="true">🇬🇧</span><span>English</span></button>
+            </div>
+          </div>
         </div>
       </nav>
     </div>
@@ -458,7 +555,7 @@
 
           <div class="portrait-wrap reveal" aria-label="Ravshanjon Ismoilov">
             <div class="portrait-ring"></div>
-            <img class="portrait" src="https://github.com/ravshancha.png?size=480" alt="Ravshanjon Ismoilov" width="480" height="480">
+            <img class="portrait" src="assets/ravshanjon-3d.png" alt="Ravshanjon Ismoilovning 3D portreti" width="1077" height="1461">
           </div>
 
           <aside class="hero-services reveal" aria-label="Professional specializations">
@@ -845,7 +942,17 @@
     const menuButton = document.querySelector("[data-menu-button]");
     const themeButton = document.querySelector("[data-theme-toggle]");
     const themeIcon = document.querySelector("[data-theme-icon]");
+    const languageSelect = document.querySelector("[data-language-select]");
+    const languageTrigger = document.querySelector("[data-language-trigger]");
+    const languageOptions = document.querySelector("[data-language-options]");
+    const languageFlag = document.querySelector("[data-language-flag]");
+    const languageCode = document.querySelector("[data-language-code]");
     const descriptionMeta = document.querySelector('meta[name="description"]');
+    const languageDetails = {
+      uz: { code: "UZ", flag: "🇺🇿", name: "O‘zbek" },
+      ru: { code: "RU", flag: "🇷🇺", name: "Русский" },
+      en: { code: "EN", flag: "🇬🇧", name: "English" }
+    };
 
     const savePreference = (key, value) => {
       try {
@@ -855,7 +962,16 @@
       }
     };
 
+    const setLanguageSelectOpen = (isOpen) => {
+      languageOptions.hidden = !isOpen;
+      languageSelect.classList.toggle("open", isOpen);
+      languageTrigger.setAttribute("aria-expanded", String(isOpen));
+    };
+
+    const closeLanguageSelect = () => setLanguageSelectOpen(false);
+
     const closeMenu = () => {
+      closeLanguageSelect();
       menu.classList.remove("open");
       menuButton.setAttribute("aria-expanded", "false");
     };
@@ -881,9 +997,13 @@
       document.querySelectorAll("[data-language]").forEach((button) => {
         const isActive = button.dataset.language === selectedLanguage;
         button.classList.toggle("active", isActive);
-        button.setAttribute("aria-pressed", String(isActive));
+        button.setAttribute("aria-selected", String(isActive));
       });
 
+      const selectedDetails = languageDetails[selectedLanguage];
+      languageFlag.textContent = selectedDetails.flag;
+      languageCode.textContent = selectedDetails.code;
+      languageTrigger.setAttribute("aria-label", `Language: ${selectedDetails.name}`);
       themeButton.setAttribute("aria-label", dictionary.themeLabel);
       themeButton.setAttribute("title", dictionary.themeLabel);
       savePreference("portfolio-language", selectedLanguage);
@@ -896,13 +1016,31 @@
     };
 
     menuButton.addEventListener("click", () => {
-      const isOpen = menu.classList.toggle("open");
-      menuButton.setAttribute("aria-expanded", String(isOpen));
+      const shouldOpen = !menu.classList.contains("open");
+      if (shouldOpen) {
+        menu.classList.add("open");
+        menuButton.setAttribute("aria-expanded", "true");
+      } else {
+        closeMenu();
+      }
     });
 
     menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+    languageTrigger.addEventListener("click", (event) => {
+      event.stopPropagation();
+      setLanguageSelectOpen(languageOptions.hidden);
+    });
     document.querySelectorAll("[data-language]").forEach((button) => {
       button.addEventListener("click", () => setLanguage(button.dataset.language));
+    });
+    document.addEventListener("click", (event) => {
+      if (!languageSelect.contains(event.target)) closeLanguageSelect();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeLanguageSelect();
+        languageTrigger.focus();
+      }
     });
 
     themeButton.addEventListener("click", () => {
