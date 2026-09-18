@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Ravshanjon Ismoilov — Toshkentlik dasturiy ta’minot muhandisi, server tizimlari va veb-ilovalar mutaxassisi.">
   <meta name="theme-color" content="#05070d">
-  <link rel="icon" href="assets/cha-favicon-dark-clean.png" type="image/png" sizes="512x512" data-theme-favicon>
-  <link rel="apple-touch-icon" href="assets/cha-favicon-dark-clean.png" sizes="512x512" data-theme-touch-icon>
+  <link rel="icon" href="assets/cha-favicon-dark-64.png" type="image/png" sizes="64x64" data-theme-favicon>
+  <link rel="apple-touch-icon" href="assets/cha-favicon-dark-180.png" sizes="180x180" data-theme-touch-icon>
   <title>Ravshanjon Ismoilov — Dasturiy ta’minot muhandisi</title>
   <link rel="canonical" href="https://ravshancha.uz/">
   <meta name="author" content="Ravshanjon Ismoilov">
@@ -51,10 +51,10 @@
       const savedTheme = localStorage.getItem("portfolio-theme");
       const preferredTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
       const activeTheme = savedTheme || preferredTheme;
-      const faviconAsset = activeTheme === "light" ? "assets/cha-favicon-light-transparent.png" : "assets/cha-favicon-dark-clean.png";
+      const themeSuffix = activeTheme === "light" ? "light" : "dark";
       document.documentElement.dataset.theme = activeTheme;
-      document.querySelector("[data-theme-favicon]").href = faviconAsset;
-      document.querySelector("[data-theme-touch-icon]").href = faviconAsset;
+      document.querySelector("[data-theme-favicon]").href = `assets/cha-favicon-${themeSuffix}-64.png`;
+      document.querySelector("[data-theme-touch-icon]").href = `assets/cha-favicon-${themeSuffix}-180.png`;
     } catch (error) {
       document.documentElement.dataset.theme = "dark";
     }
@@ -334,6 +334,7 @@
       perspective: 1200px;
       isolation: isolate;
     }
+    .portrait-wrap picture { display: contents; }
     .portrait-wrap::before {
       content: "";
       position: absolute;
@@ -580,8 +581,8 @@
   <header class="site-header" data-header>
     <div class="container nav-wrap">
       <a class="brand" href="#top" aria-label="Ravshanjon Ismoilov">
-        <img class="brand-logo brand-logo-dark" src="assets/cha-logo-dark.png" alt="" width="1024" height="512">
-        <img class="brand-logo brand-logo-light" src="assets/cha-logo-light.png" alt="" width="1024" height="512">
+        <img class="brand-logo brand-logo-dark" src="assets/cha-logo-dark.png" alt="" width="228" height="114">
+        <img class="brand-logo brand-logo-light" src="assets/cha-logo-light.png" alt="" width="228" height="114">
       </a>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-button>
@@ -638,7 +639,11 @@
 
           <div class="portrait-wrap reveal">
             <div class="portrait-ring"></div>
-            <img class="portrait" src="assets/ravshanjon-3d.png" alt="Ravshanjon Ismoilovning 3D portreti" data-i18n-alt="portraitAlt" width="1077" height="1461">
+            <picture>
+              <source type="image/avif" srcset="assets/ravshanjon-3d-860.avif 860w, assets/ravshanjon-3d.avif 1077w" sizes="(max-width: 720px) 88vw, (max-width: 900px) 76vw, 430px">
+              <source type="image/webp" srcset="assets/ravshanjon-3d-860.webp 860w, assets/ravshanjon-3d.webp 1077w" sizes="(max-width: 720px) 88vw, (max-width: 900px) 76vw, 430px">
+              <img class="portrait" src="assets/ravshanjon-3d.webp" alt="Ravshanjon Ismoilovning 3D portreti" data-i18n-alt="portraitAlt" width="1077" height="1461" fetchpriority="high" decoding="async">
+            </picture>
           </div>
 
           <aside class="hero-services reveal" aria-label="Mutaxassislik yo‘nalishlari" data-i18n-label="specialtiesLabel">
@@ -1144,9 +1149,9 @@
       const dictionary = translations[currentLanguage];
       themeIcon.textContent = isLight ? "☀" : "☾";
       themeLabel.textContent = isLight ? dictionary.themeLight : dictionary.themeDark;
-      const faviconAsset = isLight ? "assets/cha-favicon-light-transparent.png" : "assets/cha-favicon-dark-clean.png";
-      themeFavicon.href = faviconAsset;
-      themeTouchIcon.href = faviconAsset;
+      const themeSuffix = isLight ? "light" : "dark";
+      themeFavicon.href = `assets/cha-favicon-${themeSuffix}-64.png`;
+      themeTouchIcon.href = `assets/cha-favicon-${themeSuffix}-180.png`;
       themeColorMeta.content = isLight ? "#eef4fb" : "#05070d";
     };
 
