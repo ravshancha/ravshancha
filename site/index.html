@@ -33,6 +33,7 @@
       --accent: #2f80ff;
       --accent-2: #00b7ff;
       --accent-text: #ffffff;
+      --header-hover: #68e0ff;
       --header: rgba(5, 7, 13, 0.88);
       --shadow: rgba(0, 0, 0, 0.35);
       --hero-glow: rgba(47, 128, 255, 0.22);
@@ -52,6 +53,7 @@
       --accent: #095fd8;
       --accent-2: #0088c7;
       --accent-text: #ffffff;
+      --header-hover: #003b85;
       --header: rgba(238, 244, 251, 0.9);
       --shadow: rgba(23, 30, 38, 0.12);
       --hero-glow: rgba(9, 95, 216, 0.14);
@@ -97,11 +99,11 @@
     .brand:hover .brand-logo { transform: translateY(-1px); }
     .site-nav { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: 14px; font-weight: 650; }
     .site-nav > a { transition: color 150ms ease; }
-    .site-nav > a:hover, .site-nav > a:focus-visible { color: var(--text); }
+    .site-nav > a:hover, .site-nav > a:focus-visible { color: var(--header-hover); }
     .nav-cta { padding: 9px 17px; border: 1px solid var(--line); border-radius: 8px; }
     .nav-controls { position: relative; display: flex; align-items: center; gap: 9px; }
     .theme-toggle { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--muted); cursor: pointer; font-size: 16px; transition: color 150ms ease, border-color 150ms ease; }
-    .theme-toggle:hover, .theme-toggle:focus-visible { color: var(--text); border-color: var(--accent); }
+    .theme-toggle:hover, .theme-toggle:focus-visible { color: var(--header-hover); border-color: var(--header-hover); }
     .theme-toggle-label { display: none; font-size: 12px; font-weight: 800; letter-spacing: 0.02em; }
     .language-select { position: relative; min-width: 96px; }
     .language-trigger {
@@ -121,7 +123,7 @@
       letter-spacing: 0.05em;
       transition: color 150ms ease, border-color 150ms ease;
     }
-    .language-trigger:hover, .language-trigger:focus-visible, .language-trigger[aria-expanded="true"] { color: var(--text); border-color: color-mix(in srgb, var(--accent) 60%, var(--line)); }
+    .language-trigger:hover, .language-trigger:focus-visible, .language-trigger[aria-expanded="true"] { color: var(--header-hover); border-color: var(--header-hover); }
     .language-flag { font-size: 15px; line-height: 1; }
     .language-chevron { margin-left: auto; color: currentColor; font-size: 12px; transition: transform 160ms ease; }
     .language-trigger[aria-expanded="true"] .language-chevron { transform: rotate(180deg); }
@@ -245,8 +247,8 @@
       box-shadow: 0 10px 28px color-mix(in srgb, var(--accent) 25%, transparent);
     }
     .site-nav > .nav-cta:hover, .site-nav > .nav-cta:focus-visible {
-      color: var(--text);
-      background: color-mix(in srgb, var(--accent) 88%, black);
+      color: var(--header-hover);
+      background: color-mix(in srgb, var(--accent) 42%, var(--surface));
     }
 
     .hero {
@@ -444,7 +446,7 @@
         font-size: 14px;
         font-weight: 650;
       }
-      .theme-toggle:hover, .theme-toggle:focus-visible { border-color: transparent; color: var(--text); background: color-mix(in srgb, var(--accent) 8%, transparent); }
+      .theme-toggle:hover, .theme-toggle:focus-visible { border-color: transparent; color: var(--header-hover); background: color-mix(in srgb, var(--accent) 14%, transparent); }
       .theme-toggle-label { display: inline; font-size: 14px; font-weight: 650; letter-spacing: 0; }
       .language-select { width: 100%; }
       .language-trigger {
@@ -461,7 +463,7 @@
         letter-spacing: 0;
       }
       .language-trigger .language-chevron { position: absolute; right: 14px; }
-      .language-trigger:hover, .language-trigger:focus-visible, .language-trigger[aria-expanded="true"] { border-color: transparent; color: var(--text); background: color-mix(in srgb, var(--accent) 8%, transparent); }
+      .language-trigger:hover, .language-trigger:focus-visible, .language-trigger[aria-expanded="true"] { border-color: transparent; color: var(--header-hover); background: color-mix(in srgb, var(--accent) 14%, transparent); }
       .language-options { position: static; width: 100%; margin-top: 2px; padding: 4px 0; border: 0; border-radius: 8px; background: transparent; box-shadow: none; backdrop-filter: none; }
       .language-option { min-height: 0; justify-content: center; padding: 10px 14px; border-radius: 8px; font-size: 14px; font-weight: 650; text-align: center; }
       .language-option.active { color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
