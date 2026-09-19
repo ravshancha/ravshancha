@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Ravshanjon Ismoilov — Toshkentlik dasturiy ta’minot muhandisi, server tizimlari va veb-ilovalar mutaxassisi.">
+  <meta name="description" content="Ravshanjon Ismoilov — bank va fintech sohasida 10+ yillik tajribaga ega Java dasturchi va dasturchilar guruhi rahbari.">
   <meta name="theme-color" content="#05070d">
-  <link rel="icon" href="assets/cha-favicon-dark-64.png" type="image/png" sizes="64x64" data-theme-favicon>
+  <link rel="icon" href="assets/cha-favicon-dark.svg" type="image/svg+xml" sizes="any" data-theme-favicon>
   <link rel="apple-touch-icon" href="assets/cha-favicon-dark-180.png" sizes="180x180" data-theme-touch-icon>
-  <title>Ravshanjon Ismoilov — Dasturiy ta’minot muhandisi</title>
+  <title>Ravshanjon Ismoilov — Java dasturchi</title>
   <link rel="canonical" href="https://ravshancha.uz/">
   <meta name="author" content="Ravshanjon Ismoilov">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Ravshanjon Ismoilov">
   <meta property="og:url" content="https://ravshancha.uz/">
-  <meta property="og:title" content="Ravshanjon Ismoilov — Dasturiy ta’minot muhandisi">
-  <meta property="og:description" content="Ravshanjon Ismoilov — Toshkentlik dasturiy ta’minot muhandisi, server tizimlari va veb-ilovalar mutaxassisi.">
+  <meta property="og:title" content="Ravshanjon Ismoilov — Java dasturchi">
+  <meta property="og:description" content="Bank va fintech sohasida 10+ yillik tajriba: Java 21, Spring Boot 3, mikroservislar va xavfsiz REST API’lar.">
   <meta property="og:image" content="https://ravshancha.uz/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -23,8 +23,8 @@
   <meta property="og:locale:alternate" content="ru_RU">
   <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ravshanjon Ismoilov — Dasturiy ta’minot muhandisi">
-  <meta name="twitter:description" content="Ravshanjon Ismoilov — Toshkentlik dasturiy ta’minot muhandisi, server tizimlari va veb-ilovalar mutaxassisi.">
+  <meta name="twitter:title" content="Ravshanjon Ismoilov — Java dasturchi">
+  <meta name="twitter:description" content="Bank va fintech sohasida 10+ yillik tajriba: Java 21, Spring Boot 3, mikroservislar va xavfsiz REST API’lar.">
   <meta name="twitter:image" content="https://ravshancha.uz/assets/og-image.jpg">
   <script type="application/ld+json">
     {
@@ -33,15 +33,15 @@
       "name": "Ravshanjon Ismoilov",
       "url": "https://ravshancha.uz/",
       "image": "https://ravshancha.uz/assets/og-image.jpg",
-      "jobTitle": "Software Engineer",
+      "jobTitle": "Java Software Developer",
       "address": { "@type": "PostalAddress", "addressLocality": "Tashkent", "addressCountry": "UZ" },
       "sameAs": [
-        "https://github.com/ravshancha",
         "https://www.linkedin.com/in/ravshancha",
-        "https://t.me/ravshancha",
+        "https://x.com/ravshancha",
+        "https://t.me/ravshanjon_ismoilov",
+        "https://wa.me/998999420770",
         "https://www.facebook.com/ravshancha",
-        "https://www.youtube.com/@ravshancha",
-        "https://medium.com/@ravshancha"
+        "https://www.youtube.com/@ravshancha"
       ]
     }
   </script>
@@ -53,7 +53,7 @@
       const activeTheme = savedTheme || preferredTheme;
       const themeSuffix = activeTheme === "light" ? "light" : "dark";
       document.documentElement.dataset.theme = activeTheme;
-      document.querySelector("[data-theme-favicon]").href = `assets/cha-favicon-${themeSuffix}-64.png`;
+      document.querySelector("[data-theme-favicon]").href = `assets/cha-favicon-${themeSuffix}.svg`;
       document.querySelector("[data-theme-touch-icon]").href = `assets/cha-favicon-${themeSuffix}-180.png`;
     } catch (error) {
       document.documentElement.dataset.theme = "dark";
@@ -73,6 +73,8 @@
       --header-hover: #68e0ff;
       --header: rgba(5, 7, 13, 0.88);
       --shadow: rgba(0, 0, 0, 0.35);
+      --danger: #ff7a7a;
+      --brand-gradient: linear-gradient(#ffffff, #ffffff);
       --hero-glow: rgba(47, 128, 255, 0.22);
       --hero-glow-secondary: rgba(0, 183, 255, 0.09);
       --max-width: 1240px;
@@ -93,16 +95,18 @@
       --header-hover: #003b85;
       --header: rgba(238, 244, 251, 0.9);
       --shadow: rgba(23, 30, 38, 0.12);
+      --danger: #c62828;
+      --brand-gradient: linear-gradient(135deg, #102fae 0%, #2876ee 50%, #43b6ff 100%);
       --hero-glow: rgba(9, 95, 216, 0.14);
       --hero-glow-secondary: rgba(0, 136, 199, 0.08);
       color-scheme: light;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    @supports (overflow: clip) { html { overflow-x: clip; } }
     body {
       margin: 0;
-      overflow-x: hidden;
       background: var(--bg);
       color: var(--text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -113,6 +117,11 @@
 
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
+    .icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+    .site-icon { display: block; width: 2em; height: 2em; flex: 0 0 auto; color: var(--text); opacity: 0.82; transition: color 150ms ease, opacity 150ms ease, transform 150ms ease; }
+    .icon-accent { color: var(--accent); opacity: 1; }
+    .button-icon { width: 32px; height: 32px; }
+    .button-primary .site-icon, .contact-section .site-icon, .footer-top .site-icon { color: var(--accent-text); opacity: 1; }
     button { color: inherit; font: inherit; }
     .container { width: min(calc(100% - 40px), var(--max-width)); margin-inline: auto; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
@@ -130,17 +139,27 @@
     .site-header.scrolled { background: var(--header); border-color: var(--line); backdrop-filter: blur(18px); }
     .nav-wrap { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 11px; font-weight: 750; letter-spacing: -0.02em; }
-    .brand-logo { width: 76px; height: 42px; object-fit: contain; transition: transform 180ms ease, filter 180ms ease; }
-    .brand-logo-dark { filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.95)) drop-shadow(0 7px 10px rgba(0, 0, 0, 0.72)); }
-    .brand-logo-light { display: none; filter: drop-shadow(2px 3px 2px rgba(255, 255, 255, 0.98)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.82)); }
+    .brand-logo { width: 52px; height: 52px; object-fit: contain; transition: transform 180ms ease, filter 180ms ease; }
+    .brand-logo-dark { filter: brightness(0) invert(1); }
+    .brand-logo-light { display: none; filter: drop-shadow(0 8px 18px rgba(9, 95, 216, 0.18)); }
     html[data-theme="light"] .brand-logo-dark { display: none; }
     html[data-theme="light"] .brand-logo-light { display: block; }
+    .brand-name { display: grid; gap: 1px; line-height: 1; text-transform: uppercase; }
+    .brand-name-primary, .brand-name-secondary { background: var(--brand-gradient); background-clip: text; color: transparent; -webkit-background-clip: text; }
+    .brand-name-primary { font-size: 14px; font-weight: 850; letter-spacing: 0.06em; }
+    .brand-name-secondary { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; }
     .brand:hover .brand-logo { transform: translateY(-1px); }
+    .brand:hover .brand-name-secondary { filter: brightness(1.12); }
     .site-nav { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: 14px; font-weight: 650; }
     .site-nav > a { transition: color 150ms ease; }
     .site-nav > a:hover, .site-nav > a:focus-visible { color: var(--header-hover); }
     .nav-cta {
-      padding: 9px 17px;
+      order: 1;
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
       border: 1px solid transparent;
       border-radius: 8px;
       color: var(--accent-text);
@@ -152,31 +171,52 @@
       background: color-mix(in srgb, var(--accent) 42%, var(--surface));
     }
     .nav-controls { position: relative; display: flex; align-items: center; gap: 9px; }
-    .theme-toggle { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--muted); cursor: pointer; font-size: 16px; transition: color 150ms ease, border-color 150ms ease; }
-    .theme-toggle:hover, .theme-toggle:focus-visible { color: var(--header-hover); border-color: var(--header-hover); }
+    .theme-toggle { display: grid; width: 44px; height: 44px; place-items: center; border: 0; border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer; font-size: 16px; transition: color 150ms ease; }
+    .theme-toggle:hover, .theme-toggle:focus-visible { color: var(--header-hover); }
+    .theme-toggle .site-icon { width: 27px; height: 27px; }
+    .theme-toggle-icons { position: relative; display: grid; width: 27px; height: 27px; place-items: center; }
+    .theme-toggle-icons .site-icon { grid-area: 1 / 1; transition: color 150ms ease, opacity 240ms ease, transform 420ms cubic-bezier(0.34, 1.12, 0.36, 1); }
+    .theme-toggle:hover .theme-toggle-icons .site-icon, .theme-toggle:focus-visible .theme-toggle-icons .site-icon { color: var(--header-hover); }
+    .theme-icon-next { opacity: 0; transform: rotate(-110deg) scale(0.35); }
+    .theme-toggle:hover .theme-icon-current, .theme-toggle:focus-visible .theme-icon-current { opacity: 0; transform: rotate(110deg) scale(0.35); }
+    .theme-toggle:hover .theme-icon-next, .theme-toggle:focus-visible .theme-icon-next { opacity: 1; transform: none; }
+    .theme-toggle.preview-off:hover .theme-icon-current, .theme-toggle.preview-off:focus-visible .theme-icon-current { opacity: 1; transform: none; }
+    .theme-toggle.preview-off:hover .theme-icon-next, .theme-toggle.preview-off:focus-visible .theme-icon-next { opacity: 0; transform: rotate(-110deg) scale(0.35); }
     .theme-toggle-label { display: none; font-size: 12px; font-weight: 800; letter-spacing: 0.02em; }
     .language-select { position: relative; min-width: 96px; }
     .language-trigger {
       display: flex;
       width: 100%;
-      min-height: 38px;
+      min-height: 44px;
       align-items: center;
       gap: 8px;
       padding: 0 11px;
-      border: 1px solid var(--line);
+      border: 0;
       border-radius: 8px;
-      background: var(--surface);
+      background: transparent;
       color: var(--muted);
       cursor: pointer;
       font-size: 11px;
       font-weight: 850;
       letter-spacing: 0.05em;
-      transition: color 150ms ease, border-color 150ms ease;
+      transition: color 150ms ease;
     }
-    .language-trigger:hover, .language-trigger:focus-visible, .language-trigger[aria-expanded="true"] { color: var(--header-hover); border-color: var(--header-hover); }
-    .language-flag { font-size: 15px; line-height: 1; }
-    .language-chevron { margin-left: auto; color: currentColor; font-size: 12px; transition: transform 160ms ease; }
-    .language-trigger[aria-expanded="true"] .language-chevron { transform: rotate(180deg); }
+    .language-trigger:hover, .language-trigger:focus-visible, .language-trigger[aria-expanded="true"] { color: var(--header-hover); }
+    .language-flag { display: block; width: 22px; height: 15px; flex: 0 0 auto; transform-box: fill-box; transform-origin: left center; backface-visibility: visible; filter: url(#flag-ripple); animation: flag-wave 2.65s ease-in-out infinite; will-change: transform, filter; }
+    .language-trigger:hover .language-flag, .language-trigger:focus-visible .language-flag, .language-option:hover .language-flag, .language-option:focus-visible .language-flag { animation-duration: 1.25s; }
+    @keyframes flag-wave {
+      0%, 100% { transform: perspective(40px) rotateY(0deg) skewY(0deg) translateY(0) scaleX(1); filter: url(#flag-ripple) brightness(1) drop-shadow(0 1px 1px transparent); }
+      24% { transform: perspective(40px) rotateY(-13deg) skewY(1.6deg) translateY(-0.55px) scaleX(0.98); filter: url(#flag-ripple) brightness(1.06) drop-shadow(1.5px 1px 1px rgba(0, 0, 0, 0.17)); }
+      50% { transform: perspective(40px) rotateY(10deg) skewY(-1.3deg) translateY(0.45px) scaleX(0.97); filter: url(#flag-ripple) brightness(0.97) drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.11)); }
+      76% { transform: perspective(40px) rotateY(-7deg) skewY(0.8deg) translateY(-0.25px) scaleX(0.99); filter: url(#flag-ripple) brightness(1.03) drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.13)); }
+    }
+    .language-chevron { width: 27px; height: 27px; margin-left: auto; transition: transform 160ms ease, color 150ms ease; }
+    .language-trigger:hover .language-chevron, .language-trigger:focus-visible .language-chevron { color: var(--header-hover); animation: chevron-nudge 1100ms ease-in-out infinite; }
+    .language-trigger[aria-expanded="true"] .language-chevron { transform: rotate(180deg); animation: none; }
+    @keyframes chevron-nudge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(3px); }
+    }
     .language-options {
       position: absolute;
       top: calc(100% + 10px);
@@ -200,9 +240,9 @@
     .menu-toggle > span:not(.sr-only) { display: block; width: 22px; height: 2px; margin: 4px 0; background: currentColor; transition: transform 180ms ease, opacity 180ms ease; }
 
     .hero {
-      min-height: 100vh;
+      min-height: min(100vh, 960px);
       display: grid;
-      align-items: center;
+      align-items: start;
       overflow: hidden;
       padding: 112px 0 38px;
       background:
@@ -214,35 +254,224 @@
     .eyebrow { margin: 0 0 18px; color: var(--accent); font-size: 12px; font-weight: 850; letter-spacing: 0; }
     .status-dot { display: inline-block; width: 7px; height: 7px; margin-right: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 10%, transparent); }
     h1, h2, h3, p { margin-top: 0; }
-    h1 { max-width: 690px; margin-bottom: 22px; font-size: clamp(3rem, 4.8vw, 5rem); line-height: 0.96; letter-spacing: -0.065em; text-transform: uppercase; }
+    h1 { max-width: 690px; margin-bottom: 22px; font-size: clamp(2.2rem, 3.5vw, 3rem); line-height: 0.96; letter-spacing: -0.065em; text-transform: uppercase; }
+    /* Title size is the same in every language: it follows the hero column width. */
     h2 { max-width: 760px; margin-bottom: 28px; font-size: clamp(2.3rem, 4.5vw, 4.8rem); line-height: 1.02; letter-spacing: -0.055em; }
     h3 { margin-bottom: 10px; font-size: 1.35rem; letter-spacing: -0.025em; }
-    .hero-lead { max-width: 610px; margin-bottom: 30px; color: var(--muted); font-size: clamp(1rem, 1.45vw, 1.18rem); }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
-    .button { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 50px; padding: 0 22px; border-radius: 11px; font-weight: 750; transition: transform 150ms ease, background 150ms ease; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 50px; padding: 0 22px; border: 0; border-radius: 11px; background: none; font-weight: 750; cursor: pointer; transition: transform 150ms ease, background 150ms ease; }
     .button:hover { transform: translateY(-2px); }
     .button-primary { color: var(--accent-text); background: var(--accent); box-shadow: 0 12px 30px color-mix(in srgb, var(--accent) 28%, transparent); }
     .button-secondary { border: 1px solid color-mix(in srgb, var(--accent) 50%, var(--line)); background: color-mix(in srgb, var(--surface) 60%, transparent); }
-    .hero-links { display: flex; gap: 24px; margin-top: 34px; color: var(--muted); font-size: 13px; font-weight: 750; text-transform: uppercase; letter-spacing: 0.08em; }
-    .hero-links a:hover { color: var(--accent); }
+    .order-dialog { width: min(660px, calc(100% - 32px)); padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); box-shadow: 0 30px 80px var(--shadow); }
+    .order-dialog::backdrop { background: color-mix(in srgb, #05070d 62%, transparent); backdrop-filter: blur(5px); }
+    .order-form { display: grid; gap: 19px; padding: 30px; }
+    .order-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .order-head h2 { margin: 0; font-size: 1.45rem; letter-spacing: -0.025em; }
+    .order-controls { display: flex; flex: 0 0 auto; align-items: center; gap: 8px; }
+    .order-theme { display: grid; width: 56px; height: 56px; place-items: center; border: 1px solid var(--line); border-radius: 10px; background: none; color: var(--muted); font-size: 15px; cursor: pointer; transition: color 150ms ease, border-color 150ms ease; }
+    .order-theme:hover, .order-theme:focus-visible { color: var(--text); border-color: var(--accent); }
+    .order-controls .language-select { width: auto; min-width: 96px; }
+    .order-controls .language-trigger { position: static; justify-content: flex-start; min-height: 36px; padding: 0 10px; border: 1px solid var(--line); border-radius: 10px; background: none; color: var(--muted); font-size: 11px; font-weight: 850; letter-spacing: 0.05em; }
+    .order-controls .language-trigger .language-chevron { position: static; right: auto; margin-left: auto; }
+    .order-controls .language-options { position: absolute; top: calc(100% + 8px); right: 0; width: 178px; margin: 0; padding: 6px; border: 1px solid var(--line); border-radius: 14px; background: color-mix(in srgb, var(--surface) 96%, transparent); box-shadow: 0 20px 48px var(--shadow); backdrop-filter: blur(18px); }
+    .order-controls .language-option { justify-content: flex-start; padding: 10px 11px; border-radius: 9px; font-size: 13px; font-weight: 750; text-align: left; }
+    .order-controls .language-option.active { color: var(--accent-text); background: var(--accent); }
+    .order-intro { margin: -10px 0 0; color: var(--muted); font-size: 14px; }
+    .order-field { display: grid; gap: 6px; }
+    .order-field > label { font-size: 13px; font-weight: 750; }
+    .order-example { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .order-dialog input, .order-dialog textarea { width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--surface-2) 60%, transparent); color: var(--text); font: inherit; font-size: 15px; transition: border-color 150ms ease, box-shadow 150ms ease; }
+    .order-dialog textarea { min-height: 104px; resize: vertical; }
+    .order-dialog input:focus-visible, .order-dialog textarea:focus-visible { outline: 0; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+    .order-phone { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; padding-left: 13px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--surface-2) 60%, transparent); transition: border-color 150ms ease, box-shadow 150ms ease; }
+    .order-phone:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+    .order-prefix { color: var(--muted); font-size: 15px; font-weight: 700; }
+    .order-phone input { padding-left: 8px; border: 0; background: none; letter-spacing: 0.05em; }
+    .order-phone input:focus-visible { box-shadow: none; }
+    .order-error { margin: 0; color: var(--danger); font-size: 12px; font-weight: 650; }
+    .order-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+    .order-cancel { border: 0; background: color-mix(in srgb, var(--surface-2) 82%, var(--surface)); color: var(--muted); }
+    .order-cancel:hover, .order-cancel:focus-visible { color: var(--text); background: color-mix(in srgb, var(--accent) 14%, var(--surface-2)); }
+    .order-sent { margin: 0; color: var(--accent); font-size: 13px; font-weight: 700; }
+    .cv-dialog { width: min(980px, calc(100% - 32px)); height: min(88dvh, 860px); padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); box-shadow: 0 30px 80px var(--shadow); }
+    .cv-dialog::backdrop { background: color-mix(in srgb, #05070d 62%, transparent); backdrop-filter: blur(5px); }
+    .cv-dialog-shell { display: grid; grid-template-rows: minmax(0, 1fr) auto; height: 100%; }
+    .cv-pages { min-height: 0; overflow: hidden; background: #252525; }
+    .cv-pdf { display: block; width: 100%; height: 100%; border: 0; background: #252525; }
+    .cv-dialog-actions { display: flex; flex: 0 0 auto; align-items: center; justify-content: flex-end; gap: 12px; padding: 14px 20px; border-top: 1px solid var(--line); background: var(--surface); }
+    .cv-dialog-actions > .button { min-width: 150px; }
+    .cv-dialog-close { background: color-mix(in srgb, var(--surface-2) 82%, var(--surface)); color: var(--muted); }
+    .cv-dialog-close:hover, .cv-dialog-close:focus-visible { color: var(--text); background: color-mix(in srgb, var(--accent) 14%, var(--surface-2)); }
+
+    .hero-links { position: static; z-index: 4; display: grid; grid-column: 1; grid-row: 2; grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(100%, 560px); max-width: none; align-self: start; justify-content: start; gap: 16px 18px; margin: 10px 0 64px; overflow: visible; color: var(--muted); font-size: 10.5px; font-weight: 750; text-transform: uppercase; letter-spacing: 0.04em; scrollbar-width: none; }
+    .hero-links::-webkit-scrollbar { display: none; }
+    .hero-links a { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 9px; white-space: nowrap; transition: color 150ms ease, transform 150ms ease; }
+    .hero-links a:hover, .hero-links a:focus-visible { color: var(--accent); transform: translateY(-2px); }
+    .hero-links a:hover .site-icon, .hero-links a:focus-visible .site-icon { color: var(--accent); opacity: 1; }
+    .hero-links a:hover .social-icon, .hero-links a:focus-visible .social-icon {
+      filter: drop-shadow(0 5px 8px color-mix(in srgb, var(--accent) 34%, transparent));
+    }
+    .social-icon { width: 30px; height: 30px; overflow: visible; transition: filter 180ms ease; }
+    .social-icon .social-draw { stroke-dasharray: 1; stroke-dashoffset: 0; }
+    .hero-links a:hover .social-draw, .hero-links a:focus-visible .social-draw { animation: social-line-redraw 820ms cubic-bezier(0.4, 0, 0.2, 1) both; }
+    .hero-links a:hover .social-draw:nth-child(2), .hero-links a:focus-visible .social-draw:nth-child(2) { animation-delay: 55ms; }
+    .hero-links a:hover .social-draw:nth-child(3), .hero-links a:focus-visible .social-draw:nth-child(3) { animation-delay: 100ms; }
+    .hero-links a:hover .social-linkedin .social-detail, .hero-links a:focus-visible .social-linkedin .social-detail { animation: social-detail-pop 720ms cubic-bezier(0.2, 0.9, 0.2, 1); }
+    .hero-links a:hover .social-twitter .social-motion, .hero-links a:focus-visible .social-twitter .social-motion { animation: social-bird-flight 820ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .hero-links a:hover .social-telegram .social-motion, .hero-links a:focus-visible .social-telegram .social-motion { animation: social-plane-flight 820ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .hero-links a:hover .social-phone .social-motion, .hero-links a:focus-visible .social-phone .social-motion { animation: social-phone-ring 650ms ease-in-out; }
+    .hero-links a:hover .social-facebook .social-motion, .hero-links a:focus-visible .social-facebook .social-motion { animation: social-rise 780ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .hero-links a:hover .social-youtube .social-detail, .hero-links a:focus-visible .social-youtube .social-detail { animation: social-play-pulse 760ms cubic-bezier(0.2, 0.9, 0.2, 1); }
+    .social-motion, .social-detail { transform-box: fill-box; transform-origin: center; }
+    @keyframes social-line-redraw {
+      0% { stroke-dashoffset: 0; opacity: 1; }
+      24% { stroke-dashoffset: 1; opacity: 0.18; }
+      25% { stroke-dashoffset: 1; opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @keyframes social-line-cycle {
+      0%, 18%, 100% { stroke-dashoffset: 0; opacity: 1; }
+      38% { stroke-dashoffset: 1; opacity: 1; }
+      39% { stroke-dashoffset: 1; opacity: 0; }
+      40% { stroke-dashoffset: 1; opacity: 1; }
+      72% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @keyframes social-detail-pop {
+      0%, 100% { transform: translateY(0) scale(1); }
+      35% { transform: translateY(-5px) scale(1.35); }
+      62% { transform: translateY(1px) scale(0.9); }
+    }
+    @keyframes social-bird-flight {
+      0%, 100% { transform: translate(0) rotate(0); }
+      38% { transform: translate(4px, -4px) rotate(-7deg); }
+      64% { transform: translate(-1px, 1px) rotate(3deg); }
+    }
+    @keyframes social-plane-flight {
+      0%, 100% { transform: translate(0) rotate(0); }
+      36% { transform: translate(6px, -5px) rotate(-8deg); }
+      37% { opacity: 0; }
+      38% { transform: translate(-5px, 4px) rotate(-8deg); opacity: 0; }
+      55% { opacity: 1; }
+    }
+    @keyframes social-phone-ring {
+      0%, 100% { transform: rotate(0); }
+      22% { transform: rotate(12deg); }
+      44% { transform: rotate(-10deg); }
+      66% { transform: rotate(7deg); }
+      82% { transform: rotate(-4deg); }
+    }
+    @keyframes social-rise {
+      0%, 100% { transform: translateY(0); }
+      42% { transform: translateY(-5px); }
+      66% { transform: translateY(1px); }
+    }
+    @keyframes social-play-pulse {
+      0%, 100% { transform: scale(1); }
+      36% { transform: scale(1.5); }
+      62% { transform: scale(0.82); }
+    }
+
+    @media (max-width: 1180px) {
+      .hero-links a:nth-child(1) { --social-cycle-delay: 0s; }
+      .hero-links a:nth-child(2) { --social-cycle-delay: -0.7s; }
+      .hero-links a:nth-child(3) { --social-cycle-delay: -1.4s; }
+      .hero-links a:nth-child(4) { --social-cycle-delay: -2.1s; }
+      .hero-links a:nth-child(5) { --social-cycle-delay: -2.8s; }
+      .hero-links a:nth-child(6) { --social-cycle-delay: -3.5s; }
+      .hero-links a:hover, .hero-links a:focus-visible { transform: none; }
+      .hero-links a:hover .social-motion, .hero-links a:focus-visible .social-motion { animation: none; transform: none; }
+      .hero-links a .social-icon .social-draw,
+      .hero-links a:hover .social-icon .social-draw,
+      .hero-links a:focus-visible .social-icon .social-draw {
+        animation: social-line-cycle 4.2s ease-in-out infinite;
+        animation-delay: var(--social-cycle-delay, 0s);
+      }
+    }
 
     .section { padding: 130px 0; border-top: 1px solid var(--line); }
     .section-muted { background: var(--surface); }
     .section-accent { background: linear-gradient(135deg, var(--hero-glow-secondary), color-mix(in srgb, var(--accent-2) 3%, transparent)); }
     .split-grid, .recognition-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 90px; }
     .about-copy { color: var(--muted); font-size: 1.12rem; }
-    .quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 48px 0 0; }
-    .quick-facts div { padding-top: 18px; border-top: 1px solid var(--line); }
+    /* About: the copy starts level with the heading, not with the kicker above it. */
+    @media (min-width: 901px) {
+      .split-grid { grid-template-rows: auto 1fr; gap: 0 90px; }
+      .split-grid > div:first-child { display: contents; }
+      .split-grid > div:first-child > .section-kicker { grid-column: 1; grid-row: 1; }
+      .split-grid > div:first-child > h2 { grid-column: 1; grid-row: 2; }
+      .split-grid > .about-copy { grid-column: 2; grid-row: 2; padding-top: max(0px, calc(clamp(2.3rem, 4.5vw, 4.8rem) * 0.196 - 9.2px)); } /* optical: cap tops of copy and heading line up */
+    }
+    /* Quick facts: two stacked cards with an icon; icons redraw on hover (desktop) and cycle continuously on small screens. */
+    .quick-facts { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 48px 0 0; }
+    .quick-facts > div { position: relative; display: grid; align-content: center; min-height: 84px; padding: 16px 20px 16px 84px; border: 0; border-radius: 14px; background: var(--surface); box-shadow: 0 14px 36px var(--shadow); transition: transform 180ms ease, box-shadow 180ms ease; }
+    .quick-facts > div:hover { transform: translateY(-3px); box-shadow: 0 20px 44px var(--shadow); }
     .quick-facts dt { color: var(--muted); font-size: 12px; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; }
-    .quick-facts dd { margin: 6px 0 0; color: var(--text); font-size: 14px; font-weight: 650; }
+    .quick-facts dd { margin: 4px 0 0; color: var(--text); font-size: 15px; font-weight: 650; line-height: 1.4; }
+    .fact-icon { position: absolute; top: 50%; left: 22px; display: grid; width: 42px; height: 42px; place-items: center; transform: translateY(-50%); }
+    .fact-icon .site-icon { width: 38px; height: 38px; overflow: visible; transition: filter 180ms ease; }
+    .fact-draw { stroke-dasharray: 1; stroke-dashoffset: 0; }
+    .fact-needle, .fact-cap, .fact-tassel { transform-box: view-box; transform-origin: center; }
+    .fact-tassel { transform-origin: 48.67px 28.67px; }
+    .quick-facts > div:hover .fact-icon .site-icon { filter: drop-shadow(0 5px 8px color-mix(in srgb, var(--accent) 34%, transparent)); }
+    .quick-facts > div:hover .fact-draw { animation: fact-line-redraw 820ms cubic-bezier(0.4, 0, 0.2, 1) both; }
+    .quick-facts > div:hover .fact-needle { animation: fact-needle-swing 900ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .quick-facts > div:hover .fact-cap { animation: fact-cap-bob 760ms cubic-bezier(0.2, 0.9, 0.2, 1); }
+    .quick-facts > div:hover .fact-tassel { animation: fact-tassel-swing 900ms ease-in-out; }
+    @keyframes fact-line-redraw { 0% { stroke-dashoffset: 0; opacity: 1; } 24% { stroke-dashoffset: 1; opacity: 0.18; } 25% { stroke-dashoffset: 1; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+    @keyframes fact-line-cycle { 0%, 18%, 100% { stroke-dashoffset: 0; opacity: 1; } 38% { stroke-dashoffset: 1; opacity: 1; } 39% { stroke-dashoffset: 1; opacity: 0; } 40% { stroke-dashoffset: 1; opacity: 1; } 72% { stroke-dashoffset: 0; opacity: 1; } }
+    @keyframes fact-needle-swing { 0%, 100% { transform: rotate(0deg); } 30% { transform: rotate(-28deg); } 65% { transform: rotate(18deg); } }
+    @keyframes fact-cap-bob { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-4px); } }
+    @keyframes fact-tassel-swing { 0%, 100% { transform: rotate(0deg); } 35% { transform: rotate(14deg); } 70% { transform: rotate(-8deg); } }
+    @media (max-width: 1180px) {
+      .quick-facts > div:nth-child(2) { --fact-cycle-delay: -2.1s; }
+      .quick-facts > div:hover { transform: none; box-shadow: 0 14px 36px var(--shadow); }
+      .quick-facts .fact-draw, .quick-facts > div:hover .fact-draw { animation: fact-line-cycle 4.2s ease-in-out infinite; animation-delay: var(--fact-cycle-delay, 0s); }
+      .quick-facts .fact-needle, .quick-facts > div:hover .fact-needle { animation: fact-needle-swing 4.2s ease-in-out infinite; animation-delay: var(--fact-cycle-delay, 0s); }
+      .quick-facts .fact-cap, .quick-facts > div:hover .fact-cap { animation: fact-cap-bob 4.2s ease-in-out infinite; animation-delay: var(--fact-cycle-delay, 0s); }
+      .quick-facts .fact-tassel, .quick-facts > div:hover .fact-tassel { animation: fact-tassel-swing 4.2s ease-in-out infinite; animation-delay: var(--fact-cycle-delay, 0s); }
+    }
     .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 50px; margin-bottom: 58px; }
     .section-heading h2 { margin-bottom: 0; }
     .section-heading > p { max-width: 390px; margin-bottom: 8px; color: var(--muted); }
 
-    .expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .expertise-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
     .expertise-card { min-height: 340px; padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); transition: border-color 180ms ease, transform 180ms ease; }
     .expertise-card:hover { transform: translateY(-6px); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
-    .card-number { display: block; margin-bottom: 90px; color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .expertise-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 68px; }
+    .card-number { display: block; color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .expertise-icon { display: grid; width: 64px; height: 64px; flex: 0 0 auto; place-items: center; border-radius: 14px; background: color-mix(in srgb, var(--accent) 13%, transparent); transition: background 180ms ease, transform 180ms ease; }
+    .expertise-svg { width: 38px; height: 38px; overflow: visible; color: var(--accent); opacity: 1; transition: color 180ms ease, filter 180ms ease; }
+    .expertise-draw { stroke-dasharray: 1; stroke-dashoffset: 0; }
+    .expertise-card:hover .expertise-icon { background: var(--accent); transform: translateY(-3px); }
+    .expertise-card:hover .expertise-svg { color: var(--accent-text); filter: drop-shadow(0 4px 7px color-mix(in srgb, var(--bg) 28%, transparent)); }
+    .expertise-card:hover .expertise-draw { animation: expertise-line-redraw 820ms cubic-bezier(0.4, 0, 0.2, 1) both; }
+    @keyframes expertise-line-redraw {
+      0% { stroke-dashoffset: 0; opacity: 1; }
+      24% { stroke-dashoffset: 1; opacity: 0.18; }
+      25% { stroke-dashoffset: 1; opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @keyframes expertise-line-cycle {
+      0%, 18%, 100% { stroke-dashoffset: 0; opacity: 1; }
+      38% { stroke-dashoffset: 1; opacity: 1; }
+      39% { stroke-dashoffset: 1; opacity: 0; }
+      40% { stroke-dashoffset: 1; opacity: 1; }
+      72% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @media (max-width: 720px) {
+      .expertise-card:nth-child(1) { --expertise-cycle-delay: 0s; }
+      .expertise-card:nth-child(2) { --expertise-cycle-delay: -1.05s; }
+      .expertise-card:nth-child(3) { --expertise-cycle-delay: -2.1s; }
+      .expertise-card:nth-child(4) { --expertise-cycle-delay: -3.15s; }
+      .expertise-card:hover { transform: none; }
+      .expertise-card:hover .expertise-icon { transform: none; }
+      .expertise-card .expertise-draw,
+      .expertise-card:hover .expertise-draw {
+        animation: expertise-line-cycle 4.2s ease-in-out infinite;
+        animation-delay: var(--expertise-cycle-delay, 0s);
+      }
+    }
     .expertise-card p { color: var(--muted); }
     .tag-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 24px; }
     .tag-list span { padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 11px; font-weight: 750; }
@@ -250,17 +479,75 @@
     .timeline { margin-top: 62px; border-top: 1px solid var(--line); }
     .timeline-item { display: grid; grid-template-columns: 0.65fr 1.35fr; gap: 60px; padding: 42px 0; border-bottom: 1px solid var(--line); }
     .timeline-meta { display: flex; flex-direction: column; gap: 4px; color: var(--muted); font-size: 13px; }
+    .timeline-meta .company-logo { order: -1; flex-basis: auto; margin-top: 0; margin-bottom: 16px; }
     .timeline-item > div:last-child { max-width: 650px; }
+    .timeline-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 28px; }
+    .timeline-heading > div:first-child { min-width: 0; }
     .timeline-item p { color: var(--muted); }
-    .timeline-item .company { color: var(--accent); font-weight: 650; }
+    .timeline-item .company { margin-bottom: 0; color: var(--accent); font-weight: 650; }
+    .company-logo {
+      --logo-accent: var(--accent);
+      display: grid;
+      width: 176px;
+      height: 54px;
+      flex: 0 0 176px;
+      place-items: center;
+      padding: 8px 12px;
+      border: 0;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--text);
+      transition: transform 180ms ease;
+    }
+    .company-logo svg { display: block; width: 100%; height: 100%; overflow: visible; }
+    .company-logo .logo-ink { fill: currentColor; }
+    .company-logo .logo-stroke { fill: none; stroke: currentColor; }
+    .company-logo .logo-accent { fill: var(--logo-accent); }
+    .company-logo .logo-accent-2 { fill: var(--logo-accent-2); }
+    .company-logo .logo-accent-stroke { fill: none; stroke: var(--logo-accent); }
+    .company-logo--kapital {
+      --logo-accent: #ffd531;
+      width: 200px;
+      height: 23px;
+      flex-basis: 200px;
+      margin-top: 20px;
+      padding: 0;
+    }
+    .company-logo--kapital svg { overflow: hidden; shape-rendering: geometricPrecision; }
+    .company-logo--ipotekabank {
+      --logo-accent: #52ae30;
+      width: 200px;
+      height: 45px;
+      flex-basis: 200px;
+      padding: 0;
+    }
+    .company-logo--ipotekabank img { width: 100%; height: 100%; object-fit: contain; }
+    .ipotekabank-logo-light { display: none; }
+    html[data-theme="light"] .ipotekabank-logo-dark { display: none; }
+    html[data-theme="light"] .ipotekabank-logo-light { display: block; }
+    .company-logo--realsoft { --logo-accent: #0091ff; }
+    .company-logo--epam { --logo-accent: #23b5c9; }
+    .company-logo--tune { --logo-accent: #4cae4f; }
+    .company-logo--davr {
+      --logo-accent: #0068ae;
+      --logo-accent-2: #13a246;
+      width: 176px;
+      height: 27px;
+      flex-basis: 176px;
+      padding: 0;
+    }
+    .company-logo--mironsoft { --logo-accent: #1ba39c; }
+    .timeline-item:hover .company-logo { transform: translateY(-2px); }
 
     .project-card { display: grid; grid-template-columns: 70px 1fr auto; gap: 34px; align-items: start; padding: 42px; border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent); border-radius: var(--radius); background: var(--surface); }
     .project-index { color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
     .project-type { color: var(--accent); font-size: 12px; font-weight: 850; letter-spacing: 0.12em; text-transform: uppercase; }
     .project-body h3 { font-size: clamp(2.3rem, 5vw, 4.6rem); }
     .project-body > p:not(.project-type) { max-width: 700px; color: var(--muted); }
-    .project-link { display: grid; width: 54px; height: 54px; place-items: center; border: 1px solid var(--line); border-radius: 50%; font-size: 24px; transition: background 150ms ease, color 150ms ease; }
+    .project-link { display: grid; width: 86px; height: 86px; place-items: center; border: 1px solid var(--line); border-radius: 50%; transition: background 150ms ease, color 150ms ease; }
+    .project-link .site-icon { width: 44px; height: 44px; }
     .project-link:hover { color: var(--accent-text); background: var(--accent); }
+    .project-link:hover .site-icon, .project-link:focus-visible .site-icon { color: var(--accent-text); opacity: 1; }
 
     .recognition-list { border-top: 1px solid var(--line); }
     .recognition-list article { display: grid; grid-template-columns: 70px 1fr; gap: 28px; padding: 26px 0; border-bottom: 1px solid var(--line); }
@@ -268,13 +555,76 @@
     .recognition-list h3 { margin-bottom: 4px; }
     .recognition-list p { margin-bottom: 0; color: var(--muted); }
 
-    .contact-section { padding: 130px 0; color: var(--accent-text); background: var(--accent); }
+    /* Education and certificates: cards ordered oldest first, each with its own icon. */
+    .credential-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    .credential-card { display: grid; grid-template-columns: auto 1fr; align-items: start; gap: 24px; padding: 24px 28px; border: 0; border-radius: var(--radius); background: var(--bg); transition: background 180ms ease, box-shadow 180ms ease, translate 180ms ease; }
+    .credential-card:hover { translate: 0 -6px; background: color-mix(in srgb, var(--accent) 7%, var(--bg)); box-shadow: 0 16px 36px var(--shadow); }
+    .credential-aside { display: grid; justify-items: start; gap: 10px; }
+    .credential-body { min-width: 0; }
+    .credential-year { padding: 5px 11px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; font-weight: 750; letter-spacing: 0.04em; transition: background 180ms ease, color 180ms ease; }
+    .credential-icon { display: grid; width: 54px; height: 54px; flex: 0 0 auto; place-items: center; border-radius: 14px; background: color-mix(in srgb, var(--accent) 13%, transparent); transition: background 180ms ease, transform 180ms ease; }
+    .credential-svg { width: 32px; height: 32px; overflow: visible; color: var(--accent); transition: color 180ms ease, filter 180ms ease; }
+    .credential-draw { stroke-dasharray: 1; stroke-dashoffset: 0; }
+    .credential-card:hover .credential-icon, .credential-card:hover .credential-year { background: var(--accent); }
+    .credential-card:hover .credential-year { color: var(--accent-text); }
+    .credential-card:hover .credential-svg { color: var(--accent-text); filter: drop-shadow(0 4px 7px color-mix(in srgb, var(--bg) 28%, transparent)); }
+    .credential-card:hover .credential-draw { animation: expertise-line-redraw 820ms cubic-bezier(0.4, 0, 0.2, 1) both; }
+    .credential-card h3 { margin-bottom: 6px; font-size: 1.15rem; line-height: 1.25; }
+    .credential-card p { margin-bottom: 0; color: var(--muted); font-size: 0.95rem; }
+
+    .contact-section { padding: 64px 0 0; color: var(--accent-text); background: var(--accent); overflow: hidden; }
     .contact-section .section-kicker { color: color-mix(in srgb, var(--accent-text) 65%, transparent); }
     .contact-section h2 { max-width: 920px; }
-    .contact-email { display: inline-flex; gap: 16px; align-items: center; padding-bottom: 5px; border-bottom: 2px solid currentColor; font-size: clamp(1rem, 2.4vw, 1.45rem); font-weight: 800; }
-    .site-footer { padding: 30px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    .contact-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 460px); gap: 40px 48px; align-items: end; }
+    .contact-copy { min-width: 0; align-self: start; padding-top: 12px; }
+    .contact-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+    .contact-button { width: auto; min-width: 230px; min-height: 56px; padding: 0 22px; gap: 12px; font-size: 15px; font-weight: 800; }
+    .contact-phone { display: inline; white-space: nowrap; }
+    .contact-action-icon { width: 32px; height: 32px; overflow: visible; }
+    .contact-draw { stroke-dasharray: 1; stroke-dashoffset: 0; }
+    .contact-button:hover .contact-draw,
+    .contact-button:focus-visible .contact-draw { animation: contact-line-redraw 820ms cubic-bezier(0.4, 0, 0.2, 1) both; }
+    .contact-button-solid { color: var(--accent); background: var(--accent-text); }
+    .contact-button-solid:hover { background: color-mix(in srgb, var(--accent-text) 88%, var(--accent)); }
+    .contact-section .contact-button-solid .site-icon { color: var(--accent); }
+    .contact-button-ghost { border: 1.5px solid color-mix(in srgb, var(--accent-text) 55%, transparent); }
+    .contact-button-ghost:hover { background: color-mix(in srgb, var(--accent-text) 15%, transparent); }
+    @keyframes contact-line-redraw {
+      0% { stroke-dashoffset: 0; opacity: 1; }
+      24% { stroke-dashoffset: 1; opacity: 0.18; }
+      25% { stroke-dashoffset: 1; opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @keyframes contact-line-cycle {
+      0%, 18%, 100% { stroke-dashoffset: 0; opacity: 1; }
+      38% { stroke-dashoffset: 1; opacity: 1; }
+      39% { stroke-dashoffset: 1; opacity: 0; }
+      40% { stroke-dashoffset: 1; opacity: 1; }
+      72% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @media (max-width: 1180px) {
+      .contact-button:nth-child(2) { --contact-cycle-delay: -2.1s; }
+      .contact-button .contact-draw,
+      .contact-button:hover .contact-draw,
+      .contact-button:focus-visible .contact-draw {
+        animation: contact-line-cycle 4.2s ease-in-out infinite;
+        animation-delay: var(--contact-cycle-delay, 0s);
+      }
+    }
+    .contact-portrait { position: relative; display: grid; align-self: end; justify-items: center; }
+    .contact-portrait picture { display: block; }
+    .contact-portrait img {
+      position: relative;
+      display: block;
+      width: min(100%, 440px);
+      height: auto;
+      justify-self: center;
+      filter: drop-shadow(0 24px 34px color-mix(in srgb, #000 28%, transparent));
+    }
+    .site-footer { padding: 30px 0 calc(30px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
     .footer-inner, .footer-links { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
     .footer-links { flex-wrap: wrap; justify-content: flex-end; }
+    .footer-socials { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
     .footer-inner p { margin: 0; }
     .footer-inner a:hover { color: var(--text); }
     .footer-top {
@@ -290,7 +640,7 @@
       transition: transform 150ms ease, box-shadow 150ms ease;
     }
     .footer-links .footer-top:hover, .footer-links .footer-top:focus-visible { color: var(--accent-text); transform: translateY(-2px); box-shadow: 0 14px 34px color-mix(in srgb, var(--accent) 34%, transparent); }
-    .footer-top-arrow { display: inline-block; animation: footer-top-nudge 1.7s ease-in-out infinite; }
+    .footer-top-arrow { width: 28px; height: 28px; animation: footer-top-nudge 1.7s ease-in-out infinite; }
     @keyframes footer-top-nudge { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
 
     html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 600ms ease, transform 600ms ease; }
@@ -302,16 +652,19 @@
       position: relative;
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.72fr) minmax(210px, 0.45fr);
+      grid-template-rows: minmax(0, 1fr) auto;
       align-items: center;
       min-height: 570px;
-      gap: 34px;
+      gap: 0 34px;
     }
-    .hero-copy { position: relative; z-index: 3; padding: 38px 0 58px; }
+    .hero-copy { position: relative; z-index: 3; grid-column: 1; grid-row: 1; padding: 38px 0 18px; }
     .accent-word { color: var(--accent); text-shadow: 0 0 34px color-mix(in srgb, var(--accent) 28%, transparent); }
     .portrait-wrap {
       position: relative;
       top: -58px;
       z-index: 2;
+      grid-column: 2;
+      grid-row: 1 / span 2;
       width: 100%;
       min-height: 530px;
       align-self: end;
@@ -386,21 +739,52 @@
       transform: scaleX(-1) rotateY(0deg) translateY(-7px) translateZ(54px);
     }
 
-    .hero-services { position: relative; z-index: 3; display: grid; gap: 14px; }
+    .hero-services { position: relative; z-index: 3; display: grid; grid-column: 3; grid-row: 1 / span 2; gap: 14px; }
     .service-card {
       display: grid;
-      grid-template-columns: 42px 1fr;
+      grid-template-columns: 54px 1fr;
       align-items: center;
       gap: 14px;
       min-height: 88px;
       padding: 16px;
-      border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+      border: 0;
       border-radius: 14px;
-      background: color-mix(in srgb, var(--surface) 86%, transparent);
+      background: color-mix(in srgb, var(--surface) 50%, transparent);
       box-shadow: 0 18px 45px var(--shadow);
       backdrop-filter: blur(14px);
+      translate: var(--cloud-x, 0px) var(--cloud-y, 0px);
     }
-    .service-icon { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 11px; color: var(--accent); background: color-mix(in srgb, var(--accent) 13%, transparent); font: 800 16px/1 ui-monospace, monospace; }
+    /* Cloud cards: half-transparent, staggered left and right, revealed one after another. */
+    .hero-services { --cloud-left: clamp(14px, calc((100vw - 1040px) * 0.08 + 14px), 30px); --cloud-right: clamp(0px, calc((100vw - 1100px) * 0.05), 12px); }
+    .hero-services .service-card:nth-child(odd) { --cloud-x: calc(var(--cloud-left) * -1); }
+    .hero-services .service-card:nth-child(even) { --cloud-x: var(--cloud-right); }
+    html.js .hero-services.reveal { opacity: 1; transform: none; }
+    html.js .hero-services .service-card { opacity: 0; translate: var(--cloud-x, 0px) calc(var(--cloud-y, 0px) + 26px); transition: opacity 700ms ease, translate 900ms cubic-bezier(.2,.8,.2,1); }
+    html.js .hero-services.visible .service-card { opacity: 1; translate: var(--cloud-x, 0px) var(--cloud-y, 0px); }
+    html.js .hero-services .service-card:nth-child(1) { transition-delay: 120ms; }
+    html.js .hero-services .service-card:nth-child(2) { transition-delay: 300ms; }
+    html.js .hero-services .service-card:nth-child(3) { transition-delay: 480ms; }
+    html.js .hero-services .service-card:nth-child(4) { transition-delay: 660ms; }
+    .service-icon { display: grid; width: 54px; height: 54px; place-items: center; background: transparent; }
+    .service-icon .site-icon { width: 35px; height: 35px; overflow: visible; }
+    .hero-services .service-card:nth-child(1) { --service-stroke-delay: 0s; }
+    .hero-services .service-card:nth-child(2) { --service-stroke-delay: -0.7s; }
+    .hero-services .service-card:nth-child(3) { --service-stroke-delay: -1.4s; }
+    .hero-services .service-card:nth-child(4) { --service-stroke-delay: -2.1s; }
+    .service-draw {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 0;
+      animation: service-stroke-loop 2.8s ease-in-out infinite;
+      animation-delay: var(--service-stroke-delay, 0s);
+    }
+    .service-draw:nth-child(2) { animation-delay: calc(var(--service-stroke-delay, 0s) + 120ms); }
+    .service-draw:nth-child(3) { animation-delay: calc(var(--service-stroke-delay, 0s) + 220ms); }
+    @keyframes service-stroke-loop {
+      0%, 18%, 100% { stroke-dashoffset: 0; opacity: 1; }
+      38% { stroke-dashoffset: 1; opacity: 0.18; }
+      39% { stroke-dashoffset: 1; opacity: 1; }
+      78% { stroke-dashoffset: 0; opacity: 1; }
+    }
     .service-card strong { display: block; font-size: 13px; line-height: 1.35; text-transform: uppercase; }
     .service-card small { color: var(--muted); font-size: 11px; }
 
@@ -408,31 +792,120 @@
       position: relative;
       z-index: 5;
       display: grid;
-      grid-template-columns: 1.1fr 1.4fr;
-      gap: 44px;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 32px;
       align-items: center;
-      margin-top: -52px;
-      padding: 28px 30px;
-      border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+      margin-top: -8px;
+      padding: 24px 26px;
+      border: 0;
       border-radius: 22px;
       background: color-mix(in srgb, var(--surface) 94%, transparent);
       box-shadow: 0 30px 80px var(--shadow);
       backdrop-filter: blur(18px);
     }
     .summary-kicker { margin-bottom: 8px; color: var(--accent); font-size: 10px; font-weight: 850; letter-spacing: 0.13em; text-transform: uppercase; }
-    .summary-title { max-width: 430px; margin-bottom: 8px; font-size: clamp(1.45rem, 2.4vw, 2.15rem); line-height: 1.05; letter-spacing: -0.04em; }
+    .summary-title { max-width: 600px; margin-bottom: 8px; font-size: clamp(1.45rem, 2.4vw, 2.15rem); line-height: 1.05; letter-spacing: -0.04em; text-wrap: balance; }
     .summary-about > p:last-child { margin-bottom: 0; color: var(--muted); font-size: 13px; }
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .stat-card { min-height: 102px; padding: 17px 14px; border: 1px solid var(--line); border-radius: 14px; background: color-mix(in srgb, var(--surface-2) 72%, transparent); text-align: center; }
-    .stat-icon { display: block; margin-bottom: 5px; color: var(--accent); font-size: 16px; }
-    .stat-card strong { display: block; font-size: 1.12rem; }
-    .stat-card span:last-child { color: var(--muted); font-size: 11px; }
-    .stat-card-link { transition: transform 160ms ease, border-color 160ms ease, background 160ms ease; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+    .stat-card { display: grid; min-width: 0; min-height: 88px; align-content: center; justify-items: center; padding: 12px 8px; border: 1px solid transparent; border-radius: 12px; background: transparent; text-align: center; transition: border-color 160ms ease; }
+    .stat-card:hover, .stat-card:focus-visible { border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+    .stat-icon { display: grid; min-height: 36px; margin-bottom: 6px; place-items: center; }
+    .stat-icon .site-icon { width: 34px; height: 34px; }
+    .summary-icon { overflow: visible; transition: filter 180ms ease; }
+    .summary-icon .summary-draw { stroke-dasharray: 1; stroke-dashoffset: 0; }
+    .stat-card:hover .summary-icon, .stat-card:focus-visible .summary-icon { filter: drop-shadow(0 5px 8px color-mix(in srgb, var(--accent) 34%, transparent)); }
+    .stat-card:hover .summary-draw, .stat-card:focus-visible .summary-draw { animation: summary-line-redraw 820ms cubic-bezier(0.4, 0, 0.2, 1) both; }
+    .stat-card:hover .summary-clock-hand, .stat-card:focus-visible .summary-clock-hand { animation: summary-clock-tick 820ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .stat-card:hover .summary-link-top, .stat-card:focus-visible .summary-link-top { animation: summary-link-top 760ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .stat-card:hover .summary-link-bottom, .stat-card:focus-visible .summary-link-bottom { animation: summary-link-bottom 760ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .stat-card:hover .summary-person-primary, .stat-card:focus-visible .summary-person-primary { animation: summary-person-pop 760ms cubic-bezier(0.2, 0.9, 0.2, 1); }
+    .stat-card:hover .summary-person-secondary, .stat-card:focus-visible .summary-person-secondary { animation: summary-person-slide 820ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .stat-card:hover .summary-download-arrow, .stat-card:focus-visible .summary-download-arrow { animation: summary-download-drop 760ms cubic-bezier(0.2, 0.9, 0.2, 1); }
+    .summary-clock-hand, .summary-link-top, .summary-link-bottom, .summary-person-primary, .summary-person-secondary, .summary-download-arrow { transform-box: view-box; transform-origin: center; }
+    @keyframes summary-line-redraw {
+      0% { stroke-dashoffset: 0; opacity: 1; }
+      24% { stroke-dashoffset: 1; opacity: 0.18; }
+      25% { stroke-dashoffset: 1; opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @keyframes summary-line-cycle {
+      0%, 18%, 100% { stroke-dashoffset: 0; opacity: 1; }
+      38% { stroke-dashoffset: 1; opacity: 1; }
+      39% { stroke-dashoffset: 1; opacity: 0; }
+      40% { stroke-dashoffset: 1; opacity: 1; }
+      72% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @keyframes summary-clock-tick {
+      0%, 100% { transform: rotate(0); }
+      42% { transform: rotate(225deg); }
+      68% { transform: rotate(330deg); }
+    }
+    @keyframes summary-link-top {
+      0%, 100% { transform: translate(0); }
+      38% { transform: translate(4px, -4px); }
+      66% { transform: translate(-1px, 1px); }
+    }
+    @keyframes summary-link-bottom {
+      0%, 100% { transform: translate(0); }
+      38% { transform: translate(-4px, 4px); }
+      66% { transform: translate(1px, -1px); }
+    }
+    @keyframes summary-person-pop {
+      0%, 100% { transform: translateY(0) scale(1); }
+      38% { transform: translateY(-4px) scale(1.08); }
+      64% { transform: translateY(1px) scale(0.97); }
+    }
+    @keyframes summary-person-slide {
+      0%, 100% { transform: translateX(0); opacity: 1; }
+      34% { transform: translateX(6px); opacity: 0; }
+      35% { transform: translateX(-6px); opacity: 0; }
+      58% { opacity: 1; }
+    }
+    @keyframes summary-download-drop {
+      0%, 100% { transform: translateY(0); }
+      32% { transform: translateY(-5px); }
+      62% { transform: translateY(4px); }
+      78% { transform: translateY(-1px); }
+    }
+    .stat-card strong { display: block; font-size: 1.02rem; }
+    .stat-card span:last-child { display: block; max-width: 104px; min-height: 2.5em; margin: 3px auto 0; color: var(--muted); font-size: 10px; line-height: 1.25; text-wrap: balance; }
+    .stat-card-link { color: inherit; font: inherit; cursor: pointer; transition: transform 160ms ease, border-color 160ms ease; }
     .stat-card-link .stat-icon { transition: transform 160ms ease; }
-    .stat-card-link:hover, .stat-card-link:focus-visible { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 50%, transparent); background: color-mix(in srgb, var(--accent) 9%, transparent); }
+    .stat-card-link:hover, .stat-card-link:focus-visible { transform: translateY(-3px); }
     .stat-card-link:hover .stat-icon, .stat-card-link:focus-visible .stat-icon { transform: translateY(3px); }
 
+    @media (max-width: 1180px) {
+      .stat-card:nth-child(1) { --summary-cycle-delay: 0s; }
+      .stat-card:nth-child(2) { --summary-cycle-delay: -1.05s; }
+      .stat-card:nth-child(3) { --summary-cycle-delay: -2.1s; }
+      .stat-card:nth-child(4) { --summary-cycle-delay: -3.15s; }
+      .stat-card:hover .summary-clock-hand,
+      .stat-card:focus-visible .summary-clock-hand,
+      .stat-card:hover .summary-link-top,
+      .stat-card:focus-visible .summary-link-top,
+      .stat-card:hover .summary-link-bottom,
+      .stat-card:focus-visible .summary-link-bottom,
+      .stat-card:hover .summary-person-primary,
+      .stat-card:focus-visible .summary-person-primary,
+      .stat-card:hover .summary-person-secondary,
+      .stat-card:focus-visible .summary-person-secondary,
+      .stat-card:hover .summary-download-arrow,
+      .stat-card:focus-visible .summary-download-arrow {
+        animation: none;
+        transform: none;
+      }
+      .stat-card .summary-icon .summary-draw,
+      .stat-card:hover .summary-icon .summary-draw,
+      .stat-card:focus-visible .summary-icon .summary-draw {
+        animation: summary-line-cycle 4.2s ease-in-out infinite;
+        animation-delay: var(--summary-cycle-delay, 0s);
+      }
+      .stat-card-link:hover, .stat-card-link:focus-visible,
+      .stat-card-link:hover .stat-icon, .stat-card-link:focus-visible .stat-icon { transform: none; }
+    }
+
     @media (max-width: 1040px) {
+      h1 { font-size: clamp(2.2rem, 4.5vw, 3rem); }
       .menu-toggle { display: block; }
       .site-header.menu-open, .site-nav {
         background: color-mix(in srgb, var(--bg) 97%, transparent);
@@ -456,8 +929,8 @@
         transition: opacity 180ms ease, transform 180ms ease;
       }
       .site-nav.open { opacity: 1; pointer-events: auto; transform: none; }
-      .site-nav > a, .site-nav .nav-cta { display: block; padding: 11px 14px; text-align: center; }
-      .nav-cta { margin: 0; }
+      .site-nav > a, .site-nav .nav-cta { display: block; min-height: 0; padding: 11px 14px; text-align: center; }
+      .nav-cta { order: 0; margin: 0; }
       .nav-controls { display: grid; width: 100%; grid-template-columns: 1fr; gap: 4px; padding-top: 10px; border-top: 1px solid var(--line); }
       .theme-toggle {
         display: flex;
@@ -490,7 +963,7 @@
         letter-spacing: 0;
       }
       .language-trigger .language-chevron { position: absolute; right: 14px; }
-      .language-trigger:hover, .language-trigger:focus-visible, .language-trigger[aria-expanded="true"] { border-color: transparent; color: var(--header-hover); background: color-mix(in srgb, var(--accent) 14%, transparent); }
+      .language-trigger:hover, .language-trigger:focus-visible, .language-trigger[aria-expanded="true"] { color: var(--header-hover); background: color-mix(in srgb, var(--accent) 14%, transparent); }
       .language-options { position: static; width: 100%; margin-top: 2px; padding: 4px 0; border: 0; border-radius: 8px; background: transparent; box-shadow: none; backdrop-filter: none; }
       .language-option { min-height: 0; justify-content: center; padding: 10px 14px; border-radius: 8px; font-size: 14px; font-weight: 650; text-align: center; }
       .language-option.active { color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
@@ -498,25 +971,35 @@
       .menu-toggle[aria-expanded="true"] > span:nth-child(2) { opacity: 0; }
       .menu-toggle[aria-expanded="true"] > span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
       .hero-stage { grid-template-columns: 1.12fr 0.78fr; }
-      .hero-services { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); margin: -46px 0 70px; }
+      .hero-services { grid-column: 1 / -1; grid-row: auto; grid-template-columns: repeat(2, 1fr); margin: -46px 0 70px; --cloud-left: 0px; --cloud-right: 0px; }
+      .hero-services .service-card:nth-child(even) { --cloud-y: 12px; }
+      .hero-links { width: min(100%, 560px); max-width: none; gap: 16px 18px; margin: 10px 0 52px; overflow: visible; }
       .hero-summary { margin-top: -44px; grid-template-columns: 1fr; }
+      .expertise-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 900px) {
+      h1 { font-size: 3rem; }
       .hero { min-height: auto; }
       .hero-stage, .split-grid, .recognition-grid { grid-template-columns: 1fr; gap: 26px; }
+      .hero-stage { grid-template-rows: auto; }
       .hero-copy { padding-bottom: 10px; }
+      .hero-copy, .portrait-wrap, .hero-links, .hero-services { grid-column: auto; grid-row: auto; }
+      .contact-inner { grid-template-columns: 1fr; gap: 34px; }
+      .contact-copy { padding-bottom: 0; }
+      .contact-portrait img { width: min(84vw, 340px); }
+      .hero-links { margin-bottom: 34px; }
       .portrait-wrap { top: -30px; width: min(78vw, 380px); min-height: 460px; justify-self: center; }
       .portrait { width: min(76vw, 390px); max-height: 500px; }
       .portrait-wrap::before { width: min(82vw, 390px); }
       .portrait-ring { width: min(88vw, 420px); }
-      .hero-services { grid-column: auto; grid-template-columns: repeat(3, 1fr); margin: 0 0 86px; }
-      .service-card { grid-template-columns: 36px 1fr; padding: 13px; }
-      .service-icon { width: 36px; height: 36px; }
+      .hero-services { grid-column: auto; grid-template-columns: repeat(2, 1fr); margin: 0 0 86px; }
+      .service-card { grid-template-columns: 51px 1fr; padding: 13px; }
+      .service-icon { width: 51px; height: 51px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .expertise-grid { grid-template-columns: 1fr; }
       .expertise-card { min-height: auto; }
-      .card-number { margin-bottom: 48px; }
+      .expertise-card-head { margin-bottom: 48px; }
       .quick-facts { grid-template-columns: 1fr; }
       .section-heading { display: block; }
       .section-heading > p { margin-top: 20px; }
@@ -525,36 +1008,138 @@
     @media (max-width: 720px) {
       .container { width: min(calc(100% - 28px), var(--max-width)); }
       .site-nav { padding-inline: 14px; }
+      .order-form { gap: 16px; padding: 22px; }
+      .order-actions > .button { flex: 1 1 auto; }
+      .cv-dialog { width: calc(100% - 16px); height: 92dvh; }
+      .cv-dialog-actions { width: 100%; padding: 12px; }
+      .cv-dialog-actions > .button { min-width: 0; min-height: 44px; padding-inline: 14px; }
       .hero { padding-top: 104px; }
-      h1 { font-size: clamp(2.45rem, 12vw, 4rem); }
+      h1 { font-size: clamp(1.5rem, 7.8vw, 3rem); }
+      h2 { font-size: clamp(1.4rem, 7.5vw, 2.3rem); }
       .portrait-wrap { top: -20px; width: min(82vw, 330px); min-height: 405px; margin-top: 0; }
       .portrait { width: min(88vw, 350px); height: auto; max-height: 440px; }
-      .hero-services { grid-template-columns: 1fr; margin-bottom: 72px; }
+      .hero-links { display: grid; width: 100%; max-width: none; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 8px; margin: -16px 0 26px; overflow: visible; font-size: 10px; letter-spacing: 0.02em; }
+      .hero-links a { min-width: 0; justify-content: center; }
+      .hero-links .social-icon { width: 34px; height: 34px; }
+      .hero-services { grid-template-columns: 1fr; margin-bottom: 72px; --cloud-left: 8px; --cloud-right: 8px; }
+      .hero-services .service-card:nth-child(even) { --cloud-y: 0px; }
       .hero-summary { margin-top: -44px; padding: 24px 18px; }
       .section { padding: 90px 0; }
       .timeline-item { grid-template-columns: 1fr; gap: 20px; }
       .timeline-meta { flex-direction: row; justify-content: space-between; }
+      .timeline-meta--with-logo { align-items: flex-start; flex-direction: column; justify-content: flex-start; }
+      .timeline-item > div:last-child { max-width: none; }
       .project-card { grid-template-columns: 1fr auto; padding: 28px; }
       .project-index { grid-column: 1 / -1; }
       .footer-inner { align-items: flex-start; flex-direction: column; }
-      .footer-links { justify-content: flex-start; }
+      .footer-links { width: 100%; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 14px; }
+      .footer-socials { flex: 1 1 auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 8px; }
+      .footer-links .footer-top { flex: 0 0 auto; padding: 9px 13px; gap: 6px; }
+      .footer-top-arrow { width: 22px; height: 22px; }
+      .site-footer { padding: 26px 0 calc(104px + env(safe-area-inset-bottom, 0px)); }
+      .timeline-heading { gap: 18px; }
+      .company-logo { width: 150px; height: 50px; flex-basis: 150px; }
+      .company-logo--kapital { width: 174px; height: 20px; flex-basis: 174px; margin-top: 14px; }
+      .company-logo--ipotekabank { width: 174px; height: 39px; flex-basis: 174px; }
+      .company-logo--davr { width: 155px; height: 24px; flex-basis: 155px; }
+      .credential-card { grid-template-columns: 1fr; gap: 16px; padding: 22px; }
+      .credential-card:hover { translate: none; box-shadow: none; }
+      .credential-aside { grid-auto-flow: column; justify-content: start; align-items: center; gap: 13px; }
+      .contact-actions { display: grid; grid-template-columns: 1fr; }
+      .contact-button { width: 100%; min-width: 0; }
+      .credential-card:nth-child(1) { --credential-cycle-delay: 0s; }
+      .credential-card:nth-child(2) { --credential-cycle-delay: -1.05s; }
+      .credential-card:nth-child(3) { --credential-cycle-delay: -2.1s; }
+      .credential-card:nth-child(4) { --credential-cycle-delay: -3.15s; }
+      .credential-card .credential-draw,
+      .credential-card:hover .credential-draw {
+        animation: expertise-line-cycle 4.2s ease-in-out infinite;
+        animation-delay: var(--credential-cycle-delay, 0s);
+      }
+    }
+
+    @media (max-width: 345px) {
+      .footer-links .footer-top { padding: 9px; gap: 0; }
+      .footer-links .footer-top > span:not(.site-icon) { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+      .language-flag { filter: none !important; transform: none !important; }
       .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
+  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <filter id="flag-ripple" x="-20%" y="-35%" width="150%" height="170%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.11" numOctaves="1" seed="7" result="flag-noise">
+        <animate attributeName="baseFrequency" dur="2.65s" values="0.012 0.10;0.012 0.17;0.012 0.10" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="flag-noise" scale="1.4" xChannelSelector="R" yChannelSelector="B">
+        <animate attributeName="scale" dur="2.65s" values="1.1;2.15;1.1" repeatCount="indefinite"/>
+      </feDisplacementMap>
+    </filter>
+    <symbol id="icon-sun" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.8V5M12 19v3.2M22.2 12H19M5 12H1.8M19.2 4.8l-2.3 2.3M7.1 16.9l-2.3 2.3M19.2 19.2l-2.3-2.3M7.1 7.1L4.8 4.8"/></g></symbol>
+    <symbol id="icon-moon" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 14.3A9.3 9.3 0 1 1 9.7 3.4 7.3 7.3 0 0 0 20.6 14.3z"/></g></symbol>
+    <symbol id="flag-uz" viewBox="0 0 24 16">
+      <rect width="24" height="16" rx="2.4" fill="#ffffff"/>
+      <path d="M2.4 0h19.2A2.4 2.4 0 0 1 24 2.4V5.1H0V2.4A2.4 2.4 0 0 1 2.4 0z" fill="#0099b5"/>
+      <path d="M0 10.9h24v2.7a2.4 2.4 0 0 1-2.4 2.4H2.4A2.4 2.4 0 0 1 0 13.6v-2.7z" fill="#1eb53a"/>
+      <path d="M0 5.1h24v0.62H0zM0 10.28h24v0.62H0z" fill="#ce1126"/>
+      <circle cx="4.15" cy="2.55" r="1.55" fill="#ffffff"/>
+      <circle cx="4.95" cy="2.55" r="1.55" fill="#0099b5"/>
+    </symbol>
+    <symbol id="flag-ru" viewBox="0 0 24 16">
+      <rect width="24" height="16" rx="2.4" fill="#ffffff"/>
+      <path d="M0 5.33h24v5.34H0z" fill="#0039a6"/>
+      <path d="M0 10.67h24v2.93a2.4 2.4 0 0 1-2.4 2.4H2.4A2.4 2.4 0 0 1 0 13.6v-2.93z" fill="#d52b1e"/>
+    </symbol>
+    <symbol id="flag-gb" viewBox="0 0 24 16">
+      <clipPath id="flag-gb-clip"><rect width="24" height="16" rx="2.4"/></clipPath>
+      <g clip-path="url(#flag-gb-clip)">
+        <rect width="24" height="16" fill="#012169"/>
+        <path d="M0 0l24 16M24 0L0 16" stroke="#ffffff" stroke-width="3.2"/>
+        <path d="M0 0l24 16M24 0L0 16" stroke="#c8102e" stroke-width="1.7"/>
+        <path d="M12 0v16M0 8h24" stroke="#ffffff" stroke-width="5.2"/>
+        <path d="M12 0v16M0 8h24" stroke="#c8102e" stroke-width="3.1"/>
+      </g>
+    </symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 8.4L12 18l9.6-9.6"/></g></symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 12h19.2M13.4 3.8L21.6 12l-8.2 8.2"/></g></symbol>
+    <symbol id="icon-arrow-up" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.6V2.4M3.8 10.6L12 2.4l8.2 8.2"/></g></symbol>
+    <symbol id="icon-linkedin" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M7.3 10.2V20"/><path d="M7.3 5.6v.1"/><path d="M13.4 20v-9.8M13.4 14.1a3.6 3.6 0 0 1 7.2 0V20"/></g></symbol>
+    <symbol id="icon-twitter" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M22.4 4.1a8.6 8.6 0 0 1-2.6 1.3 4.1 4.1 0 0 0-7.1 2.8v.9A9.9 9.9 0 0 1 4.3 5.1s-3.7 8.3 4.6 12a10.7 10.7 0 0 1-6.5 1.8c8.3 4.6 18.4 0 18.4-10.6a4.1 4.1 0 0 0-.1-.8 7.1 7.1 0 0 0 1.7-3.4z"/></g></symbol>
+    <symbol id="icon-telegram" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 4.4a1.2 1.2 0 0 0-1.7 1.5l2 5.4a1.2 1.2 0 0 1 0 .8l-2 5.4a1.2 1.2 0 0 0 1.7 1.5l17.6-7.2a1.2 1.2 0 0 0 0-2.2z"/><path d="M4.4 12h7.2"/></g></symbol>
+    <symbol id="icon-phone" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M21.6 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.7 4.1 2 2 0 0 1 3.7 2h3a2 2 0 0 1 2 1.7 12.8 12.8 0 0 0 .7 2.8 2 2 0 0 1-.5 2.1L7.7 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4 12.8 12.8 0 0 0 2.8.7 2 2 0 0 1 1.7 2z"/></g></symbol>
+    <symbol id="icon-whatsapp" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M3.1 20.9l1.3-4.7A8.9 8.9 0 1 1 7.8 19.6l-4.7 1.3z"/><path d="M8.9 8.4c.3-.1.6 0 .8.3l.8 1.5c.1.3.1.6-.1.8l-.5.6c-.2.2-.2.4-.1.6.5.9 1.3 1.7 2.2 2.2.2.1.4.1.6-.1l.6-.5c.2-.2.5-.2.8-.1l1.5.8c.3.2.4.5.3.8-.2.8-1 1.3-1.8 1.3-2.8 0-6.1-3.3-6.1-6.1 0-.8.5-1.6 1.3-1.8z"/></g></symbol>
+    <symbol id="icon-facebook" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3.4h-1.6a4.4 4.4 0 0 0-4.4 4.4v12.8"/><path d="M6.2 10.6h8.6"/></g></symbol>
+    <symbol id="icon-youtube" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><rect x="1.9" y="5.6" width="20.2" height="12.8" rx="4"/><path d="M10.2 9.2l5.4 2.8-5.4 2.8z"/></g></symbol>
+    <symbol id="icon-code" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M16.4 6.2L21.6 12l-5.2 5.8M7.6 6.2L2.4 12l5.2 5.8M13.8 3.6l-3.6 16.8"/></g></symbol>
+    <symbol id="icon-monitor" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><rect x="2.4" y="3.6" width="19.2" height="13.8" rx="2.2"/><path d="M8.2 21h7.6M12 17.4V21"/></g></symbol>
+    <symbol id="icon-bank" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 9.6L12 3.6l9.6 6z"/><path d="M3.6 12.4h16.8"/><path d="M6.6 12.9v5.8M12 12.9v5.8M17.4 12.9v5.8"/><path d="M2.4 20.4h19.2"/></g></symbol>
+    <symbol id="icon-team" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M15.4 20.6v-2a4 4 0 0 0-4-4H5.9a4 4 0 0 0-4 4v2"/><circle cx="8.7" cy="6.8" r="3.6"/><path d="M22.1 20.6v-2a4 4 0 0 0-3-3.9M15.9 3.5a3.6 3.6 0 0 1 0 6.9"/></g></symbol>
+    <symbol id="icon-clock" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.8"/><path d="M12 6.2V12l3.9 2.4"/></g></symbol>
+    <symbol id="icon-link" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M10.2 13.2a4.8 4.8 0 0 0 7.2.5l2.4-2.4a4.8 4.8 0 0 0-6.8-6.8l-1.4 1.4"/><path d="M13.8 10.8a4.8 4.8 0 0 0-7.2-.5l-2.4 2.4a4.8 4.8 0 0 0 6.8 6.8l1.4-1.4"/></g></symbol>
+    <symbol id="icon-download" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M21.6 15.4v4a2.2 2.2 0 0 1-2.2 2.2H4.6a2.2 2.2 0 0 1-2.2-2.2v-4"/><path d="M6.8 10.2L12 15.4l5.2-5.2"/><path d="M12 15.4V2.4"/></g></symbol>
+    <symbol id="icon-diamond" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.4L21.6 12 12 21.6 2.4 12z"/></g></symbol>
+    <symbol id="icon-mobile" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="1.8" width="12" height="20.4" rx="2.8"/><path d="M10.2 18.8h3.6"/></g></symbol>
+    <symbol id="icon-arrow-up-right" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M5.4 18.6L18.6 5.4"/><path d="M8.4 5.4h10.2v10.2"/></g></symbol>
+    <symbol id="icon-external" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M18.2 13.4v6a2.2 2.2 0 0 1-2.2 2.2H4.8a2.2 2.2 0 0 1-2.2-2.2V8.2A2.2 2.2 0 0 1 4.8 6h6"/><path d="M15 2.4h6.6V9"/><path d="M10.2 13.8L21.6 2.4"/></g></symbol>
+  </svg>
+
   <a class="skip-link" href="#main" data-i18n="skipLink">Kontentga o‘tish</a>
 
   <header class="site-header" data-header>
     <div class="container nav-wrap">
       <a class="brand" href="#top" aria-label="Ravshanjon Ismoilov">
-        <img class="brand-logo brand-logo-dark" src="assets/cha-logo-dark.png" alt="" width="228" height="114">
-        <img class="brand-logo brand-logo-light" src="assets/cha-logo-light.png" alt="" width="228" height="114">
+        <img class="brand-logo brand-logo-dark" src="assets/ravshanjon-mark-dark.svg" alt="" width="120" height="120">
+        <img class="brand-logo brand-logo-light" src="assets/ravshanjon-mark-light.svg" alt="" width="120" height="120">
+        <span class="brand-name" aria-hidden="true">
+          <span class="brand-name-primary">Ravshanjon</span>
+          <span class="brand-name-secondary">Ismoilov</span>
+        </span>
       </a>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-button>
@@ -570,19 +1155,22 @@
         <a class="nav-cta" href="tel:+998999420770" aria-label="+998 99 942 07 70 raqamiga qo‘ng‘iroq qilish" data-i18n-label="phoneLabel">+998 99 942 07 70</a>
         <div class="nav-controls">
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="Rejimni almashtirish" title="Rejimni almashtirish">
-            <span data-theme-icon aria-hidden="true">☀</span>
+            <span class="theme-toggle-icons">
+              <svg class="site-icon theme-icon-current" data-theme-icon aria-hidden="true" focusable="false"><use href="#icon-moon"/></svg>
+              <svg class="site-icon theme-icon-next" data-theme-icon-alt aria-hidden="true" focusable="false"><use href="#icon-sun"/></svg>
+            </span>
             <span class="theme-toggle-label" data-theme-label>Qorong‘i</span>
           </button>
           <div class="language-select" data-language-select>
             <button class="language-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="language-options" data-language-trigger>
-              <span class="language-flag" data-language-flag aria-hidden="true">🇺🇿</span>
+              <svg class="language-flag" data-language-flag viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-uz"/></svg>
               <span data-language-code>UZ</span>
-              <span class="language-chevron" aria-hidden="true">⌄</span>
+              <svg class="language-chevron site-icon" aria-hidden="true" focusable="false"><use href="#icon-chevron-down"/></svg>
             </button>
             <div class="language-options" id="language-options" role="listbox" aria-label="Til" data-i18n-label="languageLabel" data-language-options hidden>
-              <button class="language-option" type="button" role="option" data-language="uz"><span class="language-flag" aria-hidden="true">🇺🇿</span><span>O‘zbek</span></button>
-              <button class="language-option" type="button" role="option" data-language="ru"><span class="language-flag" aria-hidden="true">🇷🇺</span><span>Русский</span></button>
-              <button class="language-option" type="button" role="option" data-language="en"><span class="language-flag" aria-hidden="true">🇬🇧</span><span>English</span></button>
+              <button class="language-option" type="button" role="option" data-language="uz"><svg class="language-flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-uz"/></svg><span>O‘zbek</span></button>
+              <button class="language-option" type="button" role="option" data-language="ru"><svg class="language-flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-ru"/></svg><span>Русский</span></button>
+              <button class="language-option" type="button" role="option" data-language="en"><svg class="language-flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-gb"/></svg><span>English</span></button>
             </div>
           </div>
         </div>
@@ -595,47 +1183,68 @@
       <div class="container hero-shell">
         <div class="hero-stage">
           <div class="hero-copy reveal">
-            <p class="eyebrow"><span class="status-dot"></span><span data-i18n="heroGreeting">Salom! Men Ravshanjonman 👋</span></p>
-            <h1 data-i18n-html="heroTitle">Foydali <span class="accent-word">raqamli mahsulotlar</span> yarataman.</h1>
-            <p class="hero-lead" data-i18n="heroLead">Men ishonchli tizimlar va zamonaviy ilovalar yaratuvchi dasturiy ta’minot muhandisiman.</p>
+            <p class="eyebrow reveal"><span class="status-dot"></span><span data-i18n="heroGreeting">Salom! Men Ravshanjonman 👋</span></p>
+            <h1 data-i18n-html="heroTitle"><span class="accent-word">Foydali raqamli mahsulotlar</span><br>yarataman.</h1>
             <div class="hero-actions">
-              <a class="button button-primary" href="#work"><span data-i18n="startProject">Loyihani boshlash</span> <span aria-hidden="true">→</span></a>
-              <a class="button button-secondary" href="https://github.com/ravshancha" target="_blank" rel="noreferrer"><span data-i18n="viewGithub">GitHub profil</span> <span aria-hidden="true">↗</span></a>
+              <button class="button button-primary" type="button" data-order-open><span data-i18n="startProject">Loyihaga buyurtma berish</span><svg class="site-icon button-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></button>
             </div>
-            <nav class="hero-links" aria-label="Ijtimoiy tarmoqlar" data-i18n-label="socialLabel">
-              <a href="https://github.com/ravshancha" target="_blank" rel="noreferrer">GitHub</a>
-              <a href="https://www.linkedin.com/in/ravshancha" target="_blank" rel="noreferrer">LinkedIn</a>
-              <a href="https://t.me/ravshancha" target="_blank" rel="noreferrer">Telegram</a>
-            </nav>
           </div>
 
           <div class="portrait-wrap reveal">
             <div class="portrait-ring"></div>
             <picture>
-              <source type="image/avif" srcset="assets/ravshanjon-3d-861.avif 861w, assets/ravshanjon-3d.avif 1077w" sizes="(max-width: 720px) 88vw, (max-width: 900px) 76vw, 430px">
-              <source type="image/webp" srcset="assets/ravshanjon-3d-861.webp 861w, assets/ravshanjon-3d.webp 1077w" sizes="(max-width: 720px) 88vw, (max-width: 900px) 76vw, 430px">
-              <img class="portrait" src="assets/ravshanjon-3d.webp" alt="Ravshanjon Ismoilovning 3D portreti" data-i18n-alt="portraitAlt" width="1077" height="1461" fetchpriority="high" decoding="async">
+              <source type="image/avif" srcset="assets/ravshanjon-3d-861.avif?v=4 861w, assets/ravshanjon-3d.avif?v=4 1077w" sizes="(max-width: 720px) 88vw, (max-width: 900px) 76vw, 430px">
+              <source type="image/webp" srcset="assets/ravshanjon-3d-861.webp?v=4 861w, assets/ravshanjon-3d.webp?v=4 1077w" sizes="(max-width: 720px) 88vw, (max-width: 900px) 76vw, 430px">
+              <img class="portrait" src="assets/ravshanjon-3d.webp?v=4" alt="Ravshanjon Ismoilov portreti" data-i18n-alt="portraitAlt" width="1077" height="1461" fetchpriority="high" decoding="async">
             </picture>
           </div>
 
+          <nav class="hero-links reveal" aria-label="Ijtimoiy tarmoqlar" data-i18n-label="socialLabel">
+            <a href="https://www.linkedin.com/in/ravshancha" target="_blank" rel="noopener noreferrer">
+              <svg class="site-icon social-icon social-linkedin" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g class="social-motion"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="social-draw" pathLength="1" d="M7.3 10.2V20"/><circle class="social-detail social-draw" pathLength="1" cx="7.3" cy="5.65" r="0.7" fill="currentColor" stroke="none"/><path class="social-draw" pathLength="1" d="M13.4 20v-9.8M13.4 14.1a3.6 3.6 0 0 1 7.2 0V20"/></g></g></svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://x.com/ravshancha" target="_blank" rel="noopener noreferrer">
+              <svg class="site-icon social-icon social-twitter" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g class="social-motion"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="social-draw" pathLength="1" d="M22.4 4.1a8.6 8.6 0 0 1-2.6 1.3 4.1 4.1 0 0 0-7.1 2.8v.9A9.9 9.9 0 0 1 4.3 5.1s-3.7 8.3 4.6 12a10.7 10.7 0 0 1-6.5 1.8c8.3 4.6 18.4 0 18.4-10.6a4.1 4.1 0 0 0-.1-.8 7.1 7.1 0 0 0 1.7-3.4z"/></g></g></svg>
+              <span>Twitter</span>
+            </a>
+            <a href="https://t.me/ravshanjon_ismoilov" target="_blank" rel="noopener noreferrer">
+              <svg class="site-icon social-icon social-telegram" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g class="social-motion"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="social-draw" pathLength="1" d="M3.5 4.4a1.2 1.2 0 0 0-1.7 1.5l2 5.4a1.2 1.2 0 0 1 0 .8l-2 5.4a1.2 1.2 0 0 0 1.7 1.5l17.6-7.2a1.2 1.2 0 0 0 0-2.2z"/><path class="social-draw" pathLength="1" d="M4.4 12h7.2"/></g></g></svg>
+              <span>Telegram</span>
+            </a>
+            <a href="https://wa.me/998999420770" target="_blank" rel="noopener noreferrer">
+              <svg class="site-icon social-icon social-phone" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g class="social-motion"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="social-draw" pathLength="1" d="M21.6 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.7 4.1 2 2 0 0 1 3.7 2h3a2 2 0 0 1 2 1.7 12.8 12.8 0 0 0 .7 2.8 2 2 0 0 1-.5 2.1L7.7 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4 12.8 12.8 0 0 0 2.8.7 2 2 0 0 1 1.7 2z"/></g></g></svg>
+              <span>WhatsApp</span>
+            </a>
+            <a href="https://www.facebook.com/ravshancha" target="_blank" rel="noopener noreferrer">
+              <svg class="site-icon social-icon social-facebook" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g class="social-motion"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="social-draw" pathLength="1" d="M16 3.4h-1.6a4.4 4.4 0 0 0-4.4 4.4v12.8"/><path class="social-draw" pathLength="1" d="M6.2 10.6h8.6"/></g></g></svg>
+              <span>Facebook</span>
+            </a>
+            <a href="https://www.youtube.com/@ravshancha" target="_blank" rel="noopener noreferrer">
+              <svg class="site-icon social-icon social-youtube" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g class="social-motion"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><rect class="social-draw" pathLength="1" x="1.9" y="5.6" width="20.2" height="12.8" rx="4"/><path class="social-detail social-draw" pathLength="1" d="M10.2 9.2l5.4 2.8-5.4 2.8z"/></g></g></svg>
+              <span>YouTube</span>
+            </a>
+          </nav>
+
           <aside class="hero-services reveal" aria-label="Mutaxassislik yo‘nalishlari" data-i18n-label="specialtiesLabel">
-            <div class="service-card"><span class="service-icon">&lt;/&gt;</span><div><strong data-i18n="specialtySoftware">Dasturiy muhandis</strong><small data-i18n="specialtySoftwareMeta">Java · Vue · React</small></div></div>
-            <div class="service-card"><span class="service-icon">◇</span><div><strong data-i18n="specialtyArchitecture">Arxitektura</strong><small data-i18n="specialtyArchitectureMeta">Tizimlar · Integratsiyalar</small></div></div>
-            <div class="service-card"><span class="service-icon">↗</span><div><strong data-i18n="specialtyStartups">Startaplar</strong><small data-i18n="specialtyStartupsMeta">Prototip · Ishga tushirish</small></div></div>
+            <div class="service-card"><span class="service-icon"><svg class="site-icon icon-accent service-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><rect class="service-draw" pathLength="1" x="2.4" y="3.6" width="19.2" height="13.8" rx="2.2"/><path class="service-draw" pathLength="1" d="M8.2 21h7.6M12 17.4V21"/></g></svg></span><div><strong data-i18n="specialtyWebsites">Veb-tizim</strong><small data-i18n="specialtyWebsitesMeta">Java · React</small></div></div>
+            <div class="service-card"><span class="service-icon"><svg class="site-icon icon-accent service-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><rect class="service-draw" pathLength="1" x="6" y="1.8" width="12" height="20.4" rx="2.8"/><path class="service-draw" pathLength="1" d="M10.2 18.8h3.6"/></g></svg></span><div><strong data-i18n="specialtyMobile">Mobil ilovalar</strong><small data-i18n="specialtyMobileMeta">Android · iOS</small></div></div>
+            <div class="service-card"><span class="service-icon"><svg class="site-icon icon-accent service-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="service-draw" pathLength="1" d="M12 2.4L21.6 12 12 21.6 2.4 12z"/></g></svg></span><div><strong data-i18n="specialtyArchitecture">Arxitektura</strong><small data-i18n="specialtyArchitectureMeta">Tizimlar · Integratsiyalar</small></div></div>
+            <div class="service-card"><span class="service-icon"><svg class="site-icon icon-accent service-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="service-draw" pathLength="1" d="M5.4 18.6L18.6 5.4"/><path class="service-draw" pathLength="1" d="M8.4 5.4h10.2v10.2"/></g></svg></span><div><strong data-i18n="specialtyStartups">Startaplar</strong><small data-i18n="specialtyStartupsMeta">Prototip · Ishga tushirish</small></div></div>
           </aside>
         </div>
 
         <div class="hero-summary reveal">
           <div class="summary-about">
             <p class="summary-kicker" data-i18n="summaryKicker">● Men haqimda</p>
-            <h2 class="summary-title" data-i18n-html="summaryTitle">G‘oyalarni <span class="accent-word">ishonchli raqamli mahsulotlarga</span> aylantiraman.</h2>
-            <p data-i18n="summaryText">Murakkab muammolarni ishonchli kod va tushunarli foydalanuvchi tajribasi bilan yechaman.</p>
+            <h2 class="summary-title" data-i18n-html="summaryTitle"><span class="accent-word">Bank va fintech</span> tizimlarini loyihalayman va rivojlantiraman.</h2>
+            <p data-i18n="summaryText">Mobil va internet-banking, to‘lov tizimlari, davlat servislariga integratsiya va mikroservislar bo‘yicha amaliy tajribaga egaman.</p>
           </div>
           <div class="stats-grid">
-            <div class="stat-card"><span class="stat-icon">▣</span><strong data-i18n="statExperienceValue">7+ yil</strong><span data-i18n="statExperience">Tajriba</span></div>
-            <div class="stat-card"><span class="stat-icon">▤</span><strong>20+</strong><span data-i18n="statProjects">Loyihalar</span></div>
-            <div class="stat-card"><span class="stat-icon">◆</span><strong>3</strong><span data-i18n="statAwards">Mukofotlar</span></div>
-            <a class="stat-card stat-card-link" href="cv/Ravshanjon-Ismoilov-CV-uz.pdf" download aria-label="Tarjimai holni PDF holida yuklab olish (o‘zbekcha)" data-i18n-label="cvLabel" data-cv-link><span class="stat-icon" aria-hidden="true">↓</span><strong data-i18n="cvTitle">Tarjimai hol</strong><span data-i18n="cvAction">PDF yuklab olish</span></a>
+            <div class="stat-card"><span class="stat-icon"><svg class="site-icon icon-accent summary-icon summary-clock" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><circle class="summary-draw" pathLength="1" cx="12" cy="12" r="9.8"/></g><g class="summary-clock-hand"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="summary-draw" pathLength="1" d="M12 6.2V12l3.9 2.4"/></g></g></svg></span><strong data-i18n="statExperienceValue">10+</strong><span data-i18n="statExperience">Yillik tajriba</span></div>
+            <div class="stat-card"><span class="stat-icon"><svg class="site-icon icon-accent summary-icon summary-link" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g class="summary-link-top"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="summary-draw" pathLength="1" d="M10.2 13.2a4.8 4.8 0 0 0 7.2.5l2.4-2.4a4.8 4.8 0 0 0-6.8-6.8l-1.4 1.4"/></g></g><g class="summary-link-bottom"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="summary-draw" pathLength="1" d="M13.8 10.8a4.8 4.8 0 0 0-7.2-.5l-2.4 2.4a4.8 4.8 0 0 0 6.8 6.8l1.4-1.4"/></g></g></svg></span><strong>10+</strong><span data-i18n="statProjects">Muvaffaqiyatli loyihalar</span></div>
+            <div class="stat-card"><span class="stat-icon"><svg class="site-icon icon-accent summary-icon summary-team" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g class="summary-person-primary"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="summary-draw" pathLength="1" d="M15.4 20.6v-2a4 4 0 0 0-4-4H5.9a4 4 0 0 0-4 4v2"/><circle class="summary-draw" pathLength="1" cx="8.7" cy="6.8" r="3.6"/></g></g><g class="summary-person-secondary"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="summary-draw" pathLength="1" d="M22.1 20.6v-2a4 4 0 0 0-3-3.9M15.9 3.5a3.6 3.6 0 0 1 0 6.9"/></g></g></svg></span><strong>10+</strong><span data-i18n="statTeam">Jamoa a’zolari</span></div>
+            <button class="stat-card stat-card-link" type="button" aria-label="Tarjimai holni ochish" data-i18n-label="cvLabel" data-cv-open><span class="stat-icon"><svg class="site-icon icon-accent summary-icon summary-download" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="summary-draw" pathLength="1" d="M21.6 15.4v4a2.2 2.2 0 0 1-2.2 2.2H4.6a2.2 2.2 0 0 1-2.2-2.2v-4"/></g><g class="summary-download-arrow"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="summary-draw" pathLength="1" d="M6.8 10.2L12 15.4l5.2-5.2"/><path class="summary-draw" pathLength="1" d="M12 15.4V2.4"/></g></g></svg></span><strong data-i18n="cvTitle">CV</strong><span data-i18n="cvAction">Ko‘rish</span></button>
           </div>
         </div>
       </div>
@@ -645,15 +1254,14 @@
       <div class="container split-grid">
         <div>
           <p class="section-kicker" data-i18n="aboutKicker">Men haqimda</p>
-          <h2 data-i18n="aboutTitle">Aniq fikr, qiziquvchanlik va maqsadga tayangan muhandislik.</h2>
+          <h2 data-i18n="aboutTitle">10+ yillik IT tajribasi va texnik yetakchilik.</h2>
         </div>
         <div class="about-copy reveal">
-          <p data-i18n="aboutP1">Tezkor interaktiv mahsulotlar, puxta arxitektura va jamoa uchun qulay kod yaratishga e’tibor beraman.</p>
-          <p data-i18n="aboutP2">Tajribam moliyaviy texnologiyalar, server tizimlari, bir sahifali ilovalar va veb-platformalarni qamrab oladi. Murakkab talablarni sodda va tushunarli yechimlarga aylantirishni yoqtiraman.</p>
+          <p data-i18n="aboutP1">Ipotekabank OTP Group va REALSOFT’da dasturchilar guruhiga rahbarlik qildim; 6 kishigacha bo‘lgan jamoalarni boshqardim, arxitektura, relizlar va kod-revyu uchun javob berdim.</p>
+          <p data-i18n="aboutP2">Mobil va internet-banking, to‘lov tizimlari, Uzcard, Humo, Paynet, Wolt hamda davlat xizmatlari bilan integratsiyalar yaratdim. Asosiy stekim — Java 21, Spring Boot 3, Spring Cloud, PostgreSQL, Oracle, RabbitMQ va Docker.</p>
           <dl class="quick-facts">
-            <div><dt data-i18n="focusLabel">Yo‘nalish</dt><dd data-i18n="focusValue">Server tizimlari va veb-ilovalar</dd></div>
-            <div><dt data-i18n="educationLabel">Ta’lim</dt><dd data-i18n="educationValue">Kompyuter fanlari va muhandislik</dd></div>
-            <div><dt data-i18n="baseLabel">Joylashuv</dt><dd data-i18n="baseValue">Toshkent, O‘zbekiston</dd></div>
+            <div><dt><span class="fact-icon"><svg class="site-icon icon-accent fact-compass" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="fact-draw" pathLength="1" d="M12 2.2a9.8 9.8 0 1 0 0 19.6a9.8 9.8 0 1 0 0-19.6z"/></g><g class="fact-needle"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="fact-draw" pathLength="1" d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36z"/></g></g></svg></span><span data-i18n="focusLabel">Yo‘nalish</span></dt><dd data-i18n="focusValue">Java backend · Mikroservislar · Fintech</dd></div>
+            <div><dt><span class="fact-icon"><svg class="site-icon icon-accent fact-graduation" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g class="fact-cap"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="fact-draw" pathLength="1" d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/></g></g><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="fact-draw" pathLength="1" d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></g><g class="fact-tassel"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="fact-draw" pathLength="1" d="M22 10v6"/></g></g></svg></span><span data-i18n="educationLabel">Ta’lim</span></dt><dd data-i18n="educationValue">TATU · Kompyuter injiniringi · Bakalavr, 2017</dd></div>
           </dl>
         </div>
       </div>
@@ -664,29 +1272,35 @@
         <div class="section-heading">
           <div>
             <p class="section-kicker" data-i18n="expertiseKicker">Mutaxassislik</p>
-            <h2 data-i18n="expertiseTitle">G‘oyani mahsulotga aylantiradigan texnologiyalar.</h2>
+            <h2 data-i18n="expertiseTitle">Katta yuklamali tizimlar uchun backend stek.</h2>
           </div>
-          <p data-i18n="expertiseLead">Ma’lumotlar va API’lardan puxta interfeyslargacha — mahsulotning barcha asosiy qatlamlarida ishlayman.</p>
+          <p data-i18n="expertiseLead">Bank tizimlari, xavfsiz API’lar, mikroservislar, xabar navbatlari va ma’lumotlar bazalari bilan ishlayman.</p>
         </div>
 
         <div class="expertise-grid">
           <article class="expertise-card reveal">
-            <span class="card-number">01</span>
-            <h3 data-i18n="backendTitle">Server tizimlari</h3>
-            <p data-i18n="backendText">Uzoq muddat barqaror ishlaydigan servislar, REST API’lar, ma’lumotlar modellari va integratsiyalar.</p>
-            <div class="tag-list"><span>Java</span><span>REST API</span><span>PostgreSQL</span><span>Oracle</span></div>
+            <div class="expertise-card-head"><span class="card-number">01</span><span class="expertise-icon" aria-hidden="true"><svg class="site-icon expertise-svg" viewBox="0 0 24 24" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect class="expertise-draw" pathLength="1" x="2.5" y="3.5" width="19" height="17" rx="2.5"/><path class="expertise-draw" pathLength="1" d="M2.5 8h19M6 5.8h.01M9 5.8h.01M9 12l-2.5 2.2L9 16.4M15 12l2.5 2.2-2.5 2.2M13 11.4l-2 5.6"/></svg></span></div>
+            <h3 data-i18n="webAppsTitle">Veb-ilovalar</h3>
+            <p data-i18n="webAppsText">Zamonaviy frontend va xavfsiz Java backend asosidagi to‘liq veb-ilovalar.</p>
+            <div class="tag-list"><span>Java 21</span><span>Spring Boot 3</span><span>Vue</span><span>React</span></div>
           </article>
           <article class="expertise-card reveal">
-            <span class="card-number">02</span>
-            <h3 data-i18n="webTitle">Veb-ilovalar</h3>
-            <p data-i18n="webText">Tezkorlik, foydalanish qulayligi va mahsulot maqsadlarini uyg‘unlashtirgan moslashuvchan interfeyslar.</p>
-            <div class="tag-list"><span>JavaScript</span><span>React</span><span>Vue</span><span>HTML & CSS</span></div>
+            <div class="expertise-card-head"><span class="card-number">02</span><span class="expertise-icon" aria-hidden="true"><svg class="site-icon expertise-svg" viewBox="0 0 24 24" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect class="expertise-draw" pathLength="1" x="6.5" y="2" width="11" height="20" rx="2.5"/><path class="expertise-draw" pathLength="1" d="M10 5h4M10 18.7h4M9.2 8.5h5.6v6H9.2z"/></svg></span></div>
+            <h3 data-i18n="mobileAppsTitle">Mobil ilovalar</h3>
+            <p data-i18n="mobileAppsText">Android va iOS ilovalari uchun bank, to‘lov va boshqa servislar bilan ishlaydigan xavfsiz API’lar.</p>
+            <div class="tag-list"><span>Android</span><span>iOS</span><span>REST API</span><span>OAuth 2.0</span></div>
           </article>
           <article class="expertise-card reveal">
-            <span class="card-number">03</span>
-            <h3 data-i18n="deliveryTitle">Mahsulotni ishga tushirish</h3>
-            <p data-i18n="deliveryText">Talablarni aniqlashdan prototip va tayyor yechimgacha bo‘lgan amaliy hamkorlik.</p>
-            <div class="tag-list"><span>Git</span><span>CI/CD</span><span>Agile</span><span>Figma</span></div>
+            <div class="expertise-card-head"><span class="card-number">03</span><span class="expertise-icon" aria-hidden="true"><svg class="site-icon expertise-svg" viewBox="0 0 24 24" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle class="expertise-draw" pathLength="1" cx="12" cy="12" r="3.2"/><circle class="expertise-draw" pathLength="1" cx="5" cy="5" r="2.2"/><circle class="expertise-draw" pathLength="1" cx="19" cy="5" r="2.2"/><circle class="expertise-draw" pathLength="1" cx="5" cy="19" r="2.2"/><circle class="expertise-draw" pathLength="1" cx="19" cy="19" r="2.2"/><path class="expertise-draw" pathLength="1" d="M7 7l2.7 2.7M17 7l-2.7 2.7M7 17l2.7-2.7M17 17l-2.7-2.7"/></svg></span></div>
+            <h3 data-i18n="appsTitle">Mikroservislar va integratsiyalar</h3>
+            <p data-i18n="appsText">Ichki bank servislarini hamkor API’lari, to‘lov tizimlari va davlat platformalari bilan bog‘lash.</p>
+            <div class="tag-list"><span>Spring Cloud</span><span>REST · OpenAPI</span><span>RabbitMQ</span><span>ActiveMQ</span></div>
+          </article>
+          <article class="expertise-card reveal">
+            <div class="expertise-card-head"><span class="card-number">04</span><span class="expertise-icon" aria-hidden="true"><svg class="site-icon expertise-svg" viewBox="0 0 24 24" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse class="expertise-draw" pathLength="1" cx="12" cy="5" rx="7.5" ry="3"/><path class="expertise-draw" pathLength="1" d="M4.5 5v5c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V5M4.5 10v5c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-5M4.5 15v3.5c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V15"/></svg></span></div>
+            <h3 data-i18n="deliveryTitle">Ma’lumotlar va DevOps</h3>
+            <p data-i18n="deliveryText">Ma’lumotlar bazalari, konteynerlar va CI/CD yordamida ishonchli reliz jarayonlari.</p>
+            <div class="tag-list"><span>PostgreSQL · Oracle</span><span>Redis</span><span>Docker · Kubernetes</span><span>GitLab CI/CD</span></div>
           </article>
         </div>
       </div>
@@ -695,22 +1309,149 @@
     <section class="section" id="experience">
       <div class="container">
         <p class="section-kicker" data-i18n="experienceKicker">Tajriba</p>
-        <h2 data-i18n="experienceTitle">Asosiy ish tajribam.</h2>
+        <h2 data-i18n="experienceTitle">Bank va fintechdagi professional tajriba.</h2>
         <div class="timeline">
           <article class="timeline-item reveal">
-            <div class="timeline-meta"><span data-i18n="tuneDate">2020 — hozirgacha</span><span data-i18n="tunePlace">Toshkent</span></div>
+            <div class="timeline-meta timeline-meta--with-logo">
+              <span class="company-logo company-logo--kapital" aria-hidden="true">
+                <svg viewBox="0 0 1000 115.0351028" focusable="false">
+                  <g class="logo-accent">
+                    <polygon points="86.7800446,0 39.2346954,115.0351028 67.1042938,115.0351028 114.6496429,0"/>
+                    <polygon points="47.9308052,0 0.3796152,115.0351028 28.2492142,115.0351028 75.7945633,0"/>
+                    <polygon points="36.9336433,0 0,0 0,89.3672714"/>
+                    <polygon points="78.0897827,115.0351028 115.0351028,115.0351028 115.0351028,25.6619892"/>
+                  </g>
+                  <g class="logo-ink">
+                    <polygon points="198.918396,65.9245682 227.3252869,29.376379 208.6248627,29.376379 182.3613281,62.2160187 182.3613281,29.376379 160.3786774,29.376379 160.3786774,115.0292664 182.3613281,115.0292664 182.3613281,80.9164505 205.4886475,115.0292664 230.8936768,115.0292664"/>
+                    <path d="M300.2814941 115.0351028h26.1233521l-34.5449829-85.6587219H274.438446l-36.6883545 85.6587219h14.9918823l8.8479614-21.8424759h30.4100952L300.2814941 115.0351028zM287.4329529 81.4887924h-20.9839478l10.8453369-26.9877243L287.4329529 81.4887924z"/>
+                    <path d="M378.8676758 56.6444321c0 11.5636597-8.993988 18.8464355-19.12677 18.8464355h-2.7157288V40.2333755h2.7157288c10.132782 0 19.12677 4.8473969 19.12677 16.4110566zM371.0184021 29.376379h-36.1218262v85.6587219h22.1286316V86.482193h13.9932251c17.4155884 0 32.8279724-10.7051468 32.8279724-29.5515862 0-18.9866028-15.5583801-27.5542259-32.8279724-27.5542259z"/>
+                    <polygon points="413.8389893,115.0292664 435.9676514,115.0292664 435.9676514,29.3822212 413.8389893,29.3822212"/>
+                    <polygon points="514.3260498,29.3822212 448.7986755,29.3822212 448.7986755,41.0860481 470.6411438,41.0860481 470.6411438,115.0351028 492.7697754,115.0351028 492.7697754,41.0860481 514.3260498,41.0860481"/>
+                    <path d="M571.8932495 115.0351028h26.1233521l-34.5449829-85.6587219h-17.4155884l-36.6883545 85.6587219h14.9918823l8.8479614-21.8424759h30.4100952L571.8932495 115.0351028zM559.0505981 81.4887924H538.060791l10.8511963-26.9877243L559.0505981 81.4887924z"/>
+                    <polygon points="628.6428833,29.3822212 606.5142212,29.3822212 606.5142212,115.0351028 663.1878662,115.0351028 663.1878662,103.3254242 628.6428833,103.3254242"/>
+                    <path d="M722.5888672 67.6415939c7.4229126-3.0018768 12.130188-8.4274559 12.130188-17.9879189 0-17.7075901-15.9906006-20.271452-30.118103-20.271452h-31.4087524v85.6470261h36.2561035c15.56427 0 32.4074707-7.70327 32.4074707-24.9786835 0-11.8498296-8.135437-20.5517872-19.2669067-22.4089722zM701.1726685 104.1839447h-5.8519287v-31.122612h5.8519287c7.5631104 0 17.4155884 4.8590775 17.4155884 15.2780533s-9.852478 15.8445594-17.4155884 15.8445594zM695.3207397 40.51371h1.8513794c8.2814941 0 17.8478394 1.4308548 17.8478394 10.4248161 0 8.8479576-9.5663452 10.9913216-17.8478394 10.9913216h-1.8513794V40.51371z"/>
+                    <path d="M805.7713013 115.0351028h26.1233521L797.343811 29.3763809h-17.4155884l-36.6825562 85.6587219h14.986084l8.8479614-21.8424759h30.4100952L805.7713013 115.0351028zM792.9227905 81.4887924h-20.9898071l10.8511353-26.9877243L792.9227905 81.4887924z"/>
+                    <polygon points="901.6270752,82.2013016 863.2275391,29.3822212 841.8172607,29.3822212 841.8172607,115.0351028 855.3782959,115.0351028 855.3782959,54.5010681 898.350708,115.0351028 915.1881104,115.0351028 915.1881104,29.3822212 901.6270752,29.3822212"/>
+                    <polygon points="968.0188599,65.9245682 996.4316406,29.376379 977.7253418,29.376379 951.461792,62.2101746 951.461792,29.376379 929.479187,29.376379 929.479187,115.0292664 951.461792,115.0292664 951.461792,80.9164505 974.5891113,115.0292664 1000,115.0292664"/>
+                  </g>
+                </svg>
+              </span>
+              <span data-i18n="job0Date">2025-yil dekabr — hozirgacha</span>
+              <span data-i18n="job0Place">Toshkent · Bank</span>
+            </div>
             <div>
-              <h3 data-i18n="tuneRole">Server tizimlari dasturchisi</h3>
-              <p class="company">Tune Consulting · Kapitalbank / Apelsin</p>
-              <p data-i18n="tuneText">Texnik talablar asosida mahsulot funksiyalari va veb-tizimlarni ishonchli va tushunarli tarzda ishlab chiqish.</p>
+              <div class="timeline-heading">
+                <div><h3 data-i18n="job0Role">Hisobot tizimini ishlab chiqish bo‘limi boshlig‘i</h3><p class="company">Kapitalbank</p></div>
+              </div>
             </div>
           </article>
           <article class="timeline-item reveal">
-            <div class="timeline-meta"><span>2019</span><span data-i18n="stylemixArea">Veb-dasturlash</span></div>
+            <div class="timeline-meta timeline-meta--with-logo">
+              <span class="company-logo company-logo--ipotekabank" aria-hidden="true">
+                <img class="ipotekabank-logo-dark" src="assets/ipotekabank-logo-dark.png" alt="" width="1065" height="240" loading="lazy" decoding="async">
+                <img class="ipotekabank-logo-light" src="assets/ipotekabank-logo-light.png" alt="" width="1065" height="240" loading="lazy" decoding="async">
+              </span>
+              <span data-i18n="job1Date">2024-yil yanvar — 2025-yil dekabr</span>
+              <span data-i18n="job1Place">Toshkent · Bank</span>
+            </div>
             <div>
-              <h3 data-i18n="stylemixRole">Veb-dasturchi</h3>
-              <p class="company">Stylemix</p>
-              <p data-i18n="stylemixText">Xalqaro veb-loyihalar, tezlikni optimallashtirish, to‘lov tizimlari integratsiyasi va moslashuvchan interfeyslar ustida ishlash.</p>
+              <div class="timeline-heading">
+                <div><h3 data-i18n="job1Role">Dasturchilar guruhi rahbari</h3><p class="company">Ipotekabank OTP Group</p></div>
+              </div>
+              <p data-i18n="job1Text">OpenAPI/DiBank, Wolt, Qurilish vazirligi va kredit assotsiatsiyasi integratsiyalari; Java 21, Spring Boot 3, RabbitMQ, PostgreSQL va Docker asosidagi xavfsiz bank servislariga rahbarlik.</p>
+            </div>
+          </article>
+          <article class="timeline-item reveal">
+            <div class="timeline-meta timeline-meta--with-logo">
+              <span class="company-logo company-logo--realsoft" aria-hidden="true">
+                <!-- Realsoft vector geometry: Khurshid1998, CC BY-SA 4.0; adapted to a horizontal lockup. -->
+                <svg viewBox="0 0 230 46" focusable="false">
+                  <g class="logo-accent" transform="translate(-16 5) scale(.75)">
+                    <polygon points="76.087 46.888 71.282 46.888 50.87 21.628 30.45 46.888 25.636 46.888 48.463 18.66 50.862 15.692 53.268 18.66 76.087 46.888"/>
+                    <polygon points="99.195 46.828 99.119 46.888 94.432 46.888 67.353 13.387 60.081 22.394 57.674 19.417 64.946 10.419 67.353 7.45 69.751 10.419 99.195 46.828"/>
+                    <polygon points="121.079 46.888 116.282 46.888 83.172 5.936 76.487 14.212 74.089 11.244 80.774 2.968 83.172 0 85.57 2.977 121.079 46.888"/>
+                  </g>
+                  <g class="logo-ink" transform="translate(88 -28) scale(.85)">
+                    <path d="M276.5645 214.9717a4.1361 4.1361 0 0 0-3.5025-1.4287h-4.7349v3.66h-3.27V204.2422H276.582c2.1978 0 3.5738.4287 4.4849 1.2676a5.2912 5.2912 0 0 1 0 6.748 4.7744 4.7744 0 0 1-2.6621 1.1426 6.496 6.496 0 0 1 2.18 1.4814l2.5371 2.3213H279.03Zm-.3042-3.999c1.1972 0 1.8408-.1426 2.2338-.5538a2.1367 2.1367 0 0 0 .4644-1.5351 2.09 2.09 0 0 0-.4644-1.5176c-.393-.41-1.0366-.5537-2.2338-.5537h-7.9332v4.16Z" transform="translate(-265.0571 -150.4157)"/>
+                    <path d="M300.9966 217.2031H285.7373V204.2422h15.2056v2.57H289.0073V209.33h8.0406v2.4638h-8.0406v2.8389h11.9893Z" transform="translate(-265.0571 -150.4157)"/>
+                    <path d="M317.2979 214.8467h-9.8628l-1.5547 2.3564h-3.6275l8.8091-12.9609h2.6626l8.8623 12.9609h-3.6987Zm-8.1475-2.5889h6.4145l-3.2343-4.8027Z" transform="translate(-265.0571 -150.4157)"/>
+                    <path d="M339.1392 217.2031H324.416V204.2422h3.27v10.3906h11.4532Z" transform="translate(-265.0571 -150.4157)"/>
+                    <path d="M356.53 206.7588h-10.899a2.9055 2.9055 0 0 0-1.894.3935.9271.9271 0 0 0-.2681.7139c0 .75.6075 1.0176 1.7329 1.1065l7.13.5537c2.2871.1787 3.6094.4824 4.4668 1.3388a3.3123 3.3123 0 0 1 .9112 2.4639 3.4769 3.4769 0 0 1-.9649 2.5889c-.9111.91-2.3232 1.2851-4.6992 1.2851H341.1284v-2.5176h11.3638c1.4473 0 2.0547-.3925 2.0547-1.2138 0-.7315-.4287-1.0176-1.7324-1.124l-6.6114-.5c-1.894-.1436-3.6093-.3936-4.7173-1.3575a3.3464 3.3464 0 0 1-1.1254-2.57 3.3083 3.3083 0 0 1 1.0361-2.5c.9111-.8388 2.43-1.1777 4.4668-1.1777H356.53Z" transform="translate(-265.0571 -150.4157)"/>
+                    <path d="M371.2061 204.0273c3.5918 0 5.9677.5362 7.38 1.9825a7.9246 7.9246 0 0 1 0 9.4257c-1.4121 1.4463-3.788 1.9815-7.416 1.9815h-2.5547c-3.5918 0-5.9677-.5352-7.38-1.9815a7.9205 7.9205 0 0 1 0-9.4257c1.4121-1.4463 3.788-1.9825 7.38-1.9825Zm-.3038 10.5518c2.43 0 3.8233-.1611 4.6993-.84a4.6637 4.6637 0 0 0 0-6.0342c-.876-.6778-2.27-.8389-4.7168-.8389h-1.9483c-2.4472 0-3.8418.1611-4.7168.8389a4.6605 4.6605 0 0 0 0 6.0342c.875.6787 2.27.84 4.6992.84Z" transform="translate(-265.0571 -150.4157)"/>
+                    <path d="M386.0977 217.2031h-3.27V204.2422h15.0274v2.57H386.0977V209.33H393.96v2.4638h-7.8623Z" transform="translate(-265.0571 -150.4157)"/>
+                    <path d="M398.6816 204.2422h17.1358v2.57h-6.9326v10.3906h-3.27V206.8125h-6.9336Z" transform="translate(-265.0571 -150.4157)"/>
+                    <path d="M422.5771 201.1426a3.0118 3.0118 0 1 1-3.0019-2.93 2.9446 2.9446 0 0 1 3.0019 2.93Zm-5.27 0a2.27 2.27 0 0 0 2.2872 2.3408 2.2436 2.2436 0 0 0 2.2333-2.3223 2.262 2.262 0 1 0-4.52-.0185Zm1.8047 1.5371h-.68V199.749a5.9776 5.9776 0 0 1 1.126-.0893 1.8286 1.8286 0 0 1 1.0186.2143.8128.8128 0 0 1 .2861.6436.75.75 0 0 1-.6074.6787v.0361a.8669.8669 0 0 1 .5361.7149 2.2405 2.2405 0 0 0 .2139.7324h-.7324a2.5072 2.5072 0 0 1-.2325-.7149c-.0537-.3212-.2324-.4648-.6074-.4648h-.3213Zm.0176-1.6621h.3213c.376 0 .68-.125.68-.4287 0-.2681-.1973-.4468-.626-.4468a1.6094 1.6094 0 0 0-.375.0361Z" transform="translate(-265.0571 -150.4157)"/>
+                  </g>
+                </svg>
+              </span>
+              <span data-i18n="job2Date">2022-yil sentyabr — 2023-yil dekabr</span>
+              <span data-i18n="job2Place">Toshkent · Fintech</span>
+            </div>
+            <div>
+              <div class="timeline-heading">
+                <div><h3 data-i18n="job2Role">Dasturchilar guruhi rahbari</h3><p class="company">REALSOFT</p></div>
+              </div>
+              <p data-i18n="job2Text">6 kishilik jamoa bilan RealPay ichki to‘lov tizimini ishga tushirish, Uzcard va Humo integratsiyasi hamda 10+ davlat loyihasini platformaga ulash.</p>
+            </div>
+          </article>
+          <article class="timeline-item reveal">
+            <div class="timeline-meta timeline-meta--with-logo">
+              <span class="company-logo company-logo--epam" aria-hidden="true"><svg viewBox="0 0 140 44"><path class="logo-accent-stroke" d="M26 12L15 22l11 10" stroke-width="7"/><path class="logo-accent-stroke" d="M114 12l11 10-11 10" stroke-width="7"/><text class="logo-ink" x="70" y="32" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="700" letter-spacing="-0.6">epam</text></svg></span>
+              <span data-i18n="job3Date">2022-yil yanvar — 2023-yil dekabr</span>
+              <span data-i18n="job3Place">Toshkent · Platforma</span>
+            </div>
+            <div>
+              <div class="timeline-heading">
+                <div><h3 data-i18n="job3Role">Software Engineer (Java Developer)</h3><p class="company">EPAM Uzbekistan</p></div>
+              </div>
+              <p data-i18n="job3Text">EPAM Certification System uchun Java 17 va Spring Boot asosidagi REST API’lar, tashqi servislar, RabbitMQ, CI/CD, Docker va Kubernetes bilan ishlash.</p>
+            </div>
+          </article>
+          <article class="timeline-item reveal">
+            <div class="timeline-meta timeline-meta--with-logo">
+              <span class="company-logo company-logo--tune" aria-hidden="true">
+                <svg viewBox="0 0 180 56" focusable="false">
+                  <text class="logo-ink" x="2" y="40" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="500" letter-spacing="-1">tune</text>
+                  <path class="tune-brace" d="M95 7c-3.3 0-6 2.7-6 6v7c0 3.3-2.2 6-5 7 2.8 1 5 3.7 5 7v7c0 3.3 2.7 6 6 6" fill="none" stroke="var(--logo-accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text class="logo-ink" x="103" y="20" font-family="Arial, Helvetica, sans-serif" font-size="14">taraqqiyot</text>
+                  <text class="logo-ink" x="103" y="34.5" font-family="Arial, Helvetica, sans-serif" font-size="14">tasodif</text>
+                  <text class="logo-ink" x="103" y="49" font-family="Arial, Helvetica, sans-serif" font-size="14">emas</text>
+                </svg>
+              </span>
+              <span data-i18n="job4Date">2020-yil yanvar — 2021-yil noyabr</span>
+              <span data-i18n="job4Place">Toshkent · Fintech</span>
+            </div>
+            <div>
+              <div class="timeline-heading">
+                <div><h3 data-i18n="job4Role">Java dasturchi</h3><p class="company">Tune Consulting · Kapitalbank / Apelsin</p></div>
+              </div>
+              <p data-i18n="job4Text">Apelsin mobil banki, Marketplace, Kapital24 internet-banking va Orient Finance Bank to‘lov platformasi uchun backend servislar va integratsiyalar.</p>
+            </div>
+          </article>
+          <article class="timeline-item reveal">
+            <div class="timeline-meta timeline-meta--with-logo">
+              <span class="company-logo company-logo--davr" aria-hidden="true"><svg viewBox="0 0 260 40" focusable="false"><path class="logo-accent" fill-rule="evenodd" d="M9.487 10.649l2.6 2.562-6.649 6.553 6.917 6.817-2.88 2.759L0 20zM25.954 29.497l2.464 2.43L20.291 40l-9.082-8.952 2.839-2.798 6.586 6.492zM30.374 25.141l2.545 2.508 7.846-7.573L20.29 0l-9.142 9.012 2.6 2.562 6.732-6.636 15.195 14.978z"/><path class="logo-accent-2" fill-rule="evenodd" d="M48.956 29.351l-2.574-2.562 6.583-6.553-6.849-6.817 2.852-2.759L58.35 20zM32.65 10.502l-2.44-2.428L38.26 0l8.992 8.952-2.81 2.798-6.522-6.492zM28.274 14.859l-2.52-2.508-7.77 7.573L38.26 40l9.053-9.012-2.574-2.562-6.667 6.636-15.046-14.978z"/><text class="logo-ink" x="66.08" y="31.806" textLength="194" lengthAdjust="spacing" font-family="Arial, Helvetica, sans-serif" font-size="32.32" font-weight="700">DAVR BANK</text></svg></span>
+              <span data-i18n="job5Date">2019-yil may — 2020-yil yanvar</span>
+              <span data-i18n="job5Place">Toshkent · Bank</span>
+            </div>
+            <div>
+              <div class="timeline-heading">
+                <div><h3 data-i18n="job5Role">Java dasturchi</h3><p class="company">Davr Bank</p></div>
+              </div>
+              <p data-i18n="job5Text">DavrBank Mobile App uchun Java/Spring Boot backend, Uzcard, Humo va Paynet integratsiyalari, test muhitlari va SQL optimallashtirish.</p>
+            </div>
+          </article>
+          <article class="timeline-item reveal">
+            <div class="timeline-meta timeline-meta--with-logo">
+              <span class="company-logo company-logo--mironsoft" aria-hidden="true"><svg viewBox="0 0 210 46"><path class="logo-accent-stroke" stroke-width="1.85" stroke-linejoin="round" d="M5.7 34.3 15.5 18.4 26.1 34.8 38 9.6 48.1 34.3"/><g class="logo-accent"><circle cx="5.7" cy="34.3" r="3.7"/><circle cx="15.5" cy="18.4" r="3.45"/><circle cx="26.1" cy="34.8" r="4.5"/><circle cx="38" cy="9.6" r="5"/><circle cx="48.1" cy="34.3" r="6.6"/><circle cx="5.7" cy="23.7" r="2.25"/><circle cx="15.5" cy="30.8" r="2.25"/><circle cx="26.9" cy="19.7" r="2.25"/><circle cx="37.5" cy="25.8" r="2.25"/><circle cx="49.2" cy="18.4" r="2.25"/></g><text class="logo-ink" x="61" y="29" font-family="Arial, sans-serif" font-size="19" font-weight="850" letter-spacing=".7">MIRONSOFT</text></svg></span>
+              <span data-i18n="job6Date">2017-yil sentyabr — 2019-yil mart</span>
+              <span data-i18n="job6Place">Toshkent</span>
+            </div>
+            <div>
+              <div class="timeline-heading">
+                <div><h3 data-i18n="job6Role">Java dasturchi</h3><p class="company">MIRONSOFT</p></div>
+              </div>
+              <p data-i18n="job6Text">Ijod Fondi uchun hisob va avtomatlashtirish modullari hamda UzAgroExpertBank hujjat aylanish tizimini ishlab chiqish va qo‘llab-quvvatlash.</p>
             </div>
           </article>
         </div>
@@ -730,12 +1471,12 @@
         <article class="project-card reveal">
           <div class="project-index">01</div>
           <div class="project-body">
-            <p class="project-type" data-i18n="projectType">Moliyaviy texnologiyalar · Bir sahifali ilova</p>
+            <p class="project-type" data-i18n="projectType">Fintech · Mobil bank ekotizimi</p>
             <h3>Apelsin</h3>
-            <p data-i18n="projectText">Moslashuvchan interfeys, qayta ishlatiladigan komponentlar, tezkorlik va ko‘p tilli jarayonlarga yo‘naltirilgan raqamli to‘lov mahsuloti.</p>
-            <div class="tag-list"><span>Vue</span><span>Vuex</span><span>Vuetify</span><span>i18n</span></div>
+            <p data-i18n="projectText">CRM va dashboard backend mantig‘i, tranzaksiyalar, o‘tkazmalar, to‘lovlar va bonus servislar; Android/iOS uchun REST API, P2P o‘tkazmalar hamda bank mikroservislari bilan integratsiya.</p>
+            <div class="tag-list"><span>Java 11</span><span>Spring Boot</span><span>Spring Cloud</span><span>PostgreSQL</span><span>Redis</span></div>
           </div>
-          <a class="project-link" href="https://apelsin.uz" target="_blank" rel="noreferrer" aria-label="Apelsin">↗</a>
+          <a class="project-link" href="https://apelsin.uz" target="_blank" rel="noopener noreferrer" aria-label="Apelsin"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-external"/></svg></a>
         </article>
       </div>
     </section>
@@ -754,11 +1495,68 @@
       </div>
     </section>
 
+    <section class="section section-muted" aria-labelledby="credentials-title">
+      <div class="container recognition-grid">
+        <div>
+          <p class="section-kicker" data-i18n="credentialsKicker">Ta’lim va sertifikatlar</p>
+          <h2 id="credentials-title" data-i18n="credentialsTitle">Doimiy professional rivojlanish.</h2>
+        </div>
+        <div class="credential-grid">
+          <article class="credential-card reveal">
+            <div class="credential-aside"><span class="credential-year">2015</span><span class="credential-icon" aria-hidden="true"><svg class="site-icon credential-svg" viewBox="0 0 24 24" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect class="credential-draw" pathLength="1" x="2.5" y="3" width="19" height="7.5" rx="2.2"/><rect class="credential-draw" pathLength="1" x="2.5" y="13.5" width="19" height="7.5" rx="2.2"/><path class="credential-draw" pathLength="1" d="M6.4 6.8h.01M6.4 17.3h.01M10 6.8h7.6M10 17.3h7.6"/></svg></span></div>
+            <div class="credential-body">
+              <h3>BePro IT Academy</h3>
+              <p data-i18n="course4Text">Java, Oracle, Windows Server va ITIL v3.</p>
+            </div>
+          </article>
+          <article class="credential-card reveal">
+            <div class="credential-aside"><span class="credential-year">2017</span><span class="credential-icon" aria-hidden="true"><svg class="site-icon credential-svg" viewBox="0 0 24 24" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path class="credential-draw" pathLength="1" d="M12 3.2 2.4 7.8 12 12.4l9.6-4.6z"/><path class="credential-draw" pathLength="1" d="M6.6 10.1v5.5c0 1.7 2.4 3 5.4 3s5.4-1.3 5.4-3v-5.5"/><path class="credential-draw" pathLength="1" d="M21.6 7.8v6.1"/></svg></span></div>
+            <div class="credential-body">
+              <h3 data-i18n="degreeName">Toshkent axborot texnologiyalari universiteti</h3>
+              <p data-i18n="degreeText">Kompyuter injiniringi (kompyuter tizimlari) bo‘yicha bakalavr.</p>
+            </div>
+          </article>
+          <article class="credential-card reveal">
+            <div class="credential-aside"><span class="credential-year">2021</span><span class="credential-icon" aria-hidden="true"><svg class="site-icon credential-svg" viewBox="0 0 24 24" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect class="credential-draw" pathLength="1" x="2.6" y="2.6" width="8" height="8" rx="2.2"/><rect class="credential-draw" pathLength="1" x="13.4" y="13.4" width="8" height="8" rx="2.2"/><path class="credential-draw" pathLength="1" d="M6.6 10.6v4.3a2.5 2.5 0 0 0 2.5 2.5h4.3"/></svg></span></div>
+            <div class="credential-body">
+              <h3>QDTS</h3>
+              <p data-i18n="course2Text">IBM Business Automation Workflow V19.0.0.1.</p>
+            </div>
+          </article>
+          <article class="credential-card reveal">
+            <div class="credential-aside"><span class="credential-year">2022</span><span class="credential-icon" aria-hidden="true"><svg class="site-icon credential-svg" viewBox="0 0 24 24" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect class="credential-draw" pathLength="1" x="2.5" y="3.4" width="19" height="13.2" rx="2.5"/><path class="credential-draw" pathLength="1" d="M10.4 7.8 14.8 10l-4.4 2.2z"/><path class="credential-draw" pathLength="1" d="M8.4 20.6h7.2M12 16.6v4"/></svg></span></div>
+            <div class="credential-body">
+              <h3>LinkedIn Learning</h3>
+              <p data-i18n="course1Text">Spring, Spring Cloud, Microservices, Design Patterns va Java Memory Management kurslari.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="contact-section" id="contact">
       <div class="container contact-inner reveal">
-        <p class="section-kicker" data-i18n="contactKicker">Aloqa</p>
-        <h2 data-i18n-html="contactTitle">Loyihangiz bormi?<br>Birga amalga oshiraylik.</h2>
-        <a class="contact-email" href="mailto:ismoilov.ravshanjon@gmail.com">ismoilov.ravshanjon@gmail.com <span aria-hidden="true">↗</span></a>
+        <div class="contact-copy">
+          <p class="section-kicker" data-i18n="contactKicker">Aloqa</p>
+          <h2 data-i18n-html="contactTitle">Loyihangiz bormi?<br>Birga amalga oshiraylik.</h2>
+          <div class="contact-actions">
+            <a class="button contact-button contact-button-solid" href="https://t.me/ravshanjon_ismoilov" target="_blank" rel="noopener noreferrer" aria-label="Telegram: +998 99 942 07 70" title="Telegram">
+              <svg class="site-icon button-icon contact-action-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="contact-draw" pathLength="1" d="M3.5 4.4a1.2 1.2 0 0 0-1.7 1.5l2 5.4a1.2 1.2 0 0 1 0 .8l-2 5.4a1.2 1.2 0 0 0 1.7 1.5l17.6-7.2a1.2 1.2 0 0 0 0-2.2z"/><path class="contact-draw" pathLength="1" d="M4.4 12h7.2"/></g></svg>
+              <span class="contact-phone" aria-hidden="true">+998 99 942 07 70</span>
+            </a>
+            <a class="button contact-button contact-button-ghost" href="https://wa.me/998999420770" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp: +998 99 942 07 70" title="WhatsApp">
+              <svg class="site-icon button-icon contact-action-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="contact-draw" pathLength="1" d="M3.1 20.9l1.3-4.7A8.9 8.9 0 1 1 7.8 19.6l-4.7 1.3z"/><path class="contact-draw" pathLength="1" d="M8.9 8.4c.3-.1.6 0 .8.3l.8 1.5c.1.3.1.6-.1.8l-.5.6c-.2.2-.2.4-.1.6.5.9 1.3 1.7 2.2 2.2.2.1.4.1.6-.1l.6-.5c.2-.2.5-.2.8-.1l1.5.8c.3.2.4.5.3.8-.2.8-1 1.3-1.8 1.3-2.8 0-6.1-3.3-6.1-6.1 0-.8.5-1.6 1.3-1.8z"/></g></svg>
+              <span class="contact-phone" aria-hidden="true">+998 99 942 07 70</span>
+            </a>
+          </div>
+        </div>
+        <div class="contact-portrait">
+          <picture>
+            <source type="image/avif" srcset="assets/ravshanjon-3d-861.avif 861w, assets/ravshanjon-3d.avif 1077w" sizes="(max-width: 900px) 340px, 440px">
+            <source type="image/webp" srcset="assets/ravshanjon-3d-861.webp 861w, assets/ravshanjon-3d.webp 1077w" sizes="(max-width: 900px) 340px, 440px">
+            <img src="assets/ravshanjon-3d.webp" alt="Ravshanjon Ismoilovning 3D portreti" data-i18n-alt="portraitAlt" width="1077" height="1461" loading="lazy" decoding="async">
+          </picture>
+        </div>
       </div>
     </section>
   </main>
@@ -767,23 +1565,90 @@
     <div class="container footer-inner">
       <p>© <span data-year></span> Ravshanjon Ismoilov</p>
       <nav class="footer-links" aria-label="Ijtimoiy tarmoqlar va aloqa havolalari" data-i18n-label="footerLinksLabel">
-        <a href="https://github.com/ravshancha" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/ravshancha" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="https://t.me/ravshancha" target="_blank" rel="noreferrer">Telegram</a>
-        <a href="https://wa.me/998999420770" target="_blank" rel="noreferrer">WhatsApp</a>
-        <a href="https://www.facebook.com/ravshancha" target="_blank" rel="noreferrer">Facebook</a>
-        <a href="https://www.youtube.com/@ravshancha" target="_blank" rel="noreferrer">YouTube</a>
-        <a href="https://medium.com/@ravshancha" target="_blank" rel="noreferrer">Medium</a>
-        <a class="footer-top" href="#top"><span data-i18n="backToTop">Yuqoriga</span> <span class="footer-top-arrow" aria-hidden="true">↑</span></a>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/in/ravshancha" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://x.com/ravshancha" target="_blank" rel="noopener noreferrer">Twitter</a>
+          <a href="https://t.me/ravshanjon_ismoilov" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <a href="https://wa.me/998999420770" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href="https://www.facebook.com/ravshancha" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://www.youtube.com/@ravshancha" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+        <a class="footer-top" href="#top"><span data-i18n="backToTop">Yuqoriga</span><svg class="site-icon footer-top-arrow" aria-hidden="true" focusable="false"><use href="#icon-arrow-up"/></svg></a>
       </nav>
     </div>
   </footer>
 
+  <dialog class="cv-dialog" data-cv-dialog aria-label="CV" data-i18n-label="cvTitle">
+    <div class="cv-dialog-shell">
+      <div class="cv-pages" data-cv-pages>
+        <iframe class="cv-pdf" data-cv-preview title="CV"></iframe>
+      </div>
+      <div class="cv-dialog-actions">
+        <button class="button cv-dialog-close" type="button" data-cv-close data-i18n="cvClose">Yopish</button>
+        <a class="button button-primary" href="cv/Ravshanjon-Ismoilov-CV-uz.pdf" download data-cv-download data-i18n="cvDownload">PDF yuklab olish</a>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="order-dialog" data-order-dialog aria-labelledby="order-title">
+    <form class="order-form" data-order-form novalidate>
+      <div class="order-head">
+        <h2 id="order-title" data-i18n="orderTitle">Loyihaga buyurtma</h2>
+        <div class="order-controls">
+          <button class="order-theme" type="button" data-theme-toggle aria-label="Rang rejimini almashtirish"><svg class="site-icon" data-theme-icon aria-hidden="true" focusable="false"><use href="#icon-moon"/></svg></button>
+          <div class="language-select order-language-select" data-language-select>
+            <button class="language-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="order-language-options" data-language-trigger>
+              <svg class="language-flag" data-language-flag viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-uz"/></svg>
+              <span data-language-code>UZ</span>
+              <svg class="language-chevron site-icon" aria-hidden="true" focusable="false"><use href="#icon-chevron-down"/></svg>
+            </button>
+            <div class="language-options" id="order-language-options" role="listbox" aria-label="Til" data-i18n-label="languageLabel" data-language-options hidden>
+              <button class="language-option" type="button" role="option" data-language="uz"><svg class="language-flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-uz"/></svg><span>O‘zbek</span></button>
+              <button class="language-option" type="button" role="option" data-language="ru"><svg class="language-flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-ru"/></svg><span>Русский</span></button>
+              <button class="language-option" type="button" role="option" data-language="en"><svg class="language-flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-gb"/></svg><span>English</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="order-intro" data-i18n="orderIntro">Ma’lumotlaringizni qoldiring — imkon qadar tez bog‘lanaman.</p>
+
+      <div class="order-field">
+        <label for="order-name" data-i18n="orderName">Ismingiz</label>
+        <p class="order-example" data-i18n="orderNameExample">Masalan: Alisher Karimov</p>
+        <input id="order-name" name="name" type="text" autocomplete="name" aria-describedby="order-name-error" required>
+        <p class="order-error" id="order-name-error" data-i18n="orderNameError" hidden>Ismingizni kiriting.</p>
+      </div>
+
+      <div class="order-field">
+        <label for="order-phone" data-i18n="orderPhone">Telefon raqamingiz</label>
+        <p class="order-example" data-i18n="orderPhoneExample">Masalan: 99 942 07 70</p>
+        <div class="order-phone">
+            <span class="order-prefix" aria-hidden="true">+998</span>
+            <input id="order-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" aria-describedby="order-phone-error" required>
+          </div>
+        <p class="order-error" id="order-phone-error" data-i18n="orderPhoneError" hidden>Faqat raqam, 9 ta belgi: 999420770.</p>
+      </div>
+
+      <div class="order-field">
+        <label for="order-info" data-i18n="orderInfo">Loyiha haqida</label>
+        <p class="order-example" data-i18n="orderInfoExample">Masalan: do‘konim uchun buyurtma qabul qiladigan sayt kerak. Muddat — taxminan 2 oy.</p>
+        <textarea id="order-info" name="info" rows="4" aria-describedby="order-info-error" required></textarea>
+        <p class="order-error" id="order-info-error" data-i18n="orderInfoError" hidden>Loyiha haqida qisqacha yozing — kamida 10 ta belgi.</p>
+      </div>
+
+      <div class="order-actions">
+        <button class="button order-cancel" type="button" data-order-close data-i18n="orderCancel">Bekor qilish</button>
+        <button class="button button-primary" type="submit"><span data-i18n="orderSubmit">Yuborish</span><svg class="site-icon button-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></button>
+      </div>
+      <p class="order-sent" data-order-sent data-i18n="orderSent" hidden>Telegram ochildi — xabarni yuborish uchun “Yuborish” tugmasini bosing.</p>
+    </form>
+  </dialog>
+
   <script>
     const translations = {
       uz: {
-        pageTitle: "Ravshanjon Ismoilov — Dasturiy ta’minot muhandisi",
-        description: "Ravshanjon Ismoilov — Toshkentlik dasturiy ta’minot muhandisi, server tizimlari va veb-ilovalar mutaxassisi.",
+        pageTitle: "Ravshanjon Ismoilov — Java dasturchi",
+        description: "Ravshanjon Ismoilov — bank va fintech sohasida 10+ yillik tajribaga ega Java dasturchi va dasturchilar guruhi rahbari.",
         skipLink: "Kontentga o‘tish",
         menuLabel: "Menyuni ochish",
         themeLabel: "Rang rejimini almashtirish",
@@ -795,77 +1660,123 @@
         specialtiesLabel: "Mutaxassislik yo‘nalishlari",
         footerLinksLabel: "Ijtimoiy tarmoqlar va aloqa havolalari",
         phoneLabel: "+998 99 942 07 70 raqamiga qo‘ng‘iroq qilish",
-        portraitAlt: "Ravshanjon Ismoilovning 3D portreti",
-        cvTitle: "Tarjimai hol",
-        cvAction: "PDF yuklab olish",
-        cvLabel: "Tarjimai holni PDF holida yuklab olish (o‘zbekcha)",
+        portraitAlt: "Ravshanjon Ismoilov portreti",
+        cvTitle: "CV",
+        cvAction: "Ko‘rish",
+        cvLabel: "Tarjimai holni ochish",
+        cvDownload: "PDF yuklab olish",
+        cvClose: "Yopish",
         heroGreeting: "Salom! Men Ravshanjonman 👋",
-        startProject: "Loyihani boshlash",
-        viewGithub: "GitHub profil",
-        specialtySoftware: "Dasturiy muhandis",
-        specialtySoftwareMeta: "Java · Vue · React",
+        startProject: "Loyihaga buyurtma berish",
+        orderTitle: "Loyihaga buyurtma",
+        orderIntro: "Ma’lumotlaringizni qoldiring — imkon qadar tez bog‘lanaman.",
+        orderName: "Ismingiz",
+        orderNameExample: "Masalan: Alisher Karimov",
+        orderNameError: "Ismingizni kiriting.",
+        orderPhone: "Telefon raqamingiz",
+        orderPhoneExample: "Masalan: 99 942 07 70",
+        orderPhoneError: "Faqat raqam, 9 ta belgi: 999420770.",
+        orderInfo: "Loyiha haqida",
+        orderInfoExample: "Masalan: do‘konim uchun buyurtma qabul qiladigan sayt kerak. Muddat — taxminan 2 oy.",
+        orderInfoError: "Loyiha haqida qisqacha yozing — kamida 10 ta belgi.",
+        orderSubmit: "Yuborish",
+        orderCancel: "Bekor qilish",
+        orderSent: "Telegram ochildi — xabarni yuborish uchun “Yuborish” tugmasini bosing.",
+        orderSentCopied: "Telegram ochildi, matn nusxalandi. Xabar bo‘sh chiqsa — matnni qo‘yib, yuboring.",
+        specialtyWebsites: "Veb-tizim",
+        specialtyWebsitesMeta: "Java · React",
         specialtyArchitecture: "Arxitektura",
         specialtyArchitectureMeta: "Tizimlar · Integratsiyalar",
+        specialtyMobile: "Mobil ilovalar",
+        specialtyMobileMeta: "Android · iOS",
         specialtyStartups: "Startaplar",
         specialtyStartupsMeta: "Prototip · Ishga tushirish",
         summaryKicker: "● Men haqimda",
-        summaryTitle: "G‘oyalarni <span class=\"accent-word\">ishonchli raqamli mahsulotlarga</span> aylantiraman.",
-        summaryText: "Murakkab muammolarni ishonchli kod va tushunarli foydalanuvchi tajribasi bilan yechaman.",
-        statExperienceValue: "7+ yil",
-        statExperience: "Tajriba",
-        statProjects: "Loyihalar",
-        statAwards: "Mukofotlar",
+        summaryTitle: "<span class=\"accent-word\">Bank va fintech</span> tizimlarini loyihalayman va rivojlantiraman.",
+        summaryText: "Mobil va internet-banking, to‘lov tizimlari, davlat servislariga integratsiya va mikroservislar bo‘yicha amaliy tajribaga egaman.",
+        statExperienceValue: "10+",
+        statExperience: "Yillik tajriba",
+        statProjects: "Muvaffaqiyatli loyihalar",
+        statTeam: "Jamoa a’zolari",
         navAbout: "Men haqimda",
         navExpertise: "Yo‘nalishlar",
         navExperience: "Tajriba",
         navWork: "Loyiha",
-        heroTitle: "Foydali <span class=\"accent-word\">raqamli mahsulotlar</span> yarataman.",
-        heroLead: "Men ishonchli tizimlar va zamonaviy ilovalar yaratuvchi dasturiy ta’minot muhandisiman.",
+        heroTitle: "<span class=\"accent-word\">Foydali raqamli mahsulotlar</span><br>yarataman.",
         aboutKicker: "Men haqimda",
-        aboutTitle: "Aniq fikr, qiziquvchanlik va maqsadga tayangan muhandislik.",
-        aboutP1: "Tezkor interaktiv mahsulotlar, puxta arxitektura va jamoa uchun qulay kod yaratishga e’tibor beraman.",
-        aboutP2: "Tajribam moliyaviy texnologiyalar, server tizimlari, bir sahifali ilovalar va veb-platformalarni qamrab oladi. Murakkab talablarni sodda va tushunarli yechimlarga aylantirishni yoqtiraman.",
+        aboutTitle: "10+ yillik IT tajribasi va texnik yetakchilik.",
+        aboutP1: "Ipotekabank OTP Group va REALSOFT’da dasturchilar guruhiga rahbarlik qildim; 6 kishigacha bo‘lgan jamoalarni boshqardim, arxitektura, relizlar va kod-revyu uchun javob berdim.",
+        aboutP2: "Mobil va internet-banking, to‘lov tizimlari, Uzcard, Humo, Paynet, Wolt hamda davlat xizmatlari bilan integratsiyalar yaratdim. Asosiy stekim — Java 21, Spring Boot 3, Spring Cloud, PostgreSQL, Oracle, RabbitMQ va Docker.",
         focusLabel: "Yo‘nalish",
-        focusValue: "Server tizimlari va veb-ilovalar",
+        focusValue: "Java backend · Mikroservislar · Fintech",
         educationLabel: "Ta’lim",
-        educationValue: "Kompyuter fanlari va muhandislik",
-        baseLabel: "Joylashuv",
-        baseValue: "Toshkent, O‘zbekiston",
+        educationValue: "TATU · Kompyuter injiniringi · Bakalavr, 2017",
         expertiseKicker: "Mutaxassislik",
-        expertiseTitle: "G‘oyani mahsulotga aylantiradigan texnologiyalar.",
-        expertiseLead: "Ma’lumotlar va API’lardan puxta interfeyslargacha — mahsulotning barcha asosiy qatlamlarida ishlayman.",
-        backendTitle: "Server tizimlari",
-        backendText: "Uzoq muddat barqaror ishlaydigan servislar, REST API’lar, ma’lumotlar modellari va integratsiyalar.",
-        webTitle: "Veb-ilovalar",
-        webText: "Tezkorlik, foydalanish qulayligi va mahsulot maqsadlarini uyg‘unlashtirgan moslashuvchan interfeyslar.",
-        deliveryTitle: "Mahsulotni ishga tushirish",
-        deliveryText: "Talablarni aniqlashdan prototip va tayyor yechimgacha bo‘lgan amaliy hamkorlik.",
+        expertiseTitle: "Katta yuklamali tizimlar uchun backend stek.",
+        expertiseLead: "Bank tizimlari, xavfsiz API’lar, mikroservislar, xabar navbatlari va ma’lumotlar bazalari bilan ishlayman.",
+        webAppsTitle: "Veb-ilovalar",
+        webAppsText: "Zamonaviy frontend va xavfsiz Java backend asosidagi to‘liq veb-ilovalar.",
+        mobileAppsTitle: "Mobil ilovalar",
+        mobileAppsText: "Android va iOS ilovalari uchun bank, to‘lov va boshqa servislar bilan ishlaydigan xavfsiz API’lar.",
+        appsTitle: "Mikroservislar va integratsiyalar",
+        appsText: "Ichki bank servislarini hamkor API’lari, to‘lov tizimlari va davlat platformalari bilan bog‘lash.",
+        deliveryTitle: "Ma’lumotlar va DevOps",
+        deliveryText: "Ma’lumotlar bazalari, konteynerlar va CI/CD yordamida ishonchli reliz jarayonlari.",
         experienceKicker: "Tajriba",
-        experienceTitle: "Asosiy ish tajribam.",
-        tuneRole: "Server tizimlari dasturchisi",
-        tuneDate: "2020 — hozirgacha",
-        tunePlace: "Toshkent",
-        tuneText: "Texnik talablar asosida mahsulot funksiyalari va veb-tizimlarni ishonchli va tushunarli tarzda ishlab chiqish.",
-        stylemixRole: "Veb-dasturchi",
-        stylemixArea: "Veb-dasturlash",
-        stylemixText: "Xalqaro veb-loyihalar, tezlikni optimallashtirish, to‘lov tizimlari integratsiyasi va moslashuvchan interfeyslar ustida ishlash.",
+        experienceTitle: "Bank va fintechdagi professional tajriba.",
+        job0Date: "2025-yil dekabr — hozirgacha",
+        job0Place: "Toshkent · Bank",
+        job0Role: "Hisobot tizimini ishlab chiqish bo‘limi boshlig‘i",
+        job1Date: "2024-yil yanvar — 2025-yil dekabr",
+        job1Place: "Toshkent · Bank",
+        job1Role: "Dasturchilar guruhi rahbari",
+        job1Text: "OpenAPI/DiBank, Wolt, Qurilish vazirligi va kredit assotsiatsiyasi integratsiyalari; Java 21, Spring Boot 3, RabbitMQ, PostgreSQL va Docker asosidagi xavfsiz bank servislariga rahbarlik.",
+        job2Date: "2022-yil sentyabr — 2023-yil dekabr",
+        job2Place: "Toshkent · Fintech",
+        job2Role: "Dasturchilar guruhi rahbari",
+        job2Text: "6 kishilik jamoa bilan RealPay ichki to‘lov tizimini ishga tushirish, Uzcard va Humo integratsiyasi hamda 10+ davlat loyihasini platformaga ulash.",
+        job3Date: "2022-yil yanvar — 2023-yil dekabr",
+        job3Place: "Toshkent · Platforma",
+        job3Role: "Software Engineer (Java Developer)",
+        job3Text: "EPAM Certification System uchun Java 17 va Spring Boot asosidagi REST API’lar, tashqi servislar, RabbitMQ, CI/CD, Docker va Kubernetes bilan ishlash.",
+        job4Date: "2020-yil yanvar — 2021-yil noyabr",
+        job4Place: "Toshkent · Fintech",
+        job4Role: "Java dasturchi",
+        job4Text: "Apelsin mobil banki, Marketplace, Kapital24 internet-banking va Orient Finance Bank to‘lov platformasi uchun backend servislar va integratsiyalar.",
+        job5Date: "2019-yil may — 2020-yil yanvar",
+        job5Place: "Toshkent · Bank",
+        job5Role: "Java dasturchi",
+        job5Text: "DavrBank Mobile App uchun Java/Spring Boot backend, Uzcard, Humo va Paynet integratsiyalari, test muhitlari va SQL optimallashtirish.",
+        job6Date: "2017-yil sentyabr — 2019-yil mart",
+        job6Place: "Toshkent",
+        job6Role: "Java dasturchi",
+        job6Text: "Ijod Fondi uchun hisob va avtomatlashtirish modullari hamda UzAgroExpertBank hujjat aylanish tizimini ishlab chiqish va qo‘llab-quvvatlash.",
         workKicker: "Tanlangan loyiha",
         workTitle: "Amaliy qiymat beradigan mahsulotlar.",
         workLead: "Men yaratishda ishtirok etgan tizimlar va raqamli mahsulotlar.",
-        projectType: "Moliyaviy texnologiyalar · Bir sahifali ilova",
-        projectText: "Moslashuvchan interfeys, qayta ishlatiladigan komponentlar, tezkorlik va ko‘p tilli jarayonlarga yo‘naltirilgan raqamli to‘lov mahsuloti.",
+        projectType: "Fintech · Mobil bank ekotizimi",
+        projectText: "CRM va dashboard backend mantig‘i, tranzaksiyalar, o‘tkazmalar, to‘lovlar va bonus servislar; Android/iOS uchun REST API, P2P o‘tkazmalar hamda bank mikroservislari bilan integratsiya.",
         recognitionKicker: "Yutuqlar",
         recognitionTitle: "Yaratib, o‘rganaman.",
         award1: "“Humane” loyihasi bilan 2-o‘rin.",
         award2: "Respublika II bosqichi g‘olibi.",
         award3: "“Clean City” loyihasi bilan 1-o‘rin.",
+        credentialsKicker: "Ta’lim va sertifikatlar",
+        credentialsTitle: "Doimiy professional rivojlanish.",
+        degreeName: "Toshkent axborot texnologiyalari universiteti",
+        degreeText: "Kompyuter injiniringi (kompyuter tizimlari) bo‘yicha bakalavr.",
+        course1Text: "Spring, Spring Cloud, Microservices, Design Patterns va Java Memory Management kurslari.",
+        course2Text: "IBM Business Automation Workflow V19.0.0.1.",
+        course4Text: "Java, Oracle, Windows Server va ITIL v3.",
         contactKicker: "Aloqa",
         contactTitle: "Loyihangiz bormi?<br>Birga amalga oshiraylik.",
+        contactTelegram: "Telegramda yozish",
+        contactWhatsapp: "WhatsAppda yozish",
         backToTop: "Yuqoriga"
       },
       ru: {
-        pageTitle: "Равшанжон Исмоилов — Инженер-программист",
-        description: "Равшанжон Исмоилов — инженер-программист из Ташкента, специалист по серверным системам и веб-приложениям.",
+        pageTitle: "Равшанжон Исмоилов — Java-разработчик",
+        description: "Равшанжон Исмоилов — Java-разработчик и руководитель группы разработки с опытом более 10 лет в банковской сфере и финтехе.",
         skipLink: "Перейти к содержимому",
         menuLabel: "Открыть меню",
         themeLabel: "Переключить цветовую тему",
@@ -877,77 +1788,123 @@
         specialtiesLabel: "Профессиональные направления",
         footerLinksLabel: "Социальные сети и контакты",
         phoneLabel: "Позвонить по номеру +998 99 942 07 70",
-        portraitAlt: "3D-портрет Равшанжона Исмоилова",
-        cvTitle: "Резюме",
-        cvAction: "Скачать PDF",
-        cvLabel: "Скачать резюме в PDF (на русском)",
+        portraitAlt: "Портрет Равшанжона Исмоилова",
+        cvTitle: "CV",
+        cvAction: "Посмотреть",
+        cvLabel: "Открыть резюме",
+        cvDownload: "Скачать PDF",
+        cvClose: "Закрыть",
         heroGreeting: "Привет! Я Равшанжон 👋",
-        startProject: "Начать проект",
-        viewGithub: "Профиль GitHub",
-        specialtySoftware: "Инженер-программист",
-        specialtySoftwareMeta: "Java · Vue · React",
+        startProject: "Заказать проект",
+        orderTitle: "Заказать проект",
+        orderIntro: "Оставьте свои данные — свяжусь с вами в ближайшее время.",
+        orderName: "Ваше имя",
+        orderNameExample: "Например: Алишер Каримов",
+        orderNameError: "Введите ваше имя.",
+        orderPhone: "Номер телефона",
+        orderPhoneExample: "Например: 99 942 07 70",
+        orderPhoneError: "Только цифры, 9 знаков: 999420770.",
+        orderInfo: "О проекте",
+        orderInfoExample: "Например: нужен сайт с приёмом заказов для моего магазина. Срок — около 2 месяцев.",
+        orderInfoError: "Коротко опишите проект — минимум 10 знаков.",
+        orderSubmit: "Отправить",
+        orderCancel: "Отмена",
+        orderSent: "Telegram открыт — нажмите «Отправить», чтобы отправить сообщение.",
+        orderSentCopied: "Telegram открыт, текст скопирован. Если сообщение пустое — вставьте текст и отправьте.",
+        specialtyWebsites: "Веб-система",
+        specialtyWebsitesMeta: "Java · React",
         specialtyArchitecture: "Архитектура",
         specialtyArchitectureMeta: "Системы · Интеграции",
+        specialtyMobile: "Мобильные приложения",
+        specialtyMobileMeta: "Android · iOS",
         specialtyStartups: "Стартапы",
         specialtyStartupsMeta: "Прототип · Запуск",
         summaryKicker: "● Обо мне",
-        summaryTitle: "Превращаю идеи в <span class=\"accent-word\">надёжные цифровые продукты</span>.",
-        summaryText: "Решаю сложные задачи с помощью надёжного кода и понятных интерфейсов.",
-        statExperienceValue: "7+ лет",
-        statExperience: "Опыт",
-        statProjects: "Проекты",
-        statAwards: "Награды",
+        summaryTitle: "Проектирую и развиваю <span class=\"accent-word\">банковские и финтех-системы</span>.",
+        summaryText: "Практический опыт в мобильном и интернет-банкинге, платёжных системах, государственных интеграциях и микросервисах.",
+        statExperienceValue: "10+",
+        statExperience: "Лет опыта",
+        statProjects: "Успешных проектов",
+        statTeam: "Человек в команде",
         navAbout: "Обо мне",
         navExpertise: "Навыки",
         navExperience: "Опыт",
         navWork: "Проект",
-        heroTitle: "Создаю <span class=\"accent-word\">полезные цифровые продукты</span>.",
-        heroLead: "Я инженер-программист, разрабатываю надёжные серверные системы и современные приложения.",
+        heroTitle: "Создаю <span class=\"accent-word\">полезные<br>цифровые продукты</span>.",
         aboutKicker: "Обо мне",
-        aboutTitle: "Инженерия, основанная на ясности, любознательности и цели.",
-        aboutP1: "Создаю быстрые интерактивные продукты, продумываю архитектуру и пишу код, с которым удобно работать команде.",
-        aboutP2: "Мой опыт охватывает финансовые технологии, серверную разработку, одностраничные приложения и веб-платформы. Мне нравится превращать сложные требования в простые и понятные решения.",
+        aboutTitle: "Более 10 лет в IT и техническом лидерстве.",
+        aboutP1: "Руководил группами разработки в Ipotekabank OTP Group и REALSOFT: управлял командами до 6 человек, отвечал за архитектуру, релизы и код-ревью.",
+        aboutP2: "Разрабатывали мобильные приложения, интернет-банкинг, платёжные системы и интеграции с Uzcard, Humo, Paynet, Wolt и государственными сервисами.",
         focusLabel: "Направление",
-        focusValue: "Серверные системы и веб-приложения",
+        focusValue: "Java backend · Микросервисы · Финтех",
         educationLabel: "Образование",
-        educationValue: "Компьютерные науки и инженерия",
-        baseLabel: "Город",
-        baseValue: "Ташкент, Узбекистан",
+        educationValue: "ТУИТ · Компьютерный инжиниринг · Бакалавр, 2017",
         expertiseKicker: "Экспертиза",
-        expertiseTitle: "Технологии, которые превращают идеи в продукты.",
-        expertiseLead: "Работаю со всеми ключевыми уровнями продукта — от данных и программных интерфейсов до продуманных пользовательских экранов.",
-        backendTitle: "Серверные системы",
-        backendText: "Надёжные сервисы, программные интерфейсы, модели данных и интеграции, рассчитанные на длительную работу.",
-        webTitle: "Веб-приложения",
-        webText: "Адаптивные интерфейсы, объединяющие скорость, доступность и цели продукта.",
-        deliveryTitle: "Запуск продукта",
-        deliveryText: "Практическая работа от требований и прототипа до готового решения.",
+        expertiseTitle: "Backend-стек для высоконагруженных систем.",
+        expertiseLead: "Работаю с банковскими системами, безопасными API, микросервисами, очередями сообщений и базами данных.",
+        webAppsTitle: "Веб-приложения",
+        webAppsText: "Полноценные веб-приложения с современным интерфейсом и безопасной серверной частью на Java.",
+        mobileAppsTitle: "Мобильные приложения",
+        mobileAppsText: "Безопасные API для приложений Android и iOS с подключением банковских, платёжных и других сервисов.",
+        appsTitle: "Микросервисы и интеграции",
+        appsText: "Интеграция внутренних банковских сервисов с партнёрскими API, платёжными системами и государственными платформами.",
+        deliveryTitle: "Данные и DevOps",
+        deliveryText: "Надёжные процессы релизов с базами данных, контейнерами и CI/CD.",
         experienceKicker: "Опыт",
-        experienceTitle: "Ключевой профессиональный опыт.",
-        tuneRole: "Разработчик серверных систем",
-        tuneDate: "2020 — настоящее время",
-        tunePlace: "Ташкент",
-        tuneText: "Разработка продуктовых функций и веб-систем по техническим требованиям с упором на надёжность и понятную реализацию.",
-        stylemixRole: "Веб-разработчик",
-        stylemixArea: "Веб-разработка",
-        stylemixText: "Международные веб-проекты, оптимизация производительности, платёжные интеграции и адаптивные интерфейсы.",
+        experienceTitle: "Профессиональный опыт в банках и финтехе.",
+        job0Date: "Декабрь 2025 — настоящее время",
+        job0Place: "Ташкент · Банк",
+        job0Role: "Начальник отдела разработки системы отчётности",
+        job1Date: "Январь 2024 — декабрь 2025",
+        job1Place: "Ташкент · Банк",
+        job1Role: "Руководитель группы разработки",
+        job1Text: "Руководство интеграциями OpenAPI/DiBank, Wolt, Министерства строительства и кредитной ассоциации; безопасные банковские сервисы на Java 21, Spring Boot 3, RabbitMQ, PostgreSQL и Docker.",
+        job2Date: "Сентябрь 2022 — декабрь 2023",
+        job2Place: "Ташкент · Финтех",
+        job2Role: "Руководитель группы разработки",
+        job2Text: "Запуск внутренней платёжной системы RealPay командой из 6 человек, интеграция Uzcard и Humo и подключение более 10 государственных проектов.",
+        job3Date: "Январь 2022 — декабрь 2023",
+        job3Place: "Ташкент · Платформа",
+        job3Role: "Software Engineer (Java Developer)",
+        job3Text: "REST API на Java 17 и Spring Boot для EPAM Certification System, внешние сервисы, RabbitMQ, CI/CD, Docker и Kubernetes.",
+        job4Date: "Январь 2020 — ноябрь 2021",
+        job4Place: "Ташкент · Финтех",
+        job4Role: "Java-разработчик",
+        job4Text: "Backend-сервисы и интеграции для мобильного банка Apelsin, Marketplace, интернет-банкинга Kapital24 и платёжной платформы Orient Finance Bank.",
+        job5Date: "Май 2019 — январь 2020",
+        job5Place: "Ташкент · Банк",
+        job5Role: "Java-разработчик",
+        job5Text: "Java/Spring Boot backend для DavrBank Mobile App, интеграции Uzcard, Humo и Paynet, настройка тестовых сред и оптимизация SQL.",
+        job6Date: "Сентябрь 2017 — март 2019",
+        job6Place: "Ташкент",
+        job6Role: "Java-разработчик",
+        job6Text: "Модули учёта и автоматизации для Ijod Fondi, а также разработка и поддержка системы документооборота UzAgroExpertBank.",
         workKicker: "Избранный проект",
         workTitle: "Продукты с практической ценностью.",
         workLead: "Системы и цифровые продукты, в создании которых я участвовал.",
-        projectType: "Финансовые технологии · Одностраничное приложение",
-        projectText: "Цифровой платёжный продукт с адаптивным интерфейсом, повторно используемыми компонентами, высокой скоростью и поддержкой нескольких языков.",
+        projectType: "Финтех · Экосистема мобильного банка",
+        projectText: "Backend-логика CRM и dashboard, транзакции, переводы, платежи и бонусные сервисы; REST API для Android/iOS, P2P-переводы и интеграция с микросервисами банка.",
         recognitionKicker: "Достижения",
         recognitionTitle: "Учусь через создание.",
         award1: "2-е место с проектом «Humane».",
         award2: "Победитель II республиканского этапа.",
         award3: "1-е место с проектом «Clean City».",
+        credentialsKicker: "Образование и сертификаты",
+        credentialsTitle: "Непрерывное профессиональное развитие.",
+        degreeName: "Ташкентский университет информационных технологий",
+        degreeText: "Бакалавр по направлению «Компьютерный инжиниринг (компьютерные системы)».",
+        course1Text: "Курсы по Spring, Spring Cloud, микросервисам, шаблонам проектирования и управлению памятью Java.",
+        course2Text: "IBM Business Automation Workflow V19.0.0.1.",
+        course4Text: "Java, Oracle, Windows Server и ITIL v3.",
         contactKicker: "Контакты",
         contactTitle: "Есть проект?<br>Давайте создадим его вместе.",
+        contactTelegram: "Написать в Telegram",
+        contactWhatsapp: "Написать в WhatsApp",
         backToTop: "Наверх"
       },
       en: {
-        pageTitle: "Ravshanjon Ismoilov — Software Engineer",
-        description: "Ravshanjon Ismoilov — software engineer and backend developer based in Tashkent.",
+        pageTitle: "Ravshanjon Ismoilov — Java Software Developer",
+        description: "Ravshanjon Ismoilov — Java software developer and development team lead with 10+ years of experience in banking and fintech.",
         skipLink: "Skip to content",
         menuLabel: "Open menu",
         themeLabel: "Toggle color theme",
@@ -959,72 +1916,118 @@
         specialtiesLabel: "Professional specializations",
         footerLinksLabel: "Social profiles and contact links",
         phoneLabel: "Call +998 99 942 07 70",
-        portraitAlt: "3D portrait of Ravshanjon Ismoilov",
-        cvTitle: "Resume",
-        cvAction: "Download PDF",
-        cvLabel: "Download the resume as PDF (English)",
+        portraitAlt: "Portrait of Ravshanjon Ismoilov",
+        cvTitle: "CV",
+        cvAction: "View",
+        cvLabel: "Open the resume",
+        cvDownload: "Download PDF",
+        cvClose: "Close",
         heroGreeting: "Hi! I’m Ravshanjon 👋",
-        startProject: "Start a project",
-        viewGithub: "GitHub profile",
-        specialtySoftware: "Software engineer",
-        specialtySoftwareMeta: "Java · Vue · React",
+        startProject: "Request a project",
+        orderTitle: "Request a project",
+        orderIntro: "Leave your details and I’ll get back to you shortly.",
+        orderName: "Your name",
+        orderNameExample: "For example: Alisher Karimov",
+        orderNameError: "Please enter your name.",
+        orderPhone: "Phone number",
+        orderPhoneExample: "For example: 99 942 07 70",
+        orderPhoneError: "Digits only, 9 of them: 999420770.",
+        orderInfo: "About the project",
+        orderInfoExample: "For example: I need a site that takes orders for my shop. Timeline around 2 months.",
+        orderInfoError: "Describe the project briefly — at least 10 characters.",
+        orderSubmit: "Send",
+        orderCancel: "Cancel",
+        orderSent: "Telegram is open — press Send to send the message.",
+        orderSentCopied: "Telegram is open and the text is copied. If the message is empty, paste it and send.",
+        specialtyWebsites: "Web system",
+        specialtyWebsitesMeta: "Java · React",
         specialtyArchitecture: "Architecture",
         specialtyArchitectureMeta: "Systems · Integrations",
+        specialtyMobile: "Mobile apps",
+        specialtyMobileMeta: "Android · iOS",
         specialtyStartups: "Startups",
         specialtyStartupsMeta: "Prototype · Launch",
         summaryKicker: "● About me",
-        summaryTitle: "I turn ideas into powerful <span class=\"accent-word\">digital products</span>.",
-        summaryText: "I solve complex problems with reliable code and clear user experiences.",
-        statExperienceValue: "7+ years",
-        statExperience: "Experience",
-        statProjects: "Projects",
-        statAwards: "Awards",
+        summaryTitle: "I design and evolve <span class=\"accent-word\">banking and fintech systems</span>.",
+        summaryText: "Hands-on experience in mobile and internet banking, payment systems, government integrations, and microservices.",
+        statExperienceValue: "10+",
+        statExperience: "Years of experience",
+        statProjects: "Successful projects",
+        statTeam: "Team members",
         navAbout: "About",
         navExpertise: "Expertise",
         navExperience: "Experience",
         navWork: "Work",
-        heroTitle: "I build <span class=\"accent-word\">digital experiences</span> that matter.",
-        heroLead: "I’m a software engineer building backend systems and modern applications.",
+        heroTitle: "I build <span class=\"accent-word\">useful<br>digital products</span>.",
         aboutKicker: "About",
-        aboutTitle: "Engineering with clarity, curiosity, and purpose.",
-        aboutP1: "I care about fast, interactive products, thoughtful architecture, and code that remains easy to work with as a team grows.",
-        aboutP2: "My background spans financial technology, backend development, single-page applications, and web platforms. I enjoy turning complex requirements into straightforward user experiences.",
+        aboutTitle: "10+ years in IT and technical leadership.",
+        aboutP1: "I led development groups at Ipotekabank OTP Group and REALSOFT, managing teams of up to 6 engineers and owning architecture, releases, and code reviews.",
+        aboutP2: "I built mobile and internet banking, payment systems, and integrations with Uzcard, Humo, Paynet, Wolt, and government services. My core stack is Java 21, Spring Boot 3, Spring Cloud, PostgreSQL, Oracle, RabbitMQ, and Docker.",
         focusLabel: "Focus",
-        focusValue: "Backend & web engineering",
+        focusValue: "Java backend · Microservices · Fintech",
         educationLabel: "Education",
-        educationValue: "Computer Science & Engineering",
-        baseLabel: "Based in",
-        baseValue: "Tashkent, Uzbekistan",
+        educationValue: "TUIT · Computer Engineering · Bachelor’s, 2017",
         expertiseKicker: "Expertise",
-        expertiseTitle: "Tools I use to move ideas forward.",
-        expertiseLead: "From data and APIs to polished interfaces, I work across the layers that make a product useful.",
-        backendTitle: "Backend systems",
-        backendText: "Reliable services, REST APIs, data modeling, and integrations built for long-term maintainability.",
-        webTitle: "Web applications",
-        webText: "Responsive, component-driven interfaces that balance speed, accessibility, and product goals.",
-        deliveryTitle: "Product delivery",
-        deliveryText: "Practical collaboration from requirements and prototyping through implementation.",
+        expertiseTitle: "A backend stack for high-load systems.",
+        expertiseLead: "I work with banking systems, secure APIs, microservices, message queues, and databases.",
+        webAppsTitle: "Web applications",
+        webAppsText: "Complete web applications with modern interfaces and secure Java backends.",
+        mobileAppsTitle: "Mobile applications",
+        mobileAppsText: "Secure APIs for Android and iOS apps connected to banking, payment, and other services.",
+        appsTitle: "Microservices and integrations",
+        appsText: "Connecting internal banking services with partner APIs, payment systems, and government platforms.",
+        deliveryTitle: "Data and DevOps",
+        deliveryText: "Reliable release workflows using databases, containers, and CI/CD.",
         experienceKicker: "Experience",
-        experienceTitle: "Selected professional experience.",
-        tuneRole: "Backend Developer",
-        tuneDate: "2020 — Present",
-        tunePlace: "Tashkent",
-        tuneText: "Developing product features and web systems from technical requirements, with an emphasis on reliability and clear implementation.",
-        stylemixRole: "Web Developer",
-        stylemixArea: "Web development",
-        stylemixText: "International web projects, performance optimization, payment integrations, and responsive user interfaces.",
+        experienceTitle: "Professional experience in banking and fintech.",
+        job0Date: "December 2025 — Present",
+        job0Place: "Tashkent · Banking",
+        job0Role: "Head of Reporting System Development Department",
+        job1Date: "January 2024 — December 2025",
+        job1Place: "Tashkent · Banking",
+        job1Role: "Head of Development Team",
+        job1Text: "Led OpenAPI/DiBank, Wolt, Ministry of Construction, and credit association integrations, delivering secure banking services with Java 21, Spring Boot 3, RabbitMQ, PostgreSQL, and Docker.",
+        job2Date: "September 2022 — December 2023",
+        job2Place: "Tashkent · Fintech",
+        job2Role: "Head of Development Team",
+        job2Text: "Launched the internal RealPay payment system with a team of 6, integrated Uzcard and Humo, and connected more than 10 government projects.",
+        job3Date: "January 2022 — December 2023",
+        job3Place: "Tashkent · Platform",
+        job3Role: "Software Engineer (Java Developer)",
+        job3Text: "Built REST APIs for the EPAM Certification System with Java 17 and Spring Boot, integrating external services, RabbitMQ, CI/CD, Docker, and Kubernetes.",
+        job4Date: "January 2020 — November 2021",
+        job4Place: "Tashkent · Fintech",
+        job4Role: "Java Developer",
+        job4Text: "Backend services and integrations for Apelsin mobile banking, Marketplace, Kapital24 internet banking, and the Orient Finance Bank payment platform.",
+        job5Date: "May 2019 — January 2020",
+        job5Place: "Tashkent · Banking",
+        job5Role: "Java Developer",
+        job5Text: "Java/Spring Boot backend for DavrBank Mobile App, Uzcard, Humo, and Paynet integrations, test environments, and SQL optimization.",
+        job6Date: "September 2017 — March 2019",
+        job6Place: "Tashkent",
+        job6Role: "Java Developer",
+        job6Text: "Accounting and automation modules for Ijod Fondi, plus development and maintenance of the UzAgroExpertBank document workflow system.",
         workKicker: "Selected work",
         workTitle: "Products with measurable utility.",
         workLead: "A growing collection of systems and digital products I’ve helped bring to life.",
-        projectType: "Fintech · Single-page application",
-        projectText: "A digital payment experience focused on responsive interaction, reusable components, optimization, and multilingual product flows.",
+        projectType: "Fintech · Mobile banking ecosystem",
+        projectText: "Backend logic for CRM and dashboard modules, transactions, transfers, payments, and bonus services; REST APIs for Android/iOS, P2P transfers, and bank microservice integration.",
         recognitionKicker: "Recognition",
         recognitionTitle: "Learning by building.",
         award1: "Second place with the Humane project.",
         award2: "Winner of the Republic II stage.",
         award3: "First place with the Clean City project.",
+        credentialsKicker: "Education and certificates",
+        credentialsTitle: "Continuous professional development.",
+        degreeName: "Tashkent University of Information Technologies",
+        degreeText: "Bachelor’s degree in Computer Engineering (Computer Systems).",
+        course1Text: "Courses in Spring, Spring Cloud, microservices, design patterns, and Java memory management.",
+        course2Text: "IBM Business Automation Workflow V19.0.0.1.",
+        course4Text: "Java, Oracle, Windows Server, and ITIL v3.",
         contactKicker: "Contact",
         contactTitle: "Have a project in mind?<br>Let’s make it real.",
+        contactTelegram: "Message on Telegram",
+        contactWhatsapp: "Message on WhatsApp",
         backToTop: "Back to top"
       }
     };
@@ -1032,24 +2035,24 @@
     const header = document.querySelector("[data-header]");
     const menu = document.querySelector("[data-menu]");
     const menuButton = document.querySelector("[data-menu-button]");
-    const themeButton = document.querySelector("[data-theme-toggle]");
-    const themeIcon = document.querySelector("[data-theme-icon]");
-    const themeLabel = document.querySelector("[data-theme-label]");
-    const languageSelect = document.querySelector("[data-language-select]");
-    const languageTrigger = document.querySelector("[data-language-trigger]");
-    const languageOptions = document.querySelector("[data-language-options]");
-    const languageFlag = document.querySelector("[data-language-flag]");
-    const languageCode = document.querySelector("[data-language-code]");
+    const themeButtons = document.querySelectorAll("[data-theme-toggle]");
+    const themeIcons = document.querySelectorAll("[data-theme-icon]");
+    const themeIconsNext = document.querySelectorAll("[data-theme-icon-alt]");
+    const themeLabels = document.querySelectorAll("[data-theme-label]");
+    const languageSelects = [...document.querySelectorAll("[data-language-select]")];
     const descriptionMeta = document.querySelector('meta[name="description"]');
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
     const themeFavicon = document.querySelector("[data-theme-favicon]");
     const themeTouchIcon = document.querySelector("[data-theme-touch-icon]");
-    const cvLink = document.querySelector("[data-cv-link]");
+    const cvDialog = document.querySelector("[data-cv-dialog]");
+    const cvPreview = document.querySelector("[data-cv-preview]");
+    const cvDownload = document.querySelector("[data-cv-download]");
+    let cvPath = "cv/Ravshanjon-Ismoilov-CV-uz.pdf";
     let currentLanguage = "uz";
     const languageDetails = {
-      uz: { code: "UZ", flag: "🇺🇿", name: "O‘zbek" },
-      ru: { code: "RU", flag: "🇷🇺", name: "Русский" },
-      en: { code: "EN", flag: "🇬🇧", name: "English" }
+      uz: { code: "UZ", flag: "#flag-uz", name: "O‘zbek" },
+      ru: { code: "RU", flag: "#flag-ru", name: "Русский" },
+      en: { code: "EN", flag: "#flag-gb", name: "English" }
     };
 
     const savePreference = (key, value) => {
@@ -1060,19 +2063,31 @@
       }
     };
 
-    const setLanguageSelectOpen = (isOpen) => {
-      languageOptions.hidden = !isOpen;
-      languageSelect.classList.toggle("open", isOpen);
-      languageTrigger.setAttribute("aria-expanded", String(isOpen));
+    const setLanguageSelectOpen = (select, isOpen) => {
+      const trigger = select.querySelector("[data-language-trigger]");
+      const options = select.querySelector("[data-language-options]");
+      options.hidden = !isOpen;
+      select.classList.toggle("open", isOpen);
+      trigger.setAttribute("aria-expanded", String(isOpen));
     };
 
-    const closeLanguageSelect = () => setLanguageSelectOpen(false);
+    const closeLanguageSelects = (except = null) => {
+      languageSelects.forEach((select) => {
+        if (select !== except) setLanguageSelectOpen(select, false);
+      });
+    };
 
     const closeMenu = () => {
-      closeLanguageSelect();
+      closeLanguageSelects();
       menu.classList.remove("open");
       header.classList.remove("menu-open");
       menuButton.setAttribute("aria-expanded", "false");
+    };
+
+    const updateCvPreview = () => {
+      const dictionary = translations[currentLanguage];
+      cvPreview.src = `${cvPath}#view=FitH&toolbar=0&navpanes=0`;
+      cvPreview.title = dictionary.cvTitle;
     };
 
     const setLanguage = (language) => {
@@ -1107,16 +2122,22 @@
       document.querySelectorAll("[data-language]").forEach((button) => {
         const isActive = button.dataset.language === selectedLanguage;
         button.classList.toggle("active", isActive);
-        button.setAttribute("aria-selected", String(isActive));
+        button.setAttribute(button.getAttribute("role") === "option" ? "aria-selected" : "aria-pressed", String(isActive));
       });
 
       const selectedDetails = languageDetails[selectedLanguage];
-      languageFlag.textContent = selectedDetails.flag;
-      languageCode.textContent = selectedDetails.code;
-      languageTrigger.setAttribute("aria-label", `${dictionary.languageLabel}: ${selectedDetails.name}`);
-      cvLink.href = `cv/Ravshanjon-Ismoilov-CV-${selectedLanguage}.pdf`;
-      themeButton.setAttribute("aria-label", dictionary.themeLabel);
-      themeButton.setAttribute("title", dictionary.themeLabel);
+      languageSelects.forEach((select) => {
+        select.querySelector("[data-language-flag] use").setAttribute("href", selectedDetails.flag);
+        select.querySelector("[data-language-code]").textContent = selectedDetails.code;
+        select.querySelector("[data-language-trigger]").setAttribute("aria-label", `${dictionary.languageLabel}: ${selectedDetails.name}`);
+      });
+      cvPath = `cv/Ravshanjon-Ismoilov-CV-${selectedLanguage}.pdf`;
+      cvDownload.href = cvPath;
+      if (cvDialog.open) updateCvPreview();
+      themeButtons.forEach((button) => {
+        button.setAttribute("aria-label", dictionary.themeLabel);
+        button.setAttribute("title", dictionary.themeLabel);
+      });
       savePreference("portfolio-language", selectedLanguage);
       updateThemeIcon();
       closeMenu();
@@ -1125,10 +2146,17 @@
     const updateThemeIcon = () => {
       const isLight = document.documentElement.dataset.theme === "light";
       const dictionary = translations[currentLanguage];
-      themeIcon.textContent = isLight ? "☀" : "☾";
-      themeLabel.textContent = isLight ? dictionary.themeLight : dictionary.themeDark;
+      themeIcons.forEach((node) => {
+        const use = node.querySelector("use");
+        if (use) use.setAttribute("href", isLight ? "#icon-sun" : "#icon-moon");
+      });
+      themeIconsNext.forEach((node) => {
+        const use = node.querySelector("use");
+        if (use) use.setAttribute("href", isLight ? "#icon-moon" : "#icon-sun");
+      });
+      themeLabels.forEach((node) => { node.textContent = isLight ? dictionary.themeLight : dictionary.themeDark; });
       const themeSuffix = isLight ? "light" : "dark";
-      themeFavicon.href = `assets/cha-favicon-${themeSuffix}-64.png`;
+      themeFavicon.href = `assets/cha-favicon-${themeSuffix}.svg`;
       themeTouchIcon.href = `assets/cha-favicon-${themeSuffix}-180.png`;
       themeColorMeta.content = isLight ? "#eef4fb" : "#05070d";
     };
@@ -1145,32 +2173,42 @@
     });
 
     menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
-    languageTrigger.addEventListener("click", (event) => {
-      event.stopPropagation();
-      setLanguageSelectOpen(languageOptions.hidden);
+    languageSelects.forEach((select) => {
+      const trigger = select.querySelector("[data-language-trigger]");
+      const options = select.querySelector("[data-language-options]");
+      trigger.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const shouldOpen = options.hidden;
+        closeLanguageSelects(select);
+        setLanguageSelectOpen(select, shouldOpen);
+      });
+      select.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+        event.preventDefault();
+        const optionButtons = [...options.querySelectorAll("[data-language]")];
+        const currentIndex = optionButtons.indexOf(document.activeElement);
+        const step = event.key === "ArrowDown" ? 1 : -1;
+        if (options.hidden) {
+          closeLanguageSelects(select);
+          setLanguageSelectOpen(select, true);
+        }
+        const nextIndex = currentIndex === -1 ? (step === 1 ? 0 : optionButtons.length - 1) : (currentIndex + step + optionButtons.length) % optionButtons.length;
+        optionButtons[nextIndex].focus();
+      });
     });
     document.querySelectorAll("[data-language]").forEach((button) => {
       button.addEventListener("click", () => setLanguage(button.dataset.language));
     });
     document.addEventListener("click", (event) => {
-      if (!languageSelect.contains(event.target)) closeLanguageSelect();
+      if (!event.target.closest("[data-language-select]")) closeLanguageSelects();
       if (menu.classList.contains("open") && !menu.contains(event.target) && !menuButton.contains(event.target)) closeMenu();
-    });
-    languageSelect.addEventListener("keydown", (event) => {
-      if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
-      event.preventDefault();
-      const options = [...languageOptions.querySelectorAll("[data-language]")];
-      const currentIndex = options.indexOf(document.activeElement);
-      const step = event.key === "ArrowDown" ? 1 : -1;
-      if (languageOptions.hidden) setLanguageSelectOpen(true);
-      const nextIndex = currentIndex === -1 ? (step === 1 ? 0 : options.length - 1) : (currentIndex + step + options.length) % options.length;
-      options[nextIndex].focus();
     });
     document.addEventListener("keydown", (event) => {
       if (event.key !== "Escape") return;
-      if (!languageOptions.hidden) {
-        closeLanguageSelect();
-        languageTrigger.focus();
+      const openSelect = languageSelects.find((select) => !select.querySelector("[data-language-options]").hidden);
+      if (openSelect) {
+        setLanguageSelectOpen(openSelect, false);
+        openSelect.querySelector("[data-language-trigger]").focus();
         return;
       }
       if (menu.classList.contains("open")) {
@@ -1179,11 +2217,17 @@
       }
     });
 
-    themeButton.addEventListener("click", () => {
-      const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
-      document.documentElement.dataset.theme = nextTheme;
-      savePreference("portfolio-theme", nextTheme);
-      updateThemeIcon();
+    themeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+        document.documentElement.dataset.theme = nextTheme;
+        savePreference("portfolio-theme", nextTheme);
+        updateThemeIcon();
+        button.classList.add("preview-off");
+      });
+      const clearPreviewLock = () => button.classList.remove("preview-off");
+      button.addEventListener("pointerleave", clearPreviewLock);
+      button.addEventListener("blur", clearPreviewLock);
     });
 
     const updateHeader = () => header.classList.toggle("scrolled", window.scrollY > 16);
@@ -1208,6 +2252,119 @@
       }, { threshold: 0.12 });
       document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
     }
+
+    const openCvDialog = () => {
+      closeMenu();
+      updateCvPreview();
+      cvDialog.showModal();
+      cvDialog.querySelector("[data-cv-close]").focus();
+    };
+
+    document.querySelectorAll("[data-cv-open]").forEach((button) => button.addEventListener("click", openCvDialog));
+    document.querySelectorAll("[data-cv-close]").forEach((button) => button.addEventListener("click", () => cvDialog.close()));
+    cvDialog.addEventListener("click", (event) => {
+      if (event.target === cvDialog) cvDialog.close();
+    });
+    cvDialog.addEventListener("close", () => {
+      cvPreview.removeAttribute("src");
+    });
+
+    const orderDialog = document.querySelector("[data-order-dialog]");
+    const orderForm = document.querySelector("[data-order-form]");
+    const orderSent = document.querySelector("[data-order-sent]");
+    const orderFields = [
+      { name: "name", input: orderForm.elements.name, error: document.getElementById("order-name-error"), isValid: (value) => value.trim().length >= 2 },
+      { name: "phone", input: orderForm.elements.phone, error: document.getElementById("order-phone-error"), isValid: (value) => /^[0-9]{9}$/.test(value) },
+      { name: "info", input: orderForm.elements.info, error: document.getElementById("order-info-error"), isValid: (value) => value.trim().length >= 10 }
+    ];
+
+    const markField = (field, hasError) => {
+      field.error.hidden = !hasError;
+      field.input.setAttribute("aria-invalid", String(hasError));
+    };
+
+    orderForm.elements.phone.addEventListener("input", (event) => {
+      // The number is the only thing the visitor may type here; a pasted +998 prefix is dropped.
+      const input = event.target;
+      let digits = input.value.replace(/[^0-9]/g, "");
+      if (digits.length > 9 && digits.startsWith("998")) digits = digits.slice(3);
+      digits = digits.slice(0, 9);
+      if (digits === input.value) return;
+      const caret = Math.max(0, input.selectionStart - (input.value.length - digits.length));
+      input.value = digits;
+      input.setSelectionRange(caret, caret);
+    });
+
+    orderFields.forEach((field) => {
+      field.input.addEventListener("input", () => {
+        if (!field.error.hidden && field.isValid(field.input.value)) markField(field, false);
+      });
+    });
+
+    const openOrderDialog = () => {
+      closeMenu();
+      orderSent.hidden = true;
+      orderFields.forEach((field) => markField(field, false));
+      orderDialog.showModal();
+      orderForm.elements.name.focus();
+    };
+
+    document.querySelectorAll("[data-order-open]").forEach((button) => button.addEventListener("click", openOrderDialog));
+    document.querySelectorAll("[data-order-close]").forEach((button) => button.addEventListener("click", () => orderDialog.close()));
+    orderDialog.addEventListener("click", (event) => {
+      if (event.target === orderDialog) orderDialog.close();
+    });
+
+    const copyOrderMessage = (text) => {
+      // Telegram ignores ?text= in some clients, so the visitor always has the
+      // message on the clipboard as well. The textarea has to live inside the
+      // open dialog: everything outside a modal <dialog> is inert.
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.setAttribute("aria-hidden", "true");
+      area.style.cssText = "position:fixed;top:0;left:-9999px;opacity:0";
+      orderDialog.appendChild(area);
+      area.select();
+      area.setSelectionRange(0, text.length);
+      let copied = false;
+      try {
+        copied = document.execCommand("copy");
+      } catch (error) {
+        copied = false;
+      }
+      area.remove();
+      if (!copied && navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).catch(() => {});
+      }
+      return copied;
+    };
+
+    orderForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      let firstInvalid = null;
+      orderFields.forEach((field) => {
+        const valid = field.isValid(field.input.value);
+        markField(field, !valid);
+        if (!valid && !firstInvalid) firstInvalid = field.input;
+      });
+      if (firstInvalid) {
+        firstInvalid.focus();
+        return;
+      }
+      const dictionary = translations[currentLanguage];
+      const message = [
+        dictionary.orderTitle,
+        `${dictionary.orderName}: ${orderForm.elements.name.value.trim()}`,
+        `${dictionary.orderPhone}: +998${orderForm.elements.phone.value}`,
+        `${dictionary.orderInfo}: ${orderForm.elements.info.value.trim()}`
+      ].join("\n");
+      const copied = copyOrderMessage(message);
+      window.open(`https://t.me/ravshanjon_ismoilov?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+      orderForm.reset();
+      orderSent.textContent = copied ? dictionary.orderSentCopied : dictionary.orderSent;
+      orderSent.hidden = false;
+    });
 
     let initialLanguage = "uz";
     try {

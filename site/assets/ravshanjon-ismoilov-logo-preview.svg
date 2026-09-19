@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="620" viewBox="0 0 980 620" role="img" aria-labelledby="title desc">
+  <title id="title">Ravshanjon Ismoilov logo preview</title>
+  <desc id="desc">Dark and light background variants of the proposed Ravshanjon Ismoilov logo</desc>
+  <rect width="980" height="620" rx="34" fill="#DCE7F4"/>
+  <rect x="30" y="30" width="920" height="265" rx="24" fill="#05070D"/>
+  <rect x="30" y="325" width="920" height="265" rx="24" fill="#EEF4FB"/>
+  <image href="ravshanjon-ismoilov-logo-dark.svg" x="105" y="52" width="760" height="220"/>
+  <image href="ravshanjon-ismoilov-logo-light.svg" x="105" y="347" width="760" height="220"/>
+</svg>

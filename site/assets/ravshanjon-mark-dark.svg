@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" role="img" aria-labelledby="title desc">
+  <title id="title">Ravshanjon Ismoilov</title>
+  <desc id="desc">Light C monogram for dark backgrounds</desc>
+  <defs>
+    <linearGradient id="mark" x1="27" y1="20" x2="91" y2="102" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.48" stop-color="#BCEFFF"/>
+      <stop offset="1" stop-color="#68AFFF"/>
+    </linearGradient>
+  </defs>
+  <path d="M88.2 31.8A40 40 0 1 0 92.4 83" fill="none" stroke="url(#mark)" stroke-width="16" stroke-linecap="butt"/>
+  <circle cx="98" cy="57.5" r="10.5" fill="url(#mark)"/>
+</svg>

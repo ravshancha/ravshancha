@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UI action icons — hover preview</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #080a0e; color: #f7f9fc; }
+    body { width: min(1100px, calc(100% - 32px)); margin: 32px auto; }
+    h1 { margin-bottom: 8px; font-size: clamp(24px, 4vw, 42px); }
+    p { margin: 0 0 28px; color: #98a2b3; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 10px; }
+    button { display: grid; min-height: 96px; place-items: center; gap: 4px; padding: 10px; border: 1px solid #202631; border-radius: 12px; background: #10141b; color: #98a2b3; cursor: pointer; }
+    button:hover, button:focus-visible { border-color: #2f80ff; color: #fff; background: #121b29; outline: none; }
+    img { width: 64px; height: 64px; object-fit: contain; }
+    small { font-size: 10px; letter-spacing: .04em; }
+  </style>
+</head>
+<body>
+  <h1>UI action icons</h1>
+  <p>Hover or focus an icon to play its GIF animation.</p>
+  <main class="grid" data-grid></main>
+  <script>
+    const grid = document.querySelector("[data-grid]");
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    for (let row = 1; row <= 15; row += 1) {
+      for (let column = 1; column <= 10; column += 1) {
+        const id = `r${String(row).padStart(2, "0")}-c${String(column).padStart(2, "0")}`;
+        const png = `static/ui-action-${id}.png`;
+        const gif = `animated/ui-action-${id}.gif`;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.innerHTML = `<img src="${png}" alt="UI action ${id}"><small>${id}</small>`;
+        const image = button.querySelector("img");
+        const play = () => { if (!reducedMotion) image.src = gif; };
+        const stop = () => { image.src = png; };
+        button.addEventListener("pointerenter", play);
+        button.addEventListener("pointerleave", stop);
+        button.addEventListener("focus", play);
+        button.addEventListener("blur", stop);
+        grid.append(button);
+      }
+    }
+  </script>
+</body>
+</html>
