@@ -5,7 +5,7 @@
 # Nothing here may be invented: no made-up clients, numbers or testimonials.
 
 SETTINGS = dict(
-    base_url="https://ravshancha.uz/biznes/",  # public address of this site, with a trailing slash
+    base_url="https://ravshancha.uz/business/",  # public address of this site, with a trailing slash
     assets="../assets/",  # logo marks, favicons, portrait and OG image are shared with the CV site: path from this site's root
     cv_url="https://ravshancha.uz/",
     cv_label="ravshancha.uz",
@@ -33,10 +33,15 @@ OPENAPI_DOCS = dict(
 L = {}
 
 L["uz"] = dict(
-    page_title="Biznes jarayonlarini avtomatlashtirish — Ravshanjon Ismoilov",
-    description="Qo‘lda bajariladigan ishlar, Excel va yo‘qolgan buyurtmalar o‘rniga — avtomatlashtirilgan jarayonlar va rahbar uchun shaffof hisobot. 10+ yillik bank va fintech tajribasi. Bepul 30 daqiqalik diagnostika.",
+    # Search snippets: the title is cut at about 60 characters, the description at about 160.
+    page_title="Biznes jarayonlarini avtomatlashtirish, Toshkent — Ravshanjon Ismoilov",
+    description="Excel va qo‘l mehnati o‘rniga — avtomatlashtirilgan jarayonlar, integratsiyalar va rahbar uchun dashboard. Toshkent. Bepul 30 daqiqalik diagnostika.",
     og_description="Jarayon auditi, avtomatlashtirish, integratsiya va rahbar uchun dashboard. Bepul 30 daqiqalik diagnostika.",
     ld_name="Ravshanjon Ismoilov — biznes jarayonlarini avtomatlashtirish",
+    og_image_alt="Biznesingiz qo‘lda emas, tizimda ishlasin — Ravshanjon Ismoilov",
+    og_lines=[("Biznesingiz", False), ("qo‘lda emas, tizimda", True), ("ishlasin.", False)],  # social preview headline: (text, accent)
+    og_sub=["Jarayon auditi · Avtomatlashtirish", "Integratsiya · Dashboard", "Toshkent, O‘zbekiston"],
+    footer_location="Toshkent, O‘zbekiston",
 
     skip_link="Kontentga o‘tish",
     nav_label="Asosiy navigatsiya",
@@ -204,10 +209,14 @@ L["uz"] = dict(
 )
 
 L["ru"] = dict(
-    page_title="Автоматизация бизнес-процессов — Равшанжон Исмоилов",
-    description="Вместо ручной работы, Excel и потерянных заказов — автоматизированные процессы и прозрачная отчётность для руководителя. 10+ лет опыта в банковских и финтех-системах. Бесплатная диагностика за 30 минут.",
+    page_title="Автоматизация бизнес-процессов в Ташкенте — Равшанжон Исмоилов",
+    description="Вместо Excel и ручной работы — автоматизированные процессы, интеграции и дашборд для руководителя. Ташкент. Бесплатная диагностика за 30 минут.",
     og_description="Аудит процессов, автоматизация, интеграции и дашборд для руководителя. Бесплатная 30-минутная диагностика.",
     ld_name="Равшанжон Исмоилов — автоматизация бизнес-процессов",
+    og_image_alt="Пусть бизнес работает в системе, а не вручную — Равшанжон Исмоилов",
+    og_lines=[("Пусть бизнес работает", False), ("в системе,", True), ("а не вручную.", True)],
+    og_sub=["Аудит процессов · Автоматизация", "Интеграции · Дашборд", "Ташкент, Узбекистан"],
+    footer_location="Ташкент, Узбекистан",
 
     skip_link="Перейти к содержимому",
     nav_label="Основная навигация",

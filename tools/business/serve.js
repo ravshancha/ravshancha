@@ -1,6 +1,6 @@
-// Local preview of the whole site/ folder: the CV site at / and the selling site at /biznes/
+// Local preview of the whole site/ folder: the CV site at / and the selling site at /business/
 // (static files only — api/lead.php does not run here, so the form shows its Telegram fallback).
-// Usage: node tools/biznes/serve.js [port]   → http://localhost:8772/biznes/
+// Usage: node tools/business/serve.js [port]   → http://localhost:8772/business/
 const http = require("http");
 const fs = require("fs");
 const path = require("path");

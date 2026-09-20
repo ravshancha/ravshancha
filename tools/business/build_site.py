@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Builds the selling site from template.html + content.py: one static page per language
-# (site/biznes/index.html for the first language, site/biznes/<lang>/index.html for the others) and sitemap.xml.
+# (site/business/index.html for the first language, site/business/<lang>/index.html for the others) and sitemap.xml.
 # Standard library only.
-# Usage: python3 tools/biznes/build_site.py [output-dir]
+# Usage: python3 tools/business/build_site.py [output-dir]
 import datetime, html, json, os, re, sys
 from urllib.parse import urljoin, urlparse
 
@@ -12,7 +12,7 @@ sys.path.insert(0, HERE)
 from content import L, LANGS, OPENAPI_DOCS, SETTINGS
 
 REPO = os.path.normpath(os.path.join(HERE, "..", ".."))
-OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, "site", "biznes")
+OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, "site", "business")
 TOKEN = re.compile(r"\{\{([a-z0-9_]+)\}\}")
 
 # 24-unit stroke icons, wrapped the same way as the icon sprite of ravshancha.uz.
@@ -112,6 +112,7 @@ def render_page(template, lang):
     default_lang = next(iter(LANGS))
     assets = root + SETTINGS["assets"]
     assets_abs = urljoin(SETTINGS["base_url"], SETTINGS["assets"])
+    og_image = assets_abs + f"og-business-{lang}.jpg"  # drawn by build_og.py
 
     options = []
     for code, other in LANGS.items():
@@ -132,11 +133,19 @@ def render_page(template, lang):
         "name": t["ld_name"],
         "description": t["og_description"],
         "url": page_url(lang),
-        "image": assets_abs + "og-image.jpg",
+        "image": og_image,
         "telephone": SETTINGS["phone_e164"],
         "address": {"@type": "PostalAddress", "addressLocality": "Tashkent", "addressCountry": "UZ"},
         "areaServed": {"@type": "Country", "name": "Uzbekistan"},
         "knowsLanguage": list(LANGS),
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": t["services_kicker"],
+            "itemListElement": [
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": title, "description": text}}
+                for _, title, text, _, _ in t["services"]
+            ],
+        },
         "founder": {
             "@type": "Person",
             "name": SETTINGS["person"],
@@ -176,7 +185,7 @@ def render_page(template, lang):
     context = {key: value for key, value in t.items() if isinstance(value, str)}
     context.update(render_fragments(t, lang))
     context.update(
-        lang=lang, root=root, assets=assets, assets_abs=assets_abs, canonical=page_url(lang), base_url=SETTINGS["base_url"], og_locale=meta["og_locale"],
+        lang=lang, root=root, assets=assets, og_image=og_image, canonical=page_url(lang), base_url=SETTINGS["base_url"], og_locale=meta["og_locale"],
         lang_code=meta["code"], lang_name=meta["name"], lang_flag=meta["flag"],
         person=SETTINGS["person"], cv_url=SETTINGS["cv_url"], linkedin=SETTINGS["linkedin"],
         phone_display=SETTINGS["phone_display"], phone_e164=SETTINGS["phone_e164"],
@@ -220,10 +229,11 @@ def main():
         print(f"{lang}: {os.path.relpath(target, REPO)}  ({os.path.getsize(target) // 1024} KB)")
 
     today = datetime.date.today().isoformat()
+    alternates = "".join(f'    <xhtml:link rel="alternate" hreflang="{code}" href="{esc(page_url(code))}"/>\n' for code in LANGS)
     urls = "".join(
-        f"  <url>\n    <loc>{esc(page_url(lang))}</loc>\n    <lastmod>{today}</lastmod>\n    <changefreq>monthly</changefreq>\n  </url>\n" for lang in LANGS)
+        f"  <url>\n    <loc>{esc(page_url(lang))}</loc>\n{alternates}    <lastmod>{today}</lastmod>\n    <changefreq>monthly</changefreq>\n  </url>\n" for lang in LANGS)
     with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as out:
-        out.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n')
+        out.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n{urls}</urlset>\n')
 
     # Crawlers read robots.txt only at the host root; in a subfolder the parent site's robots.txt has to list this sitemap.
     sitemap_url = SETTINGS["base_url"] + "sitemap.xml"
@@ -231,7 +241,10 @@ def main():
         with open(os.path.join(OUT, "robots.txt"), "w", encoding="utf-8") as out:
             out.write(f"User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: {sitemap_url}\n")
     else:
-        print(f"note: the site lives in a subfolder — add 'Sitemap: {sitemap_url}' to the host's root robots.txt")
+        host_robots = os.path.join(REPO, "site", "robots.txt")
+        listed = os.path.isfile(host_robots) and sitemap_url in open(host_robots, encoding="utf-8").read()
+        if not listed:
+            print(f"note: the site lives in a subfolder — add 'Sitemap: {sitemap_url}' to the host's root robots.txt")
 
     with open(os.path.join(HERE, "content.py"), encoding="utf-8") as source:
         pending = [line.split("TASDIQLANG", 1)[1].lstrip(": ").strip() for line in source if "TASDIQLANG" in line]
