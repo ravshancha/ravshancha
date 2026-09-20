@@ -315,6 +315,7 @@
     .order-state p { margin: 0; color: var(--muted); }
     .order-state .order-actions { width: 100%; margin-top: 6px; }
     .order-note { color: var(--accent) !important; font-size: 13px; font-weight: 700; }
+    .order-code { margin: 0; color: var(--muted); font-size: 12px; }
     .cv-dialog { width: min(980px, calc(100% - 32px)); height: min(88dvh, 860px); padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); box-shadow: 0 30px 80px var(--shadow); }
     .cv-dialog::backdrop { background: color-mix(in srgb, #05070d 62%, transparent); backdrop-filter: blur(5px); }
     .cv-dialog-shell { display: grid; grid-template-rows: minmax(0, 1fr) auto; height: 100%; }
@@ -2148,6 +2149,7 @@
       <div class="order-state" data-order-fallback role="status" hidden>
         <p data-i18n="orderFallbackText">Arizani avtomatik yuborib bo‘lmadi. Uni Telegram orqali yuboring — matn tayyor:</p>
         <p class="order-note" data-order-fallback-note data-i18n="orderFallbackNote" hidden>Matn nusxalandi. Telegram’da xabar bo‘sh chiqsa — uni qo‘yib, yuboring.</p>
+        <p class="order-code" data-order-fallback-code hidden></p>
         <div class="order-actions">
           <button class="button order-cancel" type="button" data-order-close data-i18n="orderClose">Yopish</button>
           <a class="button button-primary" href="https://t.me/ravshanjon_ismoilov" target="_blank" rel="noopener" data-order-fallback-link><span data-i18n="orderFallbackButton">Telegram’da yuborish</span><svg class="site-icon button-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></a>
@@ -2202,6 +2204,7 @@
         orderFallbackText: "Arizani avtomatik yuborib bo‘lmadi. Uni Telegram orqali yuboring — matn tayyor:",
         orderFallbackButton: "Telegram’da yuborish",
         orderFallbackNote: "Matn nusxalandi. Telegram’da xabar bo‘sh chiqsa — uni qo‘yib, yuboring.",
+        orderFallbackCode: "Texnik kod",
         specialtyWebsites: "Veb-tizim",
         specialtyWebsitesMeta: "Java · React",
         specialtyArchitecture: "Arxitektura",
@@ -2353,6 +2356,7 @@
         orderFallbackText: "Не удалось отправить заявку автоматически. Отправьте её через Telegram — текст уже готов:",
         orderFallbackButton: "Отправить в Telegram",
         orderFallbackNote: "Текст скопирован. Если сообщение в Telegram окажется пустым — вставьте его и отправьте.",
+        orderFallbackCode: "Технический код",
         specialtyWebsites: "Веб-система",
         specialtyWebsitesMeta: "Java · React",
         specialtyArchitecture: "Архитектура",
@@ -2504,6 +2508,7 @@
         orderFallbackText: "The request could not be sent automatically. Please send it via Telegram — the text is ready:",
         orderFallbackButton: "Send via Telegram",
         orderFallbackNote: "The text is copied. If the Telegram message is empty, paste it and send.",
+        orderFallbackCode: "Technical code",
         specialtyWebsites: "Web system",
         specialtyWebsitesMeta: "Java · React",
         specialtyArchitecture: "Architecture",
@@ -2877,6 +2882,7 @@
     };
     const orderFallbackLink = document.querySelector("[data-order-fallback-link]");
     const orderFallbackNote = document.querySelector("[data-order-fallback-note]");
+    const orderFallbackCode = document.querySelector("[data-order-fallback-code]");
     const orderSubmit = document.querySelector("[data-order-submit]");
     const orderSubmitLabel = document.querySelector("[data-order-submit-label]");
     const orderFields = [
@@ -2916,6 +2922,7 @@
       closeMenu();
       showOrderState("form");
       orderFallbackNote.hidden = true;
+      orderFallbackCode.hidden = true;
       orderFields.forEach((field) => markField(field, false));
       orderDialog.showModal();
       orderForm.elements.name.focus();
@@ -2964,9 +2971,19 @@
           body: JSON.stringify(lead),
           signal: abort.signal
         });
-        if (!response.ok) throw new Error(`lead endpoint answered ${response.status}`);
-        const result = await response.json();
-        if (!result || result.ok !== true) throw new Error("lead endpoint rejected the request");
+        // The endpoint names its problem in "error"; a page that is not JSON at all (a PHP that never ran,
+        // an error page from the host) leaves it empty. Both end up in front of the visitor as a short code.
+        let result = null;
+        try {
+          result = await response.json();
+        } catch (error) {
+          result = null;
+        }
+        if (!response.ok || !result || result.ok !== true) {
+          const failure = new Error(`lead endpoint answered ${response.status}`);
+          failure.code = `${response.status}${result && typeof result.error === "string" ? " " + result.error : ""}`;
+          throw failure;
+        }
       } finally {
         clearTimeout(timer);
       }
@@ -3007,6 +3024,8 @@
           `${dictionary.orderPhone}: +998${lead.phone}`,
           `${dictionary.orderInfo}: ${lead.info}`
         ].join("\n");
+        orderFallbackCode.textContent = `${dictionary.orderFallbackCode}: ${error.code || (error.name === "AbortError" ? "timeout" : "network")}`;
+        orderFallbackCode.hidden = false;
         orderFallbackLink.href = `https://t.me/ravshanjon_ismoilov?text=${encodeURIComponent(message)}`;
         orderFallbackLink.dataset.message = message;
         showOrderState("fallback");
