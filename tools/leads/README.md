@@ -58,6 +58,12 @@ o‘z pochtasi orqali SMTP bilan yuboradi:
 3. Kerak bo‘lsa **Variables**: `LEAD_SMTP_HOST` (standart `mail.ravshancha.uz`), `LEAD_SMTP_PORT` (`465`),
    `LEAD_SMTP_USER` (`noreply@ravshancha.uz`), `LEAD_SMTP_VERIFY` (`0` — sertifikat nomi mos kelmasa).
 
+Ariza bir nechta pochtaga yuborilishi mumkin: `LEAD_NOTIFY_EMAIL` vergul bilan ajratilgan ro‘yxatni qabul
+qiladi (5 tagacha). Standart holatda ikkita manzil — Gmail va domendagi `ravshanc@ravshancha.uz`. Domendagi
+nusxa bitta server ichida yetkaziladi, shuning uchun Gmail xatni spamga tashlasa ham ariza qo‘lda qoladi:
+uni cPanel → Webmail orqali o‘qiysiz. Gmail’ga muntazam yetib borishi uchun cPanel’da **DKIM** yoqilgan va
+**SPF** to‘g‘ri bo‘lishi shart (Email Deliverability bo‘limi).
+
 465-port TLS bilan ulanadi, boshqa portlarda parol yuborilishidan oldin STARTTLS talab qilinadi. Nimadir
 ishlamasa ariza yo‘qolmaydi: forma Telegram zaxirasini taklif qiladi va sababni kod bilan ko‘rsatadi:
 

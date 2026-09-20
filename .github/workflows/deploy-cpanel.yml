@@ -33,7 +33,7 @@ jobs:
         env:
           LEAD_SHEETS_URL: ${{ secrets.LEAD_SHEETS_URL }}
           LEAD_SHEETS_SECRET: ${{ secrets.LEAD_SHEETS_SECRET }}
-          LEAD_NOTIFY_EMAIL: ${{ vars.LEAD_NOTIFY_EMAIL || 'ismoilov.ravshanjon@gmail.com' }}
+          LEAD_NOTIFY_EMAIL: ${{ vars.LEAD_NOTIFY_EMAIL || 'ismoilov.ravshanjon@gmail.com,ravshanc@ravshancha.uz' }}
           LEAD_MAIL_FROM: ${{ vars.LEAD_MAIL_FROM || 'noreply@ravshancha.uz' }}
           LEAD_SMTP_PASSWORD: ${{ secrets.LEAD_SMTP_PASSWORD }}
           LEAD_SMTP_HOST: ${{ vars.LEAD_SMTP_HOST || 'mail.ravshancha.uz' }}

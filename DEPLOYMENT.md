@@ -22,7 +22,8 @@ Add these under **Settings → Secrets and variables → Actions → Variables**
 - `CPANEL_FTP_SERVER_DIR` — remote directory such as `/public_html/` or `./`
 - `CPANEL_FTP_PROTOCOL` — `ftps` by default; use `ftp` only if encrypted FTP is unavailable
 - `CPANEL_FTP_PORT` — `21` by default
-- `LEAD_NOTIFY_EMAIL` — where a project request is e-mailed; the workflow's own default is used when unset
+- `LEAD_NOTIFY_EMAIL` — where a project request is e-mailed; several addresses may be separated by commas
+  (up to five), and the workflow's own default is used when unset
 - `LEAD_MAIL_FROM` — sender of that e-mail, `noreply@ravshancha.uz` by default
 - `LEAD_SMTP_HOST` / `LEAD_SMTP_PORT` / `LEAD_SMTP_USER` — the mailbox that sends it,
   `mail.ravshancha.uz`, `465` and `noreply@ravshancha.uz` by default

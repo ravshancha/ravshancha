@@ -93,7 +93,7 @@ function smtp_command($socket, string $command): int
 
 // Sends the message through the domain's own mailbox. Hosts that disable mail() still allow this connection,
 // and a message authenticated as noreply@<domain> passes the domain's SPF instead of looking forged.
-function smtp_send(array $smtp, string $from, string $to, string $subject, string $body, string $helo): string
+function smtp_send(array $smtp, string $from, array $recipients, string $subject, string $body, string $helo): string
 {
     $port = (int)$smtp['port'];
     $socket = @stream_socket_client(
@@ -136,15 +136,21 @@ function smtp_send(array $smtp, string $from, string $to, string $subject, strin
             return 'smtp_auth';
         }
     }
-    $ok = smtp_command($socket, 'MAIL FROM:<' . $from . '>') === 250
-        && in_array(smtp_command($socket, 'RCPT TO:<' . $to . '>'), [250, 251], true)
-        && smtp_command($socket, 'DATA') === 354;
+    $accepted = [];
+    if (smtp_command($socket, 'MAIL FROM:<' . $from . '>') === 250) {
+        foreach ($recipients as $recipient) {
+            if (in_array(smtp_command($socket, 'RCPT TO:<' . $recipient . '>'), [250, 251], true)) {
+                $accepted[] = $recipient;
+            }
+        }
+    }
+    $ok = $accepted !== [] && smtp_command($socket, 'DATA') === 354;
     if ($ok) {
         $headers = [
             'Date: ' . date('r'),
             'Message-ID: <' . bin2hex(random_bytes(12)) . '@' . $helo . '>',
             'From: ' . $from,
-            'To: ' . $to,
+            'To: ' . implode(', ', $accepted),
             'Subject: ' . $subject,
             'MIME-Version: 1.0',
             'Content-Type: text/plain; charset=UTF-8',
@@ -163,7 +169,7 @@ function smtp_send(array $smtp, string $from, string $to, string $subject, strin
 
 // Notification to the owner, used when the sheet did not take the lead. Sent through the domain's mailbox when
 // one is configured, and otherwise through the host's own mail(), which shared hosting often disables.
-function mail_lead(string $to, string $from, array $lead, array $smtp, string $helo): string
+function mail_lead(array $recipients, string $from, array $lead, array $smtp, string $helo): string
 {
     $lines = [
         'Yangi ariza — loyiha buyurtmasi',
@@ -178,14 +184,14 @@ function mail_lead(string $to, string $from, array $lead, array $smtp, string $h
     $subject = '=?UTF-8?B?' . base64_encode('ravshancha.uz: yangi ariza — ' . $lead['name']) . '?=';
     $body = implode("\n", $lines);
     if ($smtp['host'] !== '') {
-        return smtp_send($smtp, $from, $to, $subject, $body, $helo);
+        return smtp_send($smtp, $from, $recipients, $subject, $body, $helo);
     }
     // Shared hosting sometimes disables mail() outright; calling it then is a fatal error, not a false.
     if (!function_exists('mail')) {
         return 'delivery';
     }
     $headers = ['From: ' . $from, 'MIME-Version: 1.0', 'Content-Type: text/plain; charset=UTF-8', 'Content-Transfer-Encoding: 8bit'];
-    return @mail($to, $subject, $body, implode("\r\n", $headers)) ? '' : 'delivery';
+    return @mail(implode(', ', $recipients), $subject, $body, implode("\r\n", $headers)) ? '' : 'delivery';
 }
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
@@ -211,14 +217,18 @@ if (!is_file($configFile)) {
 $config = require $configFile;
 $sheetsUrl = trim((string)($config['sheets_url'] ?? ''));
 $sheetsSecret = trim((string)($config['sheets_secret'] ?? ''));
-$notifyEmail = trim((string)($config['notify_email'] ?? ''));
+$notifyList = [];
+foreach (explode(',', (string)($config['notify_email'] ?? '')) as $candidate) {
+    $candidate = trim($candidate);
+    if (filter_var($candidate, FILTER_VALIDATE_EMAIL) !== false && !in_array($candidate, $notifyList, true)) {
+        $notifyList[] = $candidate;
+    }
+}
+$notifyList = array_slice($notifyList, 0, 5);
 if (!preg_match('#^https?://#i', $sheetsUrl) || $sheetsSecret === '') {
     $sheetsUrl = '';
 }
-if (filter_var($notifyEmail, FILTER_VALIDATE_EMAIL) === false) {
-    $notifyEmail = '';
-}
-if ($sheetsUrl === '' && $notifyEmail === '') {
+if ($sheetsUrl === '' && $notifyList === []) {
     respond(503, ['ok' => false, 'error' => 'not_configured']);
 }
 $smtp = [
@@ -294,7 +304,7 @@ $lead = [
 
 $saved = $sheetsUrl !== '' && save_to_sheet($sheetsUrl, $sheetsSecret, $lead);
 if (!$saved) {
-    $problem = $notifyEmail === '' ? 'delivery' : mail_lead($notifyEmail, $mailFrom, $lead, $smtp, $host ?: 'ravshancha.uz');
+    $problem = $notifyList === [] ? 'delivery' : mail_lead($notifyList, $mailFrom, $lead, $smtp, $host ?: 'ravshancha.uz');
     if ($problem !== '') {
         respond(502, ['ok' => false, 'error' => $problem]);
     }
