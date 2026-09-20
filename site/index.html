@@ -277,6 +277,7 @@
     h2 { max-width: 760px; margin-bottom: 28px; font-size: clamp(2.3rem, 4.5vw, 4.8rem); line-height: 1.02; letter-spacing: -0.055em; }
     h3 { margin-bottom: 10px; font-size: 1.35rem; letter-spacing: -0.025em; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .button[disabled] { opacity: 0.6; cursor: progress; transform: none; }
     .button { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 50px; padding: 0 22px; border: 0; border-radius: 11px; background: none; font-weight: 750; cursor: pointer; transition: transform 150ms ease, background 150ms ease; }
     .button:hover { transform: translateY(-2px); }
     .button-primary { color: var(--accent-text); background: var(--accent); box-shadow: 0 12px 30px color-mix(in srgb, var(--accent) 28%, transparent); }
@@ -311,7 +312,15 @@
     .order-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
     .order-cancel { border: 0; background: color-mix(in srgb, var(--surface-2) 82%, var(--surface)); color: var(--muted); }
     .order-cancel:hover, .order-cancel:focus-visible { color: var(--text); background: color-mix(in srgb, var(--accent) 14%, var(--surface-2)); }
-    .order-sent { margin: 0; color: var(--accent); font-size: 13px; font-weight: 700; }
+    .order-fields { display: grid; gap: 19px; }
+    .order-fields[hidden], .order-state[hidden] { display: none; }
+    .order-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .order-consent { margin: -6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .order-state { display: grid; gap: 14px; justify-items: start; }
+    .order-state h3 { margin: 0; font-size: 1.3rem; }
+    .order-state p { margin: 0; color: var(--muted); }
+    .order-state .order-actions { width: 100%; margin-top: 6px; }
+    .order-note { color: var(--accent) !important; font-size: 13px; font-weight: 700; }
     .cv-dialog { width: min(980px, calc(100% - 32px)); height: min(88dvh, 860px); padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); box-shadow: 0 30px 80px var(--shadow); }
     .cv-dialog::backdrop { background: color-mix(in srgb, #05070d 62%, transparent); backdrop-filter: blur(5px); }
     .cv-dialog-shell { display: grid; grid-template-rows: minmax(0, 1fr) auto; height: 100%; }
@@ -1025,6 +1034,7 @@
       .container { width: min(calc(100% - 28px), var(--max-width)); }
       .site-nav { padding-inline: 14px; }
       .order-form { gap: 16px; padding: 22px; }
+      .order-fields { gap: 16px; }
       .order-actions > .button { flex: 1 1 auto; }
       .cv-dialog { width: calc(100% - 16px); height: 92dvh; }
       .cv-dialog-actions { width: 100%; padding: 12px; }
@@ -1622,37 +1632,62 @@
           </div>
         </div>
       </div>
-      <p class="order-intro" data-i18n="orderIntro">Ma’lumotlaringizni qoldiring — imkon qadar tez bog‘lanaman.</p>
+      <div class="order-fields" data-order-fields>
+        <p class="order-intro" data-i18n="orderIntro">Ma’lumotlaringizni qoldiring — imkon qadar tez bog‘lanaman.</p>
 
-      <div class="order-field">
-        <label for="order-name" data-i18n="orderName">Ismingiz</label>
-        <p class="order-example" data-i18n="orderNameExample">Masalan: Alisher Karimov</p>
-        <input id="order-name" name="name" type="text" autocomplete="name" aria-describedby="order-name-error" required>
-        <p class="order-error" id="order-name-error" data-i18n="orderNameError" hidden>Ismingizni kiriting.</p>
-      </div>
+        <div class="order-field">
+          <label for="order-name" data-i18n="orderName">Ismingiz</label>
+          <p class="order-example" data-i18n="orderNameExample">Masalan: Alisher Karimov</p>
+          <input id="order-name" name="name" type="text" autocomplete="name" maxlength="80" aria-describedby="order-name-error" required>
+          <p class="order-error" id="order-name-error" data-i18n="orderNameError" hidden>Ismingizni kiriting.</p>
+        </div>
 
-      <div class="order-field">
-        <label for="order-phone" data-i18n="orderPhone">Telefon raqamingiz</label>
-        <p class="order-example" data-i18n="orderPhoneExample">Masalan: 99 942 07 70</p>
-        <div class="order-phone">
+        <div class="order-field">
+          <label for="order-phone" data-i18n="orderPhone">Telefon raqamingiz</label>
+          <p class="order-example" data-i18n="orderPhoneExample">Masalan: 99 942 07 70</p>
+          <div class="order-phone">
             <span class="order-prefix" aria-hidden="true">+998</span>
             <input id="order-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" aria-describedby="order-phone-error" required>
           </div>
-        <p class="order-error" id="order-phone-error" data-i18n="orderPhoneError" hidden>Faqat raqam, 9 ta belgi: 999420770.</p>
+          <p class="order-error" id="order-phone-error" data-i18n="orderPhoneError" hidden>Faqat raqam, 9 ta belgi: 999420770.</p>
+        </div>
+
+        <div class="order-field">
+          <label for="order-info" data-i18n="orderInfo">Loyiha haqida</label>
+          <p class="order-example" data-i18n="orderInfoExample">Masalan: do‘konim uchun buyurtma qabul qiladigan sayt kerak. Muddat — taxminan 2 oy.</p>
+          <textarea id="order-info" name="info" rows="4" maxlength="1000" aria-describedby="order-info-error" required></textarea>
+          <p class="order-error" id="order-info-error" data-i18n="orderInfoError" hidden>Loyiha haqida qisqacha yozing — kamida 10 ta belgi.</p>
+        </div>
+
+        <div class="order-hp" aria-hidden="true">
+          <label for="order-website">Website</label>
+          <input id="order-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <p class="order-consent" data-i18n="orderConsent">Yuborish orqali ma’lumotlaringizdan siz bilan bog‘lanish uchun foydalanishimga rozilik bildirasiz.</p>
+
+        <div class="order-actions">
+          <button class="button order-cancel" type="button" data-order-close data-i18n="orderCancel">Bekor qilish</button>
+          <button class="button button-primary" type="submit" data-order-submit><span data-i18n="orderSubmit" data-order-submit-label>Yuborish</span><svg class="site-icon button-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></button>
+        </div>
       </div>
 
-      <div class="order-field">
-        <label for="order-info" data-i18n="orderInfo">Loyiha haqida</label>
-        <p class="order-example" data-i18n="orderInfoExample">Masalan: do‘konim uchun buyurtma qabul qiladigan sayt kerak. Muddat — taxminan 2 oy.</p>
-        <textarea id="order-info" name="info" rows="4" aria-describedby="order-info-error" required></textarea>
-        <p class="order-error" id="order-info-error" data-i18n="orderInfoError" hidden>Loyiha haqida qisqacha yozing — kamida 10 ta belgi.</p>
+      <div class="order-state" data-order-success role="status" hidden>
+        <h3 data-i18n="orderSuccessTitle">Arizangiz qabul qilindi</h3>
+        <p data-i18n="orderSuccessText">Rahmat! Imkon qadar tez bog‘lanaman.</p>
+        <div class="order-actions">
+          <button class="button button-primary" type="button" data-order-close data-i18n="orderClose">Yopish</button>
+        </div>
       </div>
 
-      <div class="order-actions">
-        <button class="button order-cancel" type="button" data-order-close data-i18n="orderCancel">Bekor qilish</button>
-        <button class="button button-primary" type="submit"><span data-i18n="orderSubmit">Yuborish</span><svg class="site-icon button-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></button>
+      <div class="order-state" data-order-fallback role="status" hidden>
+        <p data-i18n="orderFallbackText">Arizani avtomatik yuborib bo‘lmadi. Uni Telegram orqali yuboring — matn tayyor:</p>
+        <p class="order-note" data-order-fallback-note data-i18n="orderFallbackNote" hidden>Matn nusxalandi. Telegram’da xabar bo‘sh chiqsa — uni qo‘yib, yuboring.</p>
+        <div class="order-actions">
+          <button class="button order-cancel" type="button" data-order-close data-i18n="orderClose">Yopish</button>
+          <a class="button button-primary" href="https://t.me/ravshanjon_ismoilov" target="_blank" rel="noopener" data-order-fallback-link><span data-i18n="orderFallbackButton">Telegram’da yuborish</span><svg class="site-icon button-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></a>
+        </div>
       </div>
-      <p class="order-sent" data-order-sent data-i18n="orderSent" hidden>Telegram ochildi — xabarni yuborish uchun “Yuborish” tugmasini bosing.</p>
     </form>
   </dialog>
 
@@ -1694,8 +1729,14 @@
         orderInfoError: "Loyiha haqida qisqacha yozing — kamida 10 ta belgi.",
         orderSubmit: "Yuborish",
         orderCancel: "Bekor qilish",
-        orderSent: "Telegram ochildi — xabarni yuborish uchun “Yuborish” tugmasini bosing.",
-        orderSentCopied: "Telegram ochildi, matn nusxalandi. Xabar bo‘sh chiqsa — matnni qo‘yib, yuboring.",
+        orderConsent: "Yuborish orqali ma’lumotlaringizdan siz bilan bog‘lanish uchun foydalanishimga rozilik bildirasiz.",
+        orderSending: "Yuborilmoqda…",
+        orderSuccessTitle: "Arizangiz qabul qilindi",
+        orderSuccessText: "Rahmat! Imkon qadar tez bog‘lanaman.",
+        orderClose: "Yopish",
+        orderFallbackText: "Arizani avtomatik yuborib bo‘lmadi. Uni Telegram orqali yuboring — matn tayyor:",
+        orderFallbackButton: "Telegram’da yuborish",
+        orderFallbackNote: "Matn nusxalandi. Telegram’da xabar bo‘sh chiqsa — uni qo‘yib, yuboring.",
         specialtyWebsites: "Veb-tizim",
         specialtyWebsitesMeta: "Java · React",
         specialtyArchitecture: "Arxitektura",
@@ -1824,8 +1865,14 @@
         orderInfoError: "Коротко опишите проект — минимум 10 знаков.",
         orderSubmit: "Отправить",
         orderCancel: "Отмена",
-        orderSent: "Telegram открыт — нажмите «Отправить», чтобы отправить сообщение.",
-        orderSentCopied: "Telegram открыт, текст скопирован. Если сообщение пустое — вставьте текст и отправьте.",
+        orderConsent: "Отправляя форму, вы соглашаетесь на использование ваших данных для связи с вами.",
+        orderSending: "Отправка…",
+        orderSuccessTitle: "Заявка принята",
+        orderSuccessText: "Спасибо! Свяжусь с вами в ближайшее время.",
+        orderClose: "Закрыть",
+        orderFallbackText: "Не удалось отправить заявку автоматически. Отправьте её через Telegram — текст уже готов:",
+        orderFallbackButton: "Отправить в Telegram",
+        orderFallbackNote: "Текст скопирован. Если сообщение в Telegram окажется пустым — вставьте его и отправьте.",
         specialtyWebsites: "Веб-система",
         specialtyWebsitesMeta: "Java · React",
         specialtyArchitecture: "Архитектура",
@@ -1954,8 +2001,14 @@
         orderInfoError: "Describe the project briefly — at least 10 characters.",
         orderSubmit: "Send",
         orderCancel: "Cancel",
-        orderSent: "Telegram is open — press Send to send the message.",
-        orderSentCopied: "Telegram is open and the text is copied. If the message is empty, paste it and send.",
+        orderConsent: "By sending this form you agree that I use your details to contact you.",
+        orderSending: "Sending…",
+        orderSuccessTitle: "Request received",
+        orderSuccessText: "Thank you! I’ll get back to you shortly.",
+        orderClose: "Close",
+        orderFallbackText: "The request could not be sent automatically. Please send it via Telegram — the text is ready:",
+        orderFallbackButton: "Send via Telegram",
+        orderFallbackNote: "The text is copied. If the Telegram message is empty, paste it and send.",
         specialtyWebsites: "Web system",
         specialtyWebsitesMeta: "Java · React",
         specialtyArchitecture: "Architecture",
@@ -2291,7 +2344,15 @@
 
     const orderDialog = document.querySelector("[data-order-dialog]");
     const orderForm = document.querySelector("[data-order-form]");
-    const orderSent = document.querySelector("[data-order-sent]");
+    const orderStates = {
+      form: document.querySelector("[data-order-fields]"),
+      success: document.querySelector("[data-order-success]"),
+      fallback: document.querySelector("[data-order-fallback]")
+    };
+    const orderFallbackLink = document.querySelector("[data-order-fallback-link]");
+    const orderFallbackNote = document.querySelector("[data-order-fallback-note]");
+    const orderSubmit = document.querySelector("[data-order-submit]");
+    const orderSubmitLabel = document.querySelector("[data-order-submit-label]");
     const orderFields = [
       { name: "name", input: orderForm.elements.name, error: document.getElementById("order-name-error"), isValid: (value) => value.trim().length >= 2 },
       { name: "phone", input: orderForm.elements.phone, error: document.getElementById("order-phone-error"), isValid: (value) => /^[0-9]{9}$/.test(value) },
@@ -2301,6 +2362,10 @@
     const markField = (field, hasError) => {
       field.error.hidden = !hasError;
       field.input.setAttribute("aria-invalid", String(hasError));
+    };
+
+    const showOrderState = (name) => {
+      Object.entries(orderStates).forEach(([key, node]) => { node.hidden = key !== name; });
     };
 
     orderForm.elements.phone.addEventListener("input", (event) => {
@@ -2323,7 +2388,8 @@
 
     const openOrderDialog = () => {
       closeMenu();
-      orderSent.hidden = true;
+      showOrderState("form");
+      orderFallbackNote.hidden = true;
       orderFields.forEach((field) => markField(field, false));
       orderDialog.showModal();
       orderForm.elements.name.focus();
@@ -2360,7 +2426,27 @@
       return copied;
     };
 
-    orderForm.addEventListener("submit", (event) => {
+    // The request goes to api/lead.php, which writes it to the leads spreadsheet (the owner gets an e-mail).
+    // Anything short of a confirmed delivery falls back to the visitor's own Telegram, so the request is not lost.
+    const sendLead = async (lead) => {
+      const abort = new AbortController();
+      const timer = setTimeout(() => abort.abort(), 20000);
+      try {
+        const response = await fetch("api/lead.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(lead),
+          signal: abort.signal
+        });
+        if (!response.ok) throw new Error(`lead endpoint answered ${response.status}`);
+        const result = await response.json();
+        if (!result || result.ok !== true) throw new Error("lead endpoint rejected the request");
+      } finally {
+        clearTimeout(timer);
+      }
+    };
+
+    orderForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       let firstInvalid = null;
       orderFields.forEach((field) => {
@@ -2373,17 +2459,40 @@
         return;
       }
       const dictionary = translations[currentLanguage];
-      const message = [
-        dictionary.orderTitle,
-        `${dictionary.orderName}: ${orderForm.elements.name.value.trim()}`,
-        `${dictionary.orderPhone}: +998${orderForm.elements.phone.value}`,
-        `${dictionary.orderInfo}: ${orderForm.elements.info.value.trim()}`
-      ].join("\n");
-      const copied = copyOrderMessage(message);
-      window.open(`https://t.me/ravshanjon_ismoilov?text=${encodeURIComponent(message)}`, "_blank", "noopener");
-      orderForm.reset();
-      orderSent.textContent = copied ? dictionary.orderSentCopied : dictionary.orderSent;
-      orderSent.hidden = false;
+      const lead = {
+        name: orderForm.elements.name.value.trim(),
+        phone: orderForm.elements.phone.value,
+        info: orderForm.elements.info.value.trim(),
+        website: orderForm.elements.website.value,
+        lang: currentLanguage,
+        page: window.location.pathname
+      };
+      orderSubmit.disabled = true;
+      orderSubmitLabel.textContent = dictionary.orderSending;
+      try {
+        await sendLead(lead);
+        orderForm.reset();
+        showOrderState("success");
+        orderStates.success.querySelector("[data-order-close]").focus();
+      } catch (error) {
+        const message = [
+          dictionary.orderTitle,
+          `${dictionary.orderName}: ${lead.name}`,
+          `${dictionary.orderPhone}: +998${lead.phone}`,
+          `${dictionary.orderInfo}: ${lead.info}`
+        ].join("\n");
+        orderFallbackLink.href = `https://t.me/ravshanjon_ismoilov?text=${encodeURIComponent(message)}`;
+        orderFallbackLink.dataset.message = message;
+        showOrderState("fallback");
+        orderFallbackLink.focus();
+      } finally {
+        orderSubmit.disabled = false;
+        orderSubmitLabel.textContent = translations[currentLanguage].orderSubmit;
+      }
+    });
+
+    orderFallbackLink.addEventListener("click", () => {
+      orderFallbackNote.hidden = !copyOrderMessage(orderFallbackLink.dataset.message || "");
     });
 
     let initialLanguage = "uz";
