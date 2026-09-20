@@ -8,7 +8,6 @@ SETTINGS = dict(
     base_url="https://ravshancha.uz/business/",  # public address of this site, with a trailing slash
     assets="assets/",  # this site owns its images (site/business/assets), so changes on the CV site cannot break it
     cv_url="https://ravshancha.uz/",
-    cv_label="ravshancha.uz",
     person="Ravshanjon Ismoilov",
     # No phone, Telegram or WhatsApp links on the page on purpose: every lead has to come through the quiz.
     telegram="ravshanjon_ismoilov",  # only for the order form's fallback, when api/lead.php cannot deliver
@@ -58,7 +57,6 @@ L["uz"] = dict(
     language_label="Til",
     back_to_top="Yuqoriga",
     footer_links_label="Aloqa havolalari",
-    footer_cv="Rezyume",
 
     hero_eyebrow="Biznes jarayonlarini avtomatlashtirish",
     hero_title_html='Biznesingiz<br><span class="accent-word">qo‘lda emas, tizimda</span><br>ishlasin.',
@@ -86,9 +84,8 @@ L["uz"] = dict(
         ("chat", "30 daq", "Bepul diagnostika"),
         ("search", "1–2 hafta", "Jarayon auditi"),  # TASDIQLANG: audit muddati
     ],
-    cv_title="Rezyume",
-    cv_action="ravshancha.uz",
-    cv_label="To‘liq rezyumeni ravshancha.uz saytida ochish",
+    stat_cta_title="Yozilish",  # the fourth card is the way into the quiz, not a fact
+    stat_cta_label="{count} ta savol · 1 daqiqa",
 
     pains_kicker="Tanish holatlar",
     pains_title="Bu muammolardan qaysi biri sizda bor?",
@@ -141,7 +138,7 @@ L["uz"] = dict(
         ("doc", "Avtomatlashtirish", "Hisob modullari va bank hujjat aylanish tizimi"),
         ("check", "Sertifikat", "IBM Business Automation Workflow (2021)"),
     ],
-    proof_cv_link="To‘liq ish tajribasi va rezyume — ravshancha.uz",
+    proof_cta="30 daqiqalik bepul diagnostikaga yozilish",
 
     cases_kicker="Tajribadan misollar",
     cases_title="Men qurgan tizimlardan uchtasi.",
@@ -151,18 +148,18 @@ L["uz"] = dict(
     case_result="Natija",
     case_docs="Hujjatlar",
     cases=[  # TASDIQLANG: har bir keysdagi fakt va natijani tekshiring; SMB keyslari paydo bo‘lgach shularni almashtiring
-        dict(type="Fintech · To‘lov platformasi", name="RealPay", role="REALSOFT · Dasturchilar guruhi rahbari",
-             task="Davlat loyihalari uchun yagona ichki to‘lov tizimi kerak edi.",
-             solution="6 kishilik jamoa bilan RealPay tizimini ishga tushirdik, Uzcard va Humo’ni integratsiya qildik.",
-             result="10 dan ortiq davlat loyihasi bitta to‘lov platformasiga ulandi."),
-        dict(type="Bank · Korporativ mijozlar uchun Open API", name="Ipoteka Bank Open API", role="Ipotekabank OTP Group · Dasturchilar guruhi rahbari", docs=True,
+        dict(type="Bank · Hisobot tizimi", name="UMDIA", company="Kapitalbank", logo="kapitalbank-case-logo.svg", role="Hisobot tizimini ishlab chiqish bo‘limi boshlig‘i",
+             task="Bank hisobotlarini yagona tizimda shakllantirish va boshqarish.",
+             solution="UMDIA hisobot tizimini ishlab chiqish bo‘limiga rahbarlik qilaman.",
+             result="Hisobotlar bilan ishlashni markazlashtiradigan UMDIA tizimi rivojlantirilmoqda."),
+        dict(type="Bank · Korporativ mijozlar uchun Open API", name="Ipoteka Bank Open API", company="Ipotekabank OTP Group", logo="ipotekabank-otp.svg", role="Dasturchilar guruhi rahbari", docs=True,
              task="Korxonalar bank operatsiyalarini bank-klientga kirmasdan, o‘z hisob tizimidan bajarishni xohlaydi.",
              solution="Bank servislarini ochadigan xavfsiz REST API: hisobvaraq ko‘chirmasi, to‘lovlar va ularning holati, ish haqi loyihalari, valyuta kurslari.",
              result="Korxona tizimi bank bilan to‘g‘ridan-to‘g‘ri ishlaydi — ma’lumotni qo‘lda ko‘chirish shart emas."),
-        dict(type="Bank · Hujjat aylanishi", name="Hujjat aylanish tizimi", role="MIRONSOFT · Java dasturchi",
-             task="Bank ichidagi hujjat aylanishi va hisob ishlarini tizimga o‘tkazish.",
-             solution="UzAgroExpertBank uchun hujjat aylanish tizimini, Ijod Fondi uchun hisob va avtomatlashtirish modullarini ishlab chiqdim va qo‘llab-quvvatladim.",
-             result="Qog‘oz va qo‘lda yuritish o‘rniga — har bir hujjatning yo‘li ko‘rinadigan tizim."),
+        dict(type="Fintech · Mobil bank ekotizimi", name="Apelsin", company="Tune Consulting", logo="tune-case-logo.svg", role="Java dasturchi",
+             task="Mobil bank uchun tranzaksiya, o‘tkazma, to‘lov va bonus servislarini yaratish.",
+             solution="CRM va dashboard backend mantig‘i, Android/iOS uchun REST API, P2P o‘tkazmalar hamda bank mikroservislari integratsiyasini ishlab chiqdim.",
+             result="Apelsin mobil banki va Marketplace bank servislariga ulangan yagona raqamli ekotizimda ishladi."),
     ],
 
     faq_kicker="Savollar",
@@ -253,7 +250,6 @@ L["ru"] = dict(
     language_label="Язык",
     back_to_top="Наверх",
     footer_links_label="Контакты",
-    footer_cv="Резюме",
 
     hero_eyebrow="Автоматизация бизнес-процессов",
     hero_title_html='Пусть бизнес работает<br><span class="accent-word">в системе, а не вручную</span>.',
@@ -281,9 +277,8 @@ L["ru"] = dict(
         ("chat", "30 мин", "Бесплатная диагностика"),
         ("search", "1–2 недели", "Аудит процессов"),
     ],
-    cv_title="Резюме",
-    cv_action="ravshancha.uz",
-    cv_label="Открыть полное резюме на сайте ravshancha.uz",
+    stat_cta_title="Записаться",
+    stat_cta_label="{count} вопросов · 1 минута",
 
     pains_kicker="Знакомые ситуации",
     pains_title="Какая из этих проблем есть у вас?",
@@ -336,7 +331,7 @@ L["ru"] = dict(
         ("doc", "Автоматизация", "Учётные модули и банковский документооборот"),
         ("check", "Сертификат", "IBM Business Automation Workflow (2021)"),
     ],
-    proof_cv_link="Полный опыт работы и резюме — ravshancha.uz",
+    proof_cta="Записаться на бесплатную 30-минутную диагностику",
 
     cases_kicker="Примеры из опыта",
     cases_title="Три системы, которые я строил.",
@@ -346,18 +341,18 @@ L["ru"] = dict(
     case_result="Результат",
     case_docs="Документация",
     cases=[
-        dict(type="Финтех · Платёжная платформа", name="RealPay", role="REALSOFT · руководитель группы разработки",
-             task="Государственным проектам нужна была единая внутренняя платёжная система.",
-             solution="С командой из 6 человек запустили RealPay и интегрировали Uzcard и Humo.",
-             result="Более 10 государственных проектов подключены к одной платёжной платформе."),
-        dict(type="Банк · Open API для корпоративных клиентов", name="Ipoteka Bank Open API", role="Ipotekabank OTP Group · руководитель группы разработки", docs=True,
+        dict(type="Банк · Система отчётности", name="UMDIA", company="Kapitalbank", logo="kapitalbank-case-logo.svg", role="Руководитель отдела разработки системы отчётности",
+             task="Формировать и управлять банковской отчётностью в единой системе.",
+             solution="Руковожу отделом разработки системы отчётности UMDIA.",
+             result="Система UMDIA, централизующая работу с отчётностью, развивается и расширяется."),
+        dict(type="Банк · Open API для корпоративных клиентов", name="Ipoteka Bank Open API", company="Ipotekabank OTP Group", logo="ipotekabank-otp.svg", role="Руководитель группы разработки", docs=True,
              task="Компании хотят проводить банковские операции из своей учётной системы, не заходя в банк-клиент.",
              solution="Безопасный REST API к сервисам банка: выписки по счетам, платежи и их статусы, зарплатные проекты, курсы валют.",
              result="Система компании работает с банком напрямую — без ручного переноса данных."),
-        dict(type="Банк · Документооборот", name="Система документооборота", role="MIRONSOFT · Java-разработчик",
-             task="Перевести внутренний документооборот и учётные операции в систему.",
-             solution="Разрабатывал и поддерживал систему документооборота для UzAgroExpertBank и модули учёта и автоматизации для Ijod Fondi.",
-             result="Вместо бумаги и ручного ведения — система, где виден путь каждого документа."),
+        dict(type="Финтех · Экосистема мобильного банка", name="Apelsin", company="Tune Consulting", logo="tune-case-logo.svg", role="Java-разработчик",
+             task="Создать сервисы транзакций, переводов, платежей и бонусов для мобильного банка.",
+             solution="Разработал backend-логику CRM и dashboard, REST API для Android/iOS, P2P-переводы и интеграции с микросервисами банка.",
+             result="Мобильный банк Apelsin и Marketplace работали в единой экосистеме, связанной с банковскими сервисами."),
     ],
 
     faq_kicker="Вопросы",

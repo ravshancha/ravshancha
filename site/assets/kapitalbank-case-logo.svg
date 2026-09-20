@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 115" role="img" aria-labelledby="title">
+  <title id="title">Kapitalbank</title>
+  <g fill="#ffd531">
+    <polygon points="86.78 0 39.235 115 67.104 115 114.65 0"/>
+    <polygon points="47.931 0 .38 115 28.249 115 75.795 0"/>
+    <polygon points="36.934 0 0 0 0 89.367"/>
+    <polygon points="78.09 115 115.035 115 115.035 25.662"/>
+  </g>
+  <text x="154" y="88" fill="#0b0e14" font-family="Arial, Helvetica, sans-serif" font-size="77" font-weight="800" letter-spacing="1.5">KAPITALBANK</text>
+</svg>

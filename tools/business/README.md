@@ -2,7 +2,7 @@
 
 Biznes egalari uchun landing: jarayonlarni avtomatlashtirish, og‘riqlarni davolash, shaffoflik.
 Dizayn va kod asosi CV saytdan (`site/index.html`) olingan. CV sayt ishonch uchun tayanch bo‘lib qoladi:
-bu sayt unga "Rezyume" havolalari orqali suyanadi, CV sayt footer’idagi "Biznes uchun xizmatlar" tugmasi esa shu yerga olib keladi.
+CV sayt footer’idagi "Biznes uchun xizmatlar" tugmasi shu yerga olib keladi; bu sahifaning o‘zida esa tashqariga (CV, telefon, messenjer) olib chiqadigan havola yo‘q — har bir blok diagnostika so‘rovnomasiga olib boradi.
 
 ## Tuzilma
 
@@ -77,7 +77,7 @@ Bir manzildan 10 daqiqada 5 tadan ortiq ariza — `429`; hisoblagich konteyner q
 ## Analitika
 
 `content.py` → `SETTINGS["metrika_id"]` ga Yandex Metrika hisoblagich raqamini yozing. Maqsadlar (goals) tayyor:
-`lead_open`, `quiz_step_2` … `quiz_step_6` (qaysi qadamgacha yetib kelgani), `quiz_skip`, `lead_sent`, `lead_fallback`, `lead_fallback_sent`, `click_cv`.
+`lead_open`, `quiz_step_2` … `quiz_step_6` (qaysi qadamgacha yetib kelgani), `quiz_skip`, `lead_sent`, `lead_fallback`, `lead_fallback_sent`.
 
 ## Hali qilinmagan
 

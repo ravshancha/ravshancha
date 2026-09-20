@@ -79,6 +79,7 @@ def quiz_questions(t):
 
 def render_fragments(t, lang):
     f = {}
+    root = "../" * LANGS[lang]["path"].count("/")
     f["icon_symbols_html"] = "\n".join(ICON_WRAP.format(name=name, body=body) for name, body in ICONS.items())
     f["hero_trust_html"] = lines([f'<li>{icon("check", "icon-accent")}<span>{esc(text)}</span></li>' for text in t["hero_trust"]], 14)
     f["hero_cards_html"] = lines([
@@ -88,27 +89,29 @@ def render_fragments(t, lang):
         f'<div class="stat-card"><span class="stat-icon">{icon(name, "icon-accent")}</span><strong>{esc(value)}</strong><span>{esc(label)}</span></div>'
         for name, value, label in t["stats"]], 12)
     f["pains_html"] = lines([
-        f'<article class="pain-card reveal"><div class="card-head"><span class="card-number">{i:02d}</span><span class="card-icon" aria-hidden="true">{icon(name)}</span></div><h3>{esc(title)}</h3><p>{esc(text)}</p></article>'
-        for i, (name, title, text) in enumerate(t["pains"], 1)], 10)
+        f'<article class="pain-card reveal"><div class="card-head"><h3>{esc(title)}</h3><span class="card-icon" aria-hidden="true">{icon(name)}</span></div><p>{esc(text)}</p></article>'
+        for name, title, text in t["pains"]], 10)
     f["services_html"] = lines([
-        f'<article class="expertise-card reveal"><div class="card-head"><span class="card-number">{i:02d}</span><span class="card-icon" aria-hidden="true">{icon(name)}</span></div>'
-        f'<h3>{esc(title)}</h3><p>{esc(text)}</p><p class="service-result"><span>{esc(t["result_label"])}</span>{esc(result)}</p>'
+        f'<article class="expertise-card reveal"><div class="card-head"><h3>{esc(title)}</h3><span class="card-icon" aria-hidden="true">{icon(name)}</span></div>'
+        f'<p>{esc(text)}</p><p class="service-result"><span>{esc(t["result_label"])}</span>{esc(result)}</p>'
         f'<div class="tag-list">{"".join(f"<span>{esc(tag)}</span>" for tag in tags)}</div></article>'
-        for i, (name, title, text, result, tags) in enumerate(t["services"], 1)], 10)
+        for name, title, text, result, tags in t["services"]], 10)
     f["process_html"] = lines([
-        f'<article class="reveal"><span>{i:02d}</span><div><h3>{esc(title)}</h3><p>{esc(text)}</p></div></article>'
-        for i, (title, text) in enumerate(t["process"], 1)], 10)
+        f'<article class="reveal"><div><h3>{esc(title)}</h3><p>{esc(text)}</p></div></article>'
+        for title, text in t["process"]], 10)
     f["facts_html"] = lines([
         f'<div><dt><span class="fact-icon">{icon(name, "icon-accent")}</span><span>{esc(label)}</span></dt><dd>{esc(value)}</dd></div>'
         for name, label, value in t["facts"]], 12)
     cases = []
     for case in t["cases"]:
+        logo_src = root + "../assets/" + case["logo"]
         docs = ""
         if case.get("docs"):
             docs = (f'<a class="text-link" href="{esc(OPENAPI_DOCS[lang])}" target="_blank" rel="noopener noreferrer">'
                     f'<span>{esc(t["case_docs"])}</span>{icon("arrow-up-right")}</a>')
         cases.append(
-            f'<article class="case-card reveal"><p class="case-type">{esc(case["type"])}</p><h3>{esc(case["name"])}</h3><p class="case-role">{esc(case["role"])}</p>'
+            f'<article class="case-card reveal"><p class="case-type">{esc(case["type"])}</p><h3>{esc(case["name"])}</h3>'
+            f'<p class="case-role"><img src="{esc(logo_src)}" alt="{esc(case["company"])}"><span>{esc(case["role"])}</span></p>'
             f'<dl class="case-rows"><div><dt>{esc(t["case_task"])}</dt><dd>{esc(case["task"])}</dd></div>'
             f'<div><dt>{esc(t["case_solution"])}</dt><dd>{esc(case["solution"])}</dd></div>'
             f'<div class="case-result"><dt>{esc(t["case_result"])}</dt><dd>{esc(case["result"])}</dd></div></dl>{docs}</article>')
@@ -216,9 +219,9 @@ def render_page(template, lang):
     context.update(
         lang=lang, root=root, assets=assets, og_image=og_image, canonical=page_url(lang), base_url=SETTINGS["base_url"], og_locale=meta["og_locale"],
         lang_code=meta["code"], lang_name=meta["name"], lang_flag=meta["flag"],
-        person=SETTINGS["person"], cv_url=SETTINGS["cv_url"], linkedin=SETTINGS["linkedin"],
+        person=SETTINGS["person"], linkedin=SETTINGS["linkedin"],
         telegram_url="https://t.me/" + SETTINGS["telegram"],  # the order form's fallback link; the page itself shows no contact channels
-        quiz_intro=t["quiz_intro"].format(count=len(t["quiz"])), quiz_total=str(len(t["quiz"]) + 1),  # the contact fields are the last step
+        quiz_intro=t["quiz_intro"].format(count=len(t["quiz"])), stat_cta_label=t["stat_cta_label"].format(count=len(t["quiz"])), quiz_total=str(len(t["quiz"]) + 1),  # the contact fields are the last step
         language_options_html=lines(options, 14), alternates_html="\n".join(alternates), og_alternates_html="\n".join(og_alternates),
         json_ld_html=json.dumps(json_ld, ensure_ascii=False, indent=2).replace("</", "<\\/"),
         site_json_html=json.dumps(site, ensure_ascii=False).replace("</", "<\\/"),
