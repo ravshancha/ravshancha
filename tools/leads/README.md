@@ -58,9 +58,18 @@ o‘z pochtasi orqali SMTP bilan yuboradi:
 3. Kerak bo‘lsa **Variables**: `LEAD_SMTP_HOST` (standart `mail.ravshancha.uz`), `LEAD_SMTP_PORT` (`465`),
    `LEAD_SMTP_USER` (`noreply@ravshancha.uz`), `LEAD_SMTP_VERIFY` (`0` — sertifikat nomi mos kelmasa).
 
-465-port TLS bilan ulanadi, boshqa portlarda parol yuborilishidan oldin STARTTLS talab qilinadi. Ulanib
-bo‘lmasa yoki parol noto‘g‘ri bo‘lsa, ariza yo‘qolmaydi: forma `502 delivery` kodini ko‘rsatib, Telegram
-zaxirasini taklif qiladi.
+465-port TLS bilan ulanadi, boshqa portlarda parol yuborilishidan oldin STARTTLS talab qilinadi. Nimadir
+ishlamasa ariza yo‘qolmaydi: forma Telegram zaxirasini taklif qiladi va sababni kod bilan ko‘rsatadi:
+
+| Kod | Ma’nosi |
+| --- | --- |
+| `502 smtp_connect` | pochta serveriga ulanib bo‘lmadi — manzil yoki port noto‘g‘ri, yoki chiquvchi port yopiq |
+| `502 smtp_tls` | server STARTTLS taklif qilmadi; parol ochiq holda yuborilmaydi |
+| `502 smtp_auth` | foydalanuvchi yoki parol qabul qilinmadi |
+| `502 smtp_send` | server xatni oxirida rad etdi (masalan, jo‘natuvchi manzilga ruxsat yo‘q) |
+| `502 delivery` | SMTP umuman sozlanmagan (parol secret’i yo‘q) va hosting `mail()` ni bermadi |
+| `503 not_configured` | serverda `lead-config.php` yo‘q |
+| `500 server` | skript kutilmaganda uzildi; hosting xato jurnaliga qarang |
 
 ## Jadval bilan ishlash
 

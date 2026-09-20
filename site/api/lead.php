@@ -93,14 +93,14 @@ function smtp_command($socket, string $command): int
 
 // Sends the message through the domain's own mailbox. Hosts that disable mail() still allow this connection,
 // and a message authenticated as noreply@<domain> passes the domain's SPF instead of looking forged.
-function smtp_send(array $smtp, string $from, string $to, string $subject, string $body, string $helo): bool
+function smtp_send(array $smtp, string $from, string $to, string $subject, string $body, string $helo): string
 {
     $port = (int)$smtp['port'];
     $socket = @stream_socket_client(
         ($port === 465 ? 'ssl://' : 'tcp://') . $smtp['host'] . ':' . $port,
         $number,
         $problem,
-        10,
+        8,
         STREAM_CLIENT_CONNECT,
         stream_context_create(['ssl' => [
             'verify_peer' => $smtp['verify'],
@@ -109,23 +109,34 @@ function smtp_send(array $smtp, string $from, string $to, string $subject, strin
         ]])
     );
     if ($socket === false) {
-        return false;
+        return 'smtp_connect';
     }
-    stream_set_timeout($socket, 15);
+    stream_set_timeout($socket, 10);
     $ok = smtp_reply($socket) === 220 && smtp_command($socket, 'EHLO ' . $helo) === 250;
-    if ($ok && $port !== 465) {
+    if (!$ok) {
+        fclose($socket);
+        return 'smtp_greeting';
+    }
+    if ($port !== 465) {
         // The password never travels in the open: with no STARTTLS the message is not sent at all.
         $ok = smtp_command($socket, 'STARTTLS') === 220
             && @stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT) === true
             && smtp_command($socket, 'EHLO ' . $helo) === 250;
+        if (!$ok) {
+            fclose($socket);
+            return 'smtp_tls';
+        }
     }
-    if ($ok && $smtp['user'] !== '') {
+    if ($smtp['user'] !== '') {
         $ok = smtp_command($socket, 'AUTH LOGIN') === 334
             && smtp_command($socket, base64_encode($smtp['user'])) === 334
             && smtp_command($socket, base64_encode($smtp['pass'])) === 235;
+        if (!$ok) {
+            fclose($socket);
+            return 'smtp_auth';
+        }
     }
-    $ok = $ok
-        && smtp_command($socket, 'MAIL FROM:<' . $from . '>') === 250
+    $ok = smtp_command($socket, 'MAIL FROM:<' . $from . '>') === 250
         && in_array(smtp_command($socket, 'RCPT TO:<' . $to . '>'), [250, 251], true)
         && smtp_command($socket, 'DATA') === 354;
     if ($ok) {
@@ -147,12 +158,12 @@ function smtp_send(array $smtp, string $from, string $to, string $subject, strin
     }
     smtp_command($socket, 'QUIT');
     fclose($socket);
-    return $ok;
+    return $ok ? '' : 'smtp_send';
 }
 
 // Notification to the owner, used when the sheet did not take the lead. Sent through the domain's mailbox when
 // one is configured, and otherwise through the host's own mail(), which shared hosting often disables.
-function mail_lead(string $to, string $from, array $lead, array $smtp, string $helo): bool
+function mail_lead(string $to, string $from, array $lead, array $smtp, string $helo): string
 {
     $lines = [
         'Yangi ariza — loyiha buyurtmasi',
@@ -171,10 +182,10 @@ function mail_lead(string $to, string $from, array $lead, array $smtp, string $h
     }
     // Shared hosting sometimes disables mail() outright; calling it then is a fatal error, not a false.
     if (!function_exists('mail')) {
-        return false;
+        return 'delivery';
     }
     $headers = ['From: ' . $from, 'MIME-Version: 1.0', 'Content-Type: text/plain; charset=UTF-8', 'Content-Transfer-Encoding: 8bit'];
-    return @mail($to, $subject, $body, implode("\r\n", $headers));
+    return @mail($to, $subject, $body, implode("\r\n", $headers)) ? '' : 'delivery';
 }
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
@@ -282,8 +293,11 @@ $lead = [
 ];
 
 $saved = $sheetsUrl !== '' && save_to_sheet($sheetsUrl, $sheetsSecret, $lead);
-if (!$saved && ($notifyEmail === '' || !mail_lead($notifyEmail, $mailFrom, $lead, $smtp, $host ?: 'ravshancha.uz'))) {
-    respond(502, ['ok' => false, 'error' => 'delivery']);
+if (!$saved) {
+    $problem = $notifyEmail === '' ? 'delivery' : mail_lead($notifyEmail, $mailFrom, $lead, $smtp, $host ?: 'ravshancha.uz');
+    if ($problem !== '') {
+        respond(502, ['ok' => false, 'error' => $problem]);
+    }
 }
 
 respond(200, ['ok' => true]);
