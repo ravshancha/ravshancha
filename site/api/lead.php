@@ -1,5 +1,7 @@
 <?php
-// Lead endpoint of the CV site: takes the "order a project" form and writes it to the leads spreadsheet
+// Lead endpoint of all three sites: the CV site's "order a project" form, the selling site's quiz and the
+// dental page's callback request all land here and go into the one leads spreadsheet, told apart by Manba.
+// The request is written to that sheet
 // through the Apps Script web app from tools/leads (that script also e-mails the owner about every new row).
 // The web app address and its secret live in lead-config.php on the server only (see lead-config.sample.php);
 // that file is never committed. If the sheet cannot be reached, the request is e-mailed straight from here
@@ -70,6 +72,35 @@ function save_to_sheet(string $url, string $secret, array $lead): bool
     }
     $result = is_string($answer) ? json_decode($answer, true) : null;
     return is_array($result) && ($result['ok'] ?? false) === true;
+}
+
+// The selling site's quiz arrives as answer codes; their labels are written next to this file by the site
+// generator, so the spreadsheet holds readable text instead of "pains: stock".
+function quiz_lines(array $answers): array
+{
+    $file = __DIR__ . '/lead-quiz.php';
+    if (!is_file($file)) {
+        return [];
+    }
+    $questions = require $file;
+    if (!is_array($questions)) {
+        return [];
+    }
+    $lines = [];
+    foreach ($questions as $key => $question) {
+        $given = $answers[$key] ?? null;
+        $codes = is_array($given) ? $given : ($given === null ? [] : [$given]);
+        $labels = [];
+        foreach (array_slice($codes, 0, 12) as $code) {
+            if (is_string($code) && isset($question['options'][$code])) {
+                $labels[] = $question['options'][$code];
+            }
+        }
+        if ($labels !== []) {
+            $lines[] = $question['label'] . ': ' . implode(', ', $labels);
+        }
+    }
+    return $lines;
 }
 
 // One reply from the SMTP server; a reply can be spread over several lines ("250-..." before "250 ...").
@@ -368,12 +399,19 @@ $name = trim(preg_replace('/\s+/u', ' ', (string)($data['name'] ?? '')) ?? '');
 $phone = (string)($data['phone'] ?? '');
 $info = trim((string)($data['info'] ?? ''));
 $lang = in_array($data['lang'] ?? '', ['uz', 'ru', 'en'], true) ? $data['lang'] : 'uz';
+// Which site the request came from; it becomes the Manba column of the sheet.
+$source = in_array($data['source'] ?? '', ['cv', 'business', 'dental'], true) ? (string)$data['source'] : 'cv';
+$answerLines = is_array($data['answers'] ?? null) ? quiz_lines($data['answers']) : [];
 $page = substr(preg_replace('/[^\w\/\-.]/', '', (string)($data['page'] ?? '')) ?? '', 0, 120);
 $smtp['helo'] = $host ?: 'ravshancha.uz';
 
+// The quiz carries the request on its own, so there the free text may stay empty.
 if (text_length($name) < 2 || text_length($name) > 80 || !preg_match('/^[0-9]{9}$/', $phone)
-    || text_length($info) < 10 || text_length($info) > 1000) {
+    || ($answerLines === [] && text_length($info) < 10) || text_length($info) > 1000) {
     respond(422, ['ok' => false, 'error' => 'validation']);
+}
+if ($answerLines !== []) {
+    $info = implode("\n", $answerLines) . ($info !== '' ? "\n\n" . $info : '');
 }
 
 // At most 5 requests per 10 minutes from one address. If the temp folder is not writable the limit is skipped.
@@ -403,7 +441,7 @@ if (is_dir($dir) || @mkdir($dir, 0700, true)) {
 }
 
 $lead = [
-    'source' => 'cv',
+    'source' => $source,
     'name' => $name,
     'phone' => '+998' . $phone,
     'info' => $info,

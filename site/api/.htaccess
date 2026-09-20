@@ -1,4 +1,4 @@
-# The lead endpoint's secrets and their sample are never served
-<FilesMatch "^lead-config(\.sample)?\.php$">
+# The lead endpoint's secrets, their sample and the generated quiz labels are never served
+<FilesMatch "^lead-(config(\.sample)?|quiz)\.php$">
   Require all denied
 </FilesMatch>

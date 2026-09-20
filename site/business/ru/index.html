@@ -1460,13 +1460,14 @@
       return copied;
     };
 
-    // The lead goes to api/lead.php (which forwards it to Telegram on the server).
-    // Anything short of a confirmed delivery falls back to the visitor's own Telegram.
+    // The lead goes to the one endpoint of the host (/api/lead.php), which writes every site's requests into
+    // the same spreadsheet — the Manba column tells them apart. Anything short of a confirmed delivery falls
+    // back to the visitor's own Telegram.
     const sendLead = async (lead) => {
       const abort = new AbortController();
-      const timer = setTimeout(() => abort.abort(), 10000);
+      const timer = setTimeout(() => abort.abort(), 20000);
       try {
-        const response = await fetch(`${SITE.root}api/lead.php`, {
+        const response = await fetch("/api/lead.php", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(lead),
@@ -1499,6 +1500,7 @@
       }
       const quiz = readQuizAnswers();
       const lead = {
+        source: "business",
         name: orderForm.elements.name.value.trim(),
         phone: orderForm.elements.phone.value,
         info: orderForm.elements.info.value.trim(),

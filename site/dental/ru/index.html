@@ -1073,7 +1073,7 @@
   </dialog>
 
   <script>
-    const SITE = {"root": "../", "assets": "../assets/", "lang": "ru", "telegram": "ravshanjon_ismoilov", "leadEndpoint": "../business/api/lead.php", "metrikaId": 0, "t": {"themeDark": "Тёмная", "themeLight": "Светлая", "submit": "Отправить", "sending": "Отправка…", "messageTitle": "Страница для стоматологий — запрос звонка", "name": "Ваше имя", "phone": "Номер телефона", "info": "Клиника"}};
+    const SITE = {"root": "../", "assets": "../assets/", "lang": "ru", "telegram": "ravshanjon_ismoilov", "leadEndpoint": "/api/lead.php", "metrikaId": 0, "t": {"themeDark": "Тёмная", "themeLight": "Светлая", "submit": "Отправить", "sending": "Отправка…", "messageTitle": "Страница для стоматологий — запрос звонка", "name": "Ваше имя", "phone": "Номер телефона", "info": "Клиника"}};
 
     const header = document.querySelector("[data-header]");
     const menu = document.querySelector("[data-menu]");
@@ -1298,13 +1298,14 @@
       return copied;
     };
 
-    // The callback request goes to the selling site's lead endpoint (which forwards it to Telegram on the server).
-    // Anything short of a confirmed delivery falls back to the visitor's own Telegram.
+    // The callback request goes to the one endpoint of the host, which writes every site's requests into the
+    // same spreadsheet — the Manba column tells them apart. Anything short of a confirmed delivery falls back
+    // to the visitor's own Telegram.
     const sendLead = async (lead) => {
       const abort = new AbortController();
-      const timer = setTimeout(() => abort.abort(), 10000);
+      const timer = setTimeout(() => abort.abort(), 20000);
       try {
-        const response = await fetch(`${SITE.root}${SITE.leadEndpoint}`, {
+        const response = await fetch(SITE.leadEndpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(lead),
@@ -1331,6 +1332,7 @@
         return;
       }
       const lead = {
+        source: "dental",
         name: orderForm.elements.name.value.trim(),
         phone: orderForm.elements.phone.value,
         info: orderForm.elements.info.value.trim(),

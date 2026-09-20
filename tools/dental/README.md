@@ -50,10 +50,10 @@ Bunda “Bu pullikmi?” savolidagi narxni ham olib tashlang.
 
 ## Forma (qo‘ng‘iroq so‘rovi)
 
-“Qo‘ng‘iroq buyurtma qilish” formasi `/business/api/lead.php` ga yuboradi (`SETTINGS["lead_endpoint"]`) — alohida endpoint
-va ikkinchi bot tokeni kerak emas. Telegram xabarida `Sahifa: /dental/` qatori lid qayerdan kelganini ko‘rsatadi.
+“Qo‘ng‘iroq buyurtma qilish” formasi `/api/lead.php` ga yuboradi (`SETTINGS["lead_endpoint"]`) — uchala sayt uchun
+bitta endpoint. Ariza umumiy "Lidlar" jadvaliga tushadi, `Manba` ustunida `dental` deb turadi.
 Endpoint sozlanmagan yoki xato bersa — mehmonga “Telegram’da yuborish” tugmasi chiqadi (matn tayyor), lid yo‘qolmaydi.
-`/business/` boshqa domenga ko‘chsa, `lead_endpoint` ni yangilang.
+Sahifa boshqa domenga ko‘chsa, `lead_endpoint` ni yangilang.
 
 ## Analitika
 
@@ -67,4 +67,4 @@ Endpoint sozlanmagan yoki xato bersa — mehmonga “Telegram’da yuborish” t
 - [ ] Haqiqiy klinika keyslari va fikrlari (hozircha bo‘lim yo‘q — o‘ylab topilmaydi); klinikalar soni ham yozilmagan
 - [ ] Kabinetning haqiqiy skrinshotlari (hozir sahifada mahsulot rasmi yo‘q)
 - [ ] dentalnavigator.uz saytidan shu sahifaga (“platforma ortida kim”) qaytma havola
-- [ ] Bot tokeni (`/business/api/lead-config.php`) + Metrika ID
+- [ ] Metrika ID

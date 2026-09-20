@@ -12,13 +12,12 @@ tools/business/template.html   sahifa shabloni (CSS + JS ichida, CV sayt uslubid
 tools/business/build_site.py   generator → site/business/index.html (uz), site/business/ru/index.html (ru), sitemap.xml
 tools/business/build_og.py     ijtimoiy tarmoq rasmlari → site/business/assets/og-{uz,ru}.jpg (Pillow kerak)
 tools/business/serve.js        lokal ko‘rish: butun site/ papkasi
-tools/business/mock-telegram.js  lead.php ni lokal sinash uchun soxta Telegram API
-site/business/api/lead.php     forma → Telegram bot (serverda ishlaydi)
-site/business/api/lead-quiz.php  quiz javoblari kodi → yozuvi (generatsiya qilinadi, lead.php o‘qiydi)
+site/api/lead.php              uchala saytning umumiy endpoint’i → Google Sheets + pochta
+site/api/lead-quiz.php         quiz javoblari kodi → yozuvi (generatsiya qilinadi, endpoint o‘qiydi)
 site/business/.htaccess        lead-config va lead-quiz fayllarini yopadi
 ```
 
-`site/business/index.html`, `site/business/ru/index.html` va `site/business/api/lead-quiz.php` generatsiya qilinadi — qo‘lda tahrirlanmaydi.
+`site/business/index.html`, `site/business/ru/index.html` va `site/api/lead-quiz.php` generatsiya qilinadi — qo‘lda tahrirlanmaydi.
 Logo, favicon, portret va OG-rasmlar shu saytning o‘zida: `site/business/assets/` — CV saytdagi o‘zgarishlar bu saytni buzmaydi.
 
 ## Ishlatish
@@ -50,16 +49,16 @@ keyingi savol ochiladi (klaviaturada — "Davom etish" tugmasi). Oyna yopilsa, j
 
 Savollar `content.py` da: `quiz` ro‘yxati (UZ va RU da `key` va variant kodlari bir xil bo‘lishi shart — generator tekshiradi).
 Birinchi savol variantlari — `pains` sarlavhalarining o‘zi (`PAIN_CODES` shu tartibda). Savol qo‘shish yoki o‘zgartirish uchun
-faqat `content.py` ni tahrirlab, qayta yig‘ing: sahifalar ham, `api/lead-quiz.php` ham yangilanadi.
+faqat `content.py` ni tahrirlab, qayta yig‘ing: sahifalar ham, `site/api/lead-quiz.php` ham yangilanadi.
 
-1. Sayt `api/lead.php` ga javob kodlari va kontaktni yuboradi → u Telegram bot orqali sizga xabar jo‘natadi → mijoz "qabul qilindi"ni ko‘radi.
-   Server faqat `lead-quiz.php` dagi kodlarni qabul qiladi, xabarga ularning o‘zbekcha yozuvi tushadi.
+1. Sayt `/api/lead.php` ga javob kodlari va kontaktni `source: "business"` bilan yuboradi → endpoint arizani
+   umumiy "Lidlar" jadvaliga yozadi (`Manba` ustuni — `business`) va pochtaga xabar yuboradi → mijoz
+   "qabul qilindi"ni ko‘radi. Server faqat `site/api/lead-quiz.php` dagi kodlarni qabul qiladi, jadvalga
+   ularning o‘zbekcha yozuvi tushadi.
 2. Endpoint sozlanmagan yoki xato bersa — mijozga "Telegram’da yuborish" tugmasi chiqadi (matn javoblar bilan tayyor). Lid yo‘qolmaydi.
 
-Sozlash (bir marta, serverda): cPanel File Manager’da `business/api/lead-config.sample.php` ni `lead-config.php` deb
-nusxalab, bot tokeni va chat id ni yozing (yo‘riqnoma fayl ichida). **`lead-config.php` git’ga qo‘shilmaydi**
-(`.gitignore` da) — repozitoriy ochiq, token esa sir. FTP deploy serverdagi bu faylga tegmaydi.
-Sozlagach saytdan bitta test ariza yuboring.
+Sozlash: alohida hech narsa kerak emas — endpoint va uning sozlamalari CV sayt bilan umumiy
+(`tools/leads/README.md`). Telegram bot tokeni endi ishlatilmaydi.
 
 ### Formani lokal sinash
 

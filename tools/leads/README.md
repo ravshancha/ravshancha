@@ -1,7 +1,8 @@
 # Lidlar jadvali — ravshancha.uz
 
-CV saytdagi "Loyihaga buyurtma berish" formasi endi mijozning Telegram’ini ochmaydi. Ariza serverga ketadi va
-Google Sheets jadvaliga status bilan yoziladi, sizga esa email keladi:
+Uchala saytning formasi ham bitta endpoint’ga (`site/api/lead.php`) va bitta jadvalga tushadi; qaysi saytdan
+kelgani `Manba` ustunida ko‘rinadi — `cv`, `business` yoki `dental`. Ariza Google Sheets jadvaliga status bilan
+yoziladi, sizga esa email keladi:
 
 ```
 forma (site/index.html)
@@ -90,7 +91,8 @@ ishlamasa ariza yo‘qolmaydi: forma Telegram zaxirasini taklif qiladi va sababn
 - "Voronka" varag‘i har bosqichdagi lidlar soni va ulushini o‘zi sanaydi.
 - Bosqichlarni o‘zgartirish: `Code.gs` dagi `STATUSES` → `setup` ni qayta ishga tushirish (mavjud qatorlarga tegmaydi,
   "Voronka" qayta chiziladi) → yangi versiyani deploy qilish.
-- `Manba` ustuni hozir doim `cv`. Boshqa formalar (sotuv sahifasi, dental) ulanganida shu jadvalga o‘z manbasi bilan tushadi.
+- `Manba` ustuni lid qaysi saytdan kelganini ko‘rsatadi: `cv` (asosiy sayt), `business` (/business/ quiz),
+  `dental` (/dental/ qo‘ng‘iroq formasi). Quiz javoblari "Loyiha haqida" ustuniga o‘qiladigan matn bo‘lib tushadi.
 
 ## Xavfsizlik
 
