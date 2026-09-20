@@ -35,6 +35,11 @@ jobs:
           LEAD_SHEETS_SECRET: ${{ secrets.LEAD_SHEETS_SECRET }}
           LEAD_NOTIFY_EMAIL: ${{ vars.LEAD_NOTIFY_EMAIL || 'ismoilov.ravshanjon@gmail.com' }}
           LEAD_MAIL_FROM: ${{ vars.LEAD_MAIL_FROM || 'noreply@ravshancha.uz' }}
+          LEAD_SMTP_PASSWORD: ${{ secrets.LEAD_SMTP_PASSWORD }}
+          LEAD_SMTP_HOST: ${{ vars.LEAD_SMTP_HOST || 'mail.ravshancha.uz' }}
+          LEAD_SMTP_PORT: ${{ vars.LEAD_SMTP_PORT || '465' }}
+          LEAD_SMTP_USER: ${{ vars.LEAD_SMTP_USER || 'noreply@ravshancha.uz' }}
+          LEAD_SMTP_VERIFY: ${{ vars.LEAD_SMTP_VERIFY || '1' }}
         run: |
           python3 - <<'PY'
           import os
@@ -42,15 +47,29 @@ jobs:
           def php_string(value):
               return "'" + value.strip().replace("\\", "\\\\").replace("'", "\\'") + "'"
 
+          def php_port(value):
+              try:
+                  port = int(value)
+              except (TypeError, ValueError):
+                  port = 0
+              return str(port if 1 <= port <= 65535 else 465)
+
+          # The mailbox is only used when its password is set; without one the endpoint keeps to the host's mail().
+          password = os.environ.get('LEAD_SMTP_PASSWORD', '').strip()
           values = {
-              'sheets_url': os.environ.get('LEAD_SHEETS_URL', ''),
-              'sheets_secret': os.environ.get('LEAD_SHEETS_SECRET', ''),
-              'notify_email': os.environ.get('LEAD_NOTIFY_EMAIL', ''),
-              'mail_from': os.environ.get('LEAD_MAIL_FROM', ''),
+              'sheets_url': php_string(os.environ.get('LEAD_SHEETS_URL', '')),
+              'sheets_secret': php_string(os.environ.get('LEAD_SHEETS_SECRET', '')),
+              'notify_email': php_string(os.environ.get('LEAD_NOTIFY_EMAIL', '')),
+              'mail_from': php_string(os.environ.get('LEAD_MAIL_FROM', '')),
+              'smtp_host': php_string(os.environ.get('LEAD_SMTP_HOST', '') if password else ''),
+              'smtp_port': php_port(os.environ.get('LEAD_SMTP_PORT', '')),
+              'smtp_user': php_string(os.environ.get('LEAD_SMTP_USER', '') if password else ''),
+              'smtp_pass': php_string(password),
+              'smtp_verify': 'false' if os.environ.get('LEAD_SMTP_VERIFY', '1').strip() in ('0', 'false', 'no') else 'true',
           }
           lines = ['<?php', '// Written by the deploy workflow on every deployment: edits made on the server are overwritten.',
                    '// The values come from the repository secrets and variables, see DEPLOYMENT.md.', 'return [']
-          lines += ["    '%s' => %s," % (key, php_string(value)) for key, value in values.items()]
+          lines += ["    '%s' => %s," % (key, value) for key, value in values.items()]
           lines += ['];', '']
           open('site/api/lead-config.php', 'w', encoding='utf-8').write('\n'.join(lines))
           PY

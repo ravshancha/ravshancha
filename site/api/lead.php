@@ -72,13 +72,88 @@ function save_to_sheet(string $url, string $secret, array $lead): bool
     return is_array($result) && ($result['ok'] ?? false) === true;
 }
 
-// Backup notification, used only when the sheet did not take the lead.
-function mail_lead(string $to, string $from, array $lead): bool
+// One reply from the SMTP server; a reply can be spread over several lines ("250-..." before "250 ...").
+function smtp_reply($socket): int
 {
-    // Shared hosting sometimes disables mail() outright; calling it then is a fatal error, not a false.
-    if (!function_exists('mail')) {
+    $code = 0;
+    while (($line = fgets($socket, 2048)) !== false) {
+        $code = (int)substr($line, 0, 3);
+        if (strlen($line) < 4 || $line[3] !== '-') {
+            break;
+        }
+    }
+    return $code;
+}
+
+function smtp_command($socket, string $command): int
+{
+    fwrite($socket, $command . "\r\n");
+    return smtp_reply($socket);
+}
+
+// Sends the message through the domain's own mailbox. Hosts that disable mail() still allow this connection,
+// and a message authenticated as noreply@<domain> passes the domain's SPF instead of looking forged.
+function smtp_send(array $smtp, string $from, string $to, string $subject, string $body, string $helo): bool
+{
+    $port = (int)$smtp['port'];
+    $socket = @stream_socket_client(
+        ($port === 465 ? 'ssl://' : 'tcp://') . $smtp['host'] . ':' . $port,
+        $number,
+        $problem,
+        10,
+        STREAM_CLIENT_CONNECT,
+        stream_context_create(['ssl' => [
+            'verify_peer' => $smtp['verify'],
+            'verify_peer_name' => $smtp['verify'],
+            'SNI_enabled' => true,
+        ]])
+    );
+    if ($socket === false) {
         return false;
     }
+    stream_set_timeout($socket, 15);
+    $ok = smtp_reply($socket) === 220 && smtp_command($socket, 'EHLO ' . $helo) === 250;
+    if ($ok && $port !== 465) {
+        // The password never travels in the open: with no STARTTLS the message is not sent at all.
+        $ok = smtp_command($socket, 'STARTTLS') === 220
+            && @stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT) === true
+            && smtp_command($socket, 'EHLO ' . $helo) === 250;
+    }
+    if ($ok && $smtp['user'] !== '') {
+        $ok = smtp_command($socket, 'AUTH LOGIN') === 334
+            && smtp_command($socket, base64_encode($smtp['user'])) === 334
+            && smtp_command($socket, base64_encode($smtp['pass'])) === 235;
+    }
+    $ok = $ok
+        && smtp_command($socket, 'MAIL FROM:<' . $from . '>') === 250
+        && in_array(smtp_command($socket, 'RCPT TO:<' . $to . '>'), [250, 251], true)
+        && smtp_command($socket, 'DATA') === 354;
+    if ($ok) {
+        $headers = [
+            'Date: ' . date('r'),
+            'Message-ID: <' . bin2hex(random_bytes(12)) . '@' . $helo . '>',
+            'From: ' . $from,
+            'To: ' . $to,
+            'Subject: ' . $subject,
+            'MIME-Version: 1.0',
+            'Content-Type: text/plain; charset=UTF-8',
+            'Content-Transfer-Encoding: 8bit',
+        ];
+        // A line of its own that starts with a dot would end the message early, so such a dot is doubled.
+        $data = implode("\r\n", $headers) . "\r\n\r\n"
+            . preg_replace('/^\./m', '..', str_replace("\n", "\r\n", $body));
+        fwrite($socket, $data . "\r\n.\r\n");
+        $ok = smtp_reply($socket) === 250;
+    }
+    smtp_command($socket, 'QUIT');
+    fclose($socket);
+    return $ok;
+}
+
+// Notification to the owner, used when the sheet did not take the lead. Sent through the domain's mailbox when
+// one is configured, and otherwise through the host's own mail(), which shared hosting often disables.
+function mail_lead(string $to, string $from, array $lead, array $smtp, string $helo): bool
+{
     $lines = [
         'Yangi ariza — loyiha buyurtmasi',
         'Ism: ' . $lead['name'],
@@ -90,8 +165,16 @@ function mail_lead(string $to, string $from, array $lead): bool
         'Diqqat: bu ariza Google Sheets jadvaliga yozilmadi — uni jadvalga qo‘lda kiriting.',
     ];
     $subject = '=?UTF-8?B?' . base64_encode('ravshancha.uz: yangi ariza — ' . $lead['name']) . '?=';
+    $body = implode("\n", $lines);
+    if ($smtp['host'] !== '') {
+        return smtp_send($smtp, $from, $to, $subject, $body, $helo);
+    }
+    // Shared hosting sometimes disables mail() outright; calling it then is a fatal error, not a false.
+    if (!function_exists('mail')) {
+        return false;
+    }
     $headers = ['From: ' . $from, 'MIME-Version: 1.0', 'Content-Type: text/plain; charset=UTF-8', 'Content-Transfer-Encoding: 8bit'];
-    return @mail($to, $subject, implode("\n", $lines), implode("\r\n", $headers));
+    return @mail($to, $subject, $body, implode("\r\n", $headers));
 }
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
@@ -127,6 +210,13 @@ if (filter_var($notifyEmail, FILTER_VALIDATE_EMAIL) === false) {
 if ($sheetsUrl === '' && $notifyEmail === '') {
     respond(503, ['ok' => false, 'error' => 'not_configured']);
 }
+$smtp = [
+    'host' => trim((string)($config['smtp_host'] ?? '')),
+    'port' => (int)($config['smtp_port'] ?? 465) ?: 465,
+    'user' => trim((string)($config['smtp_user'] ?? '')),
+    'pass' => (string)($config['smtp_pass'] ?? ''),
+    'verify' => ($config['smtp_verify'] ?? true) !== false,
+];
 $mailFrom = trim((string)($config['mail_from'] ?? ''));
 if (filter_var($mailFrom, FILTER_VALIDATE_EMAIL) === false) {
     // The Host header comes from the visitor: only letters, digits, dots and dashes survive.
@@ -192,7 +282,7 @@ $lead = [
 ];
 
 $saved = $sheetsUrl !== '' && save_to_sheet($sheetsUrl, $sheetsSecret, $lead);
-if (!$saved && ($notifyEmail === '' || !mail_lead($notifyEmail, $mailFrom, $lead))) {
+if (!$saved && ($notifyEmail === '' || !mail_lead($notifyEmail, $mailFrom, $lead, $smtp, $host ?: 'ravshancha.uz'))) {
     respond(502, ['ok' => false, 'error' => 'delivery']);
 }
 

@@ -46,6 +46,22 @@ site/api/lead-config.sample.php  sozlama namunasi; haqiqiysini deploy GitHub’d
 `Code.gs` ni keyin o‘zgartirsangiz: **Deploy → Manage deployments → ✎ → Version: New version → Deploy**.
 Manzil o‘zgarmaydi, lekin yangi versiya chiqarilmaguncha eski kod ishlayveradi.
 
+## Xatni kim yuboradi
+
+Hosting `mail()` funksiyasini o‘chirib qo‘ygan (2026-09-20 da aniqlandi: ariza oxirigacha yetib borar, lekin xat
+yuborish bosqichida skript uzilib, brauzerga bo‘sh `200` qaytardi). Shuning uchun `lead.php` xatni domenning
+o‘z pochtasi orqali SMTP bilan yuboradi:
+
+1. cPanel → Email Accounts: `noreply@ravshancha.uz` (yaratilgan).
+2. GitHub → Settings → Secrets and variables → Actions → **Secrets** → `LEAD_SMTP_PASSWORD` — o‘sha pochtaning
+   paroli. Faqat shu qo‘yilganda SMTP yoqiladi; parolsiz holatda eski `mail()` yo‘li qoladi.
+3. Kerak bo‘lsa **Variables**: `LEAD_SMTP_HOST` (standart `mail.ravshancha.uz`), `LEAD_SMTP_PORT` (`465`),
+   `LEAD_SMTP_USER` (`noreply@ravshancha.uz`), `LEAD_SMTP_VERIFY` (`0` — sertifikat nomi mos kelmasa).
+
+465-port TLS bilan ulanadi, boshqa portlarda parol yuborilishidan oldin STARTTLS talab qilinadi. Ulanib
+bo‘lmasa yoki parol noto‘g‘ri bo‘lsa, ariza yo‘qolmaydi: forma `502 delivery` kodini ko‘rsatib, Telegram
+zaxirasini taklif qiladi.
+
 ## Jadval bilan ishlash
 
 - `Status` ustuni ro‘yxatdan tanlanadi: Yangi → Bog‘landim → Suhbat o‘tdi → Taklif yuborildi → Shartnoma / Rad etildi.

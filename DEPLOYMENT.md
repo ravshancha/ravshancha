@@ -11,6 +11,8 @@ Add these repository secrets under **Settings → Secrets and variables → Acti
 - `CPANEL_FTP_PASSWORD` — cPanel FTP account password
 - `LEAD_SHEETS_URL` — optional: web app address of the leads Apps Script (`tools/leads/README.md`)
 - `LEAD_SHEETS_SECRET` — optional: the same secret as `SECRET` in that script
+- `LEAD_SMTP_PASSWORD` — password of the mailbox the notification is sent from; while it is unset the
+  endpoint falls back to the host's own `mail()`, which this hosting disables
 
 ## GitHub variables
 
@@ -22,6 +24,10 @@ Add these under **Settings → Secrets and variables → Actions → Variables**
 - `CPANEL_FTP_PORT` — `21` by default
 - `LEAD_NOTIFY_EMAIL` — where a project request is e-mailed; the workflow's own default is used when unset
 - `LEAD_MAIL_FROM` — sender of that e-mail, `noreply@ravshancha.uz` by default
+- `LEAD_SMTP_HOST` / `LEAD_SMTP_PORT` / `LEAD_SMTP_USER` — the mailbox that sends it,
+  `mail.ravshancha.uz`, `465` and `noreply@ravshancha.uz` by default
+- `LEAD_SMTP_VERIFY` — `0` turns off the certificate check, for a mail server whose certificate does not
+  match its hostname
 
 The deploy job remains safely skipped until `CPANEL_DEPLOY_ENABLED` is set to `true`.
 
@@ -40,6 +46,11 @@ holds secrets, so it is not in the repository: the deploy writes it from the sec
 uploads it with the rest of `site/`. Without it the endpoint answers `503 not_configured` and the form falls
 back to the visitor's own Telegram. A copy edited by hand on the server is overwritten by the next deploy —
 change the repository secrets and variables instead, then re-run the deploy.
+
+The notification is sent through the domain's own mailbox over SMTP as soon as `LEAD_SMTP_PASSWORD` is set:
+port 465 connects with TLS, any other port demands STARTTLS before the password is sent. This hosting answers
+`mail()` with a fatal error, so without that secret a request ends as `502 delivery` and the visitor is offered
+the Telegram fallback.
 
 ## Server rules
 

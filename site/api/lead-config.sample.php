@@ -13,4 +13,12 @@ return [
     'notify_email' => '',
     // Optional sender of that backup e-mail; by default noreply@<this host>.
     // 'mail_from' => 'noreply@ravshancha.uz',
+    // The mailbox that sends it. With smtp_host set the message goes out over SMTP instead of mail(), which
+    // this hosting disables. Port 465 connects with TLS, any other port demands STARTTLS before the password.
+    'smtp_host' => '',
+    'smtp_port' => 465,
+    'smtp_user' => '',
+    'smtp_pass' => '',
+    // false only for a mail server whose certificate does not match its hostname.
+    'smtp_verify' => true,
 ];
