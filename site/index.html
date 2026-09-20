@@ -6,7 +6,7 @@
   <meta name="description" content="Ravshanjon Ismoilov — bank va fintech sohasida 10+ yillik tajribaga ega Java dasturchi va dasturchilar guruhi rahbari, Toshkent.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#05070d">
-  <link rel="icon" href="assets/cha-favicon-dark.svg" type="image/svg+xml" sizes="any" data-theme-favicon>
+  <link rel="icon" href="assets/cha-favicon-dark-64.png" type="image/png" sizes="64x64" data-theme-favicon>
   <link rel="apple-touch-icon" href="assets/cha-favicon-dark-180.png" sizes="180x180" data-theme-touch-icon>
   <title>Ravshanjon Ismoilov — Java dasturchi, Toshkent</title>
   <link rel="canonical" href="https://ravshancha.uz/">
@@ -78,7 +78,7 @@
       const activeTheme = savedTheme || preferredTheme;
       const themeSuffix = activeTheme === "light" ? "light" : "dark";
       document.documentElement.dataset.theme = activeTheme;
-      document.querySelector("[data-theme-favicon]").href = `assets/cha-favicon-${themeSuffix}.svg`;
+      document.querySelector("[data-theme-favicon]").href = `assets/cha-favicon-${themeSuffix}-64.png`;
       document.querySelector("[data-theme-touch-icon]").href = `assets/cha-favicon-${themeSuffix}-180.png`;
     } catch (error) {
       document.documentElement.dataset.theme = "dark";
@@ -2176,7 +2176,7 @@
       });
       themeLabels.forEach((node) => { node.textContent = isLight ? dictionary.themeLight : dictionary.themeDark; });
       const themeSuffix = isLight ? "light" : "dark";
-      themeFavicon.href = `assets/cha-favicon-${themeSuffix}.svg`;
+      themeFavicon.href = `assets/cha-favicon-${themeSuffix}-64.png`;
       themeTouchIcon.href = `assets/cha-favicon-${themeSuffix}-180.png`;
       themeColorMeta.content = isLight ? "#eef4fb" : "#05070d";
     };
