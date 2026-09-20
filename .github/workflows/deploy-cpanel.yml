@@ -26,6 +26,37 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
+      # The CV site's order form needs api/lead-config.php next to api/lead.php. That file holds secrets,
+      # so it is not in the repository: it is written here from the repository secrets and variables and
+      # uploaded with the rest of site/. Without it the endpoint answers 503 and the form falls back to Telegram.
+      - name: Write the lead endpoint configuration
+        env:
+          LEAD_SHEETS_URL: ${{ secrets.LEAD_SHEETS_URL }}
+          LEAD_SHEETS_SECRET: ${{ secrets.LEAD_SHEETS_SECRET }}
+          LEAD_NOTIFY_EMAIL: ${{ vars.LEAD_NOTIFY_EMAIL || 'ismoilov.ravshanjon@gmail.com' }}
+          LEAD_MAIL_FROM: ${{ vars.LEAD_MAIL_FROM || 'noreply@ravshancha.uz' }}
+        run: |
+          python3 - <<'PY'
+          import os
+
+          def php_string(value):
+              return "'" + value.strip().replace("\\", "\\\\").replace("'", "\\'") + "'"
+
+          values = {
+              'sheets_url': os.environ.get('LEAD_SHEETS_URL', ''),
+              'sheets_secret': os.environ.get('LEAD_SHEETS_SECRET', ''),
+              'notify_email': os.environ.get('LEAD_NOTIFY_EMAIL', ''),
+              'mail_from': os.environ.get('LEAD_MAIL_FROM', ''),
+          }
+          lines = ['<?php', '// Written by the deploy workflow on every deployment: edits made on the server are overwritten.',
+                   '// The values come from the repository secrets and variables, see DEPLOYMENT.md.', 'return [']
+          lines += ["    '%s' => %s," % (key, php_string(value)) for key, value in values.items()]
+          lines += ['];', '']
+          open('site/api/lead-config.php', 'w', encoding='utf-8').write('\n'.join(lines))
+          PY
+          test -s site/api/lead-config.php
+          if command -v php >/dev/null; then php -l site/api/lead-config.php; fi
+
       - name: Deploy static site over FTPS
         uses: SamKirkland/FTP-Deploy-Action@110f9186c050f71550953127052e77650219c287 # v4.4.0
         with:

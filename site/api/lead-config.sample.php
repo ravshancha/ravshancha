@@ -1,5 +1,7 @@
 <?php
-// Copy this file to lead-config.php ON THE SERVER (cPanel File Manager → api/) and fill it in there.
+// Reference only: the real lead-config.php is written on every deploy from the repository secrets and
+// variables (LEAD_SHEETS_URL, LEAD_SHEETS_SECRET, LEAD_NOTIFY_EMAIL, LEAD_MAIL_FROM — see DEPLOYMENT.md),
+// so a copy edited by hand on the server is overwritten by the next deploy.
 // lead-config.php must never be committed: the repository is public and these values are secrets.
 // Step-by-step setup of the spreadsheet and its script: tools/leads/README.md
 return [

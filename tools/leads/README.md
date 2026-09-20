@@ -13,7 +13,8 @@ forma (site/index.html)
 
 Yo‘qolmasligi uchun ikki zaxira bor: jadvalga yozib bo‘lmasa, `lead.php` arizani to‘g‘ridan-to‘g‘ri emailga
 yuboradi (`notify_email`); u ham bo‘lmasa, mijozga tayyor matnli "Telegram’da yuborish" tugmasi chiqadi.
-Sozlanmaguncha forma shu oxirgi holatda — ya’ni avvalgidek ishlaydi.
+Jadval ulanmagan paytda ham ariza yo‘qolmaydi: deploy serverga sozlama faylini o‘zi yozadi va ariza to‘g‘ridan-to‘g‘ri
+pochtaga tushadi.
 
 ## Fayllar
 
@@ -22,7 +23,7 @@ tools/leads/Code.gs            jadvalga qo‘yiladigan Apps Script (web-ilova)
 tools/leads/test-code.js       Code.gs ni Google’siz tekshirish: node tools/leads/test-code.js
 tools/leads/mock-sheets.js     lead.php ni lokal sinash uchun soxta web-ilova
 site/api/lead.php              forma endpoint’i (serverda ishlaydi)
-site/api/lead-config.sample.php  sozlama namunasi; haqiqiysi faqat serverda turadi
+site/api/lead-config.sample.php  sozlama namunasi; haqiqiysini deploy GitHub’dagi qiymatlardan yozadi
 ```
 
 ## O‘rnatish (bir marta, ~10 daqiqa)
@@ -36,9 +37,10 @@ site/api/lead-config.sample.php  sozlama namunasi; haqiqiysi faqat serverda tura
 5. **Deploy → New deployment → Web app**: *Execute as* — **Me**, *Who has access* — **Anyone**. Chiqqan
    manzilni (`https://script.google.com/macros/s/…/exec`) nusxalang. Uni brauzerda ochsangiz
    `{"ok":true,"service":"ravshancha.uz leads"}` chiqishi kerak.
-6. cPanel File Manager → sayt papkasi → `api/`: `lead-config.sample.php` ni `lead-config.php` deb nusxalang va
-   to‘ldiring: `sheets_url` — 5-qadamdagi manzil, `sheets_secret` — 3-qadamdagi satr, `notify_email` — zaxira xat
-   boradigan manzil (ixtiyoriy). **Bu fayl git’ga qo‘shilmaydi** — repozitoriy ochiq, FTP deploy unga tegmaydi.
+6. GitHub → **Settings → Secrets and variables → Actions → Secrets**: `LEAD_SHEETS_URL` (5-qadamdagi manzil) va
+   `LEAD_SHEETS_SECRET` (3-qadamdagi satr). Xat boradigan manzilni almashtirmoqchi bo‘lsangiz, **Variables** da
+   `LEAD_NOTIFY_EMAIL` ni qo‘shing. Serverdagi `api/lead-config.php` ni deploy har safar o‘zi yozadi — qo‘lda fayl
+   yaratish shart emas, qo‘lda yozilgani esa keyingi deploy’da almashtiriladi. Qiymatlar repozitoriyga tushmaydi.
 7. Saytdan bitta test ariza yuboring: jadvalda qator, pochtada xat paydo bo‘lishi kerak.
 
 `Code.gs` ni keyin o‘zgartirsangiz: **Deploy → Manage deployments → ✎ → Version: New version → Deploy**.
