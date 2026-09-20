@@ -5,3 +5,4 @@ Disallow: /business/api/
 
 Sitemap: https://ravshancha.uz/sitemap.xml
 Sitemap: https://ravshancha.uz/business/sitemap.xml
+Sitemap: https://ravshancha.uz/dental/sitemap.xml

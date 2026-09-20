@@ -281,21 +281,15 @@
     .button { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 50px; padding: 0 22px; border: 0; border-radius: 11px; background: none; font-weight: 750; cursor: pointer; transition: transform 150ms ease, background 150ms ease; }
     .button:hover { transform: translateY(-2px); }
     .button-primary { color: var(--accent-text); background: var(--accent); box-shadow: 0 12px 30px color-mix(in srgb, var(--accent) 28%, transparent); }
+    .button-primary .button-icon { animation: button-arrow-nudge 1.7s ease-in-out infinite; }
+    .button-primary:hover .button-icon, .button-primary:focus-visible .button-icon { animation-duration: 900ms; }
+    @keyframes button-arrow-nudge { 0%, 60%, 100% { transform: translateX(0); } 30% { transform: translateX(5px); } }
     .button-secondary { border: 1px solid color-mix(in srgb, var(--accent) 50%, var(--line)); background: color-mix(in srgb, var(--surface) 60%, transparent); }
     .order-dialog { width: min(660px, calc(100% - 32px)); padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); box-shadow: 0 30px 80px var(--shadow); }
     .order-dialog::backdrop { background: color-mix(in srgb, #05070d 62%, transparent); backdrop-filter: blur(5px); }
     .order-form { display: grid; gap: 19px; padding: 30px; }
     .order-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .order-head h2 { margin: 0; font-size: 1.45rem; letter-spacing: -0.025em; }
-    .order-controls { display: flex; flex: 0 0 auto; align-items: center; gap: 8px; }
-    .order-theme { display: grid; width: 56px; height: 56px; place-items: center; border: 1px solid var(--line); border-radius: 10px; background: none; color: var(--muted); font-size: 15px; cursor: pointer; transition: color 150ms ease, border-color 150ms ease; }
-    .order-theme:hover, .order-theme:focus-visible { color: var(--text); border-color: var(--accent); }
-    .order-controls .language-select { width: auto; min-width: 96px; }
-    .order-controls .language-trigger { position: static; justify-content: flex-start; min-height: 36px; padding: 0 10px; border: 1px solid var(--line); border-radius: 10px; background: none; color: var(--muted); font-size: 11px; font-weight: 850; letter-spacing: 0.05em; }
-    .order-controls .language-trigger .language-chevron { position: static; right: auto; margin-left: auto; }
-    .order-controls .language-options { position: absolute; top: calc(100% + 8px); right: 0; width: 178px; margin: 0; padding: 6px; border: 1px solid var(--line); border-radius: 14px; background: color-mix(in srgb, var(--surface) 96%, transparent); box-shadow: 0 20px 48px var(--shadow); backdrop-filter: blur(18px); }
-    .order-controls .language-option { justify-content: flex-start; padding: 10px 11px; border-radius: 9px; font-size: 13px; font-weight: 750; text-align: left; }
-    .order-controls .language-option.active { color: var(--accent-text); background: var(--accent); }
     .order-intro { margin: -10px 0 0; color: var(--muted); font-size: 14px; }
     .order-field { display: grid; gap: 6px; }
     .order-field > label { font-size: 13px; font-weight: 750; }
@@ -458,6 +452,10 @@
     .section-heading > p { max-width: 390px; margin-bottom: 8px; color: var(--muted); }
     .section-heading--stacked { display: block; }
     .section-heading--stacked > p { max-width: 760px; margin: 24px 0 0; }
+    .section-heading--wide h2 { max-width: none; }
+    @media (min-width: 721px) {
+      .section-heading--wide h2 { font-size: clamp(2.3rem, 4.5vw, 4.2rem); }
+    }
 
     .expertise-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
     .expertise-card { min-height: 340px; padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); transition: border-color 180ms ease, transform 180ms ease; }
@@ -500,6 +498,7 @@
     .tag-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 24px; }
     .tag-list span { padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 11px; font-weight: 750; }
 
+    .experience-title { max-width: 920px; }
     .timeline { margin-top: 62px; border-top: 1px solid var(--line); }
     .timeline-item { display: grid; grid-template-columns: 0.65fr 1.35fr; gap: 60px; padding: 42px 0; border-bottom: 1px solid var(--line); }
     .timeline-meta { display: flex; flex-direction: column; gap: 4px; color: var(--muted); font-size: 13px; }
@@ -524,11 +523,19 @@
       transition: transform 180ms ease;
     }
     .company-logo svg { display: block; width: 100%; height: 100%; overflow: visible; }
+    .company-logo svg * { transform-box: fill-box; transform-origin: center; }
     .company-logo .logo-ink { fill: currentColor; }
     .company-logo .logo-stroke { fill: none; stroke: currentColor; }
     .company-logo .logo-accent { fill: var(--logo-accent); }
     .company-logo .logo-accent-2 { fill: var(--logo-accent-2); }
     .company-logo .logo-accent-stroke { fill: none; stroke: var(--logo-accent); }
+    html.js .reveal:not(.visible) .company-logo .logo-ink {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+    }
+    .reveal.visible .company-logo .logo-ink {
+      animation: company-wordmark-reveal 680ms cubic-bezier(.22, 1, .36, 1) 360ms both;
+    }
     .company-logo--kapital {
       --logo-accent: #ffd531;
       width: 200px;
@@ -538,20 +545,62 @@
       padding: 0;
     }
     .company-logo--kapital svg { overflow: hidden; shape-rendering: geometricPrecision; }
+    .reveal.visible .company-logo--kapital .logo-accent polygon { animation: company-piece-rise 620ms cubic-bezier(.22, 1, .36, 1) both; }
+    .reveal.visible .company-logo--kapital .logo-accent polygon:nth-child(2) { animation-delay: 80ms; }
+    .reveal.visible .company-logo--kapital .logo-accent polygon:nth-child(3) { animation-delay: 160ms; }
+    .reveal.visible .company-logo--kapital .logo-accent polygon:nth-child(4) { animation-delay: 240ms; }
     .company-logo--ipotekabank {
-      --logo-accent: #52ae30;
       width: 200px;
       height: 45px;
       flex-basis: 200px;
       padding: 0;
     }
-    .company-logo--ipotekabank img { width: 100%; height: 100%; object-fit: contain; }
-    .ipotekabank-logo-light { display: none; }
-    html[data-theme="light"] .ipotekabank-logo-dark { display: none; }
-    html[data-theme="light"] .ipotekabank-logo-light { display: block; }
+    .company-logo--ipotekabank img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: left center;
+      transform-origin: center;
+      animation: ipotekabank-logo-loop 4.8s cubic-bezier(.45, 0, .25, 1) infinite;
+    }
+    html[data-theme="dark"] .company-logo--ipotekabank img {
+      filter: brightness(0) invert(1);
+      opacity: .96;
+    }
+    .company-logo--apelsin {
+      --logo-accent: #f47034;
+      --logo-accent-2: #009c65;
+      width: 200px;
+      height: 53px;
+      flex-basis: 200px;
+      padding: 0;
+      color: #fff;
+    }
+    html[data-theme="light"] .company-logo--apelsin { color: #006189; }
+    .reveal.visible .company-logo--apelsin .apelsin-wallet-body { animation: company-wallet-body 520ms cubic-bezier(.22, 1, .36, 1) 40ms both; }
+    .reveal.visible .company-logo--apelsin .apelsin-card-back { animation: company-wallet-back 620ms cubic-bezier(.22, 1, .36, 1) 120ms both; }
+    .reveal.visible .company-logo--apelsin .apelsin-card-front { animation: company-wallet-front 580ms cubic-bezier(.22, 1, .36, 1) 200ms both; }
+    .reveal.visible .company-logo--apelsin .apelsin-wallet-seam { animation: company-seam-draw 420ms ease-out 310ms both; }
+    .reveal.visible .company-logo--apelsin .apelsin-wallet-dot { animation: company-core-pop 420ms cubic-bezier(.34, 1.56, .64, 1) 390ms both; }
+    .reveal.visible .company-logo--apelsin .logo-ink { animation-delay: 430ms; }
     .company-logo--realsoft { --logo-accent: #0091ff; }
+    .reveal.visible .company-logo--realsoft .logo-accent polygon { animation: company-piece-rise 620ms cubic-bezier(.22, 1, .36, 1) both; }
+    .reveal.visible .company-logo--realsoft .logo-accent polygon:nth-child(2) { animation-delay: 110ms; }
+    .reveal.visible .company-logo--realsoft .logo-accent polygon:nth-child(3) { animation-delay: 220ms; }
+    .reveal.visible .company-logo--uzumnasiya svg > path:nth-child(1) { animation: company-layer-pop 560ms cubic-bezier(.34, 1.56, .64, 1) both; }
+    .reveal.visible .company-logo--uzumnasiya svg > path:nth-child(2) { animation: company-layer-pop 560ms cubic-bezier(.34, 1.56, .64, 1) 100ms both; }
+    .reveal.visible .company-logo--uzumnasiya svg > path:nth-child(3) { animation: company-layer-pop 560ms cubic-bezier(.34, 1.56, .64, 1) 190ms both; }
     .company-logo--epam { --logo-accent: #23b5c9; }
+    .company-logo--epam .logo-accent-stroke,
+    .company-logo--tune .tune-brace,
+    .company-logo--mironsoft .logo-accent-stroke { stroke-dasharray: 1; stroke-dashoffset: 0; }
+    .reveal.visible .company-logo--epam .logo-accent-stroke { animation: company-stroke-draw 720ms cubic-bezier(.65, 0, .35, 1) both; }
+    .reveal.visible .company-logo--epam .logo-accent-stroke:nth-of-type(2) { animation-delay: 110ms; }
+    .reveal.visible .company-logo--asakabank .logo-accent { animation: company-mark-turn 680ms cubic-bezier(.22, 1, .36, 1) both; }
+    .reveal.visible .company-logo--yt .logo-accent { animation: company-blocks-arrive 680ms cubic-bezier(.22, 1, .36, 1) both; }
     .company-logo--tune { --logo-accent: #4cae4f; }
+    .reveal.visible .company-logo--tune .tune-brace { animation: company-stroke-draw 680ms cubic-bezier(.65, 0, .35, 1) 160ms both; }
     .company-logo--davr {
       --logo-accent: #0068ae;
       --logo-accent-2: #13a246;
@@ -560,24 +609,137 @@
       flex-basis: 176px;
       padding: 0;
     }
+    .reveal.visible .company-logo--davr .logo-accent { animation: company-half-left 620ms cubic-bezier(.22, 1, .36, 1) both; }
+    .reveal.visible .company-logo--davr .logo-accent-2 { animation: company-half-right 620ms cubic-bezier(.22, 1, .36, 1) 80ms both; }
+    .company-logo--asakabank {
+      --logo-accent: #e40026;
+      width: 176px;
+      height: 24px;
+      flex-basis: 176px;
+      padding: 0;
+    }
+    .company-logo--uzumnasiya {
+      width: 150px;
+      height: 48px;
+      flex-basis: 150px;
+      padding: 0;
+    }
+    .company-logo--yt {
+      --logo-accent: #5b9bf5;
+      width: 176px;
+      height: 48px;
+      flex-basis: 176px;
+      padding: 0;
+    }
+    html[data-theme="light"] .company-logo--yt { --logo-accent: #043577; }
     .company-logo--mironsoft { --logo-accent: #1ba39c; }
+    .reveal.visible .company-logo--mironsoft .logo-accent-stroke { animation: company-stroke-draw 760ms cubic-bezier(.65, 0, .35, 1) both; }
+    .reveal.visible .company-logo--mironsoft .logo-accent circle { animation: company-node-pop 500ms cubic-bezier(.34, 1.56, .64, 1) 120ms both; }
+    .reveal.visible .company-logo--mironsoft .logo-accent circle:nth-child(3n + 2) { animation-delay: 200ms; }
+    .reveal.visible .company-logo--mironsoft .logo-accent circle:nth-child(3n) { animation-delay: 280ms; }
     .timeline-item:hover .company-logo { transform: translateY(-2px); }
 
-    .project-card { display: grid; grid-template-columns: 70px 1fr auto; gap: 34px; align-items: start; padding: 42px; border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent); border-radius: var(--radius); background: var(--surface); }
-    .project-index { color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    @keyframes company-wordmark-reveal {
+      from { opacity: 0; clip-path: inset(0 100% 0 0); }
+      to { opacity: 1; clip-path: inset(0 0 0 0); }
+    }
+    @keyframes company-piece-rise {
+      from { opacity: 0; transform: translateY(28%) scale(.88); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes company-stroke-draw {
+      from { stroke-dashoffset: 1; opacity: .2; }
+      to { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @keyframes company-core-pop {
+      from { opacity: 0; transform: scale(.25); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes company-dot-drop {
+      from { opacity: 0; transform: translate(-18%, -30%) scale(.5); }
+      to { opacity: 1; transform: translate(0, 0) scale(1); }
+    }
+    @keyframes company-wallet-body {
+      from { opacity: 0; transform: translateY(12%) scale(.86); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes company-wallet-back {
+      from { opacity: 0; transform: translateY(46%) rotate(-2deg) scale(.86); }
+      to { opacity: 1; transform: translateY(0) rotate(-8deg) scale(1); }
+    }
+    @keyframes company-wallet-front {
+      from { opacity: 0; transform: translateY(38%) scale(.9); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes company-seam-draw {
+      from { opacity: 0; stroke-dashoffset: 1; }
+      to { opacity: 1; stroke-dashoffset: 0; }
+    }
+    @keyframes company-layer-pop {
+      from { opacity: 0; transform: scale(.58) rotate(-10deg); }
+      to { opacity: 1; transform: scale(1) rotate(0); }
+    }
+    @keyframes company-mark-turn {
+      from { opacity: 0; transform: rotate(-12deg) scale(.76); }
+      to { opacity: 1; transform: rotate(0) scale(1); }
+    }
+    @keyframes company-blocks-arrive {
+      from { opacity: 0; transform: translate(-10%, 12%) scale(.84); }
+      to { opacity: 1; transform: translate(0, 0) scale(1); }
+    }
+    @keyframes company-half-left {
+      from { opacity: 0; transform: translateX(32%); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes company-half-right {
+      from { opacity: 0; transform: translateX(-32%); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes company-node-pop {
+      from { opacity: 0; transform: scale(.25); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes ipotekabank-logo-loop {
+      0%, 52%, 100% { transform: translateY(0) scale(1); }
+      61% { transform: translateY(-1.5px) scale(1.014); }
+      69% { transform: translateY(0) scale(.998); }
+      77% { transform: translateY(-.6px) scale(1.006); }
+      84% { transform: translateY(0) scale(1); }
+    }
+
+    .project-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 34px; align-items: start; padding: 42px; border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent); border-radius: var(--radius); background: var(--surface); }
+    .project-card + .project-card { margin-top: 18px; }
+    .project-body { display: contents; }
+    .project-body > * { grid-column: 1 / -1; }
+    .project-logo { grid-column: 1; grid-row: 1; align-self: center; max-width: 100%; margin-bottom: 22px; }
     .project-type { color: var(--accent); font-size: 12px; font-weight: 850; letter-spacing: 0.12em; text-transform: uppercase; }
     .project-body h3 { font-size: clamp(2.3rem, 5vw, 4.6rem); }
-    .project-body > p:not(.project-type) { max-width: 700px; color: var(--muted); }
-    .project-link { display: grid; width: 86px; height: 86px; place-items: center; border: 1px solid var(--line); border-radius: 50%; transition: background 150ms ease, color 150ms ease; }
-    .project-link .site-icon { width: 44px; height: 44px; }
-    .project-link:hover { color: var(--accent-text); background: var(--accent); }
-    .project-link:hover .site-icon, .project-link:focus-visible .site-icon { color: var(--accent-text); opacity: 1; }
+    .project-body > p:not(.project-type) { color: var(--muted); }
+    .project-link { display: grid; grid-column: 2; grid-row: 1; width: 86px; height: 86px; margin-bottom: 22px; place-items: center; border: 1px solid color-mix(in srgb, var(--accent) 58%, var(--line)); border-radius: 50%; color: var(--accent); background: color-mix(in srgb, var(--accent) 9%, transparent); animation: project-link-pulse 2.4s ease-in-out infinite; transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, color 180ms ease; }
+    .project-link .site-icon { width: 44px; height: 44px; color: var(--accent); opacity: 1; animation: project-link-arrow 1.7s ease-in-out infinite; }
+    .project-link:hover, .project-link:focus-visible { color: var(--accent-text); border-color: var(--accent); outline: 0; background: var(--accent); box-shadow: 0 12px 30px color-mix(in srgb, var(--accent) 32%, transparent); animation-play-state: paused; }
+    .project-link:hover .site-icon, .project-link:focus-visible .site-icon { color: var(--accent-text); opacity: 1; animation-duration: 900ms; }
+    @keyframes project-link-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent); }
+      50% { box-shadow: 0 0 0 10px color-mix(in srgb, var(--accent) 13%, transparent); }
+    }
+    @keyframes project-link-arrow {
+      0%, 58%, 100% { transform: translate(0, 0); }
+      26% { transform: translate(5px, -5px); }
+      42% { transform: translate(0, 0); }
+    }
 
-    .recognition-list { border-top: 1px solid var(--line); }
-    .recognition-list article { display: grid; grid-template-columns: 70px 1fr; gap: 28px; padding: 26px 0; border-bottom: 1px solid var(--line); }
-    .recognition-list > article > span { color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
-    .recognition-list h3 { margin-bottom: 4px; }
-    .recognition-list p { margin-bottom: 0; color: var(--muted); }
+    .recognition-list { display: grid; gap: 14px; }
+    .recognition-card { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 22px; padding: 26px 28px; border: 0; border-radius: var(--radius); background: var(--surface); transition: background 180ms ease, box-shadow 180ms ease, translate 180ms ease; }
+    .recognition-card:hover { translate: 0 -6px; background: color-mix(in srgb, var(--accent) 7%, var(--surface)); box-shadow: 0 16px 36px var(--shadow); }
+    .recognition-meta { display: grid; justify-items: start; gap: 10px; }
+    .recognition-year { padding: 5px 11px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; font-weight: 750; letter-spacing: 0.04em; transition: color 180ms ease, background 180ms ease; }
+    .recognition-icon { display: grid; width: 58px; height: 58px; place-items: center; border-radius: 15px; background: color-mix(in srgb, var(--accent) 13%, transparent); transition: background 180ms ease, transform 180ms ease; }
+    .recognition-svg { width: 34px; height: 34px; color: var(--accent); opacity: 1; transition: color 180ms ease, transform 320ms cubic-bezier(.22, 1, .36, 1); }
+    .recognition-card:hover .recognition-year, .recognition-card:hover .recognition-icon { color: var(--accent-text); background: var(--accent); }
+    .recognition-card:hover .recognition-svg { color: var(--accent-text); transform: scale(1.08) rotate(-4deg); }
+    .recognition-card h3 { margin-bottom: 7px; font-size: 1.35rem; }
+    .recognition-card p { margin-bottom: 0; color: var(--muted); }
 
     /* Education and certificates: cards ordered oldest first, each with its own icon. */
     .credential-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
@@ -654,6 +816,7 @@
     .footer-biz { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--line)); border-radius: 8px; color: var(--text); background: color-mix(in srgb, var(--accent) 10%, transparent); font-weight: 700; white-space: nowrap; transition: transform 150ms ease, border-color 150ms ease, background 150ms ease; }
     .footer-biz:hover, .footer-biz:focus-visible { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, transparent); transform: translateY(-2px); }
     .footer-biz .site-icon { width: 24px; height: 24px; color: var(--accent); opacity: 1; }
+    .footer-sites { display: flex; flex-wrap: wrap; gap: 10px; }
     .footer-top {
       display: inline-flex;
       align-items: center;
@@ -672,6 +835,199 @@
 
     html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 600ms ease, transform 600ms ease; }
     html.js .reveal.visible { opacity: 1; transform: none; }
+
+    /* About cards reveal one after another when their copy enters the viewport. */
+    html.js .about-copy.reveal .quick-facts > div {
+      --about-card-delay: 120ms;
+      opacity: 0;
+      filter: blur(6px);
+      transform: translate3d(44px, 28px, 0) scale(.95);
+      transform-origin: 100% 50%;
+      transition:
+        opacity 560ms ease-out var(--about-card-delay),
+        transform 760ms cubic-bezier(.22, 1, .36, 1) var(--about-card-delay),
+        filter 540ms ease-out var(--about-card-delay),
+        box-shadow 180ms ease;
+      will-change: opacity, transform, filter;
+    }
+    html.js .about-copy.reveal .quick-facts > div:nth-child(2) { --about-card-delay: 300ms; }
+    html.js .about-copy.reveal.visible .quick-facts > div { opacity: 1; filter: blur(0); transform: none; }
+    html.js .about-copy.reveal.visible .quick-facts > div:hover { transform: translateY(-3px); }
+    @media (max-width: 720px) {
+      html.js .about-copy.reveal .quick-facts > div { transform: translate3d(0, 32px, 0) scale(.95); }
+      html.js .about-copy.reveal.visible .quick-facts > div { transform: none; }
+      html.js .about-copy.reveal.visible .quick-facts > div:hover { transform: none; }
+    }
+
+    /* Expertise cards travel from left to right in a short sequence. */
+    html.js .expertise-card.reveal {
+      --expertise-reveal-delay: 0ms;
+      opacity: 0;
+      filter: blur(7px);
+      transform: translate3d(-76px, 0, 0) scale(.96);
+      transform-origin: 0 50%;
+      transition:
+        opacity 620ms ease-out var(--expertise-reveal-delay),
+        transform 820ms cubic-bezier(.22, 1, .36, 1) var(--expertise-reveal-delay),
+        filter 600ms ease-out var(--expertise-reveal-delay),
+        border-color 180ms ease;
+      will-change: opacity, transform, filter;
+    }
+    html.js .expertise-card:nth-child(2) { --expertise-reveal-delay: 160ms; }
+    html.js .expertise-card:nth-child(3) { --expertise-reveal-delay: 320ms; }
+    html.js .expertise-card:nth-child(4) { --expertise-reveal-delay: 480ms; }
+    html.js .expertise-card.reveal.visible { opacity: 1; filter: blur(0); transform: none; }
+    html.js .expertise-card.reveal.visible:hover { transform: translateY(-6px); }
+    @media (max-width: 720px) {
+      html.js .expertise-card.reveal.visible:hover { transform: none; }
+    }
+
+    /* Selected products enter as a short sequence instead of appearing together. */
+    html.js .project-card.reveal {
+      --project-delay: 0ms;
+      opacity: 0;
+      filter: blur(8px);
+      clip-path: inset(10% 0 0 0 round var(--radius));
+      transform: perspective(1100px) translate3d(0, 76px, 0) rotateX(5deg) scale(.95);
+      transform-origin: 50% 0;
+      transition:
+        opacity 720ms cubic-bezier(.22, 1, .36, 1) var(--project-delay),
+        transform 880ms cubic-bezier(.22, 1, .36, 1) var(--project-delay),
+        filter 680ms ease-out var(--project-delay),
+        clip-path 880ms cubic-bezier(.22, 1, .36, 1) var(--project-delay);
+      will-change: opacity, transform, filter, clip-path;
+    }
+    html.js .project-card + .project-card { --project-delay: 220ms; }
+    html.js .project-card.reveal.visible { opacity: 1; filter: blur(0); clip-path: inset(0 round var(--radius)); transform: none; }
+    html.js .project-card.reveal .project-body > *,
+    html.js .project-card.reveal .project-link {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 520ms ease-out, transform 680ms cubic-bezier(.22, 1, .36, 1), background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+    }
+    html.js .project-card.reveal .project-body > :nth-child(1) { transition-delay: calc(var(--project-delay) + 150ms); }
+    html.js .project-card.reveal .project-body > :nth-child(2) { transition-delay: calc(var(--project-delay) + 210ms); }
+    html.js .project-card.reveal .project-body > :nth-child(3) { transition-delay: calc(var(--project-delay) + 270ms); }
+    html.js .project-card.reveal .project-body > :nth-child(4) { transition-delay: calc(var(--project-delay) + 330ms); }
+    html.js .project-card.reveal .project-link { transform: translateY(22px) rotate(-12deg) scale(.72); transition-delay: calc(var(--project-delay) + 350ms); }
+    html.js .project-card.reveal.visible .project-body > *,
+    html.js .project-card.reveal.visible .project-link { opacity: 1; transform: none; }
+
+    /* Workplaces reveal per row as the reader reaches them while scrolling. */
+    html.js .timeline-item.reveal {
+      --timeline-entry-delay: 0ms;
+      opacity: 0;
+      filter: blur(7px);
+      transform: translate3d(0, 56px, 0) scale(.975);
+      transform-origin: 50% 0;
+      transition:
+        opacity 620ms ease-out var(--timeline-entry-delay),
+        transform 820ms cubic-bezier(.22, 1, .36, 1) var(--timeline-entry-delay),
+        filter 620ms ease-out var(--timeline-entry-delay);
+      will-change: opacity, transform, filter;
+    }
+    html.js .timeline-item.reveal.visible { opacity: 1; filter: blur(0); transform: none; }
+    html.js .timeline-item.reveal .timeline-meta,
+    html.js .timeline-item.reveal > div:last-child {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 500ms ease-out, transform 680ms cubic-bezier(.22, 1, .36, 1);
+    }
+    html.js .timeline-item.reveal .timeline-meta { transition-delay: calc(var(--timeline-entry-delay) + 130ms); }
+    html.js .timeline-item.reveal > div:last-child { transition-delay: calc(var(--timeline-entry-delay) + 230ms); }
+    html.js .timeline-item.reveal.visible .timeline-meta,
+    html.js .timeline-item.reveal.visible > div:last-child { opacity: 1; transform: none; }
+
+    /* Practical experience cards reveal as a clear two-step sequence. */
+    html.js .recognition-card.reveal {
+      --recognition-reveal-delay: 0ms;
+      opacity: 0;
+      filter: blur(7px);
+      transform: translate3d(0, 52px, 0) scale(.95);
+      transform-origin: 50% 0;
+      transition:
+        opacity 620ms ease-out var(--recognition-reveal-delay),
+        transform 820ms cubic-bezier(.22, 1, .36, 1) var(--recognition-reveal-delay),
+        filter 620ms ease-out var(--recognition-reveal-delay),
+        background 180ms ease,
+        box-shadow 180ms ease,
+        translate 180ms ease;
+      will-change: opacity, transform, filter;
+    }
+    html.js .recognition-card:nth-child(2) { --recognition-reveal-delay: 180ms; }
+    html.js .recognition-card.reveal.visible { opacity: 1; filter: blur(0); transform: none; }
+    html.js .recognition-card.reveal .recognition-meta,
+    html.js .recognition-card.reveal .recognition-body {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 480ms ease-out, transform 650ms cubic-bezier(.22, 1, .36, 1);
+    }
+    html.js .recognition-card.reveal .recognition-meta { transition-delay: calc(var(--recognition-reveal-delay) + 140ms); }
+    html.js .recognition-card.reveal .recognition-body { transition-delay: calc(var(--recognition-reveal-delay) + 230ms); }
+    html.js .recognition-card.reveal.visible .recognition-meta,
+    html.js .recognition-card.reveal.visible .recognition-body { opacity: 1; transform: none; }
+
+    /* Education cards reveal one by one as the list enters the viewport. */
+    html.js .credential-card.reveal {
+      --credential-reveal-delay: 0ms;
+      opacity: 0;
+      filter: blur(7px);
+      transform: translate3d(0, 52px, 0) scale(.95);
+      transform-origin: 50% 0;
+      transition:
+        opacity 620ms ease-out var(--credential-reveal-delay),
+        transform 820ms cubic-bezier(.22, 1, .36, 1) var(--credential-reveal-delay),
+        filter 620ms ease-out var(--credential-reveal-delay),
+        background 180ms ease,
+        box-shadow 180ms ease,
+        translate 180ms ease;
+      will-change: opacity, transform, filter;
+    }
+    html.js .credential-card:nth-child(2) { --credential-reveal-delay: 140ms; }
+    html.js .credential-card:nth-child(3) { --credential-reveal-delay: 280ms; }
+    html.js .credential-card:nth-child(4) { --credential-reveal-delay: 420ms; }
+    html.js .credential-card.reveal.visible { opacity: 1; filter: blur(0); transform: none; }
+    html.js .credential-card.reveal .credential-aside,
+    html.js .credential-card.reveal .credential-body {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 480ms ease-out, transform 650ms cubic-bezier(.22, 1, .36, 1);
+    }
+    html.js .credential-card.reveal .credential-aside { transition-delay: calc(var(--credential-reveal-delay) + 150ms); }
+    html.js .credential-card.reveal .credential-body { transition-delay: calc(var(--credential-reveal-delay) + 230ms); }
+    html.js .credential-card.reveal.visible .credential-aside,
+    html.js .credential-card.reveal.visible .credential-body { opacity: 1; transform: none; }
+
+    /* Contact actions and portrait enter independently when the section is reached. */
+    html.js .contact-inner.reveal { opacity: 1; transform: none; transition: none; }
+    html.js .contact-inner.reveal .contact-button {
+      opacity: 0;
+      filter: blur(6px);
+      transform: translateY(34px) scale(.92);
+      transition:
+        opacity 540ms ease-out,
+        transform 720ms cubic-bezier(.22, 1, .36, 1),
+        filter 520ms ease-out,
+        background 150ms ease;
+      will-change: opacity, transform, filter;
+    }
+    html.js .contact-inner.reveal .contact-button:nth-child(1) { transition-delay: 160ms; }
+    html.js .contact-inner.reveal .contact-button:nth-child(2) { transition-delay: 300ms; }
+    html.js .contact-inner.reveal .contact-portrait picture {
+      opacity: 0;
+      filter: blur(10px);
+      transform: translate3d(58px, 48px, 0) scale(.94);
+      transform-origin: 50% 100%;
+      transition:
+        opacity 680ms ease-out 80ms,
+        transform 920ms cubic-bezier(.22, 1, .36, 1) 80ms,
+        filter 680ms ease-out 80ms;
+      will-change: opacity, transform, filter;
+    }
+    html.js .contact-inner.reveal.visible .contact-button,
+    html.js .contact-inner.reveal.visible .contact-portrait picture { opacity: 1; filter: blur(0); transform: none; }
+    html.js .contact-inner.reveal.visible .contact-button:hover,
+    html.js .contact-inner.reveal.visible .contact-button:focus-visible { transform: translateY(-2px); }
 
     /* Hero stage */
     .hero-shell { position: relative; }
@@ -1057,8 +1413,9 @@
       .timeline-meta { flex-direction: row; justify-content: space-between; }
       .timeline-meta--with-logo { align-items: flex-start; flex-direction: column; justify-content: flex-start; }
       .timeline-item > div:last-child { max-width: none; }
-      .project-card { grid-template-columns: 1fr auto; padding: 28px; }
-      .project-index { grid-column: 1 / -1; }
+      .project-card { gap: 0 16px; padding: 28px; }
+      .recognition-card { padding: 22px; }
+      .recognition-meta { grid-auto-flow: column; justify-content: start; align-items: center; }
       .footer-inner { align-items: flex-start; flex-direction: column; }
       .footer-links { width: 100%; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 14px; }
       .footer-socials { flex: 1 1 auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 8px; }
@@ -1069,7 +1426,11 @@
       .company-logo { width: 150px; height: 50px; flex-basis: 150px; }
       .company-logo--kapital { width: 174px; height: 20px; flex-basis: 174px; margin-top: 14px; }
       .company-logo--ipotekabank { width: 174px; height: 39px; flex-basis: 174px; }
+      .company-logo--apelsin { width: 174px; height: 46px; flex-basis: 174px; }
       .company-logo--davr { width: 155px; height: 24px; flex-basis: 155px; }
+      .company-logo--asakabank { width: 155px; height: 21px; flex-basis: 155px; }
+      .company-logo--yt { width: 155px; height: 43px; flex-basis: 155px; }
+      .company-logo--uzumnasiya { width: 132px; height: 43px; flex-basis: 132px; }
       .credential-card { grid-template-columns: 1fr; gap: 16px; padding: 22px; }
       .credential-card:hover { translate: none; box-shadow: none; }
       .credential-aside { grid-auto-flow: column; justify-content: start; align-items: center; gap: 13px; }
@@ -1095,7 +1456,25 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
       .language-flag { filter: none !important; transform: none !important; }
+      .company-logo svg * { animation: none !important; opacity: 1 !important; }
       .reveal { opacity: 1; transform: none; }
+      html.js .about-copy.reveal .quick-facts > div { opacity: 1; filter: none; transform: none; }
+      html.js .expertise-card.reveal { opacity: 1; filter: none; transform: none; }
+      html.js .project-card.reveal,
+      html.js .project-card.reveal .project-body > *,
+      html.js .project-card.reveal .project-link { opacity: 1; filter: none; clip-path: none; transform: none; }
+      .project-link, .project-link .site-icon { animation: none !important; }
+      html.js .timeline-item.reveal,
+      html.js .timeline-item.reveal .timeline-meta,
+      html.js .timeline-item.reveal > div:last-child { opacity: 1; filter: none; transform: none; }
+      html.js .credential-card.reveal,
+      html.js .credential-card.reveal .credential-aside,
+      html.js .credential-card.reveal .credential-body { opacity: 1; filter: none; transform: none; }
+      html.js .recognition-card.reveal,
+      html.js .recognition-card.reveal .recognition-meta,
+      html.js .recognition-card.reveal .recognition-body { opacity: 1; filter: none; transform: none; }
+      html.js .contact-inner.reveal .contact-button,
+      html.js .contact-inner.reveal .contact-portrait picture { opacity: 1; filter: none; transform: none; }
     }
   </style>
 </head>
@@ -1328,7 +1707,7 @@
     <section class="section" id="experience">
       <div class="container">
         <p class="section-kicker" data-i18n="experienceKicker">Tajriba</p>
-        <h2 data-i18n="experienceTitle">Bank va fintechdagi professional tajriba.</h2>
+        <h2 class="experience-title" data-i18n-html="experienceTitle">Bank va fintechdagi<br>professional tajriba.</h2>
         <div class="timeline">
           <article class="timeline-item reveal">
             <div class="timeline-meta timeline-meta--with-logo">
@@ -1367,8 +1746,7 @@
           <article class="timeline-item reveal">
             <div class="timeline-meta timeline-meta--with-logo">
               <span class="company-logo company-logo--ipotekabank" aria-hidden="true">
-                <img class="ipotekabank-logo-dark" src="assets/ipotekabank-logo-dark.png" alt="" width="1065" height="240" loading="lazy" decoding="async">
-                <img class="ipotekabank-logo-light" src="assets/ipotekabank-logo-light.png" alt="" width="1065" height="240" loading="lazy" decoding="async">
+                <img src="assets/ipotekabank-otp.svg" alt="">
               </span>
               <span data-i18n="job1Date">2024-yil yanvar — 2025-yil dekabr</span>
               <span data-i18n="job1Place">Toshkent · Bank</span>
@@ -1414,16 +1792,90 @@
             </div>
           </article>
           <article class="timeline-item reveal">
+            <!-- TODO: Uzum Nasiya — sana va tavsif foydalanuvchidan kutilmoqda -->
             <div class="timeline-meta timeline-meta--with-logo">
-              <span class="company-logo company-logo--epam" aria-hidden="true"><svg viewBox="0 0 140 44"><path class="logo-accent-stroke" d="M26 12L15 22l11 10" stroke-width="7"/><path class="logo-accent-stroke" d="M114 12l11 10-11 10" stroke-width="7"/><text class="logo-ink" x="70" y="32" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="700" letter-spacing="-0.6">epam</text></svg></span>
-              <span data-i18n="job3Date">2022-yil yanvar — 2023-yil dekabr</span>
-              <span data-i18n="job3Place">Toshkent · Platforma</span>
+              <span class="company-logo company-logo--uzumnasiya" aria-hidden="true">
+                <svg viewBox="2.08 2.08 115.3 37.2" focusable="false">
+                  <path fill="#FF5733" d="M20.8019 39.215C31.0544 39.215 39.3656 30.9037 39.3656 20.6513C39.3656 10.3989 31.0544 2.08765 20.8019 2.08765C10.5495 2.08765 2.23828 10.3989 2.23828 20.6513C2.23828 30.9037 10.5495 39.215 20.8019 39.215Z"/>
+                  <path fill="#7000FF" d="M17.6182 6.07086C19.3481 4.34096 22.1392 4.34096 23.8691 6.07086L35.266 17.4678C36.9959 19.1977 36.9959 21.9888 35.266 23.7187L23.8691 35.1156C22.1392 36.8455 19.3481 36.8455 17.6182 35.1156L6.22125 23.7187C4.49135 21.9888 4.49135 19.1977 6.22125 17.4678L17.6182 6.07086Z"/>
+                  <path fill="#7000FF" d="M8.22754 12.5105C8.22754 10.0683 10.2046 8.09131 12.6468 8.09131H28.8264C31.2686 8.09131 33.2456 10.0683 33.2456 12.5105V28.6901C33.2456 31.1323 31.2686 33.1094 28.8264 33.1094H12.6613C10.2191 33.1094 8.24208 31.1323 8.24208 28.6901L8.22754 12.5105Z"/>
+                  <path fill="#fff" d="M25.9339 14.9382C26.4863 15.0545 27.0387 15.1708 27.562 15.3017C28.1289 15.447 28.6813 15.6215 29.2483 15.7814C29.321 15.8104 29.3646 15.8395 29.3646 15.9267C29.3646 17.6712 29.3791 19.4156 29.35 21.1746C29.321 23.0498 28.7249 24.7507 27.5911 26.248C26.3264 27.9052 24.6546 28.9809 22.6194 29.4752C21.8199 29.6641 21.0058 29.7368 20.1772 29.6787C18.2147 29.5624 16.4849 28.8791 15.0021 27.5999C13.4757 26.2916 12.5163 24.6344 12.1238 22.6428C12.0075 22.0759 11.9639 21.5089 11.9639 20.9274C11.9639 19.2702 11.9639 17.6276 11.9639 15.9704C11.9639 15.8541 11.9929 15.825 12.0947 15.7959C13.1559 15.4616 14.2462 15.1854 15.351 14.9818C15.3655 14.9818 15.3655 14.9818 15.3946 14.9818C15.3946 15.0255 15.3946 15.0691 15.3946 15.1127C15.3946 17.1915 15.38 19.2702 15.3946 21.3345C15.4091 22.3811 15.54 23.4133 15.9034 24.4018C16.1796 25.1868 16.6011 25.8845 17.2262 26.466C17.8077 27.0039 18.4909 27.3382 19.2614 27.4981C20.3517 27.7307 21.4274 27.7162 22.4886 27.3818C23.7388 26.9893 24.611 26.1462 25.1779 24.9687C25.4832 24.3436 25.6577 23.6749 25.7739 22.9917C25.9048 22.2358 25.9339 21.4653 25.9339 20.6949C25.9339 18.8487 25.9339 16.9879 25.9339 15.1417C25.9339 15.0545 25.9339 15.0109 25.9339 14.9382Z"/>
+                  <path fill="#fff" d="M22.1826 18.7905C21.1651 18.7905 20.1475 18.7905 19.1299 18.7905C19.1299 16.4064 19.1299 14.0224 19.1299 11.6383C19.4497 11.5365 21.5721 11.5365 22.1826 11.6238C22.1826 14.0078 22.1826 16.4064 22.1826 18.7905Z"/>
+                  <g class="logo-ink">
+                    <path d="M82.4821 13.6736C82.4821 15.3163 81.5517 16.0722 80.1707 16.0722C78.7897 16.0722 77.9029 15.3308 77.9029 13.6736V8.26587H74.9229V13.7899C74.9229 17.3805 77.932 18.7906 80.1852 18.7906C82.4384 18.7906 85.4621 17.3805 85.4621 13.7899V8.26587H82.4821V13.6736Z"/>
+                    <path d="M72.4084 10.7808V8.26587H62.7414V10.7808H68.4544L62.5088 16.0722V18.5871H72.7573V16.0722H66.4628L72.4084 10.7808Z"/>
+                    <path d="M100.348 8.06226C98.4578 8.06226 97.0332 8.83271 96.3354 9.99567C95.6231 8.83271 94.0677 8.06226 92.4541 8.06226C89.2705 8.06226 87.6133 10.0829 87.6133 12.5832V18.587H90.5934V13.0193C90.5934 11.8273 91.2184 10.7661 92.6721 10.7661C92.9629 10.7516 93.2681 10.7952 93.5298 10.897C93.806 10.9987 94.0531 11.1586 94.2712 11.3767C94.4747 11.5802 94.6346 11.8419 94.7509 12.1181C94.8527 12.3943 94.8963 12.685 94.8817 12.9757V18.6015H97.8618V12.9757C97.8618 11.7837 98.5741 10.7661 99.9987 10.7661C101.423 10.7661 102.107 11.8273 102.107 13.0193V18.6015H105.087V12.5978C105.087 10.0974 103.546 8.07679 100.348 8.06226Z"/>
+                    <path d="M57.5808 13.6736C57.5808 15.3163 56.6504 16.0722 55.284 16.0722C53.9175 16.0722 53.0017 15.3308 53.0017 13.6736V8.26587H50.0361V13.7899C50.0361 17.3805 53.0307 18.7906 55.2985 18.7906C57.5663 18.7906 60.5609 17.3805 60.5609 13.7899V8.26587H57.5808V13.6736Z"/>
+                    <path d="M85.8252 27.847C85.8252 25.6664 84.1971 24.5762 80.9408 24.5762C78.7021 24.5762 76.0855 25.1867 76.0855 27.5853C76.0855 28.85 76.8414 29.8531 77.9607 30.202C79.1091 30.5654 80.2721 30.7253 81.4496 30.8271C82.1038 30.8852 83.3394 31.0742 83.3394 31.801C83.3249 32.4697 82.5689 32.8041 81.0716 32.8041C79.5162 32.8041 78.8475 32.4552 78.8475 31.5539V31.2486H75.8965V31.5539C75.8965 33.8071 77.6118 34.9265 81.0716 34.9265C84.546 34.941 86.2904 33.8653 86.2904 31.7574C86.2904 30.1584 85.1565 29.1844 83.7319 28.8936C82.3654 28.6174 80.9263 28.5738 79.7924 28.2831C79.2981 28.1523 79.0365 27.8761 79.0365 27.5853C79.0365 26.9748 79.647 26.6695 80.8827 26.6695C82.1183 26.6695 82.8888 26.8439 82.8888 27.8179L85.8252 27.847Z"/>
+                    <path d="M57.2899 29.4897C57.2899 27.9197 56.3887 27.1928 55.0803 27.1928C53.7429 27.1928 52.8853 27.9197 52.8853 29.4897V34.7084H50.0215V29.4024C50.0215 25.9426 52.9143 24.5762 55.0803 24.5762C57.2318 24.5762 60.1392 25.9281 60.1392 29.4024V34.7084H57.2754L57.2899 29.4897Z"/>
+                    <path d="M73.2806 31.2195V24.7652H70.4459L70.4604 26.3351C69.8499 25.4193 68.7596 24.5762 66.8407 24.5762C63.5263 24.5762 61.8255 27.1492 61.8255 29.7368C61.7674 32.3534 63.6862 34.9555 66.6954 34.9555C68.2799 34.9555 69.7336 34.2432 70.4314 32.9931C70.7221 33.8071 71.4199 34.7229 72.9026 34.7229H74.5308V32.3098H74.0656C73.5423 32.2953 73.2806 32.0772 73.2806 31.2195ZM67.4513 32.4406C65.8232 32.4406 64.6021 31.3213 64.6021 29.7368C64.6021 28.1813 65.8232 27.0765 67.4513 27.0765C69.1376 27.0765 70.3441 28.1668 70.3441 29.7368C70.3441 31.3213 69.1376 32.4406 67.4513 32.4406Z"/>
+                    <path d="M90.8843 24.7651H88.0205V34.7084H90.8843V24.7651Z"/>
+                    <path d="M101.569 24.7651L98.8944 31.801L95.6963 24.7651H92.3818L97.4552 35.1736C96.9755 36.3511 96.583 36.7 95.6236 36.7H94.1408V39.2003H95.8707C98.0076 39.2003 99.1706 38.0228 100.348 35.1881L104.666 24.7797L101.569 24.7651Z"/>
+                    <path d="M116.048 31.2195V24.7652H113.213L113.228 26.3351C112.603 25.4193 111.527 24.5762 109.594 24.5762C106.279 24.5762 104.593 27.1492 104.593 29.7368C104.535 32.3534 106.454 34.9555 109.463 34.9555C111.062 34.9555 112.516 34.2432 113.213 32.9931C113.49 33.8071 114.202 34.7229 115.685 34.7229H117.313V32.3098H116.848C116.281 32.2953 116.048 32.0772 116.048 31.2195ZM110.204 32.4406C108.576 32.4406 107.355 31.3213 107.355 29.7368C107.355 28.1813 108.576 27.0765 110.204 27.0765C111.876 27.0765 113.097 28.1668 113.097 29.7368C113.097 31.3213 111.876 32.4406 110.204 32.4406Z"/>
+                  </g>
+                </svg>
+              </span>
+              <span data-i18n="job3Date">Sanalar kutilmoqda</span>
+              <span data-i18n="job3Place">Toshkent · Fintech</span>
             </div>
             <div>
               <div class="timeline-heading">
-                <div><h3 data-i18n="job3Role">Software Engineer (Java Developer)</h3><p class="company">EPAM Uzbekistan</p></div>
+                <div><h3 data-i18n="job3Role">Software Engineer (Java Developer)</h3><p class="company">Uzum Nasiya</p></div>
               </div>
-              <p data-i18n="job3Text">EPAM Certification System uchun Java 17 va Spring Boot asosidagi REST API’lar, tashqi servislar, RabbitMQ, CI/CD, Docker va Kubernetes bilan ishlash.</p>
+              <p data-i18n="job3Text">Tavsif kutilmoqda.</p>
+            </div>
+          </article>
+          <article class="timeline-item reveal">
+            <div class="timeline-meta timeline-meta--with-logo">
+              <span class="company-logo company-logo--epam" aria-hidden="true"><svg viewBox="0 0 140 44"><path class="logo-accent-stroke" pathLength="1" d="M26 12L15 22l11 10" stroke-width="7"/><path class="logo-accent-stroke" pathLength="1" d="M114 12l11 10-11 10" stroke-width="7"/><text class="logo-ink" x="70" y="32" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="700" letter-spacing="-0.6">epam</text></svg></span>
+              <span data-i18n="job4Date">2022-yil yanvar — 2023-yil dekabr</span>
+              <span data-i18n="job4Place">Toshkent · Platforma</span>
+            </div>
+            <div>
+              <div class="timeline-heading">
+                <div><h3 data-i18n="job4Role">Software Engineer (Java Developer)</h3><p class="company">EPAM Uzbekistan</p></div>
+              </div>
+              <p data-i18n="job4Text">EPAM Certification System uchun Java 17 va Spring Boot asosidagi REST API’lar, tashqi servislar, RabbitMQ, CI/CD, Docker va Kubernetes bilan ishlash.</p>
+            </div>
+          </article>
+          <article class="timeline-item reveal">
+            <!-- TODO: Asakabank — sana, lavozim va tavsif foydalanuvchidan kutilmoqda -->
+            <div class="timeline-meta timeline-meta--with-logo">
+              <span class="company-logo company-logo--asakabank" aria-hidden="true">
+                <svg viewBox="0 0 229 31" focusable="false">
+                  <path class="logo-accent" fill-rule="evenodd" d="M4.99537 24.5084L0 29.5028V24.5084H4.99537ZM21.2611 0L0 21.5084V0H21.2611ZM29.5085 0H24.2337L2.09538 22.3966H7.1131L29.5085 0ZM31.0004 1.49724V30.9944H24.3958V8.10614L31.0004 1.49724ZM22.2836 10.2179L10.0969 22.3966H22.2836V10.2179ZM22.2836 24.5084H7.97919L1.49191 30.9944H22.278V24.5084H22.2836Z"/>
+                  <g class="logo-ink" transform="translate(41 3.5)"><path fill-rule="evenodd" d="M7.67293 19.5418L6.01339 23.7932H0.934204L10.4947 0.552979H13.1824L22.6144 23.7932H17.5352L15.8756 19.5418H7.67293ZM11.791 8.85464L9.26541 15.1954H14.2776L11.7855 8.85464H11.791ZM32.1134 6.96081H32.3816C33.7562 6.96081 35.0637 7.24013 36.3153 7.79321C37.567 8.34628 38.556 9.10046 39.288 10.0502L36.8964 12.2736C36.3879 11.6982 35.6951 11.229 34.8234 10.8602C33.9517 10.4971 33.1471 10.3128 32.4151 10.3128H32.1469C31.3702 10.3351 30.75 10.4915 30.2862 10.7764C29.8224 11.0669 29.5878 11.4636 29.5878 11.972C29.5878 12.4356 29.7945 12.782 30.2024 12.9999C30.6103 13.2234 31.3255 13.3742 32.3425 13.4636L33.4712 13.5977C37.567 13.8826 39.612 15.6088 39.612 18.7764C39.612 20.2792 39.003 21.525 37.7849 22.5138C36.5668 23.4971 34.9519 23.9887 32.9348 23.9887H32.7671C31.13 23.9887 29.5933 23.6982 28.1517 23.1116C26.7157 22.525 25.6485 21.7541 24.9668 20.8044L27.3583 18.5474C27.8444 19.1228 28.6099 19.6033 29.6492 19.9887C30.6885 20.3742 31.7167 20.5697 32.7392 20.5697H32.9068C34.5664 20.5697 35.3989 20.0278 35.3989 18.944C35.3989 18.3239 35.1754 17.8938 34.734 17.648C34.2926 17.4021 33.5606 17.2401 32.5436 17.1507L31.6161 17.0502C27.4533 16.6982 25.3747 15.0893 25.3747 12.2345C25.3747 10.5977 26.0172 9.31276 27.3024 8.38538C28.5876 7.45801 30.1912 6.97757 32.119 6.96081H32.1134ZM59.9735 23.7932H57.1517L56.917 21.4356C55.5648 23.1395 53.7321 23.9943 51.4076 23.9943C49.0831 23.9943 47.1498 23.1731 45.6132 21.5362C44.0766 19.8993 43.3055 17.8826 43.3055 15.4971C43.3055 13.1116 44.0766 11.0893 45.6132 9.43566C47.1498 7.78762 49.0831 6.96081 51.4076 6.96081C53.7321 6.96081 55.5704 7.82112 56.917 9.55296L57.1517 7.19544H59.9735V23.7932ZM51.8043 19.9105C52.9554 19.9105 53.9556 19.5027 54.8105 18.6815C55.6654 17.8602 56.0901 16.7988 56.0901 15.4971C56.0901 14.1954 55.6654 13.1228 54.8105 12.296C53.9612 11.4636 52.9554 11.0502 51.8043 11.0502C50.6533 11.0502 49.6531 11.4636 48.7982 12.296C47.9432 13.1284 47.5186 14.1954 47.5186 15.4971C47.5186 16.7988 47.9377 17.8658 48.7814 18.6815C49.6251 19.5027 50.6309 19.9105 51.8043 19.9105ZM77.2059 23.7932L74.3506 19.3798C73.8197 18.5586 73.3504 18.0055 72.9369 17.7205C72.529 17.4356 71.9479 17.2904 71.1935 17.2904H70.0313V23.7988H65.8126V0.558571H70.0313V13.2401H71.0594C71.8138 13.2401 72.3893 13.0949 72.786 12.8099C73.1827 12.5194 73.6465 11.9664 74.1829 11.1508L76.77 7.20103H81.4525L77.7311 12.8099C76.8874 14.1172 76.1051 14.9217 75.3731 15.2345C76.1274 15.4804 76.9656 16.3071 77.8987 17.7261L81.8827 23.7988H77.2003L77.2059 23.7932ZM100.981 23.7932H98.1596L97.9249 21.4356C96.5727 23.1395 94.74 23.9943 92.4155 23.9943C90.091 23.9943 88.1577 23.1731 86.6211 21.5362C85.0845 19.8993 84.3134 17.8826 84.3134 15.4971C84.3134 13.1116 85.0845 11.0893 86.6211 9.43566C88.1577 7.78762 90.091 6.96081 92.4155 6.96081C94.74 6.96081 96.5783 7.82112 97.9249 9.55296L98.1596 7.19544H100.981V23.7932ZM92.8122 19.9105C93.9633 19.9105 94.9635 19.5027 95.8184 18.6815C96.6677 17.8602 97.098 16.7988 97.098 15.4971C97.098 14.1954 96.6733 13.1228 95.8184 12.296C94.9635 11.4636 93.9633 11.0502 92.8122 11.0502C91.6612 11.0502 90.661 11.4636 89.806 12.296C88.9511 13.1284 88.5265 14.1954 88.5265 15.4971C88.5265 16.7988 88.9455 17.8658 89.7893 18.6815C90.633 19.5027 91.6388 19.9105 92.8122 19.9105ZM110.877 0.558571V8.82671C111.961 7.58649 113.425 6.96637 115.258 6.96637C117.582 6.96637 119.51 7.79321 121.036 9.44126C122.561 11.0893 123.326 13.1116 123.326 15.5027C123.326 17.8937 122.561 19.9049 121.036 21.5418C119.51 23.1787 117.582 23.9999 115.258 23.9999C112.933 23.9999 111.084 23.1507 109.715 21.4412L109.48 23.7988H106.658V0.558571H110.877ZM117.834 12.296C116.979 11.4636 115.979 11.0502 114.828 11.0502C113.677 11.0502 112.676 11.4636 111.821 12.296C110.967 13.1284 110.542 14.1954 110.542 15.4971C110.542 16.7988 110.967 17.8658 111.821 18.6815C112.671 19.5027 113.677 19.9105 114.828 19.9105C115.979 19.9105 117.007 19.5027 117.851 18.6815C118.694 17.8602 119.113 16.7988 119.113 15.4971C119.113 14.1954 118.689 13.1228 117.834 12.296ZM143.682 23.7988H140.861L140.626 21.4412C139.274 23.1451 137.441 23.9999 135.116 23.9999C132.792 23.9999 130.859 23.1787 129.322 21.5418C127.785 19.9049 127.014 17.8882 127.014 15.5027C127.014 13.1172 127.785 11.0949 129.322 9.44126C130.859 7.79321 132.792 6.96637 135.116 6.96637C137.441 6.96637 139.279 7.82671 140.626 9.55855L140.861 7.20103H143.682V23.7988ZM135.513 19.9161C136.664 19.9161 137.664 19.5083 138.519 18.687C139.369 17.8658 139.799 16.8044 139.799 15.5027C139.799 14.201 139.374 13.1284 138.519 12.3016C137.664 11.4692 136.664 11.0558 135.513 11.0558C134.362 11.0558 133.362 11.4692 132.507 12.3016C131.658 13.134 131.227 14.201 131.227 15.5027C131.227 16.8044 131.646 17.8714 132.49 18.687C133.334 19.5083 134.34 19.9161 135.513 19.9161ZM158.194 6.96637C160.54 6.96637 162.334 7.69263 163.574 9.13956C164.815 10.5865 165.435 12.553 165.435 15.0334V23.7988H161.216V15.3016C161.216 12.4692 159.987 11.0502 157.529 11.0502C156.266 11.0502 155.294 11.4301 154.606 12.1954C153.919 12.9608 153.578 14.1172 153.578 15.6647V23.7988H149.359V7.20103H152.181L152.477 9.78762C153.628 7.90494 155.534 6.96637 158.188 6.96637H158.194ZM182.5 23.7988L179.645 19.3854C179.114 18.5641 178.644 18.0111 178.231 17.7261C177.823 17.4412 177.242 17.296 176.488 17.296H175.325V23.8043H171.107V0.564163H175.325V13.2457H176.353C177.108 13.2457 177.683 13.1005 178.08 12.8155C178.477 12.525 178.941 11.9719 179.477 11.1563L182.064 7.20662H186.746L183.025 12.8155C182.181 14.1228 181.399 14.9273 180.667 15.2401C181.421 15.4859 182.26 16.3127 183.193 17.7317L187.177 23.8043H182.494L182.5 23.7988Z"/></g>
+                </svg>
+              </span>
+              <span data-i18n="job5Date">Sanalar kutilmoqda</span>
+              <span data-i18n="job5Place">Toshkent · Bank</span>
+            </div>
+            <div>
+              <div class="timeline-heading">
+                <div><h3 data-i18n="job5Role">Java dasturchi</h3><p class="company">Asakabank</p></div>
+              </div>
+              <p data-i18n="job5Text">Tavsif kutilmoqda.</p>
+            </div>
+          </article>
+          <article class="timeline-item reveal">
+            <!-- TODO: Yangi Texnologiyalar (yt.uz) — sana, lavozim va tavsif foydalanuvchidan kutilmoqda -->
+            <div class="timeline-meta timeline-meta--with-logo">
+              <span class="company-logo company-logo--yt" aria-hidden="true">
+                <svg viewBox="0 0 265 73" focusable="false">
+                  <path class="logo-accent" fill-rule="evenodd" d="M.066 30.783h18.368V18.32H73V8.465C73 3.809 69.185 0 64.522 0H8.484C3.854 0 .066 3.782.066 8.405zM30.506 30.965v11.858H42.54V30.965zM54.905 30.925v42.023h9.897c4.47 0 8.126-3.651 8.126-8.113v-33.91zM42.455 73V55.057H18.388V42.939H0v21.584C0 69.185 3.82 73 8.49 73h33.965"/>
+                  <text class="logo-ink" x="82.1" y="23.2" textLength="62.7" lengthAdjust="spacing" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="20.5" font-weight="700">YANGI</text>
+                  <text class="logo-ink" x="82.1" y="50.5" textLength="182.5" lengthAdjust="spacing" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="20.5" font-weight="700">TEXNOLOGIYALAR</text>
+                  <text class="logo-ink" x="82.1" y="72.1" textLength="169.9" lengthAdjust="spacing" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="13.7" font-weight="600">ILMIY-AXBOROT MARKAZI</text>
+                </svg>
+              </span>
+              <span data-i18n="job6Date">Sanalar kutilmoqda</span>
+              <span data-i18n="job6Place">Toshkent · Davlat IT markazi</span>
+            </div>
+            <div>
+              <div class="timeline-heading">
+                <div><h3 data-i18n="job6Role">Java dasturchi</h3><p class="company">Yangi Texnologiyalar</p></div>
+              </div>
+              <p data-i18n="job6Text">Tavsif kutilmoqda.</p>
             </div>
           </article>
           <article class="timeline-item reveal">
@@ -1431,46 +1883,46 @@
               <span class="company-logo company-logo--tune" aria-hidden="true">
                 <svg viewBox="0 0 180 56" focusable="false">
                   <text class="logo-ink" x="2" y="40" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="500" letter-spacing="-1">tune</text>
-                  <path class="tune-brace" d="M95 7c-3.3 0-6 2.7-6 6v7c0 3.3-2.2 6-5 7 2.8 1 5 3.7 5 7v7c0 3.3 2.7 6 6 6" fill="none" stroke="var(--logo-accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="tune-brace" pathLength="1" d="M95 7c-3.3 0-6 2.7-6 6v7c0 3.3-2.2 6-5 7 2.8 1 5 3.7 5 7v7c0 3.3 2.7 6 6 6" fill="none" stroke="var(--logo-accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
                   <text class="logo-ink" x="103" y="20" font-family="Arial, Helvetica, sans-serif" font-size="14">taraqqiyot</text>
                   <text class="logo-ink" x="103" y="34.5" font-family="Arial, Helvetica, sans-serif" font-size="14">tasodif</text>
                   <text class="logo-ink" x="103" y="49" font-family="Arial, Helvetica, sans-serif" font-size="14">emas</text>
                 </svg>
               </span>
-              <span data-i18n="job4Date">2020-yil yanvar — 2021-yil noyabr</span>
-              <span data-i18n="job4Place">Toshkent · Fintech</span>
+              <span data-i18n="job7Date">2020-yil yanvar — 2021-yil noyabr</span>
+              <span data-i18n="job7Place">Toshkent · Fintech</span>
             </div>
             <div>
               <div class="timeline-heading">
-                <div><h3 data-i18n="job4Role">Java dasturchi</h3><p class="company">Tune Consulting · Kapitalbank / Apelsin</p></div>
+                <div><h3 data-i18n="job7Role">Java dasturchi</h3><p class="company">Tune Consulting · Kapitalbank / Apelsin</p></div>
               </div>
-              <p data-i18n="job4Text">Apelsin mobil banki, Marketplace, Kapital24 internet-banking va Orient Finance Bank to‘lov platformasi uchun backend servislar va integratsiyalar.</p>
+              <p data-i18n="job7Text">Apelsin mobil banki, Marketplace, Kapital24 internet-banking va Orient Finance Bank to‘lov platformasi uchun backend servislar va integratsiyalar.</p>
             </div>
           </article>
           <article class="timeline-item reveal">
             <div class="timeline-meta timeline-meta--with-logo">
               <span class="company-logo company-logo--davr" aria-hidden="true"><svg viewBox="0 0 260 40" focusable="false"><path class="logo-accent" fill-rule="evenodd" d="M9.487 10.649l2.6 2.562-6.649 6.553 6.917 6.817-2.88 2.759L0 20zM25.954 29.497l2.464 2.43L20.291 40l-9.082-8.952 2.839-2.798 6.586 6.492zM30.374 25.141l2.545 2.508 7.846-7.573L20.29 0l-9.142 9.012 2.6 2.562 6.732-6.636 15.195 14.978z"/><path class="logo-accent-2" fill-rule="evenodd" d="M48.956 29.351l-2.574-2.562 6.583-6.553-6.849-6.817 2.852-2.759L58.35 20zM32.65 10.502l-2.44-2.428L38.26 0l8.992 8.952-2.81 2.798-6.522-6.492zM28.274 14.859l-2.52-2.508-7.77 7.573L38.26 40l9.053-9.012-2.574-2.562-6.667 6.636-15.046-14.978z"/><text class="logo-ink" x="66.08" y="31.806" textLength="194" lengthAdjust="spacing" font-family="Arial, Helvetica, sans-serif" font-size="32.32" font-weight="700">DAVR BANK</text></svg></span>
-              <span data-i18n="job5Date">2019-yil may — 2020-yil yanvar</span>
-              <span data-i18n="job5Place">Toshkent · Bank</span>
+              <span data-i18n="job8Date">2019-yil may — 2020-yil yanvar</span>
+              <span data-i18n="job8Place">Toshkent · Bank</span>
             </div>
             <div>
               <div class="timeline-heading">
-                <div><h3 data-i18n="job5Role">Java dasturchi</h3><p class="company">Davr Bank</p></div>
+                <div><h3 data-i18n="job8Role">Java dasturchi</h3><p class="company">Davr Bank</p></div>
               </div>
-              <p data-i18n="job5Text">DavrBank Mobile App uchun Java/Spring Boot backend, Uzcard, Humo va Paynet integratsiyalari, test muhitlari va SQL optimallashtirish.</p>
+              <p data-i18n="job8Text">DavrBank Mobile App uchun Java/Spring Boot backend, Uzcard, Humo va Paynet integratsiyalari, test muhitlari va SQL optimallashtirish.</p>
             </div>
           </article>
           <article class="timeline-item reveal">
             <div class="timeline-meta timeline-meta--with-logo">
-              <span class="company-logo company-logo--mironsoft" aria-hidden="true"><svg viewBox="0 0 210 46"><path class="logo-accent-stroke" stroke-width="1.85" stroke-linejoin="round" d="M5.7 34.3 15.5 18.4 26.1 34.8 38 9.6 48.1 34.3"/><g class="logo-accent"><circle cx="5.7" cy="34.3" r="3.7"/><circle cx="15.5" cy="18.4" r="3.45"/><circle cx="26.1" cy="34.8" r="4.5"/><circle cx="38" cy="9.6" r="5"/><circle cx="48.1" cy="34.3" r="6.6"/><circle cx="5.7" cy="23.7" r="2.25"/><circle cx="15.5" cy="30.8" r="2.25"/><circle cx="26.9" cy="19.7" r="2.25"/><circle cx="37.5" cy="25.8" r="2.25"/><circle cx="49.2" cy="18.4" r="2.25"/></g><text class="logo-ink" x="61" y="29" font-family="Arial, sans-serif" font-size="19" font-weight="850" letter-spacing=".7">MIRONSOFT</text></svg></span>
-              <span data-i18n="job6Date">2017-yil sentyabr — 2019-yil mart</span>
-              <span data-i18n="job6Place">Toshkent</span>
+              <span class="company-logo company-logo--mironsoft" aria-hidden="true"><svg viewBox="0 0 210 46"><path class="logo-accent-stroke" pathLength="1" stroke-width="1.85" stroke-linejoin="round" d="M5.7 34.3 15.5 18.4 26.1 34.8 38 9.6 48.1 34.3"/><g class="logo-accent"><circle cx="5.7" cy="34.3" r="3.7"/><circle cx="15.5" cy="18.4" r="3.45"/><circle cx="26.1" cy="34.8" r="4.5"/><circle cx="38" cy="9.6" r="5"/><circle cx="48.1" cy="34.3" r="6.6"/><circle cx="5.7" cy="23.7" r="2.25"/><circle cx="15.5" cy="30.8" r="2.25"/><circle cx="26.9" cy="19.7" r="2.25"/><circle cx="37.5" cy="25.8" r="2.25"/><circle cx="49.2" cy="18.4" r="2.25"/></g><text class="logo-ink" x="61" y="29" font-family="Arial, sans-serif" font-size="19" font-weight="850" letter-spacing=".7">MIRONSOFT</text></svg></span>
+              <span data-i18n="job9Date">2017-yil sentyabr — 2019-yil mart</span>
+              <span data-i18n="job9Place">Toshkent</span>
             </div>
             <div>
               <div class="timeline-heading">
-                <div><h3 data-i18n="job6Role">Java dasturchi</h3><p class="company">MIRONSOFT</p></div>
+                <div><h3 data-i18n="job9Role">Java dasturchi</h3><p class="company">MIRONSOFT</p></div>
               </div>
-              <p data-i18n="job6Text">Ijod Fondi uchun hisob va avtomatlashtirish modullari hamda UzAgroExpertBank hujjat aylanish tizimini ishlab chiqish va qo‘llab-quvvatlash.</p>
+              <p data-i18n="job9Text">Ijod Fondi uchun hisob va avtomatlashtirish modullari hamda UzAgroExpertBank hujjat aylanish tizimini ishlab chiqish va qo‘llab-quvvatlash.</p>
             </div>
           </article>
         </div>
@@ -1479,23 +1931,45 @@
 
     <section class="section section-accent" id="work">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading section-heading--stacked section-heading--wide">
           <div>
-            <p class="section-kicker" data-i18n="workKicker">Tanlangan loyiha</p>
+            <p class="section-kicker" data-i18n="workKicker">Tanlangan loyihalar</p>
             <h2 data-i18n="workTitle">Amaliy qiymat beradigan mahsulotlar.</h2>
           </div>
           <p data-i18n="workLead">Men yaratishda ishtirok etgan tizimlar va raqamli mahsulotlar.</p>
         </div>
 
         <article class="project-card reveal">
-          <div class="project-index">01</div>
           <div class="project-body">
+            <span class="company-logo company-logo--apelsin project-logo" aria-hidden="true">
+              <svg viewBox="0 0 300 72" focusable="false">
+                <g class="apelsin-wallet">
+                  <rect class="apelsin-card-back" x="14" y="5" width="49" height="41" rx="9" fill="#f5bd45" transform="rotate(-8 38.5 25.5)"/>
+                  <path class="apelsin-card-front" d="M10 18c0-7 5-12 12-12h31c7 0 12 5 12 12v14H10z" fill="var(--logo-accent-2)"/>
+                  <rect class="apelsin-wallet-body" x="4" y="16" width="66" height="50" rx="13" fill="var(--logo-accent)"/>
+                  <path class="apelsin-wallet-seam" pathLength="1" d="M14 26h47c5 0 9 4 9 9" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+                  <circle class="apelsin-wallet-dot" cx="58" cy="44" r="5.5" fill="#fff"/>
+                </g>
+                <text class="logo-ink" x="84" y="54" font-family="Inter, Arial, Helvetica, sans-serif" font-size="48" font-weight="850" letter-spacing="-2">Apelsin</text>
+              </svg>
+            </span>
             <p class="project-type" data-i18n="projectType">Fintech · Mobil bank ekotizimi</p>
             <h3>Apelsin</h3>
             <p data-i18n="projectText">CRM va dashboard backend mantig‘i, tranzaksiyalar, o‘tkazmalar, to‘lovlar va bonus servislar; Android/iOS uchun REST API, P2P o‘tkazmalar hamda bank mikroservislari bilan integratsiya.</p>
-            <div class="tag-list"><span>Java 11</span><span>Spring Boot</span><span>Spring Cloud</span><span>PostgreSQL</span><span>Redis</span></div>
           </div>
           <a class="project-link" href="https://apelsin.uz" target="_blank" rel="noopener noreferrer" aria-label="Apelsin"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-external"/></svg></a>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-body">
+            <span class="company-logo company-logo--ipotekabank project-logo" aria-hidden="true">
+              <img src="assets/ipotekabank-otp.svg" alt="">
+            </span>
+            <p class="project-type" data-i18n="project2Type">Fintech · Korporativ mijozlar uchun Open API</p>
+            <h3>Ipoteka Bank Open API</h3>
+            <p data-i18n="project2Text">Bank servislarini korporativ mijozlar tizimlariga ochadigan REST API: OAuth 2.0 (client_credentials) avtorizatsiyasi, tashkilot va hisobvaraq ma’lumotlari, hisobvaraq ko‘chirmasi, UZS to‘lovlari (JSHSHIR bo‘yicha ham) va to‘lov holatini kuzatish, ish haqi loyihalari, Munis orqali budjet to‘lovlari, banklararo o‘tkazmalar hamda valyuta kurslari. Hujjatlar OpenAPI asosida — uch tilda, SDK va kod misollari bilan.</p>
+          </div>
+          <a class="project-link" href="https://www.ipotekabank.uz/upload/openapi/openapi_uz.html" target="_blank" rel="noopener noreferrer" data-openapi-docs data-i18n-label="project2LinkLabel" aria-label="Ipoteka Bank Open API hujjatlari"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-external"/></svg></a>
         </article>
       </div>
     </section>
@@ -1503,13 +1977,18 @@
     <section class="section" aria-labelledby="recognition-title">
       <div class="container recognition-grid">
         <div>
-          <p class="section-kicker" data-i18n="recognitionKicker">Yutuqlar</p>
-          <h2 id="recognition-title" data-i18n="recognitionTitle">Yaratib, o‘rganaman.</h2>
+          <p class="section-kicker" data-i18n="recognitionKicker">Amaliy tajriba</p>
+          <h2 id="recognition-title" data-i18n="recognitionTitle">Tajriba loyihalarda natijaga aylanadi.</h2>
         </div>
         <div class="recognition-list">
-          <article class="reveal"><span>2019</span><div><h3>Open Data Challenge</h3><p data-i18n="award1">“Humane” loyihasi bilan 2-o‘rin.</p></div></article>
-          <article class="reveal"><span>2019</span><div><h3>100 Innovative Ideas</h3><p data-i18n="award2">Respublika II bosqichi g‘olibi.</p></div></article>
-          <article class="reveal"><span>2018</span><div><h3>Open Data Challenge</h3><p data-i18n="award3">“Clean City” loyihasi bilan 1-o‘rin.</p></div></article>
+          <article class="recognition-card reveal">
+            <div class="recognition-meta"><span class="recognition-year">2026</span><span class="recognition-icon" aria-hidden="true"><svg class="site-icon recognition-svg" focusable="false"><use href="#icon-monitor"/></svg></span></div>
+            <div class="recognition-body"><h3>UMDIA</h3><p data-i18n="recognitionProject1">Hisobot tizimi loyihasi.</p></div>
+          </article>
+          <article class="recognition-card reveal">
+            <div class="recognition-meta"><span class="recognition-year">2025</span><span class="recognition-icon" aria-hidden="true"><svg class="site-icon recognition-svg" focusable="false"><use href="#icon-link"/></svg></span></div>
+            <div class="recognition-body"><h3>Wolt</h3><p data-i18n="recognitionProject2">Xalqaro taom yetkazib berish servisi bilan integratsiya — xalqaro standartlar va xavfsizlik talablari asosida.</p></div>
+          </article>
         </div>
       </div>
     </section>
@@ -1557,7 +2036,7 @@
       <div class="container contact-inner reveal">
         <div class="contact-copy">
           <p class="section-kicker" data-i18n="contactKicker">Aloqa</p>
-          <h2 data-i18n-html="contactTitle">Loyihangiz bormi?<br>Birga amalga oshiraylik.</h2>
+          <h2 data-i18n-html="contactTitle">Loyihangiz bormi?<br>Birga amalga oshiramiz.</h2>
           <div class="contact-actions">
             <a class="button contact-button contact-button-solid" href="https://t.me/ravshanjon_ismoilov" target="_blank" rel="noopener noreferrer" aria-label="Telegram: +998 99 942 07 70" title="Telegram">
               <svg class="site-icon button-icon contact-action-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path class="contact-draw" pathLength="1" d="M3.5 4.4a1.2 1.2 0 0 0-1.7 1.5l2 5.4a1.2 1.2 0 0 1 0 .8l-2 5.4a1.2 1.2 0 0 0 1.7 1.5l17.6-7.2a1.2 1.2 0 0 0 0-2.2z"/><path class="contact-draw" pathLength="1" d="M4.4 12h7.2"/></g></svg>
@@ -1583,7 +2062,10 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>© <span data-year></span> Ravshanjon Ismoilov</p>
-      <a class="footer-biz" href="business/" data-biz-link><span data-i18n="footerBiz">Biznes uchun xizmatlar</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
+      <div class="footer-sites">
+        <a class="footer-biz" href="business/" data-biz-link><span data-i18n="footerBiz">Biznes uchun xizmatlar</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
+        <a class="footer-biz" href="dental/" data-dental-link><span data-i18n="footerDental">Stomatologiya uchun</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
+      </div>
       <nav class="footer-links" aria-label="Ijtimoiy tarmoqlar va aloqa havolalari" data-i18n-label="footerLinksLabel">
         <div class="footer-socials">
           <a href="https://www.linkedin.com/in/ravshancha" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -1614,21 +2096,6 @@
     <form class="order-form" data-order-form novalidate>
       <div class="order-head">
         <h2 id="order-title" data-i18n="orderTitle">Loyihaga buyurtma</h2>
-        <div class="order-controls">
-          <button class="order-theme" type="button" data-theme-toggle aria-label="Rang rejimini almashtirish"><svg class="site-icon" data-theme-icon aria-hidden="true" focusable="false"><use href="#icon-moon"/></svg></button>
-          <div class="language-select order-language-select" data-language-select>
-            <button class="language-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="order-language-options" data-language-trigger>
-              <svg class="language-flag" data-language-flag viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-uz"/></svg>
-              <span data-language-code>UZ</span>
-              <svg class="language-chevron site-icon" aria-hidden="true" focusable="false"><use href="#icon-chevron-down"/></svg>
-            </button>
-            <div class="language-options" id="order-language-options" role="listbox" aria-label="Til" data-i18n-label="languageLabel" data-language-options hidden>
-              <button class="language-option" type="button" role="option" data-language="uz"><svg class="language-flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-uz"/></svg><span>O‘zbek</span></button>
-              <button class="language-option" type="button" role="option" data-language="ru"><svg class="language-flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-ru"/></svg><span>Русский</span></button>
-              <button class="language-option" type="button" role="option" data-language="en"><svg class="language-flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-gb"/></svg><span>English</span></button>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="order-fields" data-order-fields>
         <p class="order-intro" data-i18n="orderIntro">Ma’lumotlaringizni qoldiring — imkon qadar tez bog‘lanaman.</p>
@@ -1775,7 +2242,7 @@
         deliveryTitle: "Ma’lumotlar va DevOps",
         deliveryText: "Ma’lumotlar bazalari, konteynerlar va CI/CD yordamida ishonchli reliz jarayonlari.",
         experienceKicker: "Tajriba",
-        experienceTitle: "Bank va fintechdagi professional tajriba.",
+        experienceTitle: "Bank va fintechdagi<br>professional tajriba.",
         job0Date: "2025-yil dekabr — hozirgacha",
         job0Place: "Toshkent · Bank",
         job0Role: "Hisobot tizimini ishlab chiqish bo‘limi boshlig‘i",
@@ -1787,32 +2254,46 @@
         job2Place: "Toshkent · Fintech",
         job2Role: "Dasturchilar guruhi rahbari",
         job2Text: "6 kishilik jamoa bilan RealPay ichki to‘lov tizimini ishga tushirish, Uzcard va Humo integratsiyasi hamda 10+ davlat loyihasini platformaga ulash.",
-        job3Date: "2022-yil yanvar — 2023-yil dekabr",
-        job3Place: "Toshkent · Platforma",
+        job3Date: "Sanalar kutilmoqda",
+        job3Place: "Toshkent · Fintech",
         job3Role: "Software Engineer (Java Developer)",
-        job3Text: "EPAM Certification System uchun Java 17 va Spring Boot asosidagi REST API’lar, tashqi servislar, RabbitMQ, CI/CD, Docker va Kubernetes bilan ishlash.",
-        job4Date: "2020-yil yanvar — 2021-yil noyabr",
-        job4Place: "Toshkent · Fintech",
-        job4Role: "Java dasturchi",
-        job4Text: "Apelsin mobil banki, Marketplace, Kapital24 internet-banking va Orient Finance Bank to‘lov platformasi uchun backend servislar va integratsiyalar.",
-        job5Date: "2019-yil may — 2020-yil yanvar",
+        job3Text: "Tavsif kutilmoqda.",
+        job4Date: "2022-yil yanvar — 2023-yil dekabr",
+        job4Place: "Toshkent · Platforma",
+        job4Role: "Software Engineer (Java Developer)",
+        job4Text: "EPAM Certification System uchun Java 17 va Spring Boot asosidagi REST API’lar, tashqi servislar, RabbitMQ, CI/CD, Docker va Kubernetes bilan ishlash.",
+        job5Date: "Sanalar kutilmoqda",
         job5Place: "Toshkent · Bank",
         job5Role: "Java dasturchi",
-        job5Text: "DavrBank Mobile App uchun Java/Spring Boot backend, Uzcard, Humo va Paynet integratsiyalari, test muhitlari va SQL optimallashtirish.",
-        job6Date: "2017-yil sentyabr — 2019-yil mart",
-        job6Place: "Toshkent",
+        job5Text: "Tavsif kutilmoqda.",
+        job6Date: "Sanalar kutilmoqda",
+        job6Place: "Toshkent · Davlat IT markazi",
         job6Role: "Java dasturchi",
-        job6Text: "Ijod Fondi uchun hisob va avtomatlashtirish modullari hamda UzAgroExpertBank hujjat aylanish tizimini ishlab chiqish va qo‘llab-quvvatlash.",
-        workKicker: "Tanlangan loyiha",
+        job6Text: "Tavsif kutilmoqda.",
+        job7Date: "2020-yil yanvar — 2021-yil noyabr",
+        job7Place: "Toshkent · Fintech",
+        job7Role: "Java dasturchi",
+        job7Text: "Apelsin mobil banki, Marketplace, Kapital24 internet-banking va Orient Finance Bank to‘lov platformasi uchun backend servislar va integratsiyalar.",
+        job8Date: "2019-yil may — 2020-yil yanvar",
+        job8Place: "Toshkent · Bank",
+        job8Role: "Java dasturchi",
+        job8Text: "DavrBank Mobile App uchun Java/Spring Boot backend, Uzcard, Humo va Paynet integratsiyalari, test muhitlari va SQL optimallashtirish.",
+        job9Date: "2017-yil sentyabr — 2019-yil mart",
+        job9Place: "Toshkent",
+        job9Role: "Java dasturchi",
+        job9Text: "Ijod Fondi uchun hisob va avtomatlashtirish modullari hamda UzAgroExpertBank hujjat aylanish tizimini ishlab chiqish va qo‘llab-quvvatlash.",
+        workKicker: "Tanlangan loyihalar",
         workTitle: "Amaliy qiymat beradigan mahsulotlar.",
         workLead: "Men yaratishda ishtirok etgan tizimlar va raqamli mahsulotlar.",
         projectType: "Fintech · Mobil bank ekotizimi",
         projectText: "CRM va dashboard backend mantig‘i, tranzaksiyalar, o‘tkazmalar, to‘lovlar va bonus servislar; Android/iOS uchun REST API, P2P o‘tkazmalar hamda bank mikroservislari bilan integratsiya.",
-        recognitionKicker: "Yutuqlar",
-        recognitionTitle: "Yaratib, o‘rganaman.",
-        award1: "“Humane” loyihasi bilan 2-o‘rin.",
-        award2: "Respublika II bosqichi g‘olibi.",
-        award3: "“Clean City” loyihasi bilan 1-o‘rin.",
+        project2Type: "Fintech · Korporativ mijozlar uchun Open API",
+        project2Text: "Bank servislarini korporativ mijozlar tizimlariga ochadigan REST API: OAuth 2.0 (client_credentials) avtorizatsiyasi, tashkilot va hisobvaraq ma’lumotlari, hisobvaraq ko‘chirmasi, UZS to‘lovlari (JSHSHIR bo‘yicha ham) va to‘lov holatini kuzatish, ish haqi loyihalari, Munis orqali budjet to‘lovlari, banklararo o‘tkazmalar hamda valyuta kurslari. Hujjatlar OpenAPI asosida — uch tilda, SDK va kod misollari bilan.",
+        project2LinkLabel: "Ipoteka Bank Open API hujjatlari",
+        recognitionKicker: "Amaliy tajriba",
+        recognitionTitle: "Tajriba loyihalarda natijaga aylanadi.",
+        recognitionProject1: "Hisobot tizimi loyihasi.",
+        recognitionProject2: "Xalqaro taom yetkazib berish servisi bilan integratsiya — xalqaro standartlar va xavfsizlik talablari asosida.",
         credentialsKicker: "Ta’lim va sertifikatlar",
         credentialsTitle: "Doimiy professional rivojlanish.",
         degreeName: "Toshkent axborot texnologiyalari universiteti",
@@ -1821,11 +2302,12 @@
         course2Text: "IBM Business Automation Workflow V19.0.0.1.",
         course4Text: "Java, Oracle, Windows Server va ITIL v3.",
         contactKicker: "Aloqa",
-        contactTitle: "Loyihangiz bormi?<br>Birga amalga oshiraylik.",
+        contactTitle: "Loyihangiz bormi?<br>Birga amalga oshiramiz.",
         contactTelegram: "Telegramda yozish",
         contactWhatsapp: "WhatsAppda yozish",
         backToTop: "Yuqoriga",
-        footerBiz: "Biznes uchun xizmatlar"
+        footerBiz: "Biznes uchun xizmatlar",
+        footerDental: "Stomatologiya uchun"
       },
       ru: {
         pageTitle: "Равшанжон Исмоилов — Java-разработчик, Ташкент",
@@ -1911,7 +2393,7 @@
         deliveryTitle: "Данные и DevOps",
         deliveryText: "Надёжные процессы релизов с базами данных, контейнерами и CI/CD.",
         experienceKicker: "Опыт",
-        experienceTitle: "Профессиональный опыт в банках и финтехе.",
+        experienceTitle: "Профессиональный опыт<br>в банках и финтехе.",
         job0Date: "Декабрь 2025 — настоящее время",
         job0Place: "Ташкент · Банк",
         job0Role: "Начальник отдела разработки системы отчётности",
@@ -1923,32 +2405,46 @@
         job2Place: "Ташкент · Финтех",
         job2Role: "Руководитель группы разработки",
         job2Text: "Запуск внутренней платёжной системы RealPay командой из 6 человек, интеграция Uzcard и Humo и подключение более 10 государственных проектов.",
-        job3Date: "Январь 2022 — декабрь 2023",
-        job3Place: "Ташкент · Платформа",
+        job3Date: "Даты уточняются",
+        job3Place: "Ташкент · Финтех",
         job3Role: "Software Engineer (Java Developer)",
-        job3Text: "REST API на Java 17 и Spring Boot для EPAM Certification System, внешние сервисы, RabbitMQ, CI/CD, Docker и Kubernetes.",
-        job4Date: "Январь 2020 — ноябрь 2021",
-        job4Place: "Ташкент · Финтех",
-        job4Role: "Java-разработчик",
-        job4Text: "Backend-сервисы и интеграции для мобильного банка Apelsin, Marketplace, интернет-банкинга Kapital24 и платёжной платформы Orient Finance Bank.",
-        job5Date: "Май 2019 — январь 2020",
+        job3Text: "Описание уточняется.",
+        job4Date: "Январь 2022 — декабрь 2023",
+        job4Place: "Ташкент · Платформа",
+        job4Role: "Software Engineer (Java Developer)",
+        job4Text: "REST API на Java 17 и Spring Boot для EPAM Certification System, внешние сервисы, RabbitMQ, CI/CD, Docker и Kubernetes.",
+        job5Date: "Даты уточняются",
         job5Place: "Ташкент · Банк",
         job5Role: "Java-разработчик",
-        job5Text: "Java/Spring Boot backend для DavrBank Mobile App, интеграции Uzcard, Humo и Paynet, настройка тестовых сред и оптимизация SQL.",
-        job6Date: "Сентябрь 2017 — март 2019",
-        job6Place: "Ташкент",
+        job5Text: "Описание уточняется.",
+        job6Date: "Даты уточняются",
+        job6Place: "Ташкент · Государственный ИТ-центр",
         job6Role: "Java-разработчик",
-        job6Text: "Модули учёта и автоматизации для Ijod Fondi, а также разработка и поддержка системы документооборота UzAgroExpertBank.",
-        workKicker: "Избранный проект",
+        job6Text: "Описание уточняется.",
+        job7Date: "Январь 2020 — ноябрь 2021",
+        job7Place: "Ташкент · Финтех",
+        job7Role: "Java-разработчик",
+        job7Text: "Backend-сервисы и интеграции для мобильного банка Apelsin, Marketplace, интернет-банкинга Kapital24 и платёжной платформы Orient Finance Bank.",
+        job8Date: "Май 2019 — январь 2020",
+        job8Place: "Ташкент · Банк",
+        job8Role: "Java-разработчик",
+        job8Text: "Java/Spring Boot backend для DavrBank Mobile App, интеграции Uzcard, Humo и Paynet, настройка тестовых сред и оптимизация SQL.",
+        job9Date: "Сентябрь 2017 — март 2019",
+        job9Place: "Ташкент",
+        job9Role: "Java-разработчик",
+        job9Text: "Модули учёта и автоматизации для Ijod Fondi, а также разработка и поддержка системы документооборота UzAgroExpertBank.",
+        workKicker: "Избранные проекты",
         workTitle: "Продукты с практической ценностью.",
         workLead: "Системы и цифровые продукты, в создании которых я участвовал.",
         projectType: "Финтех · Экосистема мобильного банка",
         projectText: "Backend-логика CRM и dashboard, транзакции, переводы, платежи и бонусные сервисы; REST API для Android/iOS, P2P-переводы и интеграция с микросервисами банка.",
-        recognitionKicker: "Достижения",
-        recognitionTitle: "Учусь через создание.",
-        award1: "2-е место с проектом «Humane».",
-        award2: "Победитель II республиканского этапа.",
-        award3: "1-е место с проектом «Clean City».",
+        project2Type: "Финтех · Open API для корпоративных клиентов",
+        project2Text: "REST API, открывающий банковские сервисы системам корпоративных клиентов: авторизация OAuth 2.0 (client_credentials), данные организации и счетов, выписка по счёту, платежи в UZS (в том числе по ПИНФЛ) и отслеживание их статуса, зарплатные проекты, бюджетные платежи через Munis, межбанковские переводы и курсы валют. Документация на базе OpenAPI — на трёх языках, с примерами кода и SDK.",
+        project2LinkLabel: "Документация Ipoteka Bank Open API",
+        recognitionKicker: "Практический опыт",
+        recognitionTitle: "Опыт превращается в результат.",
+        recognitionProject1: "Проект системы отчётности.",
+        recognitionProject2: "Интеграция с международным сервисом доставки еды — по международным стандартам и требованиям безопасности.",
         credentialsKicker: "Образование и сертификаты",
         credentialsTitle: "Непрерывное профессиональное развитие.",
         degreeName: "Ташкентский университет информационных технологий",
@@ -1961,7 +2457,8 @@
         contactTelegram: "Написать в Telegram",
         contactWhatsapp: "Написать в WhatsApp",
         backToTop: "Наверх",
-        footerBiz: "Услуги для бизнеса"
+        footerBiz: "Услуги для бизнеса",
+        footerDental: "Для стоматологии"
       },
       en: {
         pageTitle: "Ravshanjon Ismoilov — Java Software Developer, Tashkent",
@@ -2047,7 +2544,7 @@
         deliveryTitle: "Data and DevOps",
         deliveryText: "Reliable release workflows using databases, containers, and CI/CD.",
         experienceKicker: "Experience",
-        experienceTitle: "Professional experience in banking and fintech.",
+        experienceTitle: "Professional experience<br>in banking and fintech.",
         job0Date: "December 2025 — Present",
         job0Place: "Tashkent · Banking",
         job0Role: "Head of Reporting System Development Department",
@@ -2059,32 +2556,46 @@
         job2Place: "Tashkent · Fintech",
         job2Role: "Head of Development Team",
         job2Text: "Launched the internal RealPay payment system with a team of 6, integrated Uzcard and Humo, and connected more than 10 government projects.",
-        job3Date: "January 2022 — December 2023",
-        job3Place: "Tashkent · Platform",
+        job3Date: "Dates pending",
+        job3Place: "Tashkent · Fintech",
         job3Role: "Software Engineer (Java Developer)",
-        job3Text: "Built REST APIs for the EPAM Certification System with Java 17 and Spring Boot, integrating external services, RabbitMQ, CI/CD, Docker, and Kubernetes.",
-        job4Date: "January 2020 — November 2021",
-        job4Place: "Tashkent · Fintech",
-        job4Role: "Java Developer",
-        job4Text: "Backend services and integrations for Apelsin mobile banking, Marketplace, Kapital24 internet banking, and the Orient Finance Bank payment platform.",
-        job5Date: "May 2019 — January 2020",
-        job5Place: "Tashkent · Banking",
+        job3Text: "Description pending.",
+        job4Date: "January 2022 — December 2023",
+        job4Place: "Tashkent · Platform",
+        job4Role: "Software Engineer (Java Developer)",
+        job4Text: "Built REST APIs for the EPAM Certification System with Java 17 and Spring Boot, integrating external services, RabbitMQ, CI/CD, Docker, and Kubernetes.",
+        job5Date: "Dates pending",
+        job5Place: "Tashkent · Bank",
         job5Role: "Java Developer",
-        job5Text: "Java/Spring Boot backend for DavrBank Mobile App, Uzcard, Humo, and Paynet integrations, test environments, and SQL optimization.",
-        job6Date: "September 2017 — March 2019",
-        job6Place: "Tashkent",
+        job5Text: "Description pending.",
+        job6Date: "Dates pending",
+        job6Place: "Tashkent · Government IT centre",
         job6Role: "Java Developer",
-        job6Text: "Accounting and automation modules for Ijod Fondi, plus development and maintenance of the UzAgroExpertBank document workflow system.",
+        job6Text: "Description pending.",
+        job7Date: "January 2020 — November 2021",
+        job7Place: "Tashkent · Fintech",
+        job7Role: "Java Developer",
+        job7Text: "Backend services and integrations for Apelsin mobile banking, Marketplace, Kapital24 internet banking, and the Orient Finance Bank payment platform.",
+        job8Date: "May 2019 — January 2020",
+        job8Place: "Tashkent · Banking",
+        job8Role: "Java Developer",
+        job8Text: "Java/Spring Boot backend for DavrBank Mobile App, Uzcard, Humo, and Paynet integrations, test environments, and SQL optimization.",
+        job9Date: "September 2017 — March 2019",
+        job9Place: "Tashkent",
+        job9Role: "Java Developer",
+        job9Text: "Accounting and automation modules for Ijod Fondi, plus development and maintenance of the UzAgroExpertBank document workflow system.",
         workKicker: "Selected work",
         workTitle: "Products with measurable utility.",
         workLead: "A growing collection of systems and digital products I’ve helped bring to life.",
         projectType: "Fintech · Mobile banking ecosystem",
         projectText: "Backend logic for CRM and dashboard modules, transactions, transfers, payments, and bonus services; REST APIs for Android/iOS, P2P transfers, and bank microservice integration.",
-        recognitionKicker: "Recognition",
-        recognitionTitle: "Learning by building.",
-        award1: "Second place with the Humane project.",
-        award2: "Winner of the Republic II stage.",
-        award3: "First place with the Clean City project.",
+        project2Type: "Fintech · Open API for corporate clients",
+        project2Text: "A REST API that opens the bank’s services to corporate clients’ systems: OAuth 2.0 (client_credentials) authorization, organization and account data, account statements, UZS payments (including by PINFL) with status tracking, payroll projects, budget payments through Munis, interbank transfers, and currency rates. Documented with OpenAPI in three languages, with SDK and code samples.",
+        project2LinkLabel: "Ipoteka Bank Open API documentation",
+        recognitionKicker: "Practical experience",
+        recognitionTitle: "Experience turns into results.",
+        recognitionProject1: "Reporting system project.",
+        recognitionProject2: "Integration with the international food delivery service, built to international standards and security requirements.",
         credentialsKicker: "Education and certificates",
         credentialsTitle: "Continuous professional development.",
         degreeName: "Tashkent University of Information Technologies",
@@ -2097,7 +2608,8 @@
         contactTelegram: "Message on Telegram",
         contactWhatsapp: "Message on WhatsApp",
         backToTop: "Back to top",
-        footerBiz: "Services for business"
+        footerBiz: "Services for business",
+        footerDental: "For dental clinics"
       }
     };
 
@@ -2117,6 +2629,8 @@
     const cvPreview = document.querySelector("[data-cv-preview]");
     const cvDownload = document.querySelector("[data-cv-download]");
     const bizLink = document.querySelector("[data-biz-link]");
+    const dentalLink = document.querySelector("[data-dental-link]");
+    const openApiDocs = document.querySelector("[data-openapi-docs]");
     let cvPath = "cv/Ravshanjon-Ismoilov-CV-uz.pdf";
     let currentLanguage = "uz";
     const languageDetails = {
@@ -2204,6 +2718,8 @@
       cvPath = `cv/Ravshanjon-Ismoilov-CV-${selectedLanguage}.pdf`;
       cvDownload.href = cvPath;
       bizLink.href = selectedLanguage === "ru" ? "business/ru/" : "business/";
+      dentalLink.href = selectedLanguage === "ru" ? "dental/ru/" : "dental/";
+      openApiDocs.href = `https://www.ipotekabank.uz/upload/openapi/openapi_${selectedLanguage}.html`;
       if (cvDialog.open) updateCvPreview();
       themeButtons.forEach((button) => {
         button.setAttribute("aria-label", dictionary.themeLabel);
@@ -2321,7 +2837,19 @@
           }
         });
       }, { threshold: 0.12 });
-      document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
+      document.querySelectorAll(".reveal:not(.timeline-item)").forEach((node) => observer.observe(node));
+
+      const timelineObserver = new IntersectionObserver((entries) => {
+        entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+          .forEach((entry, index) => {
+            entry.target.style.setProperty("--timeline-entry-delay", `${index * 160}ms`);
+            entry.target.classList.add("visible");
+            timelineObserver.unobserve(entry.target);
+          });
+      }, { threshold: 0.2, rootMargin: "0px 0px -12% 0px" });
+      document.querySelectorAll(".timeline-item.reveal").forEach((node) => timelineObserver.observe(node));
     }
 
     const openCvDialog = () => {

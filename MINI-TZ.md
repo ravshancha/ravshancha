@@ -123,11 +123,12 @@ Foizlar faqat real baholash asosida beriladi. Xohlasangiz foiz o‘rniga `Asosiy
 
 - [~] Bo‘lim mavjud
 - [x] Apelsin loyihasi mavjud
-- [ ] Kamida 3 ta loyiha kartochkasi
+- [x] Ipoteka Bank Open API loyihasi mavjud (ma’lumot manbasi: `https://www.ipotekabank.uz/upload/openapi/openapi_ru.html`)
+- [~] Kamida 3 ta loyiha kartochkasi — hozir 2 ta
 - [ ] Har bir loyiha uchun preview rasm
-- [ ] GitHub yoki demo havolasi
+- [x] GitHub yoki demo havolasi
 - [ ] Vazifa, yechim va natija
-- [ ] Texnologiya teglari
+- [x] Texnologiya teglari
 
 ### Har bir yangi loyiha uchun
 

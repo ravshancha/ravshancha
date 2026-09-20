@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://ravshancha.uz/dental/</loc>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://ravshancha.uz/dental/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ravshancha.uz/dental/ru/"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://ravshancha.uz/dental/ru/</loc>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://ravshancha.uz/dental/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ravshancha.uz/dental/ru/"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>
