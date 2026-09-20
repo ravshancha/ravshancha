@@ -85,13 +85,13 @@ def render_fragments(t):
         f'<article class="audience-card reveal"><span class="card-icon" aria-hidden="true">{icon(name)}</span><div><h3>{rich(title)}</h3><small>{rich(meta)}</small></div><p>{rich(text)}</p></article>'
         for name, title, meta, text in t["audience"]], 10)
     f["pains_html"] = lines([
-        f'<article class="pain-card reveal"><div class="card-head"><span class="card-number">{i:02d}</span><span class="card-icon" aria-hidden="true">{icon(name)}</span></div><h3>{rich(title)}</h3><p>{rich(text)}</p></article>'
-        for i, (name, title, text) in enumerate(t["pains"], 1)], 10)
+        f'<article class="pain-card reveal"><div class="card-head"><span class="card-icon" aria-hidden="true">{icon(name)}</span></div><h3>{rich(title)}</h3><p>{rich(text)}</p></article>'
+        for name, title, text in t["pains"]], 10)
     f["features_html"] = lines([
-        f'<article class="feature-card reveal"><div class="card-head"><span class="card-number">{i:02d}</span><span class="card-icon" aria-hidden="true">{icon(name)}</span></div>'
+        f'<article class="feature-card reveal"><div class="card-head"><span class="card-icon" aria-hidden="true">{icon(name)}</span></div>'
         f'<h3>{rich(title)}</h3><p>{rich(text)}</p><p class="feature-result"><span>{esc(t["result_label"])}</span>{rich(result)}</p>'
         f'<div class="tag-list">{"".join(f"<span>{esc(tag)}</span>" for tag in tags)}</div></article>'
-        for i, (name, title, text, result, tags) in enumerate(t["features"], 1)], 10)
+        for name, title, text, result, tags in t["features"]], 10)
     f["modules_html"] = lines([f"<li>{esc(name)}</li>" for name in t["modules"]], 12)
 
     tariffs = []

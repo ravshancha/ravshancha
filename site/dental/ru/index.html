@@ -415,7 +415,6 @@
     .section-lead { max-width: 440px; color: var(--muted); }
 
     .card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
-    .card-number { display: block; color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
     .card-icon { display: grid; width: 52px; height: 52px; place-items: center; border-radius: 14px; background: color-mix(in srgb, var(--accent) 12%, transparent); transition: background 180ms ease, transform 180ms ease; }
     .card-icon .site-icon { width: 30px; height: 30px; color: var(--accent); opacity: 1; }
 
@@ -428,7 +427,7 @@
     .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .pain-card { padding: 28px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); transition: border-color 180ms ease, transform 180ms ease; }
     .pain-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
-    .pain-card .card-head { margin-bottom: 30px; }
+    .pain-card .card-head { margin-bottom: 20px; }
     .pain-card p { margin-bottom: 0; color: var(--muted); }
 
     .cta-inline { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 34px; padding: 26px 30px; border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent); border-radius: var(--radius); background: linear-gradient(135deg, var(--hero-glow-secondary), transparent); }
@@ -440,7 +439,7 @@
     .feature-card:hover { transform: translateY(-6px); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
     .feature-card:hover .card-icon { background: var(--accent); transform: translateY(-3px); }
     .feature-card:hover .card-icon .site-icon { color: var(--accent-text); }
-    .feature-card .card-head { margin-bottom: 44px; }
+    .feature-card .card-head { margin-bottom: 22px; }
     .feature-card p { color: var(--muted); }
     .feature-result { margin: auto 0 0; padding-top: 16px; border-top: 1px solid var(--line); color: var(--text) !important; font-size: 14px; font-weight: 650; }
     .feature-result span { display: block; margin-bottom: 4px; color: var(--accent); font-size: 11px; font-weight: 850; letter-spacing: 0.12em; text-transform: uppercase; }
@@ -655,7 +654,7 @@
       .section-tight { padding: 64px 0; }
       .pain-grid, .feature-grid, .tariff-grid, .steps-grid { grid-template-columns: 1fr; }
       .pain-card:hover, .feature-card:hover { transform: none; }
-      .pain-card .card-head { margin-bottom: 24px; }
+      .pain-card .card-head { margin-bottom: 18px; }
       .cta-inline { gap: 18px; padding: 22px; }
       .cta-buttons { display: grid; }
       .cta-buttons .button, .steps-cta .button, .tariff-card .button { width: 100%; }
@@ -832,12 +831,12 @@
           <p>Если знакома хотя бы одна — остальная часть страницы для вас.</p>
         </div>
         <div class="pain-grid">
-          <article class="pain-card reveal"><div class="card-head"><span class="card-number">01</span><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-chat"/></svg></span></div><h3>Пациенты приходят только по знакомству</h3><p>Новый пациент узнаёт о вас от знакомых или из Instagram. Даже хорошую клинику не видит человек, который прямо сейчас ищет стоматолога.</p></article>
-          <article class="pain-card reveal"><div class="card-head"><span class="card-number">02</span><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-doc"/></svg></span></div><h3>Записи — в тетради и в Telegram</h3><p>Администратор занят или забыл ответить — пациент записывается в другую клинику, а вы об этом даже не узнаёте.</p></article>
-          <article class="pain-card reveal"><div class="card-head"><span class="card-number">03</span><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-calendar"/></svg></span></div><h3>Кресло простаивает</h3><p>Кто, когда и к какому врачу записан — в одном месте не видно. Свободные окна замечают поздно, и они остаются пустыми.</p></article>
-          <article class="pain-card reveal"><div class="card-head"><span class="card-number">04</span><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-user"/></svg></span></div><h3>База уходит вместе с врачом</h3><p>Номера пациентов — в личном телефоне врача. Уходит врач — уходят и пациенты.</p></article>
-          <article class="pain-card reveal"><div class="card-head"><span class="card-number">05</span><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-phone"/></svg></span></div><h3>Одни и те же вопросы — десятки раз в день</h3><p>«Сколько стоит?», «Когда свободно?», «Где вы находитесь?» Время администратора уходит на звонки, а не на пациента.</p></article>
-          <article class="pain-card reveal"><div class="card-head"><span class="card-number">06</span><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-chart"/></svg></span></div><h3>Нет цифр</h3><p>Сколько новых пациентов пришло за месяц, какой врач загружен, какую услугу спрашивают чаще — отчёта нет, решения принимаются наугад.</p></article>
+          <article class="pain-card reveal"><div class="card-head"><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-chat"/></svg></span></div><h3>Пациенты приходят только по знакомству</h3><p>Новый пациент узнаёт о вас от знакомых или из Instagram. Даже хорошую клинику не видит человек, который прямо сейчас ищет стоматолога.</p></article>
+          <article class="pain-card reveal"><div class="card-head"><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-doc"/></svg></span></div><h3>Записи — в тетради и в Telegram</h3><p>Администратор занят или забыл ответить — пациент записывается в другую клинику, а вы об этом даже не узнаёте.</p></article>
+          <article class="pain-card reveal"><div class="card-head"><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-calendar"/></svg></span></div><h3>Кресло простаивает</h3><p>Кто, когда и к какому врачу записан — в одном месте не видно. Свободные окна замечают поздно, и они остаются пустыми.</p></article>
+          <article class="pain-card reveal"><div class="card-head"><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-user"/></svg></span></div><h3>База уходит вместе с врачом</h3><p>Номера пациентов — в личном телефоне врача. Уходит врач — уходят и пациенты.</p></article>
+          <article class="pain-card reveal"><div class="card-head"><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-phone"/></svg></span></div><h3>Одни и те же вопросы — десятки раз в день</h3><p>«Сколько стоит?», «Когда свободно?», «Где вы находитесь?» Время администратора уходит на звонки, а не на пациента.</p></article>
+          <article class="pain-card reveal"><div class="card-head"><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-chart"/></svg></span></div><h3>Нет цифр</h3><p>Сколько новых пациентов пришло за месяц, какой врач загружен, какую услугу спрашивают чаще — отчёта нет, решения принимаются наугад.</p></article>
         </div>
         <div class="cta-inline reveal">
           <p>Знакомо? Добавьте клинику или оставьте номер — позвоним, покажем платформу и ответим на вопросы.</p>
@@ -859,10 +858,10 @@
           <p>Не универсальная CRM: направления, услуги и цены — всё на языке стоматологии.</p>
         </div>
         <div class="feature-grid">
-          <article class="feature-card reveal"><div class="card-head"><span class="card-number">01</span><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-pin"/></svg></span></div><h3>Страница в каталоге</h3><p>Ваша клиника в каталоге dentalnavigator.uz: адрес, режим работы, врачи, услуги и цены. Пациент находит вас на карте, по направлению или по услуге.</p><p class="feature-result"><span>Результат</span>Пациент видит нужное, не звоня в клинику.</p><div class="tag-list"><span>Каталог</span><span>Карта</span><span>Цены</span></div></article>
-          <article class="feature-card reveal"><div class="card-head"><span class="card-number">02</span><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-calendar"/></svg></span></div><h3>Онлайн-запись и расписание</h3><p>Пациент выбирает услугу, день и свободное время и записывается — без регистрации, по номеру телефона. Запись сразу попадает в календарь вашего кабинета.</p><p class="feature-result"><span>Результат</span>Все записи — в одном календаре.</p><div class="tag-list"><span>Онлайн-запись</span><span>Календарь</span><span>Лист ожидания</span></div></article>
-          <article class="feature-card reveal"><div class="card-head"><span class="card-number">03</span><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-grid"/></svg></span></div><h3>Кабинет клиники</h3><p>Врачей, сотрудников, расписание, услуги и цены вы ведёте сами. База пациентов принадлежит клинике: если врач уходит, его доступ закрывается, а база остаётся у вас.</p><p class="feature-result"><span>Результат</span>Клиника не зависит от одного человека.</p><div class="tag-list"><span>Врачи</span><span>Сотрудники</span><span>Пациенты</span></div></article>
-          <article class="feature-card reveal"><div class="card-head"><span class="card-number">04</span><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-star"/></svg></span></div><h3>Отзывы и обращения</h3><p>Отзывы и вопросы пациентов приходят в кабинет: вы отвечаете, а репутация видна в каталоге.</p><p class="feature-result"><span>Результат</span>Репутация держится на открытых отзывах, а не на знакомствах.</p><div class="tag-list"><span>Отзывы</span><span>Обращения</span><span>Отчёты</span></div></article>
+          <article class="feature-card reveal"><div class="card-head"><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-pin"/></svg></span></div><h3>Страница в каталоге</h3><p>Ваша клиника в каталоге dentalnavigator.uz: адрес, режим работы, врачи, услуги и цены. Пациент находит вас на карте, по направлению или по услуге.</p><p class="feature-result"><span>Результат</span>Пациент видит нужное, не звоня в клинику.</p><div class="tag-list"><span>Каталог</span><span>Карта</span><span>Цены</span></div></article>
+          <article class="feature-card reveal"><div class="card-head"><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-calendar"/></svg></span></div><h3>Онлайн-запись и расписание</h3><p>Пациент выбирает услугу, день и свободное время и записывается — без регистрации, по номеру телефона. Запись сразу попадает в календарь вашего кабинета.</p><p class="feature-result"><span>Результат</span>Все записи — в одном календаре.</p><div class="tag-list"><span>Онлайн-запись</span><span>Календарь</span><span>Лист ожидания</span></div></article>
+          <article class="feature-card reveal"><div class="card-head"><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-grid"/></svg></span></div><h3>Кабинет клиники</h3><p>Врачей, сотрудников, расписание, услуги и цены вы ведёте сами. База пациентов принадлежит клинике: если врач уходит, его доступ закрывается, а база остаётся у вас.</p><p class="feature-result"><span>Результат</span>Клиника не зависит от одного человека.</p><div class="tag-list"><span>Врачи</span><span>Сотрудники</span><span>Пациенты</span></div></article>
+          <article class="feature-card reveal"><div class="card-head"><span class="card-icon" aria-hidden="true"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-star"/></svg></span></div><h3>Отзывы и обращения</h3><p>Отзывы и вопросы пациентов приходят в кабинет: вы отвечаете, а репутация видна в каталоге.</p><p class="feature-result"><span>Результат</span>Репутация держится на открытых отзывах, а не на знакомствах.</p><div class="tag-list"><span>Отзывы</span><span>Обращения</span><span>Отчёты</span></div></article>
         </div>
         <div class="modules reveal">
           <p class="modules-label">Разделы кабинета клиники</p>
