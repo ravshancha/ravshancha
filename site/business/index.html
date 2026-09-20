@@ -568,7 +568,8 @@
     .contact-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 460px); gap: 40px 48px; align-items: end; }
     .contact-copy { min-width: 0; align-self: start; padding: 12px 0 64px; }
     .contact-text { max-width: 560px; margin: 0; color: color-mix(in srgb, var(--accent-text) 84%, transparent); font-size: 1.06rem; }
-    .contact-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+    .contact-actions { display: grid; justify-items: start; gap: 14px; margin-top: 34px; }
+    .contact-channels { display: flex; flex-wrap: wrap; gap: 14px; }
     .contact-button { min-height: 56px; padding: 0 22px; gap: 12px; font-size: 15px; font-weight: 800; white-space: nowrap; }
     .contact-button .site-icon { width: 28px; height: 28px; }
     .contact-button-solid { color: var(--accent); background: var(--accent-text); }
@@ -702,7 +703,9 @@
       .case-grid { grid-template-columns: 1fr; }
       .case-card { padding: 24px; }
       .faq-item summary { padding: 18px 0; font-size: 1.04rem; }
-      .contact-actions { display: grid; grid-template-columns: 1fr; }
+      .contact-actions { justify-items: stretch; }
+      .contact-channels { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .contact-channels > a:last-child { grid-column: 1 / -1; }
       .contact-button { width: 100%; }
       .footer-inner { align-items: flex-start; flex-direction: column; }
       .footer-links { width: 100%; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 14px; }
@@ -740,6 +743,7 @@
     <symbol id="icon-arrow-up" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.6V2.4M3.8 10.6L12 2.4l8.2 8.2"/></g></symbol>
     <symbol id="icon-arrow-up-right" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M5.4 18.6L18.6 5.4"/><path d="M8.4 5.4h10.2v10.2"/></g></symbol>
     <symbol id="icon-telegram" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 4.4a1.2 1.2 0 0 0-1.7 1.5l2 5.4a1.2 1.2 0 0 1 0 .8l-2 5.4a1.2 1.2 0 0 0 1.7 1.5l17.6-7.2a1.2 1.2 0 0 0 0-2.2z"/><path d="M4.4 12h7.2"/></g></symbol>
+    <symbol id="icon-whatsapp" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M3.1 20.9l1.3-4.7A8.9 8.9 0 1 1 7.8 19.6l-4.7 1.3z"/><path d="M8.9 8.4c.3-.1.6 0 .8.3l.8 1.5c.1.3.1.6-.1.8l-.5.6c-.2.2-.2.4-.1.6.5.9 1.3 1.7 2.2 2.2.2.1.4.1.6-.1l.6-.5c.2-.2.5-.2.8-.1l1.5.8c.3.2.4.5.3.8-.2.8-1 1.3-1.8 1.3-2.8 0-6.1-3.3-6.1-6.1 0-.8.5-1.6 1.3-1.8z"/></g></symbol>
     <symbol id="icon-phone" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M21.6 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.7 4.1 2 2 0 0 1 3.7 2h3a2 2 0 0 1 2 1.7 12.8 12.8 0 0 0 .7 2.8 2 2 0 0 1-.5 2.1L7.7 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4 12.8 12.8 0 0 0 2.8.7 2 2 0 0 1 1.7 2z"/></g></symbol>
     <symbol id="icon-link" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M10.2 13.2a4.8 4.8 0 0 0 7.2.5l2.4-2.4a4.8 4.8 0 0 0-6.8-6.8l-1.4 1.4"/><path d="M13.8 10.8a4.8 4.8 0 0 0-7.2-.5l-2.4 2.4a4.8 4.8 0 0 0 6.8 6.8l1.4-1.4"/></g></symbol>
     <symbol id="icon-clock" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.8"/><path d="M12 6.2V12l3.9 2.4"/></g></symbol>
@@ -981,8 +985,11 @@
           <p class="contact-text">Yordam bera olmasam, ochiq aytaman va kimga murojaat qilishni maslahat beraman.</p>
           <div class="contact-actions">
             <button class="button contact-button contact-button-solid" type="button" data-order-open><span>Diagnostikaga yozilish</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></button>
-            <a class="button contact-button contact-button-ghost" href="https://t.me/ravshanjon_ismoilov" target="_blank" rel="noopener noreferrer" data-goal="click_telegram"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-telegram"/></svg><span>Telegram</span></a>
-            <a class="button contact-button contact-button-ghost" href="tel:+998999420770" aria-label="+998 99 942 07 70 raqamiga qo‘ng‘iroq qilish" data-goal="click_tel"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-phone"/></svg><span>+998 99 942 07 70</span></a>
+            <div class="contact-channels">
+              <a class="button contact-button contact-button-ghost" href="https://t.me/ravshanjon_ismoilov" target="_blank" rel="noopener noreferrer" data-goal="click_telegram"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-telegram"/></svg><span>Telegram</span></a>
+              <a class="button contact-button contact-button-ghost" href="https://wa.me/998999420770" target="_blank" rel="noopener noreferrer" data-goal="click_whatsapp"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-whatsapp"/></svg><span>WhatsApp</span></a>
+              <a class="button contact-button contact-button-ghost" href="tel:+998999420770" aria-label="+998 99 942 07 70 raqamiga qo‘ng‘iroq qilish" data-goal="click_tel"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-phone"/></svg><span>+998 99 942 07 70</span></a>
+            </div>
           </div>
         </div>
         <div class="contact-portrait">
