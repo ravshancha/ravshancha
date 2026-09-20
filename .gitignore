@@ -1,3 +1,6 @@
 .DS_Store
 Thumbs.db
 .claude/
+__pycache__/
+# Telegram bot token for the lead form lives only on the server
+site/biznes/api/lead-config.php

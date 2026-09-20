@@ -1,0 +1,12 @@
+# Selling site — rules on top of the host's main .htaccess (HTTPS redirect, caching and MIME types live there
+# when this folder is served as ravshancha.uz/biznes/; copy those blocks here if it moves to its own domain).
+
+# The lead endpoint's secrets and its sample are never served
+<FilesMatch "^lead-config(\.sample)?\.php$">
+  Require all denied
+</FilesMatch>
+
+# Never serve the deployment state file
+<Files ".ftp-deploy-sync-state.json">
+  Require all denied
+</Files>

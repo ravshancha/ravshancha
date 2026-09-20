@@ -627,6 +627,9 @@
     .footer-socials { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
     .footer-inner p { margin: 0; }
     .footer-inner a:hover { color: var(--text); }
+    .footer-biz { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--line)); border-radius: 8px; color: var(--text); background: color-mix(in srgb, var(--accent) 10%, transparent); font-weight: 700; white-space: nowrap; transition: transform 150ms ease, border-color 150ms ease, background 150ms ease; }
+    .footer-biz:hover, .footer-biz:focus-visible { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, transparent); transform: translateY(-2px); }
+    .footer-biz .site-icon { width: 24px; height: 24px; color: var(--accent); opacity: 1; }
     .footer-top {
       display: inline-flex;
       align-items: center;
@@ -1564,6 +1567,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>© <span data-year></span> Ravshanjon Ismoilov</p>
+      <a class="footer-biz" href="biznes/" data-biz-link><span data-i18n="footerBiz">Biznes uchun xizmatlar</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
       <nav class="footer-links" aria-label="Ijtimoiy tarmoqlar va aloqa havolalari" data-i18n-label="footerLinksLabel">
         <div class="footer-socials">
           <a href="https://www.linkedin.com/in/ravshancha" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -1772,7 +1776,8 @@
         contactTitle: "Loyihangiz bormi?<br>Birga amalga oshiraylik.",
         contactTelegram: "Telegramda yozish",
         contactWhatsapp: "WhatsAppda yozish",
-        backToTop: "Yuqoriga"
+        backToTop: "Yuqoriga",
+        footerBiz: "Biznes uchun xizmatlar"
       },
       ru: {
         pageTitle: "Равшанжон Исмоилов — Java-разработчик",
@@ -1900,7 +1905,8 @@
         contactTitle: "Есть проект?<br>Давайте создадим его вместе.",
         contactTelegram: "Написать в Telegram",
         contactWhatsapp: "Написать в WhatsApp",
-        backToTop: "Наверх"
+        backToTop: "Наверх",
+        footerBiz: "Услуги для бизнеса"
       },
       en: {
         pageTitle: "Ravshanjon Ismoilov — Java Software Developer",
@@ -2028,7 +2034,8 @@
         contactTitle: "Have a project in mind?<br>Let’s make it real.",
         contactTelegram: "Message on Telegram",
         contactWhatsapp: "Message on WhatsApp",
-        backToTop: "Back to top"
+        backToTop: "Back to top",
+        footerBiz: "Services for business"
       }
     };
 
@@ -2047,6 +2054,7 @@
     const cvDialog = document.querySelector("[data-cv-dialog]");
     const cvPreview = document.querySelector("[data-cv-preview]");
     const cvDownload = document.querySelector("[data-cv-download]");
+    const bizLink = document.querySelector("[data-biz-link]");
     let cvPath = "cv/Ravshanjon-Ismoilov-CV-uz.pdf";
     let currentLanguage = "uz";
     const languageDetails = {
@@ -2133,6 +2141,7 @@
       });
       cvPath = `cv/Ravshanjon-Ismoilov-CV-${selectedLanguage}.pdf`;
       cvDownload.href = cvPath;
+      bizLink.href = selectedLanguage === "ru" ? "biznes/ru/" : "biznes/";
       if (cvDialog.open) updateCvPreview();
       themeButtons.forEach((button) => {
         button.setAttribute("aria-label", dictionary.themeLabel);

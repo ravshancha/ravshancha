@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /.ftp-deploy-sync-state.json
+Disallow: /biznes/api/
 
 Sitemap: https://ravshancha.uz/sitemap.xml
+Sitemap: https://ravshancha.uz/biznes/sitemap.xml
