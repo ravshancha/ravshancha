@@ -10,10 +10,8 @@ SETTINGS = dict(
     cv_url="https://ravshancha.uz/",
     cv_label="ravshancha.uz",
     person="Ravshanjon Ismoilov",
-    phone_display="+998 99 942 07 70",
-    phone_e164="+998999420770",
-    telegram="ravshanjon_ismoilov",
-    whatsapp="998999420770",
+    # No phone, Telegram or WhatsApp links on the page on purpose: every lead has to come through the quiz.
+    telegram="ravshanjon_ismoilov",  # only for the order form's fallback, when api/lead.php cannot deliver
     linkedin="https://www.linkedin.com/in/ravshancha",
     metrika_id="",  # Yandex Metrika counter id; empty = no analytics script is emitted
 )
@@ -29,6 +27,9 @@ OPENAPI_DOCS = dict(
     uz="https://www.ipotekabank.uz/upload/openapi/openapi_uz.html",
     ru="https://www.ipotekabank.uz/upload/openapi/openapi_ru.html",
 )
+
+# Answer codes for the first quiz question, in the order of L[lang]["pains"]: its options are the pain titles themselves.
+PAIN_CODES = ("report", "stock", "orders", "person", "systems", "money")
 
 L = {}
 
@@ -51,7 +52,6 @@ L["uz"] = dict(
     nav_process="Jarayon",
     nav_proof="Tajriba",
     nav_faq="Savollar",
-    phone_label="+998 99 942 07 70 raqamiga qo‘ng‘iroq qilish",
     theme_label="Rang rejimini almashtirish",
     theme_dark="Qorong‘i",
     theme_light="Yorug‘",
@@ -64,7 +64,6 @@ L["uz"] = dict(
     hero_title_html='Biznesingiz<br><span class="accent-word">qo‘lda emas, tizimda</span><br>ishlasin.',
     hero_lead="Qo‘lda bajariladigan ishlar, Excel va yo‘qolgan buyurtmalar o‘rniga — avtomatlashtirilgan jarayonlar va rahbar uchun shaffof hisobot. Har bir buyurtma va har bir so‘m ko‘rinib turadi.",
     cta_primary="Bepul diagnostika",
-    cta_telegram="Telegram’da yozish",
     hero_trust=[
         "30 daqiqa, majburiyatsiz",
         "10+ yil bank va fintech tizimlari",
@@ -182,18 +181,41 @@ L["uz"] = dict(
     contact_text="Yordam bera olmasam, ochiq aytaman va kimga murojaat qilishni maslahat beraman.",
 
     order_title="Bepul diagnostikaga yozilish",
+
+    # The order dialog asks these questions one per step, then the contact fields. Every question may be skipped.
+    # key and option codes go to api/lead.php and must be the same in every language; label names the answer in the message.
+    quiz_intro="{count} ta qisqa savol — bir daqiqa. Javoblaringiz suhbatga tayyorlanishimga yordam beradi.",
+    quiz_progress_label="Savollar",
+    quiz_hint_single="Bittasini tanlang — keyingi savol o‘zi ochiladi.",
+    quiz_hint_multi="Bir nechtasini tanlash mumkin.",
+    quiz_back="Orqaga",
+    quiz_next="Davom etish",
+    quiz_skip="Savollarsiz raqam qoldirish",
+    quiz_contact_title="Oxirgi qadam — kontaktingiz",
+    quiz=[
+        dict(key="pains", label="Muammolar", title="Qaysi holat sizga tanish?", multi=True, from_pains=True, options=[("other", "Boshqa")]),
+        dict(key="industry", label="Soha", title="Biznesingiz qaysi sohada?",
+             options=[("trade", "Savdo"), ("production", "Ishlab chiqarish"), ("services", "Xizmat ko‘rsatish"), ("other", "Boshqa")]),  # the same segments as summary_title_html
+        dict(key="team", label="Jamoa", title="Jamoada necha kishi ishlaydi?",
+             options=[("upto10", "10 gacha"), ("upto50", "11–50"), ("upto200", "51–200"), ("over200", "200 dan ko‘p")]),
+        dict(key="systems", label="Tizimlar", title="Hozir nimalardan foydalanasiz?", multi=True,
+             options=[("excel", "Excel yoki Google Sheets"), ("onec", "1C"), ("crm", "CRM (amoCRM, Bitrix24)"), ("site", "Sayt yoki internet-do‘kon"),
+                      ("chat", "Telegram va daftar"), ("other", "Boshqa dastur"), ("none", "Hech narsa")]),
+        dict(key="timing", label="Muddat", title="Qachon boshlamoqchisiz?",
+             options=[("asap", "Imkon qadar tez"), ("quarter", "1–3 oy ichida"), ("research", "Hozircha o‘rganyapman")]),
+    ],
+
     order_intro="Raqamingizni qoldiring — imkon qadar tez bog‘lanib, qulay vaqtni kelishamiz.",
     order_name="Ismingiz",
     order_name_example="Masalan: Alisher Karimov",
     order_name_error="Ismingizni kiriting.",
     order_phone="Telefon raqamingiz",
-    order_phone_example="Masalan: 99 942 07 70",
-    order_phone_error="Faqat raqam, 9 ta belgi: 999420770.",
-    order_info="Qaysi muammo bezovta qilyapti? (ixtiyoriy)",
-    order_info_example="Masalan: ulgurji savdo, 25 xodim. Ombor qoldig‘i dastur bilan mos kelmaydi, hisobot Excel’da yig‘iladi.",
+    order_phone_example="Masalan: 90 123 45 67",
+    order_phone_error="Faqat raqam, 9 ta belgi: 901234567.",
+    order_info="Qo‘shimcha izoh (ixtiyoriy)",
+    order_info_example="Masalan: saytdan kelgan arizalar amoCRM’ga o‘zi tushishi kerak.",
     order_submit="Yuborish",
     order_sending="Yuborilmoqda…",
-    order_cancel="Bekor qilish",
     order_consent="Yuborish orqali ma’lumotlaringizdan siz bilan bog‘lanish uchun foydalanishimga rozilik bildirasiz.",
     order_success_title="Arizangiz qabul qilindi",
     order_success_text="Rahmat! Imkon qadar tez bog‘lanaman.",
@@ -202,10 +224,9 @@ L["uz"] = dict(
     order_fallback_button="Telegram’da yuborish",
     order_fallback_note="Matn nusxalandi. Telegram’da xabar bo‘sh chiqsa — uni qo‘yib, yuboring.",
     order_message_title="Diagnostikaga ariza",
-    order_message_info="Muammo",
+    order_message_info="Izoh",
 
-    sticky_label="Tezkor aloqa",
-    sticky_call="Qo‘ng‘iroq",
+    sticky_label="Diagnostikaga yozilish",
 )
 
 L["ru"] = dict(
@@ -226,7 +247,6 @@ L["ru"] = dict(
     nav_process="Процесс",
     nav_proof="Опыт",
     nav_faq="Вопросы",
-    phone_label="Позвонить по номеру +998 99 942 07 70",
     theme_label="Переключить цветовую тему",
     theme_dark="Тёмная",
     theme_light="Светлая",
@@ -239,7 +259,6 @@ L["ru"] = dict(
     hero_title_html='Пусть бизнес работает<br><span class="accent-word">в системе, а не вручную</span>.',
     hero_lead="Вместо ручной работы, Excel и потерянных заказов — автоматизированные процессы и прозрачная отчётность для руководителя. Виден каждый заказ и каждый сум.",
     cta_primary="Бесплатная диагностика",
-    cta_telegram="Написать в Telegram",
     hero_trust=[
         "30 минут, без обязательств",
         "10+ лет в банковских и финтех-системах",
@@ -357,18 +376,39 @@ L["ru"] = dict(
     contact_text="Если помочь не смогу — скажу прямо и подскажу, к кому обратиться.",
 
     order_title="Запись на бесплатную диагностику",
+
+    quiz_intro="{count} коротких вопросов — одна минута. Ответы помогут мне подготовиться к разговору.",
+    quiz_progress_label="Вопросы",
+    quiz_hint_single="Выберите один вариант — следующий вопрос откроется сам.",
+    quiz_hint_multi="Можно выбрать несколько.",
+    quiz_back="Назад",
+    quiz_next="Далее",
+    quiz_skip="Оставить номер без вопросов",
+    quiz_contact_title="Последний шаг — ваши контакты",
+    quiz=[
+        dict(key="pains", label="Проблемы", title="Какая ситуация вам знакома?", multi=True, from_pains=True, options=[("other", "Другое")]),
+        dict(key="industry", label="Сфера", title="В какой сфере ваш бизнес?",
+             options=[("trade", "Торговля"), ("production", "Производство"), ("services", "Услуги"), ("other", "Другое")]),
+        dict(key="team", label="Команда", title="Сколько человек в команде?",
+             options=[("upto10", "До 10"), ("upto50", "11–50"), ("upto200", "51–200"), ("over200", "Больше 200")]),
+        dict(key="systems", label="Системы", title="Чем пользуетесь сейчас?", multi=True,
+             options=[("excel", "Excel или Google Таблицы"), ("onec", "1С"), ("crm", "CRM (amoCRM, Битрикс24)"), ("site", "Сайт или интернет-магазин"),
+                      ("chat", "Telegram и блокнот"), ("other", "Другая программа"), ("none", "Ничего")]),
+        dict(key="timing", label="Сроки", title="Когда хотите начать?",
+             options=[("asap", "Как можно скорее"), ("quarter", "В ближайшие 1–3 месяца"), ("research", "Пока изучаю")]),
+    ],
+
     order_intro="Оставьте номер — свяжусь с вами в ближайшее время, и согласуем удобное время.",
     order_name="Ваше имя",
     order_name_example="Например: Алишер Каримов",
     order_name_error="Введите ваше имя.",
     order_phone="Номер телефона",
-    order_phone_example="Например: 99 942 07 70",
-    order_phone_error="Только цифры, 9 знаков: 999420770.",
-    order_info="Какая проблема беспокоит? (необязательно)",
-    order_info_example="Например: оптовая торговля, 25 сотрудников. Остатки на складе не сходятся с программой, отчёты собираем в Excel.",
+    order_phone_example="Например: 90 123 45 67",
+    order_phone_error="Только цифры, 9 знаков: 901234567.",
+    order_info="Комментарий (необязательно)",
+    order_info_example="Например: заявки с сайта должны сами попадать в amoCRM.",
     order_submit="Отправить",
     order_sending="Отправка…",
-    order_cancel="Отмена",
     order_consent="Отправляя форму, вы соглашаетесь на использование ваших данных для связи с вами.",
     order_success_title="Заявка принята",
     order_success_text="Спасибо! Свяжусь с вами в ближайшее время.",
@@ -377,8 +417,7 @@ L["ru"] = dict(
     order_fallback_button="Отправить в Telegram",
     order_fallback_note="Текст скопирован. Если сообщение в Telegram окажется пустым — вставьте его и отправьте.",
     order_message_title="Заявка на диагностику",
-    order_message_info="Проблема",
+    order_message_info="Комментарий",
 
-    sticky_label="Быстрая связь",
-    sticky_call="Позвонить",
+    sticky_label="Запись на диагностику",
 )

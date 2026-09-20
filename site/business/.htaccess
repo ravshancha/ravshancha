@@ -1,8 +1,8 @@
 # Selling site — rules on top of the host's main .htaccess (HTTPS redirect, caching and MIME types live there
 # when this folder is served as ravshancha.uz/business/; copy those blocks here if it moves to its own domain).
 
-# The lead endpoint's secrets and its sample are never served
-<FilesMatch "^lead-config(\.sample)?\.php$">
+# The lead endpoint's secrets, their sample and the generated quiz map are never served
+<FilesMatch "^lead-(config(\.sample)?|quiz)\.php$">
   Require all denied
 </FilesMatch>
 

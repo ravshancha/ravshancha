@@ -1,5 +1,5 @@
 <?php
-// Lead endpoint: takes the diagnostic request from the site form and forwards it to Telegram.
+// Lead endpoint: takes the diagnostic request (quiz answers and contact fields) from the site form and forwards it to Telegram.
 // The bot token and chat id live in lead-config.php on the server only (see lead-config.sample.php);
 // that file is never committed. Any answer other than {"ok":true} makes the page fall back to
 // the visitor's own Telegram, so a lead is not lost while this endpoint is unconfigured.
@@ -43,6 +43,7 @@ if (!is_file($configFile)) {
 $config = require $configFile;
 $token = trim((string)($config['bot_token'] ?? ''));
 $chatId = trim((string)($config['chat_id'] ?? ''));
+$apiBase = rtrim(trim((string)($config['api_base'] ?? '')), '/') ?: 'https://api.telegram.org';
 if ($token === '' || $chatId === '') {
     respond(503, ['ok' => false, 'error' => 'not_configured']);
 }
@@ -94,21 +95,46 @@ if (is_dir($dir) || @mkdir($dir, 0700, true)) {
     }
 }
 
+// Quiz answers arrive as option codes. lead-quiz.php (generated from content.py) lists the valid ones with
+// their labels; anything else is dropped, so the only free text in the message is the name and the comment.
+$quizFile = __DIR__ . '/lead-quiz.php';
+$quiz = is_file($quizFile) ? require $quizFile : [];
+$answers = $data['answers'] ?? [];
+$answerLines = [];
+if (is_array($quiz) && is_array($answers)) {
+    foreach ($quiz as $key => $question) {
+        $given = $answers[$key] ?? [];
+        $codes = is_array($given) ? $given : [$given];
+        if (empty($question['multi'])) {
+            $codes = array_slice($codes, 0, 1);
+        }
+        $labels = [];
+        foreach ($question['options'] as $code => $label) {
+            if (in_array((string)$code, $codes, true)) {
+                $labels[] = $label;
+            }
+        }
+        if ($labels !== []) {
+            $answerLines[] = $question['label'] . ': ' . implode('; ', $labels);
+        }
+    }
+}
+
 $time = (new DateTime('now', new DateTimeZone('Asia/Tashkent')))->format('Y-m-d H:i');
-$lines = [
+$lines = array_merge([
     'Yangi ariza — diagnostika',
     'Ism: ' . $name,
     'Telefon: +998' . $phone,
-];
+], $answerLines);
 if ($info !== '') {
-    $lines[] = 'Muammo: ' . $info;
+    $lines[] = 'Izoh: ' . $info;
 }
 $lines[] = 'Til: ' . $lang . ($page !== '' ? ' · Sahifa: ' . $page : '');
 $lines[] = 'Vaqt: ' . $time . ' (Toshkent)';
 
 // Plain text on purpose: no parse_mode, so nothing a visitor types is interpreted as markup.
 $query = http_build_query(['chat_id' => $chatId, 'text' => implode("\n", $lines), 'disable_web_page_preview' => 'true']);
-$url = 'https://api.telegram.org/bot' . $token . '/sendMessage';
+$url = $apiBase . '/bot' . $token . '/sendMessage';
 
 $answer = false;
 if (function_exists('curl_init')) {

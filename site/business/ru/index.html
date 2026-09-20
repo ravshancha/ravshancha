@@ -37,7 +37,6 @@
   "description": "Аудит процессов, автоматизация, интеграции и дашборд для руководителя. Бесплатная 30-минутная диагностика.",
   "url": "https://ravshancha.uz/business/ru/",
   "image": "https://ravshancha.uz/business/assets/og-ru.jpg",
-  "telephone": "+998999420770",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Tashkent",
@@ -223,6 +222,7 @@
       background: var(--accent);
       box-shadow: 0 10px 28px color-mix(in srgb, var(--accent) 25%, transparent);
       white-space: nowrap;
+      cursor: pointer;
     }
     .site-nav > .nav-cta:hover, .site-nav > .nav-cta:focus-visible { color: var(--header-hover); background: color-mix(in srgb, var(--accent) 42%, var(--surface)); }
     .nav-controls { position: relative; display: flex; align-items: center; gap: 9px; }
@@ -310,13 +310,15 @@
     .button-primary .button-icon { animation: button-arrow-nudge 1.7s ease-in-out infinite; }
     .button-primary:hover .button-icon, .button-primary:focus-visible .button-icon { animation-duration: 900ms; }
     @keyframes button-arrow-nudge { 0%, 60%, 100% { transform: translateX(0); } 30% { transform: translateX(5px); } }
-    .button-secondary { border: 1px solid color-mix(in srgb, var(--accent) 50%, var(--line)); background: color-mix(in srgb, var(--surface) 60%, transparent); }
-    .button-secondary .site-icon { width: 28px; height: 28px; color: var(--accent); opacity: 1; }
 
     .order-dialog { width: min(660px, calc(100% - 32px)); padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); box-shadow: 0 30px 80px var(--shadow); }
     .order-dialog::backdrop { background: color-mix(in srgb, #05070d 62%, transparent); backdrop-filter: blur(5px); }
     .order-form { display: grid; gap: 19px; padding: 30px; }
+    .order-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
     .order-form h2 { max-width: none; margin: 0; font-size: 1.45rem; line-height: 1.2; letter-spacing: -0.025em; }
+    .order-x { display: grid; flex: 0 0 auto; width: 44px; height: 44px; margin: -8px -10px -8px 0; place-items: center; border: 0; border-radius: 10px; background: none; color: var(--muted); cursor: pointer; transition: color 150ms ease, background 150ms ease; }
+    .order-x:hover, .order-x:focus-visible { color: var(--text); background: color-mix(in srgb, var(--accent) 14%, var(--surface-2)); }
+    .order-x .site-icon { width: 26px; height: 26px; color: inherit; opacity: 1; }
     .order-fields { display: grid; gap: 19px; }
     .order-fields[hidden], .order-state[hidden] { display: none; }
     .order-intro { margin: -10px 0 0; color: var(--muted); font-size: 14px; }
@@ -342,6 +344,37 @@
     .order-state p { margin: 0; color: var(--muted); }
     .order-state .order-actions { width: 100%; margin-top: 6px; }
     .order-note { color: var(--accent) !important; font-size: 13px; font-weight: 700; }
+
+    /* Quiz: the order dialog asks one question per step; the contact fields are the last step. */
+    .quiz-progress { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; }
+    .quiz-track { height: 6px; overflow: hidden; border-radius: 999px; background: color-mix(in srgb, var(--surface-2) 82%, var(--surface)); }
+    .quiz-track > span { display: block; width: 0; height: 100%; border-radius: inherit; background: var(--accent); transition: width 220ms ease; }
+    .quiz-count { margin: 0; color: var(--muted); font-size: 12px; font-weight: 750; font-variant-numeric: tabular-nums; }
+    .quiz-step { display: grid; gap: 14px; }
+    .quiz-step[hidden], .quiz-actions > [hidden] { display: none; }
+    .quiz-title { margin: 0; font-size: 1.2rem; line-height: 1.25; }
+    .quiz-title:focus { outline: 0; }
+    .quiz-hint { margin: -8px 0 0; color: var(--muted); font-size: 13px; }
+    .quiz-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+    .quiz-option { position: relative; display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--surface-2) 60%, transparent); font-size: 15px; font-weight: 650; line-height: 1.35; cursor: pointer; transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease; }
+    .quiz-option:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+    .order-dialog .quiz-option input { position: absolute; width: 1px; height: 1px; margin: 0; padding: 0; border: 0; opacity: 0; pointer-events: none; }
+    .quiz-mark { display: grid; flex: 0 0 auto; width: 24px; height: 24px; place-items: center; border: 1.5px solid color-mix(in srgb, var(--muted) 70%, transparent); border-radius: 7px; transition: background 150ms ease, border-color 150ms ease, box-shadow 150ms ease; }
+    .quiz-option input[type="radio"] + .quiz-mark { border-radius: 50%; }
+    .quiz-mark .site-icon { width: 18px; height: 18px; color: var(--accent-text); opacity: 0; }
+    .quiz-option input:checked + .quiz-mark { border-color: var(--accent); background: var(--accent); }
+    .quiz-option input:checked + .quiz-mark .site-icon { opacity: 1; }
+    .quiz-option input:focus-visible + .quiz-mark { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent); }
+    .quiz-option:has(input:checked) { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--surface)); }
+    .quiz-option:has(input:focus-visible) { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+    .quiz-contact { gap: 19px; }
+    .quiz-contact .quiz-hint { margin-top: -13px; }
+    .quiz-actions { justify-content: space-between; }
+    .quiz-actions > .button-primary { margin-left: auto; }
+    .quiz-back .site-icon { width: 26px; height: 26px; color: inherit; opacity: 1; }
+    .quiz-skip { margin: -6px 0 0; text-align: center; }
+    .quiz-skip button { padding: 8px 10px; border: 0; background: none; color: var(--muted); font-size: 13px; font-weight: 650; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+    .quiz-skip button:hover, .quiz-skip button:focus-visible { color: var(--text); }
 
     .hero-shell { position: relative; }
     .hero-stage {
@@ -569,14 +602,11 @@
     .contact-copy { min-width: 0; align-self: start; padding: 12px 0 64px; }
     .contact-text { max-width: 560px; margin: 0; color: color-mix(in srgb, var(--accent-text) 84%, transparent); font-size: 1.06rem; }
     .contact-actions { display: grid; justify-items: start; gap: 14px; margin-top: 34px; }
-    .contact-channels { display: flex; flex-wrap: wrap; gap: 14px; }
     .contact-button { min-height: 56px; padding: 0 22px; gap: 12px; font-size: 15px; font-weight: 800; white-space: nowrap; }
     .contact-button .site-icon { width: 28px; height: 28px; }
     .contact-button-solid { color: var(--accent); background: var(--accent-text); }
     .contact-button-solid:hover { background: color-mix(in srgb, var(--accent-text) 88%, var(--accent)); }
     .contact-section .contact-button-solid .site-icon { color: var(--accent); }
-    .contact-button-ghost { border: 1.5px solid color-mix(in srgb, var(--accent-text) 55%, transparent); }
-    .contact-button-ghost:hover { background: color-mix(in srgb, var(--accent-text) 15%, transparent); }
     .contact-portrait { position: relative; display: grid; align-self: end; justify-items: center; }
     .contact-portrait picture { display: block; }
     .contact-portrait img { width: min(100%, 440px); height: auto; filter: drop-shadow(0 30px 34px rgba(0, 0, 0, 0.32)); }
@@ -591,13 +621,11 @@
     .footer-links .footer-top:hover, .footer-links .footer-top:focus-visible { color: var(--accent-text); transform: translateY(-2px); box-shadow: 0 14px 34px color-mix(in srgb, var(--accent) 34%, transparent); }
     .footer-top .site-icon { width: 24px; height: 24px; }
 
-    .sticky-cta { position: fixed; inset: auto 0 0; z-index: 90; display: none; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); background: var(--header); backdrop-filter: blur(18px); transform: translateY(110%); transition: transform 220ms ease; }
+    .sticky-cta { position: fixed; inset: auto 0 0; z-index: 90; display: none; grid-template-columns: minmax(0, 1fr); padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); background: var(--header); backdrop-filter: blur(18px); transform: translateY(110%); transition: transform 220ms ease; }
     .sticky-cta.visible { transform: none; }
     .sticky-cta .button { min-height: 46px; padding: 0 16px; gap: 8px; font-size: 14px; }
     .sticky-cta .button:hover { transform: none; }
     .sticky-cta .button-icon { width: 26px; height: 26px; }
-    .sticky-icon-button { width: 46px; padding: 0 !important; border: 1px solid var(--line); background: var(--surface); }
-    .sticky-icon-button .site-icon { width: 26px; height: 26px; color: var(--accent); opacity: 1; }
 
     html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 600ms ease, transform 600ms ease; }
     html.js .reveal.visible { opacity: 1; transform: none; }
@@ -681,6 +709,14 @@
       .order-form { gap: 16px; padding: 22px; }
       .order-fields { gap: 16px; }
       .order-actions > .button { flex: 1 1 auto; }
+      .quiz-contact { gap: 16px; }
+      .quiz-contact .quiz-hint { margin-top: -10px; }
+      .quiz-options { gap: 8px; }
+      .quiz-option { min-height: 48px; padding: 8px 12px; }
+      /* A long question scrolls inside the dialog on a phone, so the step buttons stay in view at its bottom edge. */
+      .quiz-actions { position: sticky; bottom: 0; z-index: 1; flex-wrap: nowrap; margin: -12px -22px; padding: 12px 22px; background: var(--surface); box-shadow: 0 -1px 0 var(--line); }
+      .quiz-actions > .quiz-back { flex: 0 0 50px; padding: 0; }
+      .quiz-back span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
       .hero { padding-top: 104px; }
       h1 { font-size: clamp(1.5rem, 7.8vw, 3rem); }
       h2 { font-size: clamp(1.4rem, 7.5vw, 2.3rem); }
@@ -704,8 +740,6 @@
       .case-card { padding: 24px; }
       .faq-item summary { padding: 18px 0; font-size: 1.04rem; }
       .contact-actions { justify-items: stretch; }
-      .contact-channels { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-      .contact-channels > a:last-child { grid-column: 1 / -1; }
       .contact-button { width: 100%; }
       .footer-inner { align-items: flex-start; flex-direction: column; }
       .footer-links { width: 100%; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 14px; }
@@ -740,11 +774,9 @@
     <symbol id="icon-moon" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 14.3A9.3 9.3 0 1 1 9.7 3.4 7.3 7.3 0 0 0 20.6 14.3z"/></g></symbol>
     <symbol id="icon-chevron-down" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 8.4L12 18l9.6-9.6"/></g></symbol>
     <symbol id="icon-arrow-right" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 12h19.2M13.4 3.8L21.6 12l-8.2 8.2"/></g></symbol>
+    <symbol id="icon-arrow-left" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M21.6 12H2.4M10.6 3.8L2.4 12l8.2 8.2"/></g></symbol>
     <symbol id="icon-arrow-up" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.6V2.4M3.8 10.6L12 2.4l8.2 8.2"/></g></symbol>
     <symbol id="icon-arrow-up-right" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M5.4 18.6L18.6 5.4"/><path d="M8.4 5.4h10.2v10.2"/></g></symbol>
-    <symbol id="icon-telegram" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 4.4a1.2 1.2 0 0 0-1.7 1.5l2 5.4a1.2 1.2 0 0 1 0 .8l-2 5.4a1.2 1.2 0 0 0 1.7 1.5l17.6-7.2a1.2 1.2 0 0 0 0-2.2z"/><path d="M4.4 12h7.2"/></g></symbol>
-    <symbol id="icon-whatsapp" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M3.1 20.9l1.3-4.7A8.9 8.9 0 1 1 7.8 19.6l-4.7 1.3z"/><path d="M8.9 8.4c.3-.1.6 0 .8.3l.8 1.5c.1.3.1.6-.1.8l-.5.6c-.2.2-.2.4-.1.6.5.9 1.3 1.7 2.2 2.2.2.1.4.1.6-.1l.6-.5c.2-.2.5-.2.8-.1l1.5.8c.3.2.4.5.3.8-.2.8-1 1.3-1.8 1.3-2.8 0-6.1-3.3-6.1-6.1 0-.8.5-1.6 1.3-1.8z"/></g></symbol>
-    <symbol id="icon-phone" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M21.6 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.7 4.1 2 2 0 0 1 3.7 2h3a2 2 0 0 1 2 1.7 12.8 12.8 0 0 0 .7 2.8 2 2 0 0 1-.5 2.1L7.7 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4 12.8 12.8 0 0 0 2.8.7 2 2 0 0 1 1.7 2z"/></g></symbol>
     <symbol id="icon-link" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M10.2 13.2a4.8 4.8 0 0 0 7.2.5l2.4-2.4a4.8 4.8 0 0 0-6.8-6.8l-1.4 1.4"/><path d="M13.8 10.8a4.8 4.8 0 0 0-7.2-.5l-2.4 2.4a4.8 4.8 0 0 0 6.8 6.8l1.4-1.4"/></g></symbol>
     <symbol id="icon-clock" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.8"/><path d="M12 6.2V12l3.9 2.4"/></g></symbol>
     <symbol id="icon-team" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M15.4 20.6v-2a4 4 0 0 0-4-4H5.9a4 4 0 0 0-4 4v2"/><circle cx="8.7" cy="6.8" r="3.6"/><path d="M22.1 20.6v-2a4 4 0 0 0-3-3.9M15.9 3.5a3.6 3.6 0 0 1 0 6.9"/></g></symbol>
@@ -760,6 +792,7 @@
     <symbol id="icon-doc" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M13.8 2.4H6.4a1.8 1.8 0 0 0-1.8 1.8v15.6a1.8 1.8 0 0 0 1.8 1.8h11.2a1.8 1.8 0 0 0 1.8-1.8V8z"/><path d="M13.8 2.4V8h5.6M8.4 13h7.2M8.4 17h7.2"/></g></symbol>
     <symbol id="icon-check" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 12.6l5.4 5.4L20.4 6.6"/></g></symbol>
     <symbol id="icon-plus" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.2v15.6M4.2 12h15.6"/></g></symbol>
+    <symbol id="icon-close" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 4.8l14.4 14.4M19.2 4.8L4.8 19.2"/></g></symbol>
   </svg>
 
   <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -786,7 +819,7 @@
         <a href="#process">Процесс</a>
         <a href="#proof">Опыт</a>
         <a href="#faq">Вопросы</a>
-        <a class="nav-cta" href="tel:+998999420770" aria-label="Позвонить по номеру +998 99 942 07 70" data-goal="click_tel">+998 99 942 07 70</a>
+        <button class="nav-cta" type="button" data-order-open>Бесплатная диагностика</button>
         <div class="nav-controls">
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="Переключить цветовую тему" title="Переключить цветовую тему">
             <svg class="site-icon" data-theme-icon aria-hidden="true" focusable="false"><use href="#icon-moon"/></svg>
@@ -817,7 +850,6 @@
             <p class="hero-lead">Вместо ручной работы, Excel и потерянных заказов — автоматизированные процессы и прозрачная отчётность для руководителя. Виден каждый заказ и каждый сум.</p>
             <div class="hero-actions" data-hero-actions>
               <button class="button button-primary" type="button" data-order-open><span>Бесплатная диагностика</span><svg class="site-icon button-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></button>
-              <a class="button button-secondary" href="https://t.me/ravshanjon_ismoilov" target="_blank" rel="noopener noreferrer" data-goal="click_telegram"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-telegram"/></svg><span>Написать в Telegram</span></a>
             </div>
             <ul class="hero-trust">
               <li><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg><span>30 минут, без обязательств</span></li>
@@ -985,11 +1017,6 @@
           <p class="contact-text">Если помочь не смогу — скажу прямо и подскажу, к кому обратиться.</p>
           <div class="contact-actions">
             <button class="button contact-button contact-button-solid" type="button" data-order-open><span>Записаться на диагностику</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></button>
-            <div class="contact-channels">
-              <a class="button contact-button contact-button-ghost" href="https://t.me/ravshanjon_ismoilov" target="_blank" rel="noopener noreferrer" data-goal="click_telegram"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-telegram"/></svg><span>Telegram</span></a>
-              <a class="button contact-button contact-button-ghost" href="https://wa.me/998999420770" target="_blank" rel="noopener noreferrer" data-goal="click_whatsapp"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-whatsapp"/></svg><span>WhatsApp</span></a>
-              <a class="button contact-button contact-button-ghost" href="tel:+998999420770" aria-label="Позвонить по номеру +998 99 942 07 70" data-goal="click_tel"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-phone"/></svg><span>+998 99 942 07 70</span></a>
-            </div>
           </div>
         </div>
         <div class="contact-portrait">
@@ -1010,61 +1037,77 @@
         <div class="footer-socials">
           <a href="https://ravshancha.uz/" target="_blank" rel="noopener" data-goal="click_cv">Резюме</a>
           <a href="https://www.linkedin.com/in/ravshancha" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://t.me/ravshanjon_ismoilov" target="_blank" rel="noopener noreferrer" data-goal="click_telegram">Telegram</a>
-          <a href="https://wa.me/998999420770" target="_blank" rel="noopener noreferrer" data-goal="click_whatsapp">WhatsApp</a>
         </div>
         <a class="footer-top" href="#top"><span>Наверх</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up"/></svg></a>
       </nav>
     </div>
   </footer>
 
-  <div class="sticky-cta" role="region" aria-label="Быстрая связь" data-sticky-cta>
+  <div class="sticky-cta" role="region" aria-label="Запись на диагностику" data-sticky-cta>
     <button class="button button-primary" type="button" data-order-open><span>Бесплатная диагностика</span><svg class="site-icon button-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></button>
-    <a class="button sticky-icon-button" href="https://t.me/ravshanjon_ismoilov" target="_blank" rel="noopener noreferrer" aria-label="Telegram" data-goal="click_telegram"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-telegram"/></svg></a>
-    <a class="button sticky-icon-button" href="tel:+998999420770" aria-label="Позвонить: +998 99 942 07 70" data-goal="click_tel"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-phone"/></svg></a>
   </div>
 
   <dialog class="order-dialog" data-order-dialog aria-labelledby="order-title">
     <form class="order-form" data-order-form novalidate>
-      <h2 id="order-title">Запись на бесплатную диагностику</h2>
+      <div class="order-head">
+        <h2 id="order-title">Запись на бесплатную диагностику</h2>
+        <button class="order-x" type="button" data-order-close aria-label="Закрыть"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-close"/></svg></button>
+      </div>
 
       <div class="order-fields" data-order-fields>
-        <p class="order-intro">Оставьте номер — свяжусь с вами в ближайшее время, и согласуем удобное время.</p>
-
-        <div class="order-field">
-          <label for="order-name">Ваше имя</label>
-          <p class="order-example">Например: Алишер Каримов</p>
-          <input id="order-name" name="name" type="text" autocomplete="name" maxlength="80" aria-describedby="order-name-error" required>
-          <p class="order-error" id="order-name-error" hidden>Введите ваше имя.</p>
+        <div class="quiz-progress">
+          <div class="quiz-track" role="progressbar" aria-label="Вопросы" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1" aria-valuetext="1 / 6" data-quiz-progress><span data-quiz-bar></span></div>
+          <p class="quiz-count" aria-hidden="true" data-quiz-count>1 / 6</p>
         </div>
+        <p class="order-intro" data-quiz-intro>5 коротких вопросов — одна минута. Ответы помогут мне подготовиться к разговору.</p>
 
-        <div class="order-field">
-          <label for="order-phone">Номер телефона</label>
-          <p class="order-example">Например: 99 942 07 70</p>
-          <div class="order-phone">
-            <span class="order-prefix" aria-hidden="true">+998</span>
-            <input id="order-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" aria-describedby="order-phone-error" required>
+        <div class="quiz-step" role="group" aria-labelledby="quiz-title-pains" data-quiz-step="pains" data-quiz-label="Проблемы" data-quiz-multi hidden><h3 class="quiz-title" id="quiz-title-pains" tabindex="-1">Какая ситуация вам знакома?</h3><p class="quiz-hint">Можно выбрать несколько.</p><div class="quiz-options"><label class="quiz-option"><input type="checkbox" name="pains" value="report"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Отчёт собирается в конце месяца</span></label><label class="quiz-option"><input type="checkbox" name="pains" value="stock"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Склад не сходится с программой</span></label><label class="quiz-option"><input type="checkbox" name="pains" value="orders"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Заявки теряются</span></label><label class="quiz-option"><input type="checkbox" name="pains" value="person"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Всё держится на одном сотруднике</span></label><label class="quiz-option"><input type="checkbox" name="pains" value="systems"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Системы не общаются между собой</span></label><label class="quiz-option"><input type="checkbox" name="pains" value="money"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Не видно, куда уходят деньги</span></label><label class="quiz-option"><input type="checkbox" name="pains" value="other"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Другое</span></label></div></div>
+        <div class="quiz-step" role="radiogroup" aria-labelledby="quiz-title-industry" data-quiz-step="industry" data-quiz-label="Сфера" hidden><h3 class="quiz-title" id="quiz-title-industry" tabindex="-1">В какой сфере ваш бизнес?</h3><p class="quiz-hint">Выберите один вариант — следующий вопрос откроется сам.</p><div class="quiz-options"><label class="quiz-option"><input type="radio" name="industry" value="trade"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Торговля</span></label><label class="quiz-option"><input type="radio" name="industry" value="production"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Производство</span></label><label class="quiz-option"><input type="radio" name="industry" value="services"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Услуги</span></label><label class="quiz-option"><input type="radio" name="industry" value="other"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Другое</span></label></div></div>
+        <div class="quiz-step" role="radiogroup" aria-labelledby="quiz-title-team" data-quiz-step="team" data-quiz-label="Команда" hidden><h3 class="quiz-title" id="quiz-title-team" tabindex="-1">Сколько человек в команде?</h3><p class="quiz-hint">Выберите один вариант — следующий вопрос откроется сам.</p><div class="quiz-options"><label class="quiz-option"><input type="radio" name="team" value="upto10"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>До 10</span></label><label class="quiz-option"><input type="radio" name="team" value="upto50"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>11–50</span></label><label class="quiz-option"><input type="radio" name="team" value="upto200"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>51–200</span></label><label class="quiz-option"><input type="radio" name="team" value="over200"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Больше 200</span></label></div></div>
+        <div class="quiz-step" role="group" aria-labelledby="quiz-title-systems" data-quiz-step="systems" data-quiz-label="Системы" data-quiz-multi hidden><h3 class="quiz-title" id="quiz-title-systems" tabindex="-1">Чем пользуетесь сейчас?</h3><p class="quiz-hint">Можно выбрать несколько.</p><div class="quiz-options"><label class="quiz-option"><input type="checkbox" name="systems" value="excel"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Excel или Google Таблицы</span></label><label class="quiz-option"><input type="checkbox" name="systems" value="onec"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>1С</span></label><label class="quiz-option"><input type="checkbox" name="systems" value="crm"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>CRM (amoCRM, Битрикс24)</span></label><label class="quiz-option"><input type="checkbox" name="systems" value="site"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Сайт или интернет-магазин</span></label><label class="quiz-option"><input type="checkbox" name="systems" value="chat"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Telegram и блокнот</span></label><label class="quiz-option"><input type="checkbox" name="systems" value="other"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Другая программа</span></label><label class="quiz-option"><input type="checkbox" name="systems" value="none"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Ничего</span></label></div></div>
+        <div class="quiz-step" role="radiogroup" aria-labelledby="quiz-title-timing" data-quiz-step="timing" data-quiz-label="Сроки" hidden><h3 class="quiz-title" id="quiz-title-timing" tabindex="-1">Когда хотите начать?</h3><p class="quiz-hint">Выберите один вариант — следующий вопрос откроется сам.</p><div class="quiz-options"><label class="quiz-option"><input type="radio" name="timing" value="asap"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Как можно скорее</span></label><label class="quiz-option"><input type="radio" name="timing" value="quarter"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>В ближайшие 1–3 месяца</span></label><label class="quiz-option"><input type="radio" name="timing" value="research"><span class="quiz-mark"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg></span><span>Пока изучаю</span></label></div></div>
+
+        <div class="quiz-step quiz-contact" role="group" aria-labelledby="quiz-title-contact" data-quiz-step="contact" hidden>
+          <h3 class="quiz-title" id="quiz-title-contact" tabindex="-1">Последний шаг — ваши контакты</h3>
+          <p class="quiz-hint">Оставьте номер — свяжусь с вами в ближайшее время, и согласуем удобное время.</p>
+
+          <div class="order-field">
+            <label for="order-name">Ваше имя</label>
+            <p class="order-example">Например: Алишер Каримов</p>
+            <input id="order-name" name="name" type="text" autocomplete="name" maxlength="80" aria-describedby="order-name-error" required>
+            <p class="order-error" id="order-name-error" hidden>Введите ваше имя.</p>
           </div>
-          <p class="order-error" id="order-phone-error" hidden>Только цифры, 9 знаков: 999420770.</p>
+
+          <div class="order-field">
+            <label for="order-phone">Номер телефона</label>
+            <p class="order-example">Например: 90 123 45 67</p>
+            <div class="order-phone">
+              <span class="order-prefix" aria-hidden="true">+998</span>
+              <input id="order-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" aria-describedby="order-phone-error" required>
+            </div>
+            <p class="order-error" id="order-phone-error" hidden>Только цифры, 9 знаков: 901234567.</p>
+          </div>
+
+          <div class="order-field">
+            <label for="order-info">Комментарий (необязательно)</label>
+            <p class="order-example">Например: заявки с сайта должны сами попадать в amoCRM.</p>
+            <textarea id="order-info" name="info" rows="3" maxlength="1000"></textarea>
+          </div>
+
+          <div class="order-hp" aria-hidden="true">
+            <label for="order-website">Website</label>
+            <input id="order-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <p class="order-consent">Отправляя форму, вы соглашаетесь на использование ваших данных для связи с вами.</p>
         </div>
 
-        <div class="order-field">
-          <label for="order-info">Какая проблема беспокоит? (необязательно)</label>
-          <p class="order-example">Например: оптовая торговля, 25 сотрудников. Остатки на складе не сходятся с программой, отчёты собираем в Excel.</p>
-          <textarea id="order-info" name="info" rows="3" maxlength="1000"></textarea>
+        <div class="order-actions quiz-actions">
+          <button class="button order-cancel quiz-back" type="button" data-quiz-back hidden><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-left"/></svg><span>Назад</span></button>
+          <button class="button button-primary" type="button" data-quiz-next><span>Далее</span><svg class="site-icon button-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></button>
+          <button class="button button-primary" type="submit" data-order-submit hidden><span data-order-submit-label>Отправить</span><svg class="site-icon button-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></button>
         </div>
-
-        <div class="order-hp" aria-hidden="true">
-          <label for="order-website">Website</label>
-          <input id="order-website" name="website" type="text" tabindex="-1" autocomplete="off">
-        </div>
-
-        <p class="order-consent">Отправляя форму, вы соглашаетесь на использование ваших данных для связи с вами.</p>
-
-        <div class="order-actions">
-          <button class="button order-cancel" type="button" data-order-close>Отмена</button>
-          <button class="button button-primary" type="submit" data-order-submit><span data-order-submit-label>Отправить</span><svg class="site-icon button-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></button>
-        </div>
+        <p class="quiz-skip" data-quiz-skip-row><button type="button" data-quiz-skip>Оставить номер без вопросов</button></p>
       </div>
 
       <div class="order-state" data-order-success role="status" hidden>
@@ -1087,7 +1130,7 @@
   </dialog>
 
   <script>
-    const SITE = {"root": "../", "assets": "../assets/", "lang": "ru", "telegram": "ravshanjon_ismoilov", "metrikaId": 0, "t": {"themeDark": "Тёмная", "themeLight": "Светлая", "submit": "Отправить", "sending": "Отправка…", "messageTitle": "Заявка на диагностику", "name": "Ваше имя", "phone": "Номер телефона", "info": "Проблема"}};
+    const SITE = {"root": "../", "assets": "../assets/", "lang": "ru", "telegram": "ravshanjon_ismoilov", "metrikaId": 0, "t": {"themeDark": "Тёмная", "themeLight": "Светлая", "submit": "Отправить", "sending": "Отправка…", "messageTitle": "Заявка на диагностику", "name": "Ваше имя", "phone": "Номер телефона", "info": "Комментарий"}};
 
     const header = document.querySelector("[data-header]");
     const menu = document.querySelector("[data-menu]");
@@ -1272,18 +1315,95 @@
       });
     });
 
+    // Quiz: one question per step, the contact fields come last. Every question may be left unanswered,
+    // and the answers stay in the form while the dialog is closed.
+    const quizSteps = [...orderForm.querySelectorAll("[data-quiz-step]")];
+    const quizContactIndex = quizSteps.length - 1;
+    const quizProgress = document.querySelector("[data-quiz-progress]");
+    const quizBar = document.querySelector("[data-quiz-bar]");
+    const quizCount = document.querySelector("[data-quiz-count]");
+    const quizIntro = document.querySelector("[data-quiz-intro]");
+    const quizBack = document.querySelector("[data-quiz-back]");
+    const quizNext = document.querySelector("[data-quiz-next]");
+    const quizSkipRow = document.querySelector("[data-quiz-skip-row]");
+    const quizTrail = [];
+    let quizIndex = 0;
+    let quizAdvanceTimer = 0;
+    let quizPointerPick = false;
+
+    const showQuizStep = (index, focus = true) => {
+      clearTimeout(quizAdvanceTimer);
+      quizIndex = Math.min(Math.max(index, 0), quizContactIndex);
+      const isContact = quizIndex === quizContactIndex;
+      const position = `${quizIndex + 1} / ${quizSteps.length}`;
+      quizSteps.forEach((step, stepIndex) => { step.hidden = stepIndex !== quizIndex; });
+      quizIntro.hidden = quizIndex !== 0;
+      quizBack.hidden = quizIndex === 0;
+      quizNext.hidden = isContact;
+      orderSubmit.hidden = !isContact;
+      quizSkipRow.hidden = isContact;
+      quizBar.style.width = `${((quizIndex + 1) / quizSteps.length) * 100}%`;
+      quizCount.textContent = position;
+      quizProgress.setAttribute("aria-valuenow", String(quizIndex + 1));
+      quizProgress.setAttribute("aria-valuetext", position);
+      if (focus) (isContact ? orderForm.elements.name : quizSteps[quizIndex].querySelector(".quiz-title")).focus();
+    };
+
+    const goToQuizStep = (index) => {
+      quizTrail.push(quizIndex);
+      showQuizStep(index);
+      track(`quiz_step_${quizIndex + 1}`);
+    };
+
+    const resetQuiz = () => {
+      quizTrail.length = 0;
+      showQuizStep(0, false);
+    };
+
+    // Answers as option codes for the endpoint, and as readable lines for the Telegram fallback message.
+    const readQuizAnswers = () => {
+      const answers = {};
+      const lines = [];
+      quizSteps.slice(0, quizContactIndex).forEach((step) => {
+        const checked = [...step.querySelectorAll("input:checked")];
+        if (!checked.length) return;
+        answers[step.dataset.quizStep] = step.hasAttribute("data-quiz-multi") ? checked.map((input) => input.value) : checked[0].value;
+        lines.push(`${step.dataset.quizLabel}: ${checked.map((input) => input.closest("label").textContent.trim()).join("; ")}`);
+      });
+      return { answers, lines };
+    };
+
+    quizNext.addEventListener("click", () => goToQuizStep(quizIndex + 1));
+    quizBack.addEventListener("click", () => showQuizStep(quizTrail.length ? quizTrail.pop() : quizIndex - 1));
+    document.querySelector("[data-quiz-skip]").addEventListener("click", () => {
+      goToQuizStep(quizContactIndex);
+      track("quiz_skip");
+    });
+
+    // A tap on a single-choice answer opens the next question by itself. Arrow keys also "click" radio
+    // buttons while moving between them, so keyboard users keep the Continue button instead.
+    orderStates.form.addEventListener("pointerdown", (event) => { quizPointerPick = Boolean(event.target.closest(".quiz-option")); });
+    orderStates.form.addEventListener("keydown", () => { quizPointerPick = false; });
+    orderStates.form.addEventListener("click", (event) => {
+      if (event.target.type !== "radio" || !quizPointerPick) return;
+      quizPointerPick = false;
+      clearTimeout(quizAdvanceTimer);
+      quizAdvanceTimer = setTimeout(() => goToQuizStep(quizIndex + 1), 240);
+    });
+
     const openOrderDialog = () => {
       closeMenu();
       showOrderState("form");
       orderFallbackNote.hidden = true;
       orderFields.forEach((field) => markField(field, false));
       orderDialog.showModal();
-      orderForm.elements.name.focus();
+      showQuizStep(quizIndex);
       track("lead_open");
     };
 
     document.querySelectorAll("[data-order-open]").forEach((button) => button.addEventListener("click", openOrderDialog));
     document.querySelectorAll("[data-order-close]").forEach((button) => button.addEventListener("click", () => orderDialog.close()));
+    orderDialog.addEventListener("close", () => clearTimeout(quizAdvanceTimer));
     orderDialog.addEventListener("click", (event) => {
       if (event.target === orderDialog) orderDialog.close();
     });
@@ -1335,6 +1455,11 @@
 
     orderForm.addEventListener("submit", async (event) => {
       event.preventDefault();
+      // Enter inside a question submits the form as well: before the contact step it only means "continue".
+      if (quizIndex !== quizContactIndex) {
+        goToQuizStep(quizIndex + 1);
+        return;
+      }
       let firstInvalid = null;
       orderFields.forEach((field) => {
         const valid = field.isValid(field.input.value);
@@ -1345,10 +1470,12 @@
         firstInvalid.focus();
         return;
       }
+      const quiz = readQuizAnswers();
       const lead = {
         name: orderForm.elements.name.value.trim(),
         phone: orderForm.elements.phone.value,
         info: orderForm.elements.info.value.trim(),
+        answers: quiz.answers,
         website: orderForm.elements.website.value,
         lang: SITE.lang,
         page: window.location.pathname
@@ -1358,6 +1485,7 @@
       try {
         await sendLead(lead);
         orderForm.reset();
+        resetQuiz();
         showOrderState("success");
         orderStates.success.querySelector("[data-order-close]").focus();
         track("lead_sent");
@@ -1366,6 +1494,7 @@
           SITE.t.messageTitle,
           `${SITE.t.name}: ${lead.name}`,
           `${SITE.t.phone}: +998${lead.phone}`,
+          ...quiz.lines,
           lead.info ? `${SITE.t.info}: ${lead.info}` : ""
         ].filter(Boolean).join("\n");
         orderFallbackLink.href = `https://t.me/${SITE.telegram}?text=${encodeURIComponent(message)}`;

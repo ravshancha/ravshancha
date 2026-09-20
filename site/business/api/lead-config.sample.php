@@ -9,4 +9,7 @@
 return [
     'bot_token' => '',
     'chat_id' => '',
+    // Optional, normally absent: another address for the Telegram Bot API — a relay when the host cannot
+    // reach api.telegram.org, or a local stand-in while testing (see tools/business/README.md).
+    // 'api_base' => 'https://api.telegram.org',
 ];

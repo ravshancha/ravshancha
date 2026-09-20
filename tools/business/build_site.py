@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Builds the selling site from template.html + content.py: one static page per language
-# (site/business/index.html for the first language, site/business/<lang>/index.html for the others) and sitemap.xml.
+# (site/business/index.html for the first language, site/business/<lang>/index.html for the others), sitemap.xml
+# and api/lead-quiz.php (the quiz answers the lead endpoint accepts).
 # Standard library only.
 # Usage: python3 tools/business/build_site.py [output-dir]
 import datetime, html, json, os, re, sys
@@ -9,11 +10,12 @@ from urllib.parse import urljoin, urlparse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from content import L, LANGS, OPENAPI_DOCS, SETTINGS
+from content import L, LANGS, OPENAPI_DOCS, PAIN_CODES, SETTINGS
 
 REPO = os.path.normpath(os.path.join(HERE, "..", ".."))
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, "site", "business")
 TOKEN = re.compile(r"\{\{([a-z0-9_]+)\}\}")
+CODE = re.compile(r"^[a-z][a-z0-9-]{0,23}$")  # quiz keys and option codes: they travel to api/lead.php
 
 # 24-unit stroke icons, wrapped the same way as the icon sprite of ravshancha.uz.
 ICON_WRAP = ('    <symbol id="icon-{name}" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" '
@@ -23,11 +25,9 @@ ICONS = {
     "moon": '<path d="M20.6 14.3A9.3 9.3 0 1 1 9.7 3.4 7.3 7.3 0 0 0 20.6 14.3z"/>',
     "chevron-down": '<path d="M2.4 8.4L12 18l9.6-9.6"/>',
     "arrow-right": '<path d="M2.4 12h19.2M13.4 3.8L21.6 12l-8.2 8.2"/>',
+    "arrow-left": '<path d="M21.6 12H2.4M10.6 3.8L2.4 12l8.2 8.2"/>',
     "arrow-up": '<path d="M12 21.6V2.4M3.8 10.6L12 2.4l8.2 8.2"/>',
     "arrow-up-right": '<path d="M5.4 18.6L18.6 5.4"/><path d="M8.4 5.4h10.2v10.2"/>',
-    "telegram": '<path d="M3.5 4.4a1.2 1.2 0 0 0-1.7 1.5l2 5.4a1.2 1.2 0 0 1 0 .8l-2 5.4a1.2 1.2 0 0 0 1.7 1.5l17.6-7.2a1.2 1.2 0 0 0 0-2.2z"/><path d="M4.4 12h7.2"/>',
-    "whatsapp": '<path d="M3.1 20.9l1.3-4.7A8.9 8.9 0 1 1 7.8 19.6l-4.7 1.3z"/><path d="M8.9 8.4c.3-.1.6 0 .8.3l.8 1.5c.1.3.1.6-.1.8l-.5.6c-.2.2-.2.4-.1.6.5.9 1.3 1.7 2.2 2.2.2.1.4.1.6-.1l.6-.5c.2-.2.5-.2.8-.1l1.5.8c.3.2.4.5.3.8-.2.8-1 1.3-1.8 1.3-2.8 0-6.1-3.3-6.1-6.1 0-.8.5-1.6 1.3-1.8z"/>',
-    "phone": '<path d="M21.6 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.7 4.1 2 2 0 0 1 3.7 2h3a2 2 0 0 1 2 1.7 12.8 12.8 0 0 0 .7 2.8 2 2 0 0 1-.5 2.1L7.7 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4 12.8 12.8 0 0 0 2.8.7 2 2 0 0 1 1.7 2z"/>',
     "link": '<path d="M10.2 13.2a4.8 4.8 0 0 0 7.2.5l2.4-2.4a4.8 4.8 0 0 0-6.8-6.8l-1.4 1.4"/><path d="M13.8 10.8a4.8 4.8 0 0 0-7.2-.5l-2.4 2.4a4.8 4.8 0 0 0 6.8 6.8l1.4-1.4"/>',
     "clock": '<circle cx="12" cy="12" r="9.8"/><path d="M12 6.2V12l3.9 2.4"/>',
     "team": '<path d="M15.4 20.6v-2a4 4 0 0 0-4-4H5.9a4 4 0 0 0-4 4v2"/><circle cx="8.7" cy="6.8" r="3.6"/><path d="M22.1 20.6v-2a4 4 0 0 0-3-3.9M15.9 3.5a3.6 3.6 0 0 1 0 6.9"/>',
@@ -43,6 +43,7 @@ ICONS = {
     "doc": '<path d="M13.8 2.4H6.4a1.8 1.8 0 0 0-1.8 1.8v15.6a1.8 1.8 0 0 0 1.8 1.8h11.2a1.8 1.8 0 0 0 1.8-1.8V8z"/><path d="M13.8 2.4V8h5.6M8.4 13h7.2M8.4 17h7.2"/>',
     "check": '<path d="M3.6 12.6l5.4 5.4L20.4 6.6"/>',
     "plus": '<path d="M12 4.2v15.6M4.2 12h15.6"/>',
+    "close": '<path d="M4.8 4.8l14.4 14.4M19.2 4.8L4.8 19.2"/>',
 }
 
 
@@ -59,6 +60,21 @@ def icon(name, extra=""):
 
 def lines(items, indent):
     return "\n".join(" " * indent + item for item in items)
+
+
+def php_string(text):
+    return "'" + str(text).replace("\\", "\\\\").replace("'", "\\'") + "'"
+
+
+def quiz_questions(t):
+    # Every question with its full option list; the one marked from_pains offers the pain titles first.
+    questions = []
+    for question in t["quiz"]:
+        options = list(question["options"])
+        if question.get("from_pains"):
+            options = [(code, title) for code, (_, title, _) in zip(PAIN_CODES, t["pains"])] + options
+        questions.append(dict(question, options=options, multi=bool(question.get("multi"))))
+    return questions
 
 
 def render_fragments(t, lang):
@@ -100,6 +116,19 @@ def render_fragments(t, lang):
     f["faq_html"] = lines([
         f'<details class="faq-item"><summary><span>{esc(question)}</span>{icon("plus")}</summary><p>{esc(answer)}</p></details>'
         for question, answer in t["faq"]], 10)
+    steps = []
+    for question in quiz_questions(t):
+        key, kind = esc(question["key"]), "checkbox" if question["multi"] else "radio"
+        choices = "".join(
+            f'<label class="quiz-option"><input type="{kind}" name="{key}" value="{esc(code)}"><span class="quiz-mark">{icon("check")}</span><span>{esc(label)}</span></label>'
+            for code, label in question["options"])
+        steps.append(
+            f'<div class="quiz-step" role="{"group" if question["multi"] else "radiogroup"}" aria-labelledby="quiz-title-{key}" data-quiz-step="{key}" '
+            f'data-quiz-label="{esc(question["label"])}"{" data-quiz-multi" if question["multi"] else ""} hidden>'
+            f'<h3 class="quiz-title" id="quiz-title-{key}" tabindex="-1">{esc(question["title"])}</h3>'
+            f'<p class="quiz-hint">{esc(t["quiz_hint_multi" if question["multi"] else "quiz_hint_single"])}</p>'
+            f'<div class="quiz-options">{choices}</div></div>')
+    f["quiz_steps_html"] = lines(steps, 8)
     return f
 
 
@@ -135,7 +164,6 @@ def render_page(template, lang):
         "description": t["og_description"],
         "url": page_url(lang),
         "image": og_image,
-        "telephone": SETTINGS["phone_e164"],
         "address": {"@type": "PostalAddress", "addressLocality": "Tashkent", "addressCountry": "UZ"},
         "areaServed": {"@type": "Country", "name": "Uzbekistan"},
         "knowsLanguage": list(LANGS),
@@ -189,8 +217,8 @@ def render_page(template, lang):
         lang=lang, root=root, assets=assets, og_image=og_image, canonical=page_url(lang), base_url=SETTINGS["base_url"], og_locale=meta["og_locale"],
         lang_code=meta["code"], lang_name=meta["name"], lang_flag=meta["flag"],
         person=SETTINGS["person"], cv_url=SETTINGS["cv_url"], linkedin=SETTINGS["linkedin"],
-        phone_display=SETTINGS["phone_display"], phone_e164=SETTINGS["phone_e164"],
-        telegram_url="https://t.me/" + SETTINGS["telegram"], whatsapp_url="https://wa.me/" + SETTINGS["whatsapp"],
+        telegram_url="https://t.me/" + SETTINGS["telegram"],  # the order form's fallback link; the page itself shows no contact channels
+        quiz_intro=t["quiz_intro"].format(count=len(t["quiz"])), quiz_total=str(len(t["quiz"]) + 1),  # the contact fields are the last step
         language_options_html=lines(options, 14), alternates_html="\n".join(alternates), og_alternates_html="\n".join(og_alternates),
         json_ld_html=json.dumps(json_ld, ensure_ascii=False, indent=2).replace("</", "<\\/"),
         site_json_html=json.dumps(site, ensure_ascii=False).replace("</", "<\\/"),
@@ -219,6 +247,21 @@ def main():
     if not SETTINGS["base_url"].endswith("/"):
         raise SystemExit("SETTINGS['base_url'] must end with a slash")
 
+    # The quiz sends codes, not texts: every language has to describe the same questions and options.
+    quiz_shape = None
+    for lang, t in L.items():
+        if len(t["pains"]) != len(PAIN_CODES):
+            raise SystemExit(f"content.py: PAIN_CODES must name every pain, in order ({lang})")
+        shape = [(question["key"], question["multi"], [code for code, _ in question["options"]]) for question in quiz_questions(t)]
+        bad = sorted({code for key, _, codes in shape for code in [key] + codes if not CODE.match(code)})
+        if bad:
+            raise SystemExit(f"content.py: quiz keys and option codes are lowercase latin, digits and '-' ({lang}): {', '.join(bad)}")
+        if len({key for key, _, _ in shape}) != len(shape) or any(len(set(codes)) != len(codes) for _, _, codes in shape):
+            raise SystemExit(f"content.py: the quiz repeats a question key or an option code ({lang})")
+        if quiz_shape is not None and shape != quiz_shape:
+            raise SystemExit(f"content.py: the quiz in '{lang}' differs from the first language in keys, order or option codes")
+        quiz_shape = quiz_shape or shape
+
     with open(os.path.join(HERE, "template.html"), encoding="utf-8") as source:
         template = source.read()
 
@@ -228,6 +271,20 @@ def main():
         with open(target, "w", encoding="utf-8") as out:
             out.write(render_page(template, lang))
         print(f"{lang}: {os.path.relpath(target, REPO)}  ({os.path.getsize(target) // 1024} KB)")
+
+    # api/lead.php accepts only these answer codes and writes their labels (first language) into the message.
+    quiz_rows = []
+    for question in quiz_questions(reference):
+        options = ", ".join(f"{php_string(code)} => {php_string(label)}" for code, label in question["options"])
+        quiz_rows.append(f"    {php_string(question['key'])} => ['label' => {php_string(question['label'])}, "
+                         f"'multi' => {'true' if question['multi'] else 'false'}, 'options' => [{options}]],\n")
+    quiz_map = os.path.join(OUT, "api", "lead-quiz.php")
+    os.makedirs(os.path.dirname(quiz_map), exist_ok=True)
+    with open(quiz_map, "w", encoding="utf-8") as out:
+        out.write("<?php\n// Generated by tools/business/build_site.py from content.py — do not edit by hand.\n"
+                  "// The quiz answers lead.php accepts: question key => label, multi, option code => label.\n"
+                  "return [\n" + "".join(quiz_rows) + "];\n")
+    print(f"quiz: {os.path.relpath(quiz_map, REPO)}  ({len(quiz_rows)} questions)")
 
     today = datetime.date.today().isoformat()
     alternates = "".join(f'    <xhtml:link rel="alternate" hreflang="{code}" href="{esc(page_url(code))}"/>\n' for code in LANGS)
