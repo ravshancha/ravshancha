@@ -299,11 +299,17 @@ function imap_store_sent(array $smtp, string $message): bool
 // one is configured, and otherwise through the host's own mail(), which shared hosting often disables.
 function mail_lead(array $recipients, string $from, array $lead, array $smtp, string $helo): string
 {
+    // The quiz answers come in as several lines, so the description gets a block of its own instead of being
+    // glued to its label: in a mail client that is the difference between reading it and squinting at it.
     $lines = [
         'Yangi ariza — loyiha buyurtmasi',
         'Ism: ' . $lead['name'],
         'Telefon: ' . $lead['phone'],
-        'Loyiha haqida: ' . $lead['info'],
+        'Manba: ' . $lead['source'],
+        '',
+        'Loyiha haqida:',
+        $lead['info'],
+        '',
         'Til: ' . $lead['lang'] . ($lead['page'] !== '' ? ' · Sahifa: ' . $lead['page'] : ''),
         'Vaqt: ' . $lead['time'] . ' (Toshkent)',
         '',
@@ -311,7 +317,8 @@ function mail_lead(array $recipients, string $from, array $lead, array $smtp, st
             ? 'Bu ariza «Lidlar» jadvaliga ham yozildi — statusni o‘sha yerda yuriting.'
             : 'Diqqat: bu ariza Google Sheets jadvaliga yozilmadi — uni jadvalga qo‘lda kiriting.',
     ];
-    $subject = '=?UTF-8?B?' . base64_encode('ravshancha.uz: yangi ariza — ' . $lead['name']) . '?=';
+    $subject = '=?UTF-8?B?' . base64_encode('ravshancha.uz: yangi ariza — ' . $lead['name']
+        . ' (' . $lead['source'] . ')') . '?=';
     $body = implode("\n", $lines);
     if ($smtp['host'] !== '') {
         $message = build_message($from, $recipients, $subject, $body, $helo);
