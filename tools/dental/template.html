@@ -544,7 +544,6 @@
       .faq-item summary { padding: 18px 0; font-size: 1.04rem; }
       .contact-actions { justify-items: stretch; }
       .contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-      .contact-row > a:last-child:nth-child(odd) { grid-column: 1 / -1; }
       .contact-row-main { grid-template-columns: 1fr; }
       .contact-button { width: 100%; }
       .footer-inner { align-items: flex-start; flex-direction: column; }
@@ -795,11 +794,6 @@
             <div class="contact-row contact-row-main">
               <a class="button contact-button contact-button-solid" href="{{apply_url}}" target="_blank" rel="noopener" data-goal="click_apply"><span>{{cta_primary}}</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></a>
               <button class="button contact-button contact-button-ghost" type="button" data-order-open><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-phone"/></svg><span>{{cta_call}}</span></button>
-            </div>
-            <div class="contact-row">
-              <a class="button contact-button contact-button-ghost" href="{{telegram_url}}" target="_blank" rel="noopener noreferrer" data-goal="click_telegram"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-telegram"/></svg><span>Telegram</span></a>
-              <a class="button contact-button contact-button-ghost" href="{{whatsapp_url}}" target="_blank" rel="noopener noreferrer" data-goal="click_whatsapp"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-whatsapp"/></svg><span>WhatsApp</span></a>
-              <a class="button contact-button contact-button-ghost" href="tel:{{phone_e164}}" aria-label="{{phone_label}}" data-goal="click_tel"><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-phone"/></svg><span>{{phone_display}}</span></a>
             </div>
           </div>
         </div>
