@@ -7,6 +7,20 @@
 // is not lost while this endpoint is unconfigured.
 declare(strict_types=1);
 
+// A warning or a fatal error printed into the body would leave the page with a 200 it cannot read, so errors
+// are kept out of the answer and a death before respond() is turned into a status the page can name.
+ini_set('display_errors', '0');
+register_shutdown_function(static function (): void {
+    $error = error_get_last();
+    if ($error === null || !in_array($error['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR], true)) {
+        return;
+    }
+    if (!headers_sent()) {
+        http_response_code(500);
+    }
+    echo json_encode(['ok' => false, 'error' => 'server']);
+});
+
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 header('X-Content-Type-Options: nosniff');
@@ -61,6 +75,10 @@ function save_to_sheet(string $url, string $secret, array $lead): bool
 // Backup notification, used only when the sheet did not take the lead.
 function mail_lead(string $to, string $from, array $lead): bool
 {
+    // Shared hosting sometimes disables mail() outright; calling it then is a fatal error, not a false.
+    if (!function_exists('mail')) {
+        return false;
+    }
     $lines = [
         'Yangi ariza — loyiha buyurtmasi',
         'Ism: ' . $lead['name'],
