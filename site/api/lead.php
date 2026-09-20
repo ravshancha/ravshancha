@@ -93,7 +93,7 @@ function smtp_command($socket, string $command): int
 
 // Sends the message through the domain's own mailbox. Hosts that disable mail() still allow this connection,
 // and a message authenticated as noreply@<domain> passes the domain's SPF instead of looking forged.
-function smtp_send(array $smtp, string $from, array $recipients, string $subject, string $body, string $helo): string
+function smtp_send(array $smtp, string $from, array $recipients, string $message): string
 {
     $port = (int)$smtp['port'];
     $socket = @stream_socket_client(
@@ -112,6 +112,7 @@ function smtp_send(array $smtp, string $from, array $recipients, string $subject
         return 'smtp_connect';
     }
     stream_set_timeout($socket, 10);
+    $helo = $smtp['helo'] !== '' ? $smtp['helo'] : 'localhost';
     $ok = smtp_reply($socket) === 220 && smtp_command($socket, 'EHLO ' . $helo) === 250;
     if (!$ok) {
         fclose($socket);
@@ -146,25 +147,121 @@ function smtp_send(array $smtp, string $from, array $recipients, string $subject
     }
     $ok = $accepted !== [] && smtp_command($socket, 'DATA') === 354;
     if ($ok) {
-        $headers = [
-            'Date: ' . date('r'),
-            'Message-ID: <' . bin2hex(random_bytes(12)) . '@' . $helo . '>',
-            'From: ' . $from,
-            'To: ' . implode(', ', $accepted),
-            'Subject: ' . $subject,
-            'MIME-Version: 1.0',
-            'Content-Type: text/plain; charset=UTF-8',
-            'Content-Transfer-Encoding: 8bit',
-        ];
         // A line of its own that starts with a dot would end the message early, so such a dot is doubled.
-        $data = implode("\r\n", $headers) . "\r\n\r\n"
-            . preg_replace('/^\./m', '..', str_replace("\n", "\r\n", $body));
-        fwrite($socket, $data . "\r\n.\r\n");
+        fwrite($socket, preg_replace('/^\./m', '..', $message) . "\r\n.\r\n");
         $ok = smtp_reply($socket) === 250;
     }
     smtp_command($socket, 'QUIT');
     fclose($socket);
     return $ok ? '' : 'smtp_send';
+}
+
+// The message as it goes over the wire: CRLF line endings, headers first.
+function build_message(string $from, array $recipients, string $subject, string $body, string $helo): string
+{
+    $headers = [
+        'Date: ' . date('r'),
+        'Message-ID: <' . bin2hex(random_bytes(12)) . '@' . $helo . '>',
+        'From: ' . $from,
+        'To: ' . implode(', ', $recipients),
+        'Subject: ' . $subject,
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=UTF-8',
+        'Content-Transfer-Encoding: 8bit',
+    ];
+    return implode("\r\n", $headers) . "\r\n\r\n" . str_replace("\n", "\r\n", $body);
+}
+
+// One IMAP exchange: everything up to the tagged answer, or to the "+" that asks for the message itself.
+function imap_talk($socket, string $tag, string $command): array
+{
+    fwrite($socket, $tag . ' ' . $command . "\r\n");
+    $lines = [];
+    while (($line = fgets($socket, 8192)) !== false) {
+        $lines[] = rtrim($line, "\r\n");
+        if (strpos($line, $tag . ' ') === 0 || $line[0] === '+') {
+            break;
+        }
+    }
+    return $lines;
+}
+
+function imap_ok(array $lines, string $tag): bool
+{
+    $last = end($lines);
+    return is_string($last) && (strpos($last, $tag . ' OK') === 0 || $last[0] === '+');
+}
+
+// Keeps a copy of the notification in the mailbox's Sent folder, so the owner sees it in webmail next to
+// everything else he sends. SMTP alone never does this: a sent folder is filled by the mail client.
+function imap_store_sent(array $smtp, string $message): bool
+{
+    $port = (int)$smtp['imap_port'];
+    $socket = @stream_socket_client(
+        ($port === 143 ? 'tcp://' : 'ssl://') . $smtp['imap_host'] . ':' . $port,
+        $number,
+        $problem,
+        8,
+        STREAM_CLIENT_CONNECT,
+        stream_context_create(['ssl' => [
+            'verify_peer' => $smtp['verify'],
+            'verify_peer_name' => $smtp['verify'],
+            'SNI_enabled' => true,
+        ]])
+    );
+    if ($socket === false) {
+        return false;
+    }
+    stream_set_timeout($socket, 10);
+    fgets($socket, 8192);
+    if ($port === 143 && (!imap_ok(imap_talk($socket, 'r1', 'STARTTLS'), 'r1')
+        || @stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT) !== true)) {
+        fclose($socket);
+        return false;
+    }
+    $login = 'LOGIN "' . addcslashes($smtp['user'], '"\\') . '" "' . addcslashes($smtp['pass'], '"\\') . '"';
+    if (!imap_ok(imap_talk($socket, 'r2', $login), 'r2')) {
+        fclose($socket);
+        return false;
+    }
+    // cPanel calls the folder INBOX.Sent, other servers just Sent; the server's own \Sent flag decides.
+    $folder = $smtp['imap_folder'];
+    if ($folder === '') {
+        $folder = 'INBOX.Sent';
+        foreach (imap_talk($socket, 'r3', 'LIST "" "*"') as $line) {
+            if (preg_match('/^\* LIST \(([^)]*)\) "?[^" ]*"? "?([^"]+)"?$/', $line, $found)) {
+                if (stripos($found[1], '\\Sent') !== false) {
+                    $folder = $found[2];
+                    break;
+                }
+                if (preg_match('/(^|[.\/])Sent$/i', $found[2])) {
+                    $folder = $found[2];
+                }
+            }
+        }
+    }
+    $append = 'APPEND "' . addcslashes($folder, '"\\') . '" (\\Seen) {' . strlen($message) . '}';
+    $answer = imap_talk($socket, 'r4', $append);
+    if (!imap_ok($answer, 'r4')) {
+        // A server that has no such folder yet answers [TRYCREATE]; make it and append again.
+        if (stripos(implode(' ', $answer), 'TRYCREATE') === false
+            || !imap_ok(imap_talk($socket, 'r5', 'CREATE "' . addcslashes($folder, '"\\') . '"'), 'r5')
+            || !imap_ok(imap_talk($socket, 'r6', $append), 'r6')) {
+            fclose($socket);
+            return false;
+        }
+    }
+    fwrite($socket, $message . "\r\n");
+    $stored = false;
+    while (($line = fgets($socket, 8192)) !== false) {
+        if (strpos($line, 'r4 ') === 0 || strpos($line, 'r6 ') === 0) {
+            $stored = strpos($line, ' OK') !== false;
+            break;
+        }
+    }
+    imap_talk($socket, 'r9', 'LOGOUT');
+    fclose($socket);
+    return $stored;
 }
 
 // Notification to the owner, used when the sheet did not take the lead. Sent through the domain's mailbox when
@@ -184,7 +281,13 @@ function mail_lead(array $recipients, string $from, array $lead, array $smtp, st
     $subject = '=?UTF-8?B?' . base64_encode('ravshancha.uz: yangi ariza — ' . $lead['name']) . '?=';
     $body = implode("\n", $lines);
     if ($smtp['host'] !== '') {
-        return smtp_send($smtp, $from, $recipients, $subject, $body, $helo);
+        $message = build_message($from, $recipients, $subject, $body, $helo);
+        $problem = smtp_send($smtp, $from, $recipients, $message);
+        if ($problem === '' && $smtp['imap_host'] !== '') {
+            // Best effort: the owner already has the message, a missing copy must not fail the request.
+            imap_store_sent($smtp, $message);
+        }
+        return $problem;
     }
     // Shared hosting sometimes disables mail() outright; calling it then is a fatal error, not a false.
     if (!function_exists('mail')) {
@@ -233,6 +336,10 @@ if ($sheetsUrl === '' && $notifyList === []) {
 }
 $smtp = [
     'host' => trim((string)($config['smtp_host'] ?? '')),
+    'imap_host' => trim((string)($config['imap_host'] ?? '')),
+    'imap_port' => (int)($config['imap_port'] ?? 993) ?: 993,
+    'imap_folder' => trim((string)($config['imap_folder'] ?? '')),
+    'helo' => '',
     'port' => (int)($config['smtp_port'] ?? 465) ?: 465,
     'user' => trim((string)($config['smtp_user'] ?? '')),
     'pass' => (string)($config['smtp_pass'] ?? ''),
@@ -260,6 +367,7 @@ $phone = (string)($data['phone'] ?? '');
 $info = trim((string)($data['info'] ?? ''));
 $lang = in_array($data['lang'] ?? '', ['uz', 'ru', 'en'], true) ? $data['lang'] : 'uz';
 $page = substr(preg_replace('/[^\w\/\-.]/', '', (string)($data['page'] ?? '')) ?? '', 0, 120);
+$smtp['helo'] = $host ?: 'ravshancha.uz';
 
 if (text_length($name) < 2 || text_length($name) > 80 || !preg_match('/^[0-9]{9}$/', $phone)
     || text_length($info) < 10 || text_length($info) > 1000) {

@@ -29,6 +29,8 @@ Add these under **Settings → Secrets and variables → Actions → Variables**
   `mail.ravshancha.uz`, `465` and `noreply@ravshancha.uz` by default
 - `LEAD_SMTP_VERIFY` — `0` turns off the certificate check, for a mail server whose certificate does not
   match its hostname
+- `LEAD_IMAP_HOST` / `LEAD_IMAP_PORT` / `LEAD_IMAP_FOLDER` — where the copy of the notification is filed;
+  the SMTP host, `993` and the server's own Sent folder by default
 
 The deploy job remains safely skipped until `CPANEL_DEPLOY_ENABLED` is set to `true`.
 
@@ -49,7 +51,9 @@ back to the visitor's own Telegram. A copy edited by hand on the server is overw
 change the repository secrets and variables instead, then re-run the deploy.
 
 The notification is sent through the domain's own mailbox over SMTP as soon as `LEAD_SMTP_PASSWORD` is set:
-port 465 connects with TLS, any other port demands STARTTLS before the password is sent. This hosting answers
+port 465 connects with TLS, any other port demands STARTTLS before the password is sent. A copy is then filed
+in that mailbox's Sent folder over IMAP, because a message handed to SMTP is not stored anywhere by itself;
+that copy is best effort and never fails the request. This hosting answers
 `mail()` with a fatal error, so without that secret a request ends as `502 delivery` and the visitor is offered
 the Telegram fallback.
 

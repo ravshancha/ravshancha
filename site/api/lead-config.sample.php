@@ -21,4 +21,9 @@ return [
     'smtp_pass' => '',
     // false only for a mail server whose certificate does not match its hostname.
     'smtp_verify' => true,
+    // A copy of every notification is stored in this mailbox's Sent folder, so it shows up in webmail.
+    // Empty imap_folder lets the server's own \Sent folder decide (cPanel calls it INBOX.Sent).
+    'imap_host' => '',
+    'imap_port' => 993,
+    'imap_folder' => '',
 ];

@@ -58,6 +58,12 @@ o‘z pochtasi orqali SMTP bilan yuboradi:
 3. Kerak bo‘lsa **Variables**: `LEAD_SMTP_HOST` (standart `mail.ravshancha.uz`), `LEAD_SMTP_PORT` (`465`),
    `LEAD_SMTP_USER` (`noreply@ravshancha.uz`), `LEAD_SMTP_VERIFY` (`0` — sertifikat nomi mos kelmasa).
 
+Har bir yuborilgan xatning nusxasi `noreply@ravshancha.uz` qutisining **Отправленные** papkasiga ham
+yoziladi (IMAP orqali, `mail.ravshancha.uz:993`). SMTP o'zi nusxa saqlamaydi — "Sent" papkasini odatda pochta
+mijozi to'ldiradi, shuning uchun buni `lead.php` qo'lda bajaradi. Papka nomini server o'zi aytadi (cPanel'da
+`INBOX.Sent`); kerak bo'lsa `LEAD_IMAP_FOLDER`, `LEAD_IMAP_HOST`, `LEAD_IMAP_PORT` o'zgaruvchilari bilan
+boshqasini ko'rsatish mumkin. Nusxa saqlanmay qolsa ham ariza yo'qolmaydi — xat baribir yuborilgan bo'ladi.
+
 Ariza bir nechta pochtaga yuborilishi mumkin: `LEAD_NOTIFY_EMAIL` vergul bilan ajratilgan ro‘yxatni qabul
 qiladi (5 tagacha). Standart holatda ikkita manzil — Gmail va domendagi `ravshanc@ravshancha.uz`. Domendagi
 nusxa bitta server ichida yetkaziladi, shuning uchun Gmail xatni spamga tashlasa ham ariza qo‘lda qoladi:

@@ -40,6 +40,9 @@ jobs:
           LEAD_SMTP_PORT: ${{ vars.LEAD_SMTP_PORT || '465' }}
           LEAD_SMTP_USER: ${{ vars.LEAD_SMTP_USER || 'noreply@ravshancha.uz' }}
           LEAD_SMTP_VERIFY: ${{ vars.LEAD_SMTP_VERIFY || '1' }}
+          LEAD_IMAP_HOST: ${{ vars.LEAD_IMAP_HOST || vars.LEAD_SMTP_HOST || 'mail.ravshancha.uz' }}
+          LEAD_IMAP_PORT: ${{ vars.LEAD_IMAP_PORT || '993' }}
+          LEAD_IMAP_FOLDER: ${{ vars.LEAD_IMAP_FOLDER }}
         run: |
           python3 - <<'PY'
           import os
@@ -47,12 +50,12 @@ jobs:
           def php_string(value):
               return "'" + value.strip().replace("\\", "\\\\").replace("'", "\\'") + "'"
 
-          def php_port(value):
+          def php_port(value, fallback=465):
               try:
                   port = int(value)
               except (TypeError, ValueError):
                   port = 0
-              return str(port if 1 <= port <= 65535 else 465)
+              return str(port if 1 <= port <= 65535 else fallback)
 
           # The mailbox is only used when its password is set; without one the endpoint keeps to the host's mail().
           password = os.environ.get('LEAD_SMTP_PASSWORD', '').strip()
@@ -66,6 +69,10 @@ jobs:
               'smtp_user': php_string(os.environ.get('LEAD_SMTP_USER', '') if password else ''),
               'smtp_pass': php_string(password),
               'smtp_verify': 'false' if os.environ.get('LEAD_SMTP_VERIFY', '1').strip() in ('0', 'false', 'no') else 'true',
+              # A copy of every notification is kept in the mailbox's Sent folder over IMAP.
+              'imap_host': php_string(os.environ.get('LEAD_IMAP_HOST', '') if password else ''),
+              'imap_port': php_port(os.environ.get('LEAD_IMAP_PORT', ''), 993),
+              'imap_folder': php_string(os.environ.get('LEAD_IMAP_FOLDER', '')),
           }
           lines = ['<?php', '// Written by the deploy workflow on every deployment: edits made on the server are overwritten.',
                    '// The values come from the repository secrets and variables, see DEPLOYMENT.md.', 'return [']
