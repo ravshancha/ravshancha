@@ -362,22 +362,48 @@
     .hero-trust li { display: inline-flex; align-items: center; gap: 7px; }
     .hero-trust .site-icon { width: 20px; height: 20px; }
 
-    /* Keep the hero visual product-first: one clear mark instead of a portrait and repeated badges. */
+    /* Stage: the person behind the platform in front of the product logo, with the product badge and its three parts. */
     .hero-visual {
       position: relative;
-      display: grid;
-      min-height: 500px;
-      place-items: center;
+      min-height: 560px;
       border: 0;
       border-radius: 0;
-      background: radial-gradient(circle, color-mix(in srgb, var(--accent) 18%, transparent) 0, color-mix(in srgb, var(--accent) 7%, transparent) 34%, transparent 68%);
+      background: transparent;
       box-shadow: none;
       overflow: visible;
       isolation: isolate;
     }
-    .hero-product-logo { display: block; width: min(58%, 270px); border-radius: 34%; transition: transform 220ms ease; }
-    .hero-product-logo:hover, .hero-product-logo:focus-visible { transform: translateY(-5px) scale(1.02); }
-    .hero-product-logo img { width: 100%; height: auto; filter: drop-shadow(0 28px 38px rgba(8, 65, 158, 0.28)); }
+    .hero-back-logo { position: absolute; z-index: -1; top: 3%; left: 50%; width: min(78%, 420px); height: auto; opacity: 0.22; transform: translateX(-50%); filter: saturate(.85) drop-shadow(0 24px 34px rgba(8, 65, 158, 0.16)); }
+    .hero-visual picture { display: contents; }
+    .portrait { position: absolute; left: 50%; bottom: 0; width: auto; height: 94%; max-width: none; transform: translateX(-50%) scaleX(-1); filter: drop-shadow(0 24px 30px rgba(8, 33, 74, 0.28)); }
+    .product-badge {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 16px 11px 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      box-shadow: 0 18px 44px var(--shadow);
+      backdrop-filter: blur(14px);
+      transition: transform 160ms ease, border-color 160ms ease;
+    }
+    .product-badge:hover, .product-badge:focus-visible { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+    .product-badge img { width: 40px; height: 43px; object-fit: contain; }
+    .product-badge strong { display: block; font-size: 15px; line-height: 1.2; letter-spacing: -0.01em; }
+    .product-badge small { display: block; color: var(--muted); font-size: 12px; font-weight: 650; }
+    .hero-chips { position: absolute; top: 20px; right: 18px; z-index: 2; display: grid; justify-items: end; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .hero-chips li { display: inline-flex; align-items: center; gap: 9px; padding: 9px 14px 9px 10px; border: 1px solid var(--line); border-radius: 999px; background: color-mix(in srgb, var(--surface) 86%, transparent); box-shadow: 0 12px 30px var(--shadow); backdrop-filter: blur(14px); font-size: 13px; font-weight: 750; }
+    .hero-chips .site-icon { width: 24px; height: 24px; }
+    html.js .hero-chips li { opacity: 0; translate: 0 14px; transition: opacity 600ms ease, translate 800ms cubic-bezier(.2,.8,.2,1); }
+    html.js .hero-visual.visible .hero-chips li { opacity: 1; translate: 0 0; }
+    html.js .hero-chips li:nth-child(1) { transition-delay: 200ms; }
+    html.js .hero-chips li:nth-child(2) { transition-delay: 380ms; }
+    html.js .hero-chips li:nth-child(3) { transition-delay: 560ms; }
 
     .section { padding: 120px 0; border-top: 1px solid var(--line); }
     .section-tight { padding: 84px 0; }
@@ -585,7 +611,7 @@
       .menu-toggle[aria-expanded="true"] > span:nth-child(2) { opacity: 0; }
       .menu-toggle[aria-expanded="true"] > span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
       .hero-grid { gap: 36px; }
-      .hero-visual { min-height: 420px; }
+      .hero-visual { min-height: 500px; }
       .pain-grid { grid-template-columns: repeat(2, 1fr); }
       .steps-grid { grid-template-columns: repeat(2, 1fr); }
       .step-card:not(:last-child)::after { display: none; }
@@ -594,7 +620,7 @@
 
     @media (max-width: 900px) {
       .hero-grid, .split-grid, .faq-grid { grid-template-columns: 1fr; gap: 30px; }
-      .hero-visual { width: min(100%, 460px); min-height: 360px; justify-self: center; }
+      .hero-visual { width: min(100%, 460px); min-height: 460px; justify-self: center; }
       .audience-grid { grid-template-columns: 1fr; }
       .contact-inner { grid-template-columns: 1fr; gap: 34px; }
       .contact-copy { padding-bottom: 0; }
@@ -618,8 +644,9 @@
       .hero-lead { font-size: 1rem; }
       .hero-actions { display: grid; grid-template-columns: 1fr; gap: 10px; }
       .hero-trust { display: grid; gap: 8px; margin-top: 22px; }
-      .hero-visual { min-height: 280px; }
-      .hero-product-logo { width: min(52vw, 190px); }
+      .hero-visual { min-height: 400px; }
+      /* The chips repeat the platform section; on a phone they would cover the portrait. */
+      .hero-chips { display: none; }
       .section { padding: 84px 0; }
       .section-tight { padding: 64px 0; }
       .pain-grid, .feature-grid, .tariff-grid, .steps-grid { grid-template-columns: 1fr; }
@@ -754,9 +781,21 @@
         </div>
 
         <div class="hero-visual reveal">
-          <a class="hero-product-logo" href="https://dentalnavigator.uz/" target="_blank" rel="noopener" data-goal="click_product" aria-label="Dental Navigator">
-            <img src="assets/product-logo.png" alt="Dental Navigator logotipi" width="191" height="207" fetchpriority="high" decoding="async">
+          <img class="hero-back-logo" src="assets/product-logo.png" alt="" width="191" height="207" aria-hidden="true">
+          <picture>
+            <source type="image/avif" srcset="assets/portrait-861.avif 861w, assets/portrait.avif 1077w" sizes="(max-width: 720px) 300px, 400px">
+            <source type="image/webp" srcset="assets/portrait-861.webp 861w, assets/portrait.webp 1077w" sizes="(max-width: 720px) 300px, 400px">
+            <img class="portrait" src="assets/portrait.webp" alt="Ravshanjon Ismoilov — Dental Navigator rahbari" width="1077" height="1461" fetchpriority="high" decoding="async">
+          </picture>
+          <a class="product-badge" href="https://dentalnavigator.uz/" target="_blank" rel="noopener" data-goal="click_product">
+            <img src="assets/product-logo.png" alt="Dental Navigator logotipi" width="192" height="207">
+            <span><strong>Dental Navigator</strong><small>Stomatologiya platformasi</small></span>
           </a>
+          <ul class="hero-chips" aria-label="Platforma qismlari">
+            <li><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-pin"/></svg><span>Katalog va xarita</span></li>
+            <li><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-calendar"/></svg><span>Onlayn yozilish</span></li>
+            <li><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-grid"/></svg><span>Klinika kabineti</span></li>
+          </ul>
         </div>
       </div>
     </section>
