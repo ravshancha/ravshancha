@@ -3024,7 +3024,9 @@
           `${dictionary.orderPhone}: +998${lead.phone}`,
           `${dictionary.orderInfo}: ${lead.info}`
         ].join("\n");
-        orderFallbackCode.textContent = `${dictionary.orderFallbackCode}: ${error.code || (error.name === "AbortError" ? "timeout" : "network")}`;
+        // The host is part of the code: the same failure means one thing on ravshancha.uz and another on a
+        // local static server, which serves api/lead.php as plain text and can never answer this form.
+        orderFallbackCode.textContent = `${dictionary.orderFallbackCode}: ${error.code || (error.name === "AbortError" ? "timeout" : "network")} · ${window.location.host}`;
         orderFallbackCode.hidden = false;
         orderFallbackLink.href = `https://t.me/ravshanjon_ismoilov?text=${encodeURIComponent(message)}`;
         orderFallbackLink.dataset.message = message;
