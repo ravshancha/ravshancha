@@ -276,7 +276,9 @@ function mail_lead(array $recipients, string $from, array $lead, array $smtp, st
         'Til: ' . $lead['lang'] . ($lead['page'] !== '' ? ' · Sahifa: ' . $lead['page'] : ''),
         'Vaqt: ' . $lead['time'] . ' (Toshkent)',
         '',
-        'Diqqat: bu ariza Google Sheets jadvaliga yozilmadi — uni jadvalga qo‘lda kiriting.',
+        ($lead['saved'] ?? false)
+            ? 'Bu ariza «Lidlar» jadvaliga ham yozildi — statusni o‘sha yerda yuriting.'
+            : 'Diqqat: bu ariza Google Sheets jadvaliga yozilmadi — uni jadvalga qo‘lda kiriting.',
     ];
     $subject = '=?UTF-8?B?' . base64_encode('ravshancha.uz: yangi ariza — ' . $lead['name']) . '?=';
     $body = implode("\n", $lines);
@@ -411,11 +413,12 @@ $lead = [
 ];
 
 $saved = $sheetsUrl !== '' && save_to_sheet($sheetsUrl, $sheetsSecret, $lead);
-if (!$saved) {
-    $problem = $notifyList === [] ? 'delivery' : mail_lead($notifyList, $mailFrom, $lead, $smtp, $host ?: 'ravshancha.uz');
-    if ($problem !== '') {
-        respond(502, ['ok' => false, 'error' => $problem]);
-    }
+$lead['saved'] = $saved;
+// The message is sent even when the sheet took the request: it is what keeps a copy of every lead in the
+// domain's own mailbox. The request only fails when neither the sheet nor the mailbox took it.
+$problem = $notifyList === [] ? 'delivery' : mail_lead($notifyList, $mailFrom, $lead, $smtp, $host ?: 'ravshancha.uz');
+if (!$saved && $problem !== '') {
+    respond(502, ['ok' => false, 'error' => $problem]);
 }
 
 respond(200, ['ok' => true]);

@@ -7,14 +7,14 @@ Google Sheets jadvaliga status bilan yoziladi, sizga esa email keladi:
 forma (site/index.html)
    → site/api/lead.php          tekshiruv, honeypot, bitta manzildan 10 daqiqada 5 ta ariza
         → Apps Script web-ilova (Code.gs)
-              → "Lidlar" varag‘i: yangi qator, status = "Yangi"
-              → email: ariza matni + jadvaldagi qatorga havola
+        │     → "Lidlar" varag‘i: yangi qator, status = "Yangi"
+        │     → email: ariza matni + jadvaldagi qatorga havola (Google yuboradi)
+        └→ noreply@ravshancha.uz orqali xat: ro‘yxatdagi pochtalarga + nusxasi o‘sha qutining Sent papkasiga
 ```
 
-Yo‘qolmasligi uchun ikki zaxira bor: jadvalga yozib bo‘lmasa, `lead.php` arizani to‘g‘ridan-to‘g‘ri emailga
-yuboradi (`notify_email`); u ham bo‘lmasa, mijozga tayyor matnli "Telegram’da yuborish" tugmasi chiqadi.
-Jadval ulanmagan paytda ham ariza yo‘qolmaydi: deploy serverga sozlama faylini o‘zi yozadi va ariza to‘g‘ridan-to‘g‘ri
-pochtaga tushadi.
+Ikkala yo‘l har bir ariza uchun birga ishlaydi, shuning uchun ariza bir vaqtning o‘zida jadvalda, Gmail’da va
+domendagi pochtada qoladi. Ikkalasi ham ishlamasa mijozga tayyor matnli "Telegram’da yuborish" tugmasi chiqadi
+— ya’ni ariza baribir yo‘qolmaydi.
 
 ## Fayllar
 
