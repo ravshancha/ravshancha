@@ -6,7 +6,7 @@
 
 SETTINGS = dict(
     base_url="https://ravshancha.uz/business/",  # public address of this site, with a trailing slash
-    assets="../assets/",  # logo marks, favicons, portrait and OG image are shared with the CV site: path from this site's root
+    assets="assets/",  # this site owns its images (site/business/assets), so changes on the CV site cannot break it
     cv_url="https://ravshancha.uz/",
     cv_label="ravshancha.uz",
     person="Ravshanjon Ismoilov",

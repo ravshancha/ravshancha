@@ -113,7 +113,7 @@ def render_page(template, lang):
     default_lang = next(iter(LANGS))
     assets = root + SETTINGS["assets"]
     assets_abs = urljoin(SETTINGS["base_url"], SETTINGS["assets"])
-    og_image = assets_abs + f"og-business-{lang}.jpg"  # drawn by build_og.py
+    og_image = assets_abs + f"og-{lang}.jpg"  # drawn by build_og.py
 
     options = []
     for code, other in LANGS.items():

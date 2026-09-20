@@ -10,14 +10,14 @@ bu sayt unga "Rezyume" havolalari orqali suyanadi, CV sayt footer’idagi "Bizne
 tools/business/content.py      barcha matnlar (UZ + RU), kontaktlar, sozlamalar — FAQAT SHU YERDA tahrirlang
 tools/business/template.html   sahifa shabloni (CSS + JS ichida, CV sayt uslubida)
 tools/business/build_site.py   generator → site/business/index.html (uz), site/business/ru/index.html (ru), sitemap.xml
-tools/business/build_og.py     ijtimoiy tarmoq rasmi → site/assets/og-business-{uz,ru}.jpg (Pillow kerak)
+tools/business/build_og.py     ijtimoiy tarmoq rasmlari → site/business/assets/og-{uz,ru}.jpg (Pillow kerak)
 tools/business/serve.js        lokal ko‘rish: butun site/ papkasi
 site/business/api/lead.php     forma → Telegram bot (serverda ishlaydi)
 site/business/.htaccess        lead-config fayllarini yopadi
 ```
 
 `site/business/index.html` va `site/business/ru/index.html` generatsiya qilinadi — qo‘lda tahrirlanmaydi.
-Logo, favicon, portret va OG-rasm CV sayt bilan umumiy: `site/assets/` (`SETTINGS["assets"] = "../assets/"`).
+Logo, favicon, portret va OG-rasmlar shu saytning o‘zida: `site/business/assets/` — CV saytdagi o‘zgarishlar bu saytni buzmaydi.
 
 ## Ishlatish
 

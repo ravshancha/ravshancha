@@ -6,8 +6,8 @@
   <meta name="description" content="{{description}}">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#05070d">
-  <link rel="icon" href="{{assets}}cha-favicon-dark.svg" type="image/svg+xml" sizes="any" data-theme-favicon>
-  <link rel="apple-touch-icon" href="{{assets}}cha-favicon-dark-180.png" sizes="180x180" data-theme-touch-icon>
+  <link rel="icon" href="{{assets}}favicon-dark.svg" type="image/svg+xml" sizes="any" data-theme-favicon>
+  <link rel="apple-touch-icon" href="{{assets}}favicon-dark-180.png" sizes="180x180" data-theme-touch-icon>
   <title>{{page_title}}</title>
   <link rel="canonical" href="{{canonical}}">
 {{alternates_html}}
@@ -39,8 +39,8 @@
       const themeSuffix = activeTheme === "light" ? "light" : "dark";
       const assets = document.documentElement.dataset.assets;
       document.documentElement.dataset.theme = activeTheme;
-      document.querySelector("[data-theme-favicon]").href = `${assets}cha-favicon-${themeSuffix}.svg`;
-      document.querySelector("[data-theme-touch-icon]").href = `${assets}cha-favicon-${themeSuffix}-180.png`;
+      document.querySelector("[data-theme-favicon]").href = `${assets}favicon-${themeSuffix}.svg`;
+      document.querySelector("[data-theme-touch-icon]").href = `${assets}favicon-${themeSuffix}-180.png`;
     } catch (error) {
       document.documentElement.dataset.theme = "dark";
     }
@@ -674,8 +674,8 @@
   <header class="site-header" data-header>
     <div class="container nav-wrap">
       <a class="brand" href="#top" aria-label="{{person}}">
-        <img class="brand-logo brand-logo-dark" src="{{assets}}ravshanjon-mark-dark.svg" alt="" width="120" height="120">
-        <img class="brand-logo brand-logo-light" src="{{assets}}ravshanjon-mark-light.svg" alt="" width="120" height="120">
+        <img class="brand-logo brand-logo-dark" src="{{assets}}logo-mark-dark.svg" alt="" width="120" height="120">
+        <img class="brand-logo brand-logo-light" src="{{assets}}logo-mark-light.svg" alt="" width="120" height="120">
         <span class="brand-name" aria-hidden="true">
           <span class="brand-name-primary">Ravshanjon</span>
           <span class="brand-name-secondary">Ismoilov</span>
@@ -733,9 +733,9 @@
           <div class="portrait-wrap reveal">
             <div class="portrait-ring"></div>
             <picture>
-              <source type="image/avif" srcset="{{assets}}ravshanjon-3d-861.avif 861w, {{assets}}ravshanjon-3d.avif 1077w" sizes="(max-width: 720px) 88vw, (max-width: 900px) 76vw, 430px">
-              <source type="image/webp" srcset="{{assets}}ravshanjon-3d-861.webp 861w, {{assets}}ravshanjon-3d.webp 1077w" sizes="(max-width: 720px) 88vw, (max-width: 900px) 76vw, 430px">
-              <img class="portrait" src="{{assets}}ravshanjon-3d.webp" alt="{{portrait_alt}}" width="1077" height="1461" fetchpriority="high" decoding="async">
+              <source type="image/avif" srcset="{{assets}}portrait-861.avif 861w, {{assets}}portrait.avif 1077w" sizes="(max-width: 720px) 88vw, (max-width: 900px) 76vw, 430px">
+              <source type="image/webp" srcset="{{assets}}portrait-861.webp 861w, {{assets}}portrait.webp 1077w" sizes="(max-width: 720px) 88vw, (max-width: 900px) 76vw, 430px">
+              <img class="portrait" src="{{assets}}portrait.webp" alt="{{portrait_alt}}" width="1077" height="1461" fetchpriority="high" decoding="async">
             </picture>
           </div>
 
@@ -871,9 +871,9 @@
         </div>
         <div class="contact-portrait">
           <picture>
-            <source type="image/avif" srcset="{{assets}}ravshanjon-3d-861.avif 861w, {{assets}}ravshanjon-3d.avif 1077w" sizes="(max-width: 900px) 340px, 440px">
-            <source type="image/webp" srcset="{{assets}}ravshanjon-3d-861.webp 861w, {{assets}}ravshanjon-3d.webp 1077w" sizes="(max-width: 900px) 340px, 440px">
-            <img src="{{assets}}ravshanjon-3d.webp" alt="{{portrait_alt}}" width="1077" height="1461" loading="lazy" decoding="async">
+            <source type="image/avif" srcset="{{assets}}portrait-861.avif 861w, {{assets}}portrait.avif 1077w" sizes="(max-width: 900px) 340px, 440px">
+            <source type="image/webp" srcset="{{assets}}portrait-861.webp 861w, {{assets}}portrait.webp 1077w" sizes="(max-width: 900px) 340px, 440px">
+            <img src="{{assets}}portrait.webp" alt="{{portrait_alt}}" width="1077" height="1461" loading="lazy" decoding="async">
           </picture>
         </div>
       </div>
@@ -1010,8 +1010,8 @@
       themeIcons.forEach((node) => node.querySelector("use").setAttribute("href", isLight ? "#icon-sun" : "#icon-moon"));
       themeLabels.forEach((node) => { node.textContent = isLight ? SITE.t.themeLight : SITE.t.themeDark; });
       const themeSuffix = isLight ? "light" : "dark";
-      themeFavicon.href = `${SITE.assets}cha-favicon-${themeSuffix}.svg`;
-      themeTouchIcon.href = `${SITE.assets}cha-favicon-${themeSuffix}-180.png`;
+      themeFavicon.href = `${SITE.assets}favicon-${themeSuffix}.svg`;
+      themeTouchIcon.href = `${SITE.assets}favicon-${themeSuffix}-180.png`;
       themeColorMeta.content = isLight ? "#eef4fb" : "#05070d";
     };
 

@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Draws the social preview images of the selling site: site/assets/og-business-{uz,ru}.jpg (1200x630),
-# in the style of the CV site's og-image.jpg. Text comes from content.py (og_lines, og_sub).
+# Draws the social preview images of the selling site (what Telegram, Facebook or LinkedIn show for a shared link):
+# site/business/assets/og-{uz,ru}.jpg, 1200x630. Text comes from content.py (og_lines, og_sub).
 # Requires: python3 -m pip install pillow   (fonts: macOS Arial in /System/Library/Fonts/Supplemental)
 # Usage:    python3 tools/business/build_og.py
+# Rerun it when the portrait or the texts change. Social networks cache previews, so after a change ask
+# Telegram's @WebpageBot to refresh the link.
 import os, sys
 from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
@@ -11,7 +13,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from content import L, SETTINGS
 
-ASSETS = os.path.normpath(os.path.join(HERE, "..", "..", "site", "assets"))
+ASSETS = os.path.normpath(os.path.join(HERE, "..", "..", "site", "business", "assets"))
 FONTS = "/System/Library/Fonts/Supplemental"
 W, H = 1200, 630
 LEFT, TEXT_WIDTH = 66, 600
@@ -22,8 +24,8 @@ def font(size, bold=True):
     return ImageFont.truetype(os.path.join(FONTS, "Arial Bold.ttf" if bold else "Arial.ttf"), size)
 
 
-def glow(size, center, radius, color, strength):
-    layer = Image.new("RGB", size, (0, 0, 0))
+def glow(center, radius, color, strength):
+    layer = Image.new("RGB", (W, H), (0, 0, 0))
     ImageDraw.Draw(layer).ellipse([center[0] - radius, center[1] - radius, center[0] + radius, center[1] + radius], fill=color)
     layer = layer.filter(ImageFilter.GaussianBlur(radius * 0.55))
     return layer.point(lambda value: int(value * strength))
@@ -31,13 +33,12 @@ def glow(size, center, radius, color, strength):
 
 def background():
     image = Image.new("RGB", (W, H), (5, 7, 13))
-    image = ImageChops.add(image, glow((W, H), (930, 250), 360, (30, 96, 220), 0.95))
-    image = ImageChops.add(image, glow((W, H), (150, 40), 260, (0, 140, 200), 0.22))
-    return image
+    image = ImageChops.add(image, glow((930, 250), 360, (30, 96, 220), 0.95))
+    return ImageChops.add(image, glow((150, 40), 260, (0, 140, 200), 0.22))
 
 
 def monogram(size):
-    # The "C" mark of ravshanjon-mark-dark.svg (120-unit box: arc r=40 width 16, dot r=10.5), drawn 4x and scaled down.
+    # The "C" mark of logo-mark-dark.svg (120-unit box: arc r=40 width 16, dot r=10.5), drawn 4x and scaled down.
     scale = size * 4 / 120
     layer = Image.new("RGBA", (size * 4, size * 4), (0, 0, 0, 0))
     draw = ImageDraw.Draw(layer)
@@ -48,7 +49,7 @@ def monogram(size):
 
 
 def portrait(height):
-    source = Image.open(os.path.join(ASSETS, "ravshanjon-3d.webp")).convert("RGBA")
+    source = Image.open(os.path.join(ASSETS, "portrait.webp")).convert("RGBA")
     source = source.crop(source.getchannel("A").getbbox()).transpose(Image.FLIP_LEFT_RIGHT)  # mirrored, as in the site hero
     return source.resize((round(source.width * height / source.height), height), Image.LANCZOS)
 
@@ -89,9 +90,9 @@ def build(lang):
     address = SETTINGS["base_url"].split("://", 1)[1].rstrip("/")
     draw.text((LEFT, H - 78), address, font=font(27, bold=False), fill=LINK)
 
-    target = os.path.join(ASSETS, f"og-business-{lang}.jpg")
+    target = os.path.join(ASSETS, f"og-{lang}.jpg")
     image.save(target, "JPEG", quality=88, optimize=True, progressive=True)
-    print(f"{lang}: site/assets/{os.path.basename(target)}  ({os.path.getsize(target) // 1024} KB, headline {size}px)")
+    print(f"{lang}: site/business/assets/og-{lang}.jpg  ({os.path.getsize(target) // 1024} KB, headline {size}px)")
 
 
 if __name__ == "__main__":
