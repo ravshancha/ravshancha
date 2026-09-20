@@ -520,6 +520,10 @@
     .footer-links { flex-wrap: wrap; justify-content: flex-end; }
     .footer-socials { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
     .footer-inner p { margin: 0; }
+    .footer-sites { display: flex; flex-wrap: wrap; gap: 10px; }
+    .footer-site { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--line)); border-radius: 8px; color: var(--text); background: color-mix(in srgb, var(--accent) 10%, transparent); font-weight: 700; white-space: nowrap; transition: transform 150ms ease, border-color 150ms ease, background 150ms ease; }
+    .footer-site:hover, .footer-site:focus-visible { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, transparent); transform: translateY(-2px); }
+    .footer-site .site-icon { width: 24px; height: 24px; color: var(--accent); opacity: 1; }
     .footer-inner a:hover { color: var(--text); }
     .footer-top { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; color: var(--accent-text); background: var(--accent); font-weight: 750; transition: transform 150ms ease, box-shadow 150ms ease; }
     .footer-links .footer-top:hover, .footer-links .footer-top:focus-visible { color: var(--accent-text); transform: translateY(-2px); box-shadow: 0 14px 34px color-mix(in srgb, var(--accent) 34%, transparent); }
@@ -664,6 +668,7 @@
       .contact-row-main { grid-template-columns: 1fr; }
       .contact-button { width: 100%; }
       .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-sites { width: 100%; }
       .footer-links { width: 100%; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 14px; }
       .footer-socials { flex: 1 1 auto; gap: 12px 16px; }
       .site-footer { padding: 26px 0 calc(96px + env(safe-area-inset-bottom, 0px)); }
@@ -990,10 +995,13 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>© <span data-year></span> Ravshanjon Ismoilov · Toshkent, O‘zbekiston</p>
+      <div class="footer-sites">
+        <a class="footer-site" href="../"><span>Rezyume</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
+        <a class="footer-site" href="../business/"><span>Biznes uchun xizmatlar</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
+      </div>
       <nav class="footer-links" aria-label="Aloqa havolalari">
         <div class="footer-socials">
           <a href="https://dentalnavigator.uz/" target="_blank" rel="noopener" data-goal="click_product">Dental Navigator</a>
-          <a href="https://ravshancha.uz/" target="_blank" rel="noopener" data-goal="click_cv">Rezyume</a>
           <a href="https://www.linkedin.com/in/ravshancha" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://t.me/ravshanjon_ismoilov" target="_blank" rel="noopener noreferrer" data-goal="click_telegram">Telegram</a>
           <a href="https://wa.me/998999420770" target="_blank" rel="noopener noreferrer" data-goal="click_whatsapp">WhatsApp</a>

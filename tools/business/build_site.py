@@ -220,6 +220,7 @@ def render_page(template, lang):
         lang=lang, root=root, assets=assets, og_image=og_image, canonical=page_url(lang), base_url=SETTINGS["base_url"], og_locale=meta["og_locale"],
         lang_code=meta["code"], lang_name=meta["name"], lang_flag=meta["flag"],
         person=SETTINGS["person"], linkedin=SETTINGS["linkedin"],
+        cv_link=root + "../", dental_link=root + "../dental/" + meta["path"],  # every page leads to the other two
         telegram_url="https://t.me/" + SETTINGS["telegram"],  # the order form's fallback link; the page itself shows no contact channels
         quiz_intro=t["quiz_intro"].format(count=len(t["quiz"])), stat_cta_label=t["stat_cta_label"].format(count=len(t["quiz"])), quiz_total=str(len(t["quiz"]) + 1),  # the contact fields are the last step
         language_options_html=lines(options, 14), alternates_html="\n".join(alternates), og_alternates_html="\n".join(og_alternates),

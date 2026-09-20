@@ -57,6 +57,8 @@ L["uz"] = dict(
     language_label="Til",
     back_to_top="Yuqoriga",
     footer_links_label="Aloqa havolalari",
+    footer_cv="Rezyume",
+    footer_dental="Stomatologiya uchun",
 
     hero_eyebrow="Biznes jarayonlarini avtomatlashtirish",
     hero_title_html='Biznesingiz<br><span class="accent-word">qo‘lda emas, tizimda</span><br>ishlasin.',
@@ -250,6 +252,8 @@ L["ru"] = dict(
     language_label="Язык",
     back_to_top="Наверх",
     footer_links_label="Контакты",
+    footer_cv="Резюме",
+    footer_dental="Для стоматологии",
 
     hero_eyebrow="Автоматизация бизнес-процессов",
     hero_title_html='Пусть бизнес работает<br><span class="accent-word">в системе, а не вручную</span>.',

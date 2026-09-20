@@ -236,6 +236,7 @@ def render_page(template, lang):
         lang=lang, root=root, assets=assets, og_image=og_image, canonical=page_url(lang), og_locale=meta["og_locale"],
         lang_code=meta["code"], lang_name=meta["name"], lang_flag=meta["flag"],
         person=SETTINGS["person"], cv_url=SETTINGS["cv_url"], linkedin=SETTINGS["linkedin"],
+        cv_link=root + "../", biz_link=root + "../business/" + meta["path"],  # every page leads to the other two
         product=SETTINGS["product"], product_url=SETTINGS["product_url"], apply_url=SETTINGS["apply_url"],
         phone_display=SETTINGS["phone_display"], phone_e164=SETTINGS["phone_e164"],
         telegram_url="https://t.me/" + SETTINGS["telegram"], whatsapp_url="https://wa.me/" + SETTINGS["whatsapp"],

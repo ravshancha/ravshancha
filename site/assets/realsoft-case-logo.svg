@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 46" role="img" aria-labelledby="title">
+  <title id="title">REALSOFT</title>
+  <g fill="#0091ff" transform="translate(-16 5) scale(.75)">
+    <polygon points="76.087 46.888 71.282 46.888 50.87 21.628 30.45 46.888 25.636 46.888 48.463 18.66 50.862 15.692 53.268 18.66 76.087 46.888"/>
+    <polygon points="99.195 46.828 99.119 46.888 94.432 46.888 67.353 13.387 60.081 22.394 57.674 19.417 64.946 10.419 67.353 7.45 69.751 10.419 99.195 46.828"/>
+    <polygon points="121.079 46.888 116.282 46.888 83.172 5.936 76.487 14.212 74.089 11.244 80.774 2.968 83.172 0 85.57 2.977 121.079 46.888"/>
+  </g>
+  <text x="82" y="31" fill="#0b0e14" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="800" letter-spacing="1.1">REALSOFT</text>
+</svg>

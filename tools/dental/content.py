@@ -65,6 +65,7 @@ L["uz"] = dict(
     back_to_top="Yuqoriga",
     footer_links_label="Aloqa havolalari",
     footer_cv="Rezyume",
+    footer_biz="Biznes uchun xizmatlar",
 
     hero_eyebrow="Stomatologiya klinikalari va stomatologlar uchun",
     hero_title_html='<span class="accent-word">Stomatologiya</span> klinikangizga bemor onlayn yoziladi.',
@@ -238,6 +239,7 @@ L["ru"] = dict(
     back_to_top="Наверх",
     footer_links_label="Контактные ссылки",
     footer_cv="Резюме",
+    footer_biz="Услуги для бизнеса",
 
     hero_eyebrow="Для стоматологических клиник и стоматологов",
     hero_title_html='Пациенты записываются в вашу <span class="accent-word">стоматологию</span> онлайн.',
