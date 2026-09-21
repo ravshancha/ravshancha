@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Draws the social preview images of the dentistry page (what Telegram, Facebook or LinkedIn show for a shared link):
-# site/dental/assets/og-{uz,ru}.jpg, 1200x630. Text comes from content.py (og_lines, og_sub).
-# Requires: python3 -m pip install pillow   (fonts: macOS Arial in /System/Library/Fonts/Supplemental)
-# Usage:    python3 tools/dental/build_og.py
+# site/dental/assets/og-{uz,ru}.jpg, og-<direction>-{uz,ru}.jpg (patients) and og-<direction>-klinikalar-{uz,ru}.jpg, 1200x630. Text comes from content.py (og_lines, og_sub).
+# Requires: python3 -m pip install pillow   (fonts: macOS Arial, or Liberation Sans — its metric twin — on Linux)
+# Usage:    python3 tools/dental/build_og.py [main|<direction> ...]   (no arguments: every page; a direction = both its pages)
 # Rerun it when the portrait, the product logo or the texts change. Social networks cache previews, so after a change
 # ask Telegram's @WebpageBot to refresh the link.
 import os, sys
@@ -11,17 +11,24 @@ from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from content import L, SETTINGS
+from build_site import og_name, page_copy, page_url, pages
+from content import DIRECTIONS, SETTINGS
 
 ASSETS = os.path.normpath(os.path.join(HERE, "..", "..", "site", "dental", "assets"))
-FONTS = "/System/Library/Fonts/Supplemental"
+FONT_FILES = [
+    ("/System/Library/Fonts/Supplemental/Arial Bold.ttf", "/System/Library/Fonts/Supplemental/Arial.ttf"),
+    ("/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf", "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"),
+]
+FONTS = next((pair for pair in FONT_FILES if all(os.path.isfile(path) for path in pair)), None)
 W, H = 1200, 630
 LEFT, TEXT_WIDTH = 66, 640
 WHITE, SOFT, MUTED, MARK = (255, 255, 255), (222, 233, 255), (190, 211, 250), (74, 140, 240)
 
 
 def font(size, bold=True):
-    return ImageFont.truetype(os.path.join(FONTS, "Arial Bold.ttf" if bold else "Arial.ttf"), size)
+    if not FONTS:
+        raise SystemExit("build_og.py: neither Arial nor Liberation Sans is installed")
+    return ImageFont.truetype(FONTS[0] if bold else FONTS[1], size)
 
 
 def background():
@@ -55,13 +62,17 @@ def draw_tracked(draw, xy, text, fnt, fill, tracking):
         x += draw.textlength(char, font=fnt) + tracking
 
 
-def build(lang):
-    t = L[lang]
+def build(lang, slug=None, kind="main"):
+    t = page_copy(lang, slug, kind)
     image = background()
     draw = ImageDraw.Draw(image)
 
-    figure = portrait(600)
-    image.paste(figure, (W - figure.width - 40, H - figure.height), figure)
+    if kind == "patients":  # patients see the product mark, not the person who sells it to clinics
+        mark = product_logo(380)
+        image.paste(mark, (930 - mark.width // 2, H // 2 - mark.height // 2), mark)
+    else:
+        figure = portrait(600)
+        image.paste(figure, (W - figure.width - 40, H - figure.height), figure)
 
     # The product mark sits on a white tile: the glossy blue tooth would sink into the blue background.
     logo = product_logo(56)
@@ -86,14 +97,19 @@ def build(lang):
         draw.text((LEFT, y), text, font=font(27, bold=False), fill=MUTED)
         y += 40
 
-    address = SETTINGS["base_url"].split("://", 1)[1].rstrip("/")
+    address = page_url(lang, slug, kind).split("://", 1)[1].rstrip("/")
     draw.text((LEFT, H - 78), address, font=font(27, bold=False), fill=SOFT)
 
-    target = os.path.join(ASSETS, f"og-{lang}.jpg")
+    target = os.path.join(ASSETS, og_name(lang, slug, kind))
     image.save(target, "JPEG", quality=88, optimize=True, progressive=True)
-    print(f"{lang}: site/dental/assets/og-{lang}.jpg  ({os.path.getsize(target) // 1024} KB, headline {size}px)")
+    print(f"{lang}: site/dental/assets/{og_name(lang, slug, kind)}  ({os.path.getsize(target) // 1024} KB, headline {size}px)")
 
 
 if __name__ == "__main__":
-    for language in L:
-        build(language)
+    wanted = set(sys.argv[1:])
+    unknown = wanted - set(DIRECTIONS) - {"main"}
+    if unknown:
+        raise SystemExit(f"build_og.py: unknown pages: {', '.join(sorted(unknown))}")
+    for language, direction, kind in pages():
+        if not wanted or (direction or "main") in wanted:
+            build(language, direction, kind)

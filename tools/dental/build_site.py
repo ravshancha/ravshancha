@@ -1,21 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Builds the dentistry page from template.html + content.py: one static page per language
-# (site/dental/index.html for the first language, site/dental/<lang>/index.html for the others) and sitemap.xml.
+# Builds the dentistry pages from template.html + content.py, in every language (the first one at the root, the others
+# under <lang>/), and sitemap.xml:
+#   main      site/dental/[<lang>/]index.html                       — clinics: Dental Navigator for dental clinics
+#   patients  site/dental/[<lang>/]<slug>/index.html               — patients: what the direction is, how to choose a clinic
+#   clinics   site/dental/[<lang>/]<slug>/klinikalar/index.html    — clinics: show this direction to the patients who look for it
+# One template serves all three: <!-- clinics:start --> / <!-- patients:start --> blocks are kept or dropped per page.
 # Standard library only.
 # Usage: python3 tools/dental/build_site.py [output-dir]
-import datetime, html, json, os, re, sys
+import datetime, html, json, os, posixpath, re, sys
 from urllib.parse import urljoin, urlparse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from content import KEYWORD_STEM, L, LANGS, SETTINGS
+from content import DIRECTIONS, KEYWORD_STEM, L, LANGS, SETTINGS
 
 REPO = os.path.normpath(os.path.join(HERE, "..", ".."))
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, "site", "dental")
 TOKEN = re.compile(r"\{\{([a-z0-9_]+)\}\}")
 KEYWORD = re.compile(r"\[\[(.+?)\]\]")
-TARIFFS_BLOCK = re.compile(r"<!-- tariffs:start -->\n(.*?)<!-- tariffs:end -->\n", re.S)
+# Keys a direction's clinic page has on top of the main page's copy.
+DIRECTION_KEYS = {"direction_name", "breadcrumb_nav_label", "patients_link_label"}
+CLINICS_DIR = "klinikalar"  # the clinic page of a direction lives under its patient page
+BLOCK = re.compile(r"<!-- ([a-z]+):start -->\n(.*?)<!-- \1:end -->\n", re.S)
 
 # 24-unit stroke icons, wrapped the same way as the icon sprite of ravshancha.uz.
 ICON_WRAP = ('    <symbol id="icon-{name}" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" '
@@ -46,6 +53,7 @@ ICONS = {
     "tooth": TOOTH,
     "pin": '<path d="M12 21.8s-7.2-6.2-7.2-11.9a7.2 7.2 0 0 1 14.4 0c0 5.7-7.2 11.9-7.2 11.9z"/><circle cx="12" cy="9.9" r="2.7"/>',
     "star": '<path d="M12 2.8l2.8 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.4l-5.7 3 1.1-6.4-4.6-4.5 6.4-.9z"/>',
+    "shield": '<path d="M12 2.4l7.8 3v5.8c0 5-3.3 8.9-7.8 10.4-4.5-1.5-7.8-5.4-7.8-10.4V5.4z"/><path d="M8.4 12l2.6 2.6 4.8-5"/>',
 }
 
 
@@ -115,34 +123,81 @@ def render_fragments(t):
     f["facts_html"] = lines([
         f'<div><dt><span class="fact-icon">{icon(name, "icon-accent")}</span><span>{esc(label)}</span></dt><dd>{rich(value)}</dd></div>'
         for name, label, value in t["facts"]], 12)
+    if "fits" in t:  # patient pages
+        f["what_cards_html"] = lines([
+            f'<article class="audience-card reveal"><span class="card-icon" aria-hidden="true">{icon(name)}</span><div><h3>{rich(title)}</h3><small>{rich(meta)}</small></div><p>{rich(text)}</p></article>'
+            for name, title, meta, text in t["what_cards"]], 10)
+        f["fits_html"] = lines([
+            f'<article class="pain-card reveal"><div class="card-head"><span class="card-icon" aria-hidden="true">{icon(name)}</span></div><h3>{rich(title)}</h3><p>{rich(text)}</p></article>'
+            for name, title, text in t["fits"]], 10)
+        f["process_html"] = lines([
+            f'<li class="step-card reveal"><span class="step-number" aria-hidden="true">{i:02d}</span><h3>{rich(title)}</h3><p>{rich(text)}</p></li>'
+            for i, (title, text) in enumerate(t["process"], 1)], 10)
+        f["checks_html"] = lines([f'<li>{icon("check", "icon-accent")}<span>{rich(item)}</span></li>' for item in t["checks"]], 10)
     f["faq_html"] = lines([
         f'<details class="faq-item"><summary><span>{rich(question)}</span>{icon("plus")}</summary><p>{rich(answer)}</p></details>'
         for question, answer in t["faq"]], 10)
     return f
 
 
-def page_url(lang):
-    return SETTINGS["base_url"] + LANGS[lang]["path"]
+def page_path(lang, slug=None, kind="main"):
+    path = LANGS[lang]["path"]
+    if kind == "patients":
+        path += f"{slug}/"
+    elif kind == "clinics":
+        path += f"{slug}/{CLINICS_DIR}/"
+    return path
 
 
-def render_page(template, lang):
-    t, meta = L[lang], LANGS[lang]
-    root = "../" * meta["path"].count("/")
+def page_url(lang, slug=None, kind="main"):
+    return SETTINGS["base_url"] + page_path(lang, slug, kind)
+
+
+def og_name(lang, slug=None, kind="main"):
+    """Social preview file of a page, drawn by build_og.py."""
+    if kind == "main":
+        return f"og-{lang}.jpg"
+    return f"og-{slug}-{lang}.jpg" if kind == "patients" else f"og-{slug}-{CLINICS_DIR}-{lang}.jpg"
+
+
+def page_copy(lang, slug=None, kind="main"):
+    """The texts of one page: a direction page is the main page's copy with its own keys laid over it."""
+    if kind == "main":
+        return L[lang]
+    return {**L[lang], **DIRECTIONS[slug][kind][lang]}
+
+
+def pages():
+    """(lang, slug, kind) of every page: the main page first, then each direction's patient and clinic pages."""
+    return [(lang, None, "main") for lang in LANGS] + [
+        (lang, slug, kind) for slug in DIRECTIONS for kind in ("patients", "clinics") for lang in LANGS]
+
+
+def rel(target, current):
+    """Relative link from the page at `current` to the page at `target` (both site/dental-relative paths)."""
+    link = posixpath.relpath(target or ".", current or ".")
+    return "./" if link == "." else link + "/"
+
+
+def render_page(template, lang, slug=None, kind="main"):
+    t, meta = page_copy(lang, slug, kind), LANGS[lang]
+    path = page_path(lang, slug, kind)
+    root = "../" * path.count("/")
     default_lang = next(iter(LANGS))
     assets = root + SETTINGS["assets"]
-    og_image = urljoin(SETTINGS["base_url"], SETTINGS["assets"]) + f"og-{lang}.jpg"  # drawn by build_og.py
+    og_image = urljoin(SETTINGS["base_url"], SETTINGS["assets"]) + og_name(lang, slug, kind)
 
     options = []
     for code, other in LANGS.items():
         active = code == lang
         current = ' aria-current="page"' if active else ""
         options.append(
-            f'<a class="language-option{" active" if active else ""}" href="{esc((root + other["path"]) or "./")}" hreflang="{code}" lang="{code}"{current}>'
+            f'<a class="language-option{" active" if active else ""}" href="{esc(rel(page_path(code, slug, kind), path))}" hreflang="{code}" lang="{code}"{current}>'
             f'<svg class="language-flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#{other["flag"]}"/></svg>'
             f'<span>{esc(other["name"])}</span></a>')
 
-    alternates = [f'  <link rel="alternate" hreflang="{code}" href="{esc(page_url(code))}">' for code in LANGS]
-    alternates.append(f'  <link rel="alternate" hreflang="x-default" href="{esc(page_url(default_lang))}">')
+    alternates = [f'  <link rel="alternate" hreflang="{code}" href="{esc(page_url(code, slug, kind))}">' for code in LANGS]
+    alternates.append(f'  <link rel="alternate" hreflang="x-default" href="{esc(page_url(default_lang, slug, kind))}">')
     og_alternates = [f'  <meta property="og:locale:alternate" content="{other["og_locale"]}">' for code, other in LANGS.items() if code != lang]
 
     person_id = SETTINGS["cv_url"] + "#person"
@@ -151,8 +206,8 @@ def render_page(template, lang):
         "@graph": [
             {
                 "@type": "WebPage",
-                "@id": page_url(lang),
-                "url": page_url(lang),
+                "@id": page_url(lang, slug, kind),
+                "url": page_url(lang, slug, kind),
                 "name": t["page_title"],
                 "description": t["description"],
                 "inLanguage": lang,
@@ -191,6 +246,38 @@ def render_page(template, lang):
             },
         ],
     }
+
+    main_link = rel(meta["path"], path)  # the main page in the same language
+    breadcrumb = directions = ""
+    if kind == "patients":
+        # A page for patients: a medical topic, not the clinic platform.
+        page_ld = json_ld["@graph"][0]
+        page_ld["@type"] = "MedicalWebPage"
+        page_ld["about"] = {"@type": "MedicalProcedure", "name": t["ld_topic"]}
+        page_ld["audience"] = {"@type": "MedicalAudience", "audienceType": t["ld_audience"]}
+        del page_ld["mainEntity"]
+        json_ld["@graph"].pop(1)  # the WebApplication describes the clinic product
+    elif kind == "clinics":
+        json_ld["@graph"][0]["breadcrumb"] = {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": plain(L[lang]["breadcrumb_label"]), "item": page_url(lang)},
+                {"@type": "ListItem", "position": 2, "name": plain(t["direction_name"]), "item": page_url(lang, slug, kind)},
+            ],
+        }
+        breadcrumb = (f'<nav class="breadcrumb" aria-label="{esc(t["breadcrumb_nav_label"])}"><a href="{esc(main_link)}">{esc(plain(L[lang]["breadcrumb_label"]))}</a>'
+                      f'<span aria-hidden="true">/</span><span aria-current="page">{esc(plain(t["direction_name"]))}</span></nav>\n          ')
+        # The clinic sees the page its patients will read.
+        patients = DIRECTIONS[slug]["patients"][lang]
+        directions = (f'<div class="directions reveal"><p class="modules-label">{esc(t["patients_link_label"])}</p><ul><li>'
+                      f'<a href="{esc(rel(page_path(lang, slug, "patients"), path))}">{icon("user", "icon-accent")}<span>{esc(plain(patients["direction_name"]))}</span>'
+                      f'{icon("arrow-right")}</a></li></ul></div>')
+    elif DIRECTIONS:
+        # The main page lists the directions' clinic pages, so each of them is one link away and gets found by crawlers.
+        links = "".join(
+            f'<li><a href="{esc(rel(page_path(lang, other, "clinics"), path))}">{icon("tooth", "icon-accent")}'
+            f'<span>{esc(plain(DIRECTIONS[other]["clinics"][lang]["direction_name"]))}</span>{icon("arrow-right")}</a></li>' for other in DIRECTIONS)
+        directions = f'<div class="directions reveal"><p class="modules-label">{esc(t["directions_label"])}</p><ul>{links}</ul></div>'
 
     metrika_id = SETTINGS["metrika_id"].strip()
     if metrika_id and not metrika_id.isdigit():
@@ -233,10 +320,13 @@ def render_page(template, lang):
             context[key + "_html"] = rich(value)
     context.update(render_fragments(t))
     context.update(
-        lang=lang, root=root, assets=assets, og_image=og_image, canonical=page_url(lang), og_locale=meta["og_locale"],
+        lang=lang, root=root, assets=assets, og_image=og_image, canonical=page_url(lang, slug, kind), og_locale=meta["og_locale"],
         lang_code=meta["code"], lang_name=meta["name"], lang_flag=meta["flag"],
         person=SETTINGS["person"], cv_url=SETTINGS["cv_url"], linkedin=SETTINGS["linkedin"],
         cv_link=root + "../", biz_link=root + "../business/" + meta["path"],  # every page leads to the other two
+        brand_href=main_link if kind == "clinics" else "#top", breadcrumb_html=breadcrumb, directions_html=directions,
+        clinics_link=rel(page_path(lang, slug, "clinics"), path) if slug else main_link,
+        find_url=SETTINGS["catalog_url"], map_url=SETTINGS["map_url"],
         product=SETTINGS["product"], product_url=SETTINGS["product_url"], apply_url=SETTINGS["apply_url"],
         phone_display=SETTINGS["phone_display"], phone_e164=SETTINGS["phone_e164"],
         telegram_url="https://t.me/" + SETTINGS["telegram"], whatsapp_url="https://wa.me/" + SETTINGS["whatsapp"],
@@ -246,12 +336,17 @@ def render_page(template, lang):
         metrika_html=metrika,
     )
 
-    # The tariffs section and its menu entry disappear together when SETTINGS["show_tariffs"] is off.
-    template = TARIFFS_BLOCK.sub(r"\1" if SETTINGS["show_tariffs"] else "", template)
+    # Blocks: clinic pages (main and a direction's clinic page) and patient pages differ in navigation, content,
+    # footer buttons and the callback dialog; the tariffs section and its menu entry go when SETTINGS["show_tariffs"] is off.
+    kept = {"patients"} if kind == "patients" else {"clinics"}
+    if SETTINGS["show_tariffs"]:
+        kept.add("tariffs")
+    while BLOCK.search(template):
+        template = BLOCK.sub(lambda block: block.group(2) if block.group(1) in kept else "", template)
 
     missing = sorted(set(TOKEN.findall(template)) - set(context))
     if missing:
-        raise SystemExit(f"template.html uses tokens that content.py does not define ({lang}): {', '.join(missing)}")
+        raise SystemExit(f"template.html uses tokens that content.py does not define ({path or lang}): {', '.join(missing)}")
 
     def fill(match):
         key = match.group(1)
@@ -259,7 +354,7 @@ def render_page(template, lang):
 
     page = TOKEN.sub(fill, template)
     if "[[" in page or "]]" in page.replace("]]>", ""):
-        raise SystemExit(f"an unprocessed [[keyword]] marker is left in the {lang} page")
+        raise SystemExit(f"an unprocessed [[keyword]] marker is left in the page {path or lang}")
     return page
 
 
@@ -276,19 +371,34 @@ def main():
         diff = set(t) ^ set(reference)
         if diff:
             raise SystemExit(f"content.py: language '{lang}' differs in keys: {', '.join(sorted(diff))}")
+    for slug, direction in DIRECTIONS.items():
+        if not re.fullmatch(r"[a-z0-9-]+", slug) or slug in {meta["path"].strip("/") for meta in LANGS.values()} | {"assets"}:
+            raise SystemExit(f"content.py: '{slug}' cannot be a direction address")
+        if set(direction) != {"keyword_stem", "patients", "clinics"} or any(set(direction[part]) != set(LANGS) for part in direction):
+            raise SystemExit(f"content.py: direction '{slug}' needs keyword_stem, patients and clinics for every language")
+        for lang in LANGS:
+            unknown = set(direction["clinics"][lang]) - set(reference) - DIRECTION_KEYS
+            missing = DIRECTION_KEYS - set(direction["clinics"][lang])
+            if unknown or missing:
+                raise SystemExit(f"content.py: direction '{slug}' clinics ({lang}): unknown keys {sorted(unknown)}, missing keys {sorted(missing)}")
+        first = set(next(iter(direction["patients"].values())))
+        for lang, copy in direction["patients"].items():
+            if set(copy) != first:
+                raise SystemExit(f"content.py: direction '{slug}' patients: language '{lang}' differs in keys: {', '.join(sorted(set(copy) ^ first))}")
     if not SETTINGS["base_url"].endswith("/"):
         raise SystemExit("SETTINGS['base_url'] must end with a slash")
 
     with open(os.path.join(HERE, "template.html"), encoding="utf-8") as source:
         template = source.read()
 
-    for lang, meta in LANGS.items():
-        target = os.path.join(OUT, meta["path"], "index.html")
+    for lang, slug, kind in pages():
+        target = os.path.join(OUT, page_path(lang, slug, kind), "index.html")
         os.makedirs(os.path.dirname(target), exist_ok=True)
-        page = render_page(template, lang)
+        page = render_page(template, lang, slug, kind)
         with open(target, "w", encoding="utf-8") as out:
             out.write(page)
-        t, stem = L[lang], KEYWORD_STEM[lang]
+        t = page_copy(lang, slug, kind)
+        stem = DIRECTIONS[slug]["keyword_stem"][lang] if slug else KEYWORD_STEM[lang]
         mentions = visible_text(page).lower().count(stem)
         emphasised = page.count('class="kw"') + page.count('class="accent-word"')
         print(f"{lang}: {os.path.relpath(target, REPO)}  ({os.path.getsize(target) // 1024} KB) · "
@@ -296,9 +406,10 @@ def main():
               f"title {len(t['page_title'])} / description {len(t['description'])} characters")
 
     today = datetime.date.today().isoformat()
-    alternates = "".join(f'    <xhtml:link rel="alternate" hreflang="{code}" href="{esc(page_url(code))}"/>\n' for code in LANGS)
-    urls = "".join(
-        f"  <url>\n    <loc>{esc(page_url(lang))}</loc>\n{alternates}    <lastmod>{today}</lastmod>\n    <changefreq>monthly</changefreq>\n  </url>\n" for lang in LANGS)
+    urls = ""
+    for lang, slug, kind in pages():
+        alternates = "".join(f'    <xhtml:link rel="alternate" hreflang="{code}" href="{esc(page_url(code, slug, kind))}"/>\n' for code in LANGS)
+        urls += f"  <url>\n    <loc>{esc(page_url(lang, slug, kind))}</loc>\n{alternates}    <lastmod>{today}</lastmod>\n    <changefreq>monthly</changefreq>\n  </url>\n"
     with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as out:
         out.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n{urls}</urlset>\n')
 

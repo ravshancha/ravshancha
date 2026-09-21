@@ -93,7 +93,7 @@
           "name": "Bu pullikmi?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Katalogdagi sahifa, onlayn yozuvlar va grafik — bepul. Davolashni tizimda yuritish (bemor kartalari, tish formulasi, davolash rejalari, kassa, hisobotlar) — pullik tarifda: filial uchun oyiga 99 000 so‘m. Yozilgan bemor uchun komissiya olinmaydi."
+            "text": "Katalogdagi sahifa, onlayn yozuvlar va grafik — bepul. Davolashni tizimda yuritish (bemor kartalari, tish formulasi, davolash rejalari, kassa, hisobotlar) — pullik tarifda, shartlarini qo‘ng‘iroqda aytamiz. Yozilgan bemor uchun komissiya olinmaydi."
           }
         },
         {
@@ -450,6 +450,22 @@
     .modules ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
     .modules li { padding: 8px 14px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--text); font-size: 13px; font-weight: 700; }
 
+    /* Direction pages: the main page links to each of them, and each leads back through the breadcrumb. */
+    .directions { display: grid; grid-template-columns: auto 1fr; gap: 14px 26px; align-items: center; margin-top: 18px; padding: 24px 28px; border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line)); border-radius: var(--radius); background: var(--bg); }
+    .directions ul { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .directions a { display: inline-flex; align-items: center; gap: 10px; padding: 9px 14px 9px 10px; border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line)); border-radius: 999px; background: var(--surface); color: var(--text); font-size: 14px; font-weight: 700; transition: border-color 150ms ease, transform 150ms ease; }
+    .directions a:hover, .directions a:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
+    .directions .site-icon { width: 24px; height: 24px; }
+    .directions a > .site-icon:last-child { color: var(--accent); opacity: 1; }
+        .contact-portrait.contact-product img { width: min(100%, 240px); margin-bottom: 64px; padding: 26px; border-radius: 40px; background: #ffffff; filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.25)); }
+    .check-list-large { gap: 14px; margin: 0; }
+    .check-list-large li { grid-template-columns: 30px 1fr; padding: 18px 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); font-size: 1.02rem; }
+    .check-list-large .site-icon { width: 30px; height: 30px; }
+    .medical-note { max-width: 420px; margin: 0; color: var(--muted); font-size: 14px; }
+    .breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 0 0 22px; color: var(--muted); font-size: 13px; font-weight: 650; }
+    .breadcrumb a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .breadcrumb a:hover, .breadcrumb a:focus-visible { color: var(--header-hover); }
+
     .tariff-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
     .tariff-card { display: flex; flex-direction: column; padding: 34px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
     .tariff-card.featured { border-color: color-mix(in srgb, var(--accent) 60%, transparent); box-shadow: 0 24px 60px var(--shadow); }
@@ -515,17 +531,19 @@
     .contact-portrait img { width: min(100%, 420px); height: auto; filter: drop-shadow(0 30px 34px rgba(0, 0, 0, 0.32)); }
 
     .site-footer { padding: 30px 0 calc(30px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
-    .footer-inner, .footer-links { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
-    .footer-links { flex-wrap: wrap; justify-content: flex-end; }
-    .footer-socials { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
-    .footer-inner p { margin: 0; }
+    .footer-inner, .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .footer-bottom { flex-wrap: wrap; margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line); }
+    .footer-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .footer-actions .button { min-height: 46px; padding: 0 18px; gap: 10px; font-size: 14px; }
+    .footer-actions .button-icon, .footer-actions .site-icon { width: 26px; height: 26px; }
+    .footer-bottom p { margin: 0; }
     .footer-sites { display: flex; flex-wrap: wrap; gap: 10px; }
     .footer-site { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--line)); border-radius: 8px; color: var(--text); background: color-mix(in srgb, var(--accent) 10%, transparent); font-weight: 700; white-space: nowrap; transition: transform 150ms ease, border-color 150ms ease, background 150ms ease; }
     .footer-site:hover, .footer-site:focus-visible { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, transparent); transform: translateY(-2px); }
     .footer-site .site-icon { width: 24px; height: 24px; color: var(--accent); opacity: 1; }
-    .footer-inner a:hover { color: var(--text); }
+    .footer-bottom a:hover { color: var(--text); }
     .footer-top { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; color: var(--accent-text); background: var(--accent); font-weight: 750; transition: transform 150ms ease, box-shadow 150ms ease; }
-    .footer-links .footer-top:hover, .footer-links .footer-top:focus-visible { color: var(--accent-text); transform: translateY(-2px); box-shadow: 0 14px 34px color-mix(in srgb, var(--accent) 34%, transparent); }
+    .footer-inner .footer-top:hover, .footer-inner .footer-top:focus-visible { color: var(--accent-text); transform: translateY(-2px); box-shadow: 0 14px 34px color-mix(in srgb, var(--accent) 34%, transparent); }
     .footer-top .site-icon { width: 24px; height: 24px; }
 
     .sticky-cta { position: fixed; inset: auto 0 0; z-index: 90; display: none; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); background: var(--header); backdrop-filter: blur(18px); transform: translateY(110%); transition: transform 220ms ease; }
@@ -628,11 +646,12 @@
       .contact-inner { grid-template-columns: 1fr; gap: 34px; }
       .contact-copy { padding-bottom: 0; }
       .contact-portrait img { width: min(84vw, 340px); }
+      .contact-portrait.contact-product img { width: min(52vw, 200px); margin-bottom: 48px; }
       .section-heading { display: block; }
       .section-heading > p { margin-top: 20px; }
       .section-lead { max-width: 560px; }
       .cta-inline { display: grid; }
-      .modules { grid-template-columns: 1fr; }
+      .modules, .directions { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 720px) {
@@ -665,10 +684,11 @@
       .contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
       .contact-row-main { grid-template-columns: 1fr; }
       .contact-button { width: 100%; }
-      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-inner, .footer-bottom { align-items: stretch; flex-direction: column; }
+      .footer-actions { display: grid; grid-template-columns: 1fr; }
+      .footer-actions .button { width: 100%; }
+      .footer-top { align-self: flex-start; }
       .footer-sites { width: 100%; }
-      .footer-links { width: 100%; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 14px; }
-      .footer-socials { flex: 1 1 auto; gap: 12px 16px; }
       .site-footer { padding: 26px 0 calc(96px + env(safe-area-inset-bottom, 0px)); }
       .sticky-cta { display: grid; }
     }
@@ -678,7 +698,7 @@
       *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
       .reveal, html.js .hero-chips li { opacity: 1; transform: none; translate: 0 0; }
     }
-  </style>
+      </style>
 </head>
 <body>
   <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
@@ -718,6 +738,7 @@
     <symbol id="icon-tooth" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 2.8c-2.5 0-4.2 1.9-4.2 4.5 0 1.7.5 2.9.9 4.4.5 1.9.6 4.2 1 6.3.3 1.7.8 3.2 2 3.2 1.3 0 1.5-1.7 1.8-3.4.3-1.7.8-3 3.1-3s2.8 1.3 3.1 3c.3 1.7.5 3.4 1.8 3.4 1.2 0 1.7-1.5 2-3.2.4-2.1.5-4.4 1-6.3.4-1.5.9-2.7.9-4.4 0-2.6-1.7-4.5-4.2-4.5-1.8 0-2.9 1-4.6 1s-2.8-1-4.6-1z"/></g></symbol>
     <symbol id="icon-pin" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.8s-7.2-6.2-7.2-11.9a7.2 7.2 0 0 1 14.4 0c0 5.7-7.2 11.9-7.2 11.9z"/><circle cx="12" cy="9.9" r="2.7"/></g></symbol>
     <symbol id="icon-star" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8l2.8 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.4l-5.7 3 1.1-6.4-4.6-4.5 6.4-.9z"/></g></symbol>
+    <symbol id="icon-shield" viewBox="0 0 64 64"><g transform="translate(12 12) scale(1.666667)" fill="none" stroke="currentColor" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.4l7.8 3v5.8c0 5-3.3 8.9-7.8 10.4-4.5-1.5-7.8-5.4-7.8-10.4V5.4z"/><path d="M8.4 12l2.6 2.6 4.8-5"/></g></symbol>
     <symbol id="shape-tooth" viewBox="0 0 24 24"><path d="M7.4 2.8c-2.5 0-4.2 1.9-4.2 4.5 0 1.7.5 2.9.9 4.4.5 1.9.6 4.2 1 6.3.3 1.7.8 3.2 2 3.2 1.3 0 1.5-1.7 1.8-3.4.3-1.7.8-3 3.1-3s2.8 1.3 3.1 3c.3 1.7.5 3.4 1.8 3.4 1.2 0 1.7-1.5 2-3.2.4-2.1.5-4.4 1-6.3.4-1.5.9-2.7.9-4.4 0-2.6-1.7-4.5-4.2-4.5-1.8 0-2.9 1-4.6 1s-2.8-1-4.6-1z"/></symbol>
   </svg>
 
@@ -740,7 +761,6 @@
 
       <nav class="site-nav" id="site-nav" aria-label="Asosiy navigatsiya" data-menu>
         <a href="#platform">Platforma</a>
-        <a href="#tariffs">Tariflar</a>
         <a href="#steps">Ulanish</a>
         <a href="#founder">Kim qurgan</a>
         <a href="#faq">Savollar</a>
@@ -877,29 +897,10 @@
             <li>Xodimlar</li>
           </ul>
         </div>
+        <div class="directions reveal"><p class="modules-label">Yo‘nalishlar bo‘yicha sahifalar</p><ul><li><a href="sedatsiya/klinikalar/"><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-tooth"/></svg><span>Tishlarni sedatsiya (narkoz) bilan davolash</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></a></li></ul></div>
       </div>
     </section>
 
-    <section class="section section-accent" id="tariffs">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">Tariflar</p>
-            <h2><strong class="kw">Stomatologiya</strong> klinikasi uchun ikki tarif.</h2>
-          </div>
-          <p>Chegara oddiy: bemorlarni jalb qilish — bepul, davolashni tizimda yuritish — pullik.</p>
-        </div>
-        <div class="tariff-grid">
-          <article class="tariff-card reveal featured"><p class="tariff-name">Bepul</p><p class="tariff-price"><strong>0 so‘m</strong><span>muddatsiz</span></p><p>Bemorlar sizni topishi va yozilishi uchun kerak bo‘lgan hammasi.</p><ul class="check-list"><li><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg><span>Katalogdagi klinika sahifasi</span></li><li><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg><span>Onlayn yozuvlarni qabul qilish</span></li><li><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg><span>Shifokorlar grafigi</span></li></ul><a class="button button-primary" href="https://dentalnavigator.uz/apply" target="_blank" rel="noopener" data-goal="click_apply"><span>Bepul boshlash</span><svg class="site-icon button-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></a></article>
-          <article class="tariff-card reveal"><p class="tariff-name">Pullik</p><p class="tariff-price"><strong>99 000 so‘m</strong><span>filial uchun, oyiga</span></p><p>Davolashni ham tizimda yuritmoqchi bo‘lgan klinika uchun.</p><ul class="check-list"><li><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg><span>Bepul tarifdagi hammasi</span></li><li><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg><span>Bemor kartalari va tish formulasi</span></li><li><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg><span>Davolash rejalari</span></li><li><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg><span>Kassa va hisobotlar</span></li></ul><button class="button button-secondary" type="button" data-order-open><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-phone"/></svg><span>Qo‘ng‘iroq buyurtma qilish</span></button></article>
-        </div>
-        <ul class="tariff-notes reveal">
-          <li><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg><span>Yozilgan bemor uchun komissiya olinmaydi.</span></li>
-          <li><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg><span>Katalogdagi tartib sotilmaydi: reklama alohida blokda va belgi bilan ko‘rsatiladi.</span></li>
-          <li><svg class="site-icon icon-accent" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg><span>Platformadagi har bir klinika bemorga oyiga bir marta bepul ko‘rik beradi — bu ishtirok sharti.</span></li>
-        </ul>
-      </div>
-    </section>
 
     <section class="section" id="steps">
       <div class="container">
@@ -950,7 +951,7 @@
           <h2><strong class="kw">Stomatologlar</strong> ko‘p beradigan savollar.</h2>
         </div>
         <div class="faq-list reveal">
-          <details class="faq-item"><summary><span>Bu pullikmi?</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-plus"/></svg></summary><p>Katalogdagi sahifa, onlayn yozuvlar va grafik — bepul. Davolashni tizimda yuritish (bemor kartalari, tish formulasi, davolash rejalari, kassa, hisobotlar) — pullik tarifda: filial uchun oyiga 99 000 so‘m. Yozilgan bemor uchun komissiya olinmaydi.</p></details>
+          <details class="faq-item"><summary><span>Bu pullikmi?</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-plus"/></svg></summary><p>Katalogdagi sahifa, onlayn yozuvlar va grafik — bepul. Davolashni tizimda yuritish (bemor kartalari, tish formulasi, davolash rejalari, kassa, hisobotlar) — pullik tarifda, shartlarini qo‘ng‘iroqda aytamiz. Yozilgan bemor uchun komissiya olinmaydi.</p></details>
           <details class="faq-item"><summary><span>Bizda allaqachon CRM bor. Almashtirishimiz kerakmi?</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-plus"/></svg></summary><p>Yo‘q. Katalog va onlayn yozilish mavjud dasturingiz bilan yonma-yon ishlaydi: yangi yozuvlar kabinetga tushadi, qolgan ishni o‘rgangan dasturingizda davom ettirasiz.</p></details>
           <details class="faq-item"><summary><span>Bemorlarim bazasi kimda qoladi?</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-plus"/></svg></summary><p>Klinikangizda. Boshqa klinikalar bemorlaringizni ko‘rmaydi. Shifokor ishdan ketsa, uning kirish huquqi yopiladi — baza klinikada qoladi.</p></details>
           <details class="faq-item"><summary><span>Katalogda birinchi o‘rin sotiladimi?</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-plus"/></svg></summary><p>Yo‘q. Katalogdagi tartib sotilmaydi. Reklama alohida blokda va belgi bilan ko‘rsatiladi — qidiruv natijalariga ta’sir qilmaydi.</p></details>
@@ -987,20 +988,18 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
+      <div class="footer-actions">
+        <a class="button button-primary" href="https://dentalnavigator.uz/apply" target="_blank" rel="noopener" data-goal="click_apply"><span>Klinikani qo‘shish</span><svg class="site-icon button-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg></a>
+        <button class="button button-secondary" type="button" data-order-open><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-phone"/></svg><span>Qo‘ng‘iroq buyurtma qilish</span></button>
+      </div>
+      <a class="footer-top" href="#top"><span>Yuqoriga</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up"/></svg></a>
+    </div>
+    <div class="container footer-bottom">
       <p>© <span data-year></span> Ravshanjon Ismoilov · Toshkent, O‘zbekiston</p>
       <div class="footer-sites">
         <a class="footer-site" href="../"><span>Rezyume</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
         <a class="footer-site" href="../business/"><span>Biznes uchun xizmatlar</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
       </div>
-      <nav class="footer-links" aria-label="Aloqa havolalari">
-        <div class="footer-socials">
-          <a href="https://dentalnavigator.uz/" target="_blank" rel="noopener" data-goal="click_product">Dental Navigator</a>
-          <a href="https://www.linkedin.com/in/ravshancha" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://t.me/ravshanjon_ismoilov" target="_blank" rel="noopener noreferrer" data-goal="click_telegram">Telegram</a>
-          <a href="https://wa.me/998999420770" target="_blank" rel="noopener noreferrer" data-goal="click_whatsapp">WhatsApp</a>
-        </div>
-        <a class="footer-top" href="#top"><span>Yuqoriga</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up"/></svg></a>
-      </nav>
     </div>
   </footer>
 
