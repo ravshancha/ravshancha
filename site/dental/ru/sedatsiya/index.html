@@ -684,8 +684,11 @@
     .patient-contact .contact-inner { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); }
     .patient-contact .section-kicker, .patient-contact .contact-text { color: #e1ecf7; }
     .patient-contact .contact-copy { padding-bottom: 64px; }
-    .patient-contact .contact-button-solid { color: #073765; background: #fff; }
+    /* The photo keeps this block navy in both themes, so nothing in it may follow the theme variables. */
+    .patient-contact .site-icon { color: currentColor; }
+    .patient-contact .contact-button-solid, html[data-theme="dark"] .patient-contact .contact-button-solid { color: #073765; background: #fff; }
     .patient-contact .contact-button-ghost { color: #fff; border-color: #b8cfe5; }
+    .patient-contact .contact-button-ghost:hover { background: rgba(255, 255, 255, .15); }
     @media (max-width: 900px) {
       .patient-intro { grid-template-columns: 1fr; gap: 24px; }
       .patient-section-photo { max-height: 360px; }
