@@ -514,8 +514,11 @@
     .footer-actions .button-icon, .footer-actions .site-icon { width: 26px; height: 26px; }
     .footer-bottom p { margin: 0; }
     .footer-sites { display: flex; flex-wrap: wrap; gap: 10px; }
-    .footer-site { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--line)); border-radius: 8px; color: var(--text); background: color-mix(in srgb, var(--accent) 10%, transparent); font-weight: 700; white-space: nowrap; transition: transform 150ms ease, border-color 150ms ease, background 150ms ease; }
-    .footer-site:hover, .footer-site:focus-visible { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, transparent); transform: translateY(-2px); }
+    .footer-site { display: inline-flex; min-height: 44px; align-items: center; gap: 8px; padding: 9px 15px; border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--line)); border-radius: 8px; color: var(--text); background: color-mix(in srgb, var(--accent) 10%, transparent); font-weight: 700; white-space: nowrap; transition: transform 150ms ease, border-color 150ms ease, background 150ms ease; }
+    /* The page being read stands among the links as the chosen one: no arrow, nowhere to go. */
+    a.footer-site:hover, a.footer-site:focus-visible, .footer-site[aria-current] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, transparent); }
+    a.footer-site:hover, a.footer-site:focus-visible { transform: translateY(-2px); }
+    .footer-site[aria-current] { cursor: default; }
     .footer-site .site-icon { width: 24px; height: 24px; color: var(--accent); opacity: 1; }
     .footer-bottom a:hover { color: var(--text); }
     .footer-top { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; color: var(--accent-text); background: var(--accent); font-weight: 750; transition: transform 150ms ease, box-shadow 150ms ease; }
@@ -956,6 +959,8 @@
       <div class="footer-sites">
         <a class="footer-site" href="../../"><span>Rezyume</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
         <a class="footer-site" href="../../business/"><span>Biznes uchun xizmatlar</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
+        <a class="footer-site" href="../"><span>Stomatologiya uchun</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
+        <span class="footer-site" aria-current="page"><span>Sedatsiya</span></span>
       </div>
     </div>
   </footer>

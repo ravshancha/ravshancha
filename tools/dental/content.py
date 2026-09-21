@@ -68,8 +68,9 @@ L["uz"] = dict(
     language_label="Til",
     back_to_top="Yuqoriga",
     footer_links_label="Aloqa havolalari",
-    footer_cv="Rezyume",
+    footer_cv="Rezyume",  # the footer's site buttons: these three and one per direction (its footer_label)
     footer_biz="Biznes uchun xizmatlar",
+    footer_dental="Stomatologiya uchun",
     breadcrumb_label="Klinikalar uchun Dental Navigator",  # the first step of a direction page's breadcrumb
     directions_label="Yo‘nalishlar bo‘yicha sahifalar",
 
@@ -246,6 +247,7 @@ L["ru"] = dict(
     footer_links_label="Контактные ссылки",
     footer_cv="Резюме",
     footer_biz="Услуги для бизнеса",
+    footer_dental="Для стоматологии",
     breadcrumb_label="Dental Navigator для клиник",
     directions_label="Страницы по направлениям",
 
@@ -401,11 +403,13 @@ L["ru"] = dict(
 #                                                            patients who look for it. Only the keys that differ from the
 #                                                            main page, plus direction_name (link text on the main page and
 #                                                            the breadcrumb), breadcrumb_nav_label and patients_link_label.
-# keyword_stem is the word build_site.py counts on both pages.
+# keyword_stem is the word build_site.py counts on both pages; footer_label names the patients' page among the
+# footer's site buttons (the same label stands in the footers of ravshancha.uz and /business/ — keep them alike).
 DIRECTIONS = {}
 
 DIRECTIONS["sedatsiya"] = dict(
     keyword_stem=dict(uz="sedatsiya", ru="седац"),
+    footer_label=dict(uz="Sedatsiya", ru="Седация"),
     patients=dict(
         uz=dict(
             direction_name="Tishlarni sedatsiya (narkoz) bilan davolash",

@@ -555,13 +555,17 @@
     .contact-portrait img { width: min(100%, 440px); height: auto; filter: drop-shadow(0 30px 34px rgba(0, 0, 0, 0.32)); }
 
     .site-footer { padding: 30px 0 calc(30px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
-    .footer-inner, .footer-links { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
-    .footer-links { flex-wrap: wrap; justify-content: flex-end; }
+    .footer-inner, .footer-bottom, .footer-links { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .footer-links { flex: 1 1 auto; flex-wrap: wrap; }
+    .footer-bottom { flex-wrap: wrap; margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line); }
     .footer-socials { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
-    .footer-inner p { margin: 0; }
+    .footer-bottom p { margin: 0; }
     .footer-sites { display: flex; flex-wrap: wrap; gap: 10px; }
-    .footer-site { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--line)); border-radius: 8px; color: var(--text); background: color-mix(in srgb, var(--accent) 10%, transparent); font-weight: 700; white-space: nowrap; transition: transform 150ms ease, border-color 150ms ease, background 150ms ease; }
-    .footer-site:hover, .footer-site:focus-visible { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, transparent); transform: translateY(-2px); }
+    .footer-site { display: inline-flex; min-height: 44px; align-items: center; gap: 8px; padding: 9px 15px; border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--line)); border-radius: 8px; color: var(--text); background: color-mix(in srgb, var(--accent) 10%, transparent); font-weight: 700; white-space: nowrap; transition: transform 150ms ease, border-color 150ms ease, background 150ms ease; }
+    /* The page being read stands among the links as the chosen one: no arrow, nowhere to go. */
+    a.footer-site:hover, a.footer-site:focus-visible, .footer-site[aria-current] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, transparent); }
+    a.footer-site:hover, a.footer-site:focus-visible { transform: translateY(-2px); }
+    .footer-site[aria-current] { cursor: default; }
     .footer-site .site-icon { width: 24px; height: 24px; color: var(--accent); opacity: 1; }
     .footer-inner a:hover { color: var(--text); }
     .footer-top { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; color: var(--accent-text); background: var(--accent); font-weight: 750; transition: transform 150ms ease, box-shadow 150ms ease; }
@@ -695,7 +699,7 @@
       .faq-item summary { padding: 18px 0; font-size: 1.04rem; }
       .contact-actions { justify-items: stretch; }
       .contact-button { width: 100%; }
-      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-inner, .footer-bottom { align-items: flex-start; flex-direction: column; }
       .footer-sites { width: 100%; }
       .footer-links { width: 100%; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 14px; }
       .footer-socials { flex: 1 1 auto; gap: 12px 16px; }
@@ -935,17 +939,18 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© <span data-year></span> {{person}} · {{footer_location}}</p>
-      <div class="footer-sites">
-        <a class="footer-site" href="{{cv_link}}"><span>{{footer_cv}}</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
-        <a class="footer-site" href="{{dental_link}}"><span>{{footer_dental}}</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
-      </div>
       <nav class="footer-links" aria-label="{{footer_links_label}}">
         <div class="footer-socials">
           <a href="{{linkedin}}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
         <a class="footer-top" href="#top"><span>{{back_to_top}}</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up"/></svg></a>
       </nav>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span data-year></span> {{person}} · {{footer_location}}</p>
+      <div class="footer-sites">
+{{footer_sites_html}}
+      </div>
     </div>
   </footer>
 

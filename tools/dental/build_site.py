@@ -279,6 +279,16 @@ def render_page(template, lang, slug=None, kind="main"):
             f'<span>{esc(plain(DIRECTIONS[other]["clinics"][lang]["direction_name"]))}</span>{icon("arrow-right")}</a></li>' for other in DIRECTIONS)
         directions = f'<div class="directions reveal"><p class="modules-label">{esc(t["directions_label"])}</p><ul>{links}</ul></div>'
 
+    # The footer of every ravshancha.uz page ends with the same site buttons; the page being read is marked, not linked.
+    sites = [(t["footer_cv"], root + "../", False), (t["footer_biz"], root + "../business/" + meta["path"], False),
+             (t["footer_dental"], main_link, kind == "main")]
+    sites += [(DIRECTIONS[other]["footer_label"][lang], rel(page_path(lang, other, "patients"), path), kind == "patients" and other == slug)
+              for other in DIRECTIONS]
+    footer_sites = [
+        f'<span class="footer-site" aria-current="page"><span>{esc(label)}</span></span>' if current else
+        f'<a class="footer-site" href="{esc(link)}"><span>{esc(label)}</span>{icon("arrow-up-right")}</a>'
+        for label, link, current in sites]
+
     metrika_id = SETTINGS["metrika_id"].strip()
     if metrika_id and not metrika_id.isdigit():
         raise SystemExit("SETTINGS['metrika_id'] must contain digits only")
@@ -323,8 +333,8 @@ def render_page(template, lang, slug=None, kind="main"):
         lang=lang, root=root, assets=assets, og_image=og_image, canonical=page_url(lang, slug, kind), og_locale=meta["og_locale"],
         lang_code=meta["code"], lang_name=meta["name"], lang_flag=meta["flag"],
         person=SETTINGS["person"], cv_url=SETTINGS["cv_url"], linkedin=SETTINGS["linkedin"],
-        cv_link=root + "../", biz_link=root + "../business/" + meta["path"],  # every page leads to the other two
         brand_href=main_link if kind == "clinics" else "#top", breadcrumb_html=breadcrumb, directions_html=directions,
+        footer_sites_html=lines(footer_sites, 8),
         clinics_link=rel(page_path(lang, slug, "clinics"), path) if slug else main_link,
         find_url=SETTINGS["catalog_url"], map_url=SETTINGS["map_url"],
         product=SETTINGS["product"], product_url=SETTINGS["product_url"], apply_url=SETTINGS["apply_url"],
@@ -374,8 +384,8 @@ def main():
     for slug, direction in DIRECTIONS.items():
         if not re.fullmatch(r"[a-z0-9-]+", slug) or slug in {meta["path"].strip("/") for meta in LANGS.values()} | {"assets"}:
             raise SystemExit(f"content.py: '{slug}' cannot be a direction address")
-        if set(direction) != {"keyword_stem", "patients", "clinics"} or any(set(direction[part]) != set(LANGS) for part in direction):
-            raise SystemExit(f"content.py: direction '{slug}' needs keyword_stem, patients and clinics for every language")
+        if set(direction) != {"keyword_stem", "footer_label", "patients", "clinics"} or any(set(direction[part]) != set(LANGS) for part in direction):
+            raise SystemExit(f"content.py: direction '{slug}' needs keyword_stem, footer_label, patients and clinics for every language")
         for lang in LANGS:
             unknown = set(direction["clinics"][lang]) - set(reference) - DIRECTION_KEYS
             missing = DIRECTION_KEYS - set(direction["clinics"][lang])

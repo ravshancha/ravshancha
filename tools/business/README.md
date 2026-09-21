@@ -2,7 +2,9 @@
 
 Biznes egalari uchun landing: jarayonlarni avtomatlashtirish, og‘riqlarni davolash, shaffoflik.
 Dizayn va kod asosi CV saytdan (`site/index.html`) olingan. CV sayt ishonch uchun tayanch bo‘lib qoladi:
-CV sayt footer’idagi "Biznes uchun xizmatlar" tugmasi shu yerga olib keladi; bu sahifaning o‘zida esa tashqariga (CV, telefon, messenjer) olib chiqadigan havola yo‘q — har bir blok diagnostika so‘rovnomasiga olib boradi.
+CV sayt footer’idagi "Biznes uchun xizmatlar" tugmasi shu yerga olib keladi; bu sahifaning o‘zida esa telefon yoki messenjer yo‘q — har bir blok diagnostika so‘rovnomasiga olib boradi.
+Tashqariga faqat footerning pastki qatori olib chiqadi: u yerda (© yonida) ravshancha.uz ning barcha sahifalari turadi — Rezyume, Biznes (shu sahifa, havola emas), Stomatologiya, Sedatsiya.
+Xuddi shu to‘rt tugma CV sayt va `/dental/` footerida ham bor; yorliqlar `content.py` dagi `footer_*`, manzillar `build_site.py` da.
 
 ## Tuzilma
 

@@ -214,13 +214,21 @@ def render_page(template, lang):
         },
     }
 
+    # The footer of every ravshancha.uz page ends with the same site buttons; this page is marked, not linked.
+    dental = root + "../dental/" + meta["path"]
+    sites = [(t["footer_cv"], root + "../"), (t["footer_biz"], None), (t["footer_dental"], dental), (t["footer_sedation"], dental + "sedatsiya/")]
+    footer_sites = [
+        f'<a class="footer-site" href="{esc(link)}"><span>{esc(label)}</span>{icon("arrow-up-right")}</a>' if link else
+        f'<span class="footer-site" aria-current="page"><span>{esc(label)}</span></span>'
+        for label, link in sites]
+
     context = {key: value for key, value in t.items() if isinstance(value, str)}
     context.update(render_fragments(t, lang))
     context.update(
         lang=lang, root=root, assets=assets, og_image=og_image, canonical=page_url(lang), base_url=SETTINGS["base_url"], og_locale=meta["og_locale"],
         lang_code=meta["code"], lang_name=meta["name"], lang_flag=meta["flag"],
         person=SETTINGS["person"], linkedin=SETTINGS["linkedin"],
-        cv_link=root + "../", dental_link=root + "../dental/" + meta["path"],  # every page leads to the other two
+        footer_sites_html=lines(footer_sites, 8),
         telegram_url="https://t.me/" + SETTINGS["telegram"],  # the order form's fallback link; the page itself shows no contact channels
         quiz_intro=t["quiz_intro"].format(count=len(t["quiz"])), stat_cta_label=t["stat_cta_label"].format(count=len(t["quiz"])), quiz_total=str(len(t["quiz"]) + 1),  # the contact fields are the last step
         language_options_html=lines(options, 14), alternates_html="\n".join(alternates), og_alternates_html="\n".join(og_alternates),
