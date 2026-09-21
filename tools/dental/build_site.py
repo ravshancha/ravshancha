@@ -282,8 +282,9 @@ def render_page(template, lang, slug=None, kind="main"):
     # The footer of every ravshancha.uz page ends with the same site buttons; the page being read is marked, not linked.
     sites = [(t["footer_cv"], root + "../", False), (t["footer_biz"], root + "../business/" + meta["path"], False),
              (t["footer_dental"], main_link, kind == "main")]
-    sites += [(DIRECTIONS[other]["footer_label"][lang], rel(page_path(lang, other, "patients"), path), kind == "patients" and other == slug)
-              for other in DIRECTIONS]
+    for other, direction in DIRECTIONS.items():
+        sites += [(direction["footer_label"][lang], rel(page_path(lang, other, "patients"), path), kind == "patients" and other == slug),
+                  (direction["footer_label_clinics"][lang], rel(page_path(lang, other, "clinics"), path), kind == "clinics" and other == slug)]
     footer_sites = [
         f'<span class="footer-site" aria-current="page"><span>{esc(label)}</span></span>' if current else
         f'<a class="footer-site" href="{esc(link)}"><span>{esc(label)}</span>{icon("arrow-up-right")}</a>'
@@ -384,8 +385,8 @@ def main():
     for slug, direction in DIRECTIONS.items():
         if not re.fullmatch(r"[a-z0-9-]+", slug) or slug in {meta["path"].strip("/") for meta in LANGS.values()} | {"assets"}:
             raise SystemExit(f"content.py: '{slug}' cannot be a direction address")
-        if set(direction) != {"keyword_stem", "footer_label", "patients", "clinics"} or any(set(direction[part]) != set(LANGS) for part in direction):
-            raise SystemExit(f"content.py: direction '{slug}' needs keyword_stem, footer_label, patients and clinics for every language")
+        if set(direction) != {"keyword_stem", "footer_label", "footer_label_clinics", "patients", "clinics"} or any(set(direction[part]) != set(LANGS) for part in direction):
+            raise SystemExit(f"content.py: direction '{slug}' needs keyword_stem, footer_label, footer_label_clinics, patients and clinics for every language")
         for lang in LANGS:
             unknown = set(direction["clinics"][lang]) - set(reference) - DIRECTION_KEYS
             missing = DIRECTION_KEYS - set(direction["clinics"][lang])

@@ -216,7 +216,8 @@ def render_page(template, lang):
 
     # The footer of every ravshancha.uz page ends with the same site buttons; this page is marked, not linked.
     dental = root + "../dental/" + meta["path"]
-    sites = [(t["footer_cv"], root + "../"), (t["footer_biz"], None), (t["footer_dental"], dental), (t["footer_sedation"], dental + "sedatsiya/")]
+    sites = [(t["footer_cv"], root + "../"), (t["footer_biz"], None), (t["footer_dental"], dental),
+             (t["footer_sedation"], dental + "sedatsiya/"), (t["footer_sedation_clinics"], dental + "sedatsiya/klinikalar/")]
     footer_sites = [
         f'<a class="footer-site" href="{esc(link)}"><span>{esc(label)}</span>{icon("arrow-up-right")}</a>' if link else
         f'<span class="footer-site" aria-current="page"><span>{esc(label)}</span></span>'

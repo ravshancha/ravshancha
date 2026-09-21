@@ -48,10 +48,10 @@ orqali asosiy sahifaga; bemorlar sahifasining footeri → klinikalar sahifasi. S
 Yangi yo‘nalish: `DIRECTIONS` ga yangi blok → `build_site.py` → `build_og.py <slug>`.
 
 Sayt tugmalari: har bir sahifa footerining pastki qatorida (© yonida) ravshancha.uz ning barcha sahifalari turadi —
-Rezyume, Biznes, Stomatologiya va har bir yo‘nalishning bemorlar sahifasi (`DIRECTIONS["<slug>"]["footer_label"]`).
-O‘qilayotgan sahifaning tugmasi havola emas, belgilangan holatda turadi (`aria-current`). Xuddi shu to‘rt tugma CV sayt
-(`site/index.html`) va `/business/` (`tools/business/`) footerida ham bor — ular yo‘nalishlar ro‘yxatini bilmaydi, shuning
-uchun yangi yo‘nalish tugmasini u yerga qo‘lda qo‘shing.
+Rezyume, Biznes, Stomatologiya va har bir yo‘nalishning ikki sahifasi: bemorlar (`DIRECTIONS["<slug>"]["footer_label"]`)
+va klinikalar (`footer_label_clinics`). O‘qilayotgan sahifaning tugmasi havola emas, belgilangan holatda turadi
+(`aria-current`). Xuddi shu besh tugma CV sayt (`site/index.html`) va `/business/` (`tools/business/`) footerida ham
+bor — ular yo‘nalishlar ro‘yxatini bilmaydi, shuning uchun yangi yo‘nalish tugmalarini u yerga qo‘lda qo‘shing.
 
 Eslatma: dentalnavigator.uz katalogidagi 12 yo‘nalish orasida sedatsiya yo‘q, shuning uchun klinikalar sahifasi uni klinika
 *xizmati* sifatida ko‘rsatadi — bu `TASDIQLANG` bilan belgilangan. Bemorlar sahifasidagi tibbiy matn umumiy ma’lumot;

@@ -57,10 +57,11 @@ L["uz"] = dict(
     language_label="Til",
     back_to_top="Yuqoriga",
     footer_links_label="Aloqa havolalari",
-    footer_cv="Rezyume",  # the footer's site buttons — the same four labels stand on ravshancha.uz and /dental/
+    footer_cv="Rezyume",  # the footer's site buttons — the same five labels stand on ravshancha.uz and /dental/
     footer_biz="Biznes uchun xizmatlar",
     footer_dental="Stomatologiya uchun",
     footer_sedation="Sedatsiya",
+    footer_sedation_clinics="Sedatsiya — klinikalar uchun",
 
     hero_eyebrow="Biznes jarayonlarini avtomatlashtirish",
     hero_title_html='Biznesingiz<br><span class="accent-word">qo‘lda emas, tizimda</span><br>ishlasin.',
@@ -258,6 +259,7 @@ L["ru"] = dict(
     footer_biz="Услуги для бизнеса",
     footer_dental="Для стоматологии",
     footer_sedation="Седация",
+    footer_sedation_clinics="Седация — для клиник",
 
     hero_eyebrow="Автоматизация бизнес-процессов",
     hero_title_html='Пусть бизнес работает<br><span class="accent-word">в системе, а не вручную</span>.',

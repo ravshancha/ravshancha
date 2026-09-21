@@ -2086,6 +2086,7 @@
         <a class="footer-site" href="business/" data-biz-link><span data-i18n="footerBiz">Biznes uchun xizmatlar</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
         <a class="footer-site" href="dental/" data-dental-link><span data-i18n="footerDental">Stomatologiya uchun</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
         <a class="footer-site" href="dental/sedatsiya/" data-sedation-link><span data-i18n="footerSedation">Sedatsiya</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
+        <a class="footer-site" href="dental/sedatsiya/klinikalar/" data-sedation-clinics-link><span data-i18n="footerSedationClinics">Sedatsiya — klinikalar uchun</span><svg class="site-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"/></svg></a>
       </div>
     </div>
   </footer>
@@ -2321,7 +2322,8 @@
         footerCv: "Rezyume",
         footerBiz: "Biznes uchun xizmatlar",
         footerDental: "Stomatologiya uchun",
-        footerSedation: "Sedatsiya"
+        footerSedation: "Sedatsiya",
+        footerSedationClinics: "Sedatsiya — klinikalar uchun"
       },
       ru: {
         pageTitle: "Равшанжон Исмоилов — Java-разработчик, Ташкент",
@@ -2475,7 +2477,8 @@
         footerCv: "Резюме",
         footerBiz: "Услуги для бизнеса",
         footerDental: "Для стоматологии",
-        footerSedation: "Седация"
+        footerSedation: "Седация",
+        footerSedationClinics: "Седация — для клиник"
       },
       en: {
         pageTitle: "Ravshanjon Ismoilov — Java Software Developer, Tashkent",
@@ -2629,7 +2632,8 @@
         footerCv: "Resume",
         footerBiz: "Services for business",
         footerDental: "For dental clinics",
-        footerSedation: "Sedation"
+        footerSedation: "Sedation",
+        footerSedationClinics: "Sedation — for clinics"
       }
     };
 
@@ -2651,6 +2655,7 @@
     const bizLink = document.querySelector("[data-biz-link]");
     const dentalLink = document.querySelector("[data-dental-link]");
     const sedationLink = document.querySelector("[data-sedation-link]");
+    const sedationClinicsLink = document.querySelector("[data-sedation-clinics-link]");
     const openApiDocs = document.querySelector("[data-openapi-docs]");
     let cvPath = "cv/Ravshanjon-Ismoilov-CV-uz.pdf";
     let currentLanguage = "uz";
@@ -2741,6 +2746,7 @@
       bizLink.href = selectedLanguage === "ru" ? "business/ru/" : "business/";
       dentalLink.href = selectedLanguage === "ru" ? "dental/ru/" : "dental/";
       sedationLink.href = selectedLanguage === "ru" ? "dental/ru/sedatsiya/" : "dental/sedatsiya/";
+      sedationClinicsLink.href = `${sedationLink.getAttribute("href")}klinikalar/`;
       openApiDocs.href = `https://www.ipotekabank.uz/upload/openapi/openapi_${selectedLanguage}.html`;
       if (cvDialog.open) updateCvPreview();
       themeButtons.forEach((button) => {
