@@ -1,135 +1,276 @@
+<h1 align="center">Ravshanjon Ismoilov</h1>
+<p align="center"><strong>Java Software Developer · Banking &amp; Fintech · Tashkent, Uzbekistan</strong></p>
 
-# Ismoilov Ravshanjon
-### Software Engineer [Java / Spring / React / Next.js]
-## `💻 Coding ...` | Uzbekistan
+<p align="center">
+  <a href="https://ravshancha.uz">Website</a> ·
+  <a href="https://github.com/ravshancha">GitHub</a> ·
+  <a href="https://www.linkedin.com/in/ravshancha">LinkedIn</a> ·
+  <a href="mailto:ismoilov.ravshanjon@gmail.com">Email</a> ·
+  <a href="https://t.me/ravshanjon_ismoilov">Telegram</a>
+</p>
 
-[![CV](https://img.shields.io/badge/CV-Download-black?style=for-the-badge&logo=readdotcv)](mailto:ismoilov.ravshanjon@gmail.com)
-[![Web-site](https://img.shields.io/badge/ravshancha.uz-black?style=for-the-badge&logo=revoltdotchat)](https://ravshancha.uz)
-[![GitHub](https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github)](https://gist.github.com/ravshancha)
-[![Gitlab](https://img.shields.io/badge/Gitlab-000000?style=for-the-badge&logo=Gitlab)](https://www.gitlab.com/ravshancha)
-[![BitBucket](https://img.shields.io/badge/BitBucket-000000?style=for-the-badge&logo=BitBucket)](https://www.bitbucket.com/ravshancha)
-[![LeetCode](https://img.shields.io/badge/LeetCode-black?style=for-the-badge&logo=leetcode)](https://gist.github.com/ravshancha)
-[![Medium](https://img.shields.io/badge/Medium-black?style=for-the-badge&logo=medium)](https://gist.github.com/ravshancha)
-[![Gmail](https://img.shields.io/badge/Mail-black?style=for-the-badge&logo=Gmail)](mailto:ismoilov.ravshanjon@gmail.com)
-[![Telegram](https://img.shields.io/badge/Telegram-black?style=for-the-badge&logo=Telegram)](https://t.me/ravshancha)
-[![Whatsapp](https://img.shields.io/badge/WhatsApp-black?style=for-the-badge&logo=Whatsapp)](https://www.wa.me/+998994370770)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-black?style=for-the-badge&logo=LinkedIn)](https://www.linkedin.com/in/ravshancha)
-[![Twitter](https://img.shields.io/badge/Twitter-black?style=for-the-badge&logo=Twitter)](https://twitter.com/ravshancha)
-[![Facebook](https://img.shields.io/badge/Facebook-black?style=for-the-badge&logo=Facebook)](https://www.facebook.com/ravshancha)
-[![Instagram](https://img.shields.io/badge/Instagram-black?style=for-the-badge&logo=Instagram)](https://www.instagram.com/ravshancha.uz)
+<p align="center">
+  Tilni tanlang · Выберите язык · Choose a language
+</p>
 
-Web developer with a high regard to interactive fast websites, clean code and advanced algorithms
-> Get my act together towards catching up with the speed of development of new technologies.
+<details open>
+<summary><strong>🇺🇿 O‘zbekcha</strong></summary>
 
-[![Ismoilov Ravshanjon's GitHub stats ](https://github-readme-stats.vercel.app/api?username=ravshancha&show_icons=true&theme=dark)](https://gitlab.com/ravshancha)
+## Men haqimda
 
-[![Ismoilov Ravshanjon's GitHub stats ](https://github-readme-stats.vercel.app/api/top-langs/?username=ravshancha&theme=blue-green)](https://gitlab.com/ravshancha)
+Bank va fintech sohasida 8 yildan ortiq tajribaga ega Java dasturchiman: mobil va internet-banking, to‘lov tizimlari va integratsiyalar (Uzcard, Humo, Paynet, Wolt, davlat idoralari). 6 kishigacha bo‘lgan jamoalarga rahbarlik qilganman, arxitektura va xavfsiz REST API’larni loyihalaganman, relizlar va kod-revyu uchun javob berganman.
 
-### **Language & Technologies**
-![JAVA](https://img.shields.io/badge/Java-black?style=for-the-badge&logo=openjdk) 
-![JAVA](https://img.shields.io/badge/Spring-black?style=for-the-badge&logo=spring) 
-![Oracle](https://img.shields.io/badge/Oracle-000000?style=for-the-badge&logo=Oracle&logoColor=ff0000) 
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-000000?style=for-the-badge&logo=PostgreSQL)
-![Git](https://camo.githubusercontent.com/324ecb8e3920e6c4826b60f2afd553c8a1b6ea87782030de0eaa65bb8c8b2919/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4769742d4630353033323f7374796c653d666f722d7468652d6261646765266c6f676f3d676974266c6f676f436f6c6f723d7768697465)
-![Figma](https://img.shields.io/badge/Figma-000000?style=for-the-badge&logo=Figma) 
-![HTML](https://img.shields.io/badge/HTML5-000000?style=for-the-badge&logo=HTML5) 
-![CSS](https://img.shields.io/badge/CSS3-000000?style=for-the-badge&logo=CSS3) 
-![JavaScript](https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=JavaScript) 
-![SASS](https://img.shields.io/badge/SASS-000000?style=for-the-badge&logo=SASS) 
-![Bootstrap](https://img.shields.io/badge/Bootstrap-000000?style=for-the-badge&logo=Bootstrap) 
-![Nodejs](https://camo.githubusercontent.com/7f4931495ba3a8b88b75935ec00486ccb40d30b8d613829df0bdf86eaf2d8abb/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4e6f64656a732d3433383533643f7374796c653d666f722d7468652d6261646765266c6f676f3d4e6f64652e6a73266c6f676f436f6c6f723d7768697465) 
-![React.js](https://img.shields.io/badge/React-000000?style=for-the-badge&logo=React) 
-![Next.js](https://img.shields.io/badge/Vue.js-000000?style=for-the-badge&logo=next.js) 
-![ReactHooks](https://camo.githubusercontent.com/cb3c8adf7b1a07a0236bf33802aa7919a64df5dd3a12e4b7f5bff214fba480dd/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d52454143545f484f4f4b532d3332353061383f7374796c653d666f722d7468652d6261646765266c6f676f3d5245414354266c6f676f436f6c6f723d) 
-![ReactRouter](https://camo.githubusercontent.com/a4ca6b71d62aa6f56199242308ccb9619737bc6d78aeb0599ba5978866e72789/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d52656163745f526f757465722d626c61636b3f7374796c653d666f722d7468652d6261646765266c6f676f3d72656163742d726f75746572266c6f676f436f6c6f723d6f72616e6765)
-![Heroku](https://camo.githubusercontent.com/34d9487f29365780fa14138d197a71172a0e1fb8765fcb28734dcd0770f7eba7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4865726f6b752d3736344142433f7374796c653d666f722d7468652d6261646765266c6f676f3d6865726f6b75266c6f676f436f6c6f723d7768697465)
-![Postman](https://camo.githubusercontent.com/cce340a49ea69f07b55fd3481df80def1dc60ee829557922bb09a31ff5a66944/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d504f53544d414e2d3332356461383f7374796c653d666f722d7468652d6261646765266c6f676f3d504f53544d414e266c6f676f436f6c6f723d)
-### **Forums**
-[![Slack](https://img.shields.io/badge/Slack-000000?style=for-the-badge&logo=Slack)](https://www.wa.me/+998994370770)
-[![StackOverflow](https://img.shields.io/badge/Stack_Overflow-000000?style=for-the-badge&logo=stack-overflow)](https://www.bitbucket.com/ravshancha)
-### **Projects**
-[![Netlify](https://img.shields.io/badge/Netlify-000000?style=for-the-badge&logo=Netlify)](https://app.netlify.com/teams/ravshancha)
-### **Presentation**
-[![Youtube](https://img.shields.io/badge/Youtube-000000?style=for-the-badge&logo=Youtube)](https://www.youtube.com/@ravshancha)
+Asosiy stek: Java 21, Spring Boot 3, Spring Cloud, PostgreSQL, Oracle, RabbitMQ, Docker.
 
-# Skills
-- **Languages:** `Java`, `JavaScript`
-- **Web development:** `React Js`, `JQuery`, `Ajax` 
-- **CSS Frameworks:** `Bootstrap`, `Bootstrap React`
-- **Favorite Libraries:** `Material-ui`, `Axios`, `Redux`, `Vuex`
-- **Other:** `Rest API`, `Cookie`, `Agile Scrum`
+### Ko‘nikmalar
 
-# Experience
-### **Backend Developer**
-**Tune Consulting**, January, 2020 - December, 2021
-<br>
-#### Kapital Bank - Apelsin & Market Place
-- Интеграция между системами
-- Разработка интернет-магазина
-- Разработка административной панели для приложения
-- Технологии:
-![JAVA](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=Java&logoColor=ff0000)
-![JAVA](https://img.shields.io/badge/spring-000000?style=for-the-badge&logo=Java&logoColor=ff0000)
- Spring (Boot 2, Security, Data), ActiveMQ, SOAP, REST, JSON, XML
-  Swagger 2.0, Oracle, Redis, ElasticSearch, MongoDB
+- **Backend:** Java 21, Spring Boot 3.x, Spring Security, OAuth2, Spring Data / JPA / JDBC, Hibernate
+- **Mikroservislar:** Spring Cloud (Config, Discovery, Gateway, OpenFeign, Routing), RabbitMQ, ActiveMQ
+- **API:** REST, SOAP, JSON, XML, Swagger / OpenAPI
+- **Ma’lumotlar bazalari:** Oracle, PostgreSQL, MySQL; NoSQL: Redis, MongoDB, Elasticsearch
+- **Serverlar va vositalar:** Apache Tomcat, NGINX, Docker, Kubernetes, Git / GitHub / GitLab CI/CD, Maven / Gradle
+- **Frontend (boshlang‘ich):** React.js / Vue.js, HTML5, CSS3, JavaScript
 
+### Tajriba
 
-### **WEB DEVELOPER**
-**Stylemix**, April, 2019 - December, 2019
-<br> [Stylemix](http://stylemix.net) delivers WordPress support and maintenance services internationally. Customizes themes from [StylemixThemes](http://stylemixthemes.com)
-- Installing and updating Wordpress, Themes, Plugins
-- WooCommerce and payment gateway integrations/modifications 
-- Developing websites under Google Page Speed (90%+)
-- Cache controlling
-- Customizing websites in clients' desire
-- Creating front-end of websites under different criteria
-- Integration Mobile App with Wordpress Website
+#### Dasturchilar guruhi rahbari — Ipotekabank OTP Group
+`2024-yil yanvar — 2025-yil dekabr · Toshkent`
 
+- **OpenAPI / DiBank** — yuridik va korporativ mijozlar uchun REST API, yangilangan xavfsizlik va tokenizatsiya arxitekturasi, CRM bilan integratsiya.
+- **Wolt** — xalqaro yetkazib berish servisi bilan to‘lovlarni qabul qilish va real vaqtda monitoring.
+- **MinStroy** — Qurilish vazirligi bilan eskrou-hisoblar bo‘yicha integratsiya.
+- **KATM** — kredit assotsiatsiyasi bilan ikki tomonlama integratsiya, RabbitMQ navbatlari.
 
-### **IELTS MENTOR**
-**Zippy Students**, October, 2018 - February 2019
-- Improved students' skills from Pre-Ielts to Ielts 
-- Results: IETLS band 5+
+#### Dasturchilar guruhi rahbari — REALSOFT
+`2022-yil sentyabr — 2023-yil dekabr · Toshkent`
 
-# Education
+- Ichki to‘lov tizimi **RealPay** ishlab chiqilishiga rahbarlik qildim (6 kishilik jamoa: 3 backend, 3 frontend).
+- Uzcard va Humo integratsiyasi: to‘lovlar va kartadan kartaga o‘tkazmalar.
+- Davlat muassasalarining 10 dan ortiq loyihasini RealPay’ga uladim.
 
-**TUIT, 2013 - 2017** <br>
-**Computer Engineering**
+#### Software Engineer (Java Developer) — EPAM Uzbekistan
+`2022-yil yanvar — 2023-yil dekabr · Toshkent`
 
-- Founder's Scholarship Winner for 4 years
-- GPA 4.31/4.5 [link](https://drive.google.com/file/d/1HVUAPpzXPC_9SYIB3hMw-8mpmKnMSK3h/view)
-- The academic excellence is in “Dean’s List”.
+- **EPAM Certification System** — muhandislarni sertifikatlashni avtomatlashtiruvchi ichki platformaning server qismi.
+- LMS, email-shlyuz va Notification Service bilan integratsiya; arxitektura va CI/CD (GitLab CI, Docker, Kubernetes).
 
-# Certificates - [link](https://drive.google.com/file/d/1egiMKQTI_DCZ_xek-cilgFymsEM43qOp/view)
+#### Java dasturchi — Tune Consulting
+`2020-yil yanvar — 2021-yil noyabr · Toshkent`
 
-### Open Data Challenge, 2022
-* [Rewarded](https://inha.uz/en/news/709/) with first place for a project called "Clean City".
-* Worked with a team during two days 
-* From Idea to Implementation
+- **Apelsin (Kapital Bank)** — mobil bank ekotizimi: CRM va dashboard server mantig‘i, tranzaksiya va P2P o‘tkazma servislari, COVID-19 davrida kartalarni onlayn buyurtma qilish.
+- **Apelsin Marketplace** — katalog, savat va to‘lovning mikroservis mantig‘i.
+- **Kapital24** — jismoniy va yuridik shaxslar uchun internet-banking API’si.
+- **E-commerce (Orient Finance Bank)** — onlayn to‘lovlar integratsiya platformasi.
 
-[//]: # (### IELTS Certificate 8.0 band score, 2020-2022)
-[//]: # ()
-[//]: # (* Reading 8.5)
-[//]: # (* Listening 8.0)
-[//]: # (* Speaking 7.5)
-[//]: # (* Writing 7.5)
+#### Java dasturchi — Davr Bank
+`2019-yil may — 2020-yil yanvar · Toshkent`
 
-### Other [achievements](https://drive.google.com/file/d/1XheymE_r1Fp5WSNa37EurkkBvezRtazI/view) till 2017
-* Mathematical olimpiads
-* Sport competitions
+- **DavrBank Mobile App** — jismoniy shaxslar uchun mobil bankning server qismi va REST API’lari.
+- UzCard, Humo va Paynet integratsiyasi; NCI core-tizimi bilan ishlash.
 
-# Conferences
-### Perspektywy Women in Tech Summit in Poland, 2019
-- The Winner of scholarship for attending [Perspektywy Women in Tech Summit](https://womenintechsummit.pl/),
-the world's biggest conference for women in IT & TECH in Europe
+#### Java dasturchi — MIRONSOFT
+`2017-yil sentyabr — 2019-yil mart · Toshkent`
 
-# Projects
-[avto.kapitalbank.uz ](https://avto.kapitalbank.uz) - Auto Credit Form and Loan Calculation SPA<br>
->Technologies: Vue, Vuex, Vue Resource, Pdf-make
+- **Ijod Fondi** — to‘lovlar va buxgalteriya modullari, soliq imtiyozlarini avtomatik hisoblash.
+- **UzAgroExpertBank** — hujjat aylanishini avtomatlashtirish.
 
-- 1 day challenge (website was developed in 20 hours)
-- Server side rendering
-- Layout handling (responsive)
-- Loan Calculator
+### Ta’lim
 
-<hr>
+**Toshkent axborot texnologiyalari universiteti** — Bakalavr, Kompyuter injiniringi (kompyuter tizimlari), 2017
+
+### Kurslar va sertifikatlar
+
+- **2022 — LinkedIn Learning:** Spring Cloud, Microservices: Design Patterns, Microservices Foundations, Java Memory Management, Spring 5.0 / Spring Boot 2.0
+- **2021 — QDTS:** IBM Business Automation Workflow V19.0.0.1
+- **2021 — SoloLearn:** Java, Kotlin, SQL, Python, HTML/CSS, JavaScript, jQuery, React + Redux, PHP
+- **2019 — PDP IT Academy:** Full Stack Web Development (Spring Boot)
+- **2015 — BePro IT Academy:** Java, Oracle, Windows Server, ITIL v3
+
+### Tillar
+
+O‘zbek — ona tili · Rus — C2 · Ingliz — B2 · Turk — B2
+
+CV (uz/ru/en) va portfolio sayti: [ravshancha.uz](https://ravshancha.uz). Sayt kodi [`development`](https://github.com/ravshancha/ravshancha/tree/development) branch’ida.
+
+</details>
+
+<details>
+<summary><strong>🇷🇺 Русский</strong></summary>
+
+## Обо мне
+
+Java-разработчик с опытом более 8 лет в банковском и финтех-секторе: мобильный и интернет-банкинг, платёжные системы и интеграции (Uzcard, Humo, Paynet, Wolt, госструктуры). Руководил командами до 6 человек, проектировал архитектуру и безопасные REST API, отвечал за релизы и код-ревью.
+
+Основной стек: Java 21, Spring Boot 3, Spring Cloud, PostgreSQL, Oracle, RabbitMQ, Docker.
+
+### Навыки
+
+- **Backend:** Java 21, Spring Boot 3.x, Spring Security, OAuth2, Spring Data / JPA / JDBC, Hibernate
+- **Микросервисы:** Spring Cloud (Config, Discovery, Gateway, OpenFeign, Routing), RabbitMQ, ActiveMQ
+- **API:** REST, SOAP, JSON, XML, Swagger / OpenAPI
+- **Базы данных:** Oracle, PostgreSQL, MySQL; NoSQL: Redis, MongoDB, Elasticsearch
+- **Серверы и инструменты:** Apache Tomcat, NGINX, Docker, Kubernetes, Git / GitHub / GitLab CI/CD, Maven / Gradle
+- **Frontend (базовый):** React.js / Vue.js, HTML5, CSS3, JavaScript
+
+### Опыт работы
+
+#### Руководитель группы разработки — Ipotekabank OTP Group
+`Январь 2024 — Декабрь 2025 · Ташкент`
+
+- **OpenAPI / DiBank** — REST API для юридических и корпоративных клиентов, обновлённая архитектура безопасности и токенизации, интеграция с CRM.
+- **Wolt** — приём и обработка платежей международного сервиса доставки, мониторинг операций в реальном времени.
+- **MinStroy** — интеграция с Министерством строительства по эскроу-счетам.
+- **KATM** — двусторонняя интеграция с кредитной ассоциацией, очереди RabbitMQ.
+
+#### Руководитель группы разработки — REALSOFT
+`Сентябрь 2022 — Декабрь 2023 · Ташкент`
+
+- Руководил разработкой внутренней платёжной системы **RealPay** (команда из 6 человек: 3 backend, 3 frontend).
+- Интеграция с Uzcard и Humo: платежи и межкартовые переводы.
+- Подключил к RealPay более 10 проектов государственных учреждений.
+
+#### Software Engineer (Java Developer) — EPAM Uzbekistan
+`Январь 2022 — Декабрь 2023 · Ташкент`
+
+- **EPAM Certification System** — серверная часть внутренней платформы автоматизации сертификации инженеров.
+- Интеграция с LMS, email-шлюзом и Notification Service; участие в проектировании архитектуры и CI/CD (GitLab CI, Docker, Kubernetes).
+
+#### Java-разработчик — Tune Consulting
+`Январь 2020 — Ноябрь 2021 · Ташкент`
+
+- **Apelsin (Kapital Bank)** — экосистема мобильного банка: CRM и серверная логика dashboard, сервисы транзакций и P2P-переводов, онлайн-заказ карт в период COVID-19.
+- **Apelsin Marketplace** — микросервисная логика каталога, корзины и оплаты.
+- **Kapital24** — интернет-банкинг для физических и юридических лиц.
+- **E-commerce (Orient Finance Bank)** — платформа онлайн-платежей.
+
+#### Java-разработчик — ЧАКБ «Давр Банк»
+`Май 2019 — Январь 2020 · Ташкент`
+
+- **DavrBank Mobile App** — серверная часть и REST API мобильного банка для физических лиц.
+- Интеграция с UzCard, Humo и Paynet; взаимодействие с core-системой NCI.
+
+#### Java-разработчик — MIRONSOFT
+`Сентябрь 2017 — Март 2019 · Ташкент`
+
+- **Ijod Fondi** — модули учёта платежей и бухгалтерии, автоматизация расчёта налоговых льгот.
+- **UzAgroExpertBank** — автоматизация документооборота.
+
+### Образование
+
+**Ташкентский университет информационных технологий** — бакалавр, компьютерный инжиниринг (компьютерные системы), 2017
+
+### Курсы и сертификаты
+
+- **2022 — LinkedIn Learning:** Spring Cloud, Microservices: Design Patterns, Microservices Foundations, Java Memory Management, Spring 5.0 / Spring Boot 2.0
+- **2021 — QDTS:** IBM Business Automation Workflow V19.0.0.1
+- **2021 — SoloLearn:** Java, Kotlin, SQL, Python, HTML/CSS, JavaScript, jQuery, React + Redux, PHP
+- **2019 — PDP IT Academy:** Full Stack Web Development (Spring Boot)
+- **2015 — BePro IT Academy:** Java, Oracle, Windows Server, ITIL v3
+
+### Языки
+
+Узбекский — родной · Русский — C2 · Английский — B2 · Турецкий — B2
+
+Резюме (uz/ru/en) и портфолио: [ravshancha.uz](https://ravshancha.uz). Код сайта — в ветке [`development`](https://github.com/ravshancha/ravshancha/tree/development).
+
+</details>
+
+<details>
+<summary><strong>🇬🇧 English</strong></summary>
+
+## About me
+
+Java developer with 8+ years in banking and fintech: mobile and internet banking, payment systems and integrations (Uzcard, Humo, Paynet, Wolt, government services). Led teams of up to 6 engineers, designed architecture and secure REST APIs, owned releases and code reviews.
+
+Core stack: Java 21, Spring Boot 3, Spring Cloud, PostgreSQL, Oracle, RabbitMQ, Docker.
+
+### Skills
+
+- **Backend:** Java 21, Spring Boot 3.x, Spring Security, OAuth2, Spring Data / JPA / JDBC, Hibernate
+- **Microservices:** Spring Cloud (Config, Discovery, Gateway, OpenFeign, Routing), RabbitMQ, ActiveMQ
+- **API:** REST, SOAP, JSON, XML, Swagger / OpenAPI
+- **Databases:** Oracle, PostgreSQL, MySQL; NoSQL: Redis, MongoDB, Elasticsearch
+- **Servers & tools:** Apache Tomcat, NGINX, Docker, Kubernetes, Git / GitHub / GitLab CI/CD, Maven / Gradle
+- **Frontend (basic):** React.js / Vue.js, HTML5, CSS3, JavaScript
+
+### Experience
+
+#### Head of Development Team — Ipotekabank OTP Group
+`January 2024 — December 2025 · Tashkent`
+
+- **OpenAPI / DiBank** — REST APIs for legal entities and corporate clients, updated security and tokenisation architecture, CRM integration.
+- **Wolt** — payment acceptance and processing for the international delivery service, real-time monitoring of financial operations.
+- **MinStroy** — escrow-account integration with the Ministry of Construction.
+- **KATM** — two-way integration with the credit association, RabbitMQ queues.
+
+#### Head of Development Team — REALSOFT
+`September 2022 — December 2023 · Tashkent`
+
+- Led the development of **RealPay**, the company’s internal payment system (team of 6: 3 backend, 3 frontend).
+- Uzcard and Humo integration for payments and card-to-card transfers.
+- Connected 10+ government-institution projects to RealPay.
+
+#### Software Engineer (Java Developer) — EPAM Uzbekistan
+`January 2022 — December 2023 · Tashkent`
+
+- **EPAM Certification System** — backend of the internal platform automating engineer certification.
+- Integration with LMS, email gateway and notification service; architecture and CI/CD design (GitLab CI, Docker, Kubernetes).
+
+#### Java Developer — Tune Consulting
+`January 2020 — November 2021 · Tashkent`
+
+- **Apelsin (Kapital Bank)** — mobile banking ecosystem: CRM and dashboard backend, transaction and P2P transfer services, online card ordering launched during COVID-19.
+- **Apelsin Marketplace** — microservice logic for catalogue, cart and checkout.
+- **Kapital24** — internet banking for individuals and businesses.
+- **E-commerce (Orient Finance Bank)** — online payment integration platform.
+
+#### Java Developer — Davr Bank
+`May 2019 — January 2020 · Tashkent`
+
+- **DavrBank Mobile App** — backend and REST APIs of the retail mobile bank.
+- UzCard, Humo and Paynet integration; work with the NCI core banking system.
+
+#### Java Developer — MIRONSOFT
+`September 2017 — March 2019 · Tashkent`
+
+- **Ijod Fondi** — payment and accounting modules, automated tax-benefit calculation.
+- **UzAgroExpertBank** — document workflow automation.
+
+### Education
+
+**Tashkent University of Information Technologies** — Bachelor’s degree, Computer Engineering (Computer Systems), 2017
+
+### Courses & certificates
+
+- **2022 — LinkedIn Learning:** Spring Cloud, Microservices: Design Patterns, Microservices Foundations, Java Memory Management, Spring 5.0 / Spring Boot 2.0
+- **2021 — QDTS:** IBM Business Automation Workflow V19.0.0.1
+- **2021 — SoloLearn:** Java, Kotlin, SQL, Python, HTML/CSS, JavaScript, jQuery, React + Redux, PHP
+- **2019 — PDP IT Academy:** Full Stack Web Development (Spring Boot)
+- **2015 — BePro IT Academy:** Java, Oracle, Windows Server, ITIL v3
+
+### Languages
+
+Uzbek — native · Russian — C2 · English — B2 · Turkish — B2
+
+CV (uz/ru/en) and portfolio: [ravshancha.uz](https://ravshancha.uz). The website source lives on the [`development`](https://github.com/ravshancha/ravshancha/tree/development) branch.
+
+</details>
+
+## Technology stack
+
+![Java](https://img.shields.io/badge/Java-111111?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-111111?style=for-the-badge&logo=springboot&logoColor=6DB33F)
+![Spring Security](https://img.shields.io/badge/Spring%20Security-111111?style=for-the-badge&logo=springsecurity&logoColor=6DB33F)
+![Hibernate](https://img.shields.io/badge/Hibernate-111111?style=for-the-badge&logo=hibernate&logoColor=59666C)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-111111?style=for-the-badge&logo=postgresql&logoColor=4169E1)
+![Oracle](https://img.shields.io/badge/Oracle-111111?style=for-the-badge&logo=oracle&logoColor=F80000)
+![Redis](https://img.shields.io/badge/Redis-111111?style=for-the-badge&logo=redis&logoColor=FF4438)
+![RabbitMQ](https://img.shields.io/badge/RabbitMQ-111111?style=for-the-badge&logo=rabbitmq&logoColor=FF6600)
+![Docker](https://img.shields.io/badge/Docker-111111?style=for-the-badge&logo=docker&logoColor=2496ED)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-111111?style=for-the-badge&logo=kubernetes&logoColor=326CE5)
+![Git](https://img.shields.io/badge/Git-111111?style=for-the-badge&logo=git&logoColor=F05032)
+![GitLab CI](https://img.shields.io/badge/GitLab%20CI-111111?style=for-the-badge&logo=gitlab&logoColor=FC6D26)
+
+## GitHub statistics
+
+[![Ravshanjon's GitHub stats](https://github-profile-summary-cards.vercel.app/api/cards/stats?username=ravshancha&theme=github_dark)](https://github.com/ravshancha)
